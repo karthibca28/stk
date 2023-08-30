@@ -1,0 +1,18 @@
+<div class="grid">
+    <div class="col-12 pb-0">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" (click)="cancel()">Vehicle DB List</h5>
+            </div>
+            <div class="btn-top">
+                <app-dynamic-csv [dynamaicDataForTable]="dynamaicDataForTable" *ngIf="toDownload"></app-dynamic-csv>
+            </div>
+        </div>
+	</div>
+	<div class="col-12 md:col-12 pt-0">
+		<div class="card">
+			<app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (edit)="editRecord($event)"
+            (delete)="deleteRecord($event)"></app-dynamic-table>
+		</div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+div.list {
+    background-color: #fff;
+    padding: 7px 7px;
+    border-bottom: 3px solid #F2F4F6;
+    cursor: pointer;
+}
+div.activeList {
+    background-color: var(--teal-400);
+    color: #fff;
+}
+div.list:hover {
+    background-color: var(--teal-100);
+}

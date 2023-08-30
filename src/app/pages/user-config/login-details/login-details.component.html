@@ -1,0 +1,15 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" routerLink="/main/admin">User List</h5>
+            </div>
+            <div class="btn-top">
+                <app-dynamic-csv [dynamaicDataForTable]="dynamaicDataForTable" *ngIf="toDownload"></app-dynamic-csv>
+            </div>
+        </div>
+        <div class="card border5">
+            <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable"></app-dynamic-report-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="grid">
+	<div class="col-12">
+        <div class="card">
+            <div class="flex align-items-center justify-content-between">
+                <div class="title">
+                    <h5>{{title}}</h5>
+                </div>
+                <div class="btn-top">
+                    <button pButton label="Add" type="button" icon="pi pi-plus" (addClick)="goToForm()"
+                        style="display:block;margin-bottom: 20px; margin-left: 6px;"></button>
+                </div>
+            </div>
+            <app-dynamic-table></app-dynamic-table>
+        </div>
+    </div>
+</div>

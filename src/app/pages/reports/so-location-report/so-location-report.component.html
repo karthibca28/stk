@@ -1,0 +1,49 @@
+<div class="grid">
+    <div class="col-6 flex align-items-center">
+		<h5 class="mb-0 text-rblue">Location Summary</h5>
+	</div>
+	<div class="col-6 text-right">
+        <span class="cp" routerLink="/main/so"><img src="assets/images/backarrow.png" height="27" class="pr-1"></span>
+		<!-- <button pButton label="Back" type="button" icon="pi pi-arrow-left" class="p-button-info border5" (click)="cancel()"></button> -->
+	</div>
+</div>
+<div class="grid">
+    <div class="col-12">
+        <div class="card p-1 border-noround no-shadow">
+            <div class="text-right" *ngIf="!TypeData || TypeData?.length != ''">
+                <a href="{{printData}}" target="_blank">
+                    <img src="assets/images/downloadBtn2.png" height="30" class="cursor-pointer">
+                </a>
+            </div>
+            <p-table [value]="[{}]" [scrollable]="true" scrollHeight="400px" id="customId">
+                <ng-template pTemplate="body">
+                    <tr *ngFor="let loData of TypeData" style="font-size: 12px;">
+                        <td>{{ loData.psName}}</td>
+                        <td>{{ loData.category_1}}</td>
+                        <td>{{ loData.category_2}}</td>
+                        <td>{{ loData.category_3}}</td>
+                        <td>{{ loData.category_4}}</td>
+                        <td>{{ loData.category_5}}</td>
+                        <td>{{ loData.category_6}}</td>
+                        <td>{{ loData.category_7}}</td>
+                        <td>{{ loData.category_8}}</td>
+                        <td>{{ loData.category_9}}</td>
+                        <td>{{ loData.category_10}}</td>
+                        <td>{{ loData.category_11}}</td>
+                        <td>{{ loData.category_12}}</td>
+                        <td>{{ loData.category_13}}</td>
+                        <td>{{ loData.total}}</td>
+                    </tr>
+                    <tr *ngIf="!TypeData || TypeData?.length == 1">
+                        <td colspan="5" class="justify-content-center">
+                            <div class="text-center">
+                                <img src="assets/images/dashboard/NoRecordFound.png" height="170" class="pb-3">
+                                <!-- <p>No Data Found!..</p> -->
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,338 @@
+<div class="seniorOfficer">
+    <div class="grid match-height">
+        <div class="col-12">
+            <div class="card" style="box-shadow: 2px 10px 10px 0px rgba(0,0,0,0.2);">
+                <div class="grid mx-0 mt-0" style="border-radius: 8px;">
+                    <!-- <div class="col-12 text-center pb-2">
+                        <p class="mb-0 font-bold text-lg">User Activities</p>
+                    </div> -->
+                    <div class="col-12 md:col-4">
+                        <!-- routerLink="/main/so/userAct" -->
+                        <div class="card text-center cp" (click)="listView('activeLogin','user','all')">
+                            <p class="font-semibold">
+                                Active User
+                            </p>
+                            <p class="my-0 text-xl">{{seniorData?.activeLogin}}</p>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <!-- routerLink="/main/so/userInact" -->
+                        <div class="card text-center cp" (click)="listView('inactiveLogin','user','all')">
+                            <p class="font-semibold">
+                                Inactive User
+                            </p>
+                            <p class="my-0 text-xl">
+                                {{seniorData?.inactiveLogin}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 md:col-4">
+                        <!-- routerLink="/main/so/user" -->
+                        <div class="card text-center cp" (click)="listView('notLogin','user','all')">
+                            <p class="font-semibold">
+                                Never Logged
+                            </p>
+                            <p class="my-0 text-xl">{{seniorData?.notLogin}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-12 md:col-4">
+            <div class="card p-0 mb-3">
+                <div class="card-header" style="padding: 10px 12px;background: #82DD73;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Today Activities</p>
+                    <p class="mb-0 subtitle text-sm">{{myDate | date: 'MMM d, y'}}</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <div class="grid">
+                        <div class="col-6 text-center">
+                            <div class="py-2 px-3 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                {{seniorData?.activeBeats}}
+                            </div>
+                            <p class="my-1 font-size13 color-04">
+                                Active Beats
+                            </p>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="py-2 px-3 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                {{seniorData?.todayCreatedBeats}}
+                            </div>
+                            <p class="my-1 font-size13 color-04">
+                                Created Beats
+                            </p>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="py-2 px-3 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                {{seniorData?.todayPendingBeats}}
+                            </div>
+                            <p class="my-1 font-size13 color-04">
+                                Pending Beats
+                            </p>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="py-2 px-3 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                {{seniorData?.todayPendingTasks}}
+                            </div>
+                            <p class="my-1 font-size13 color-04">
+                                Pending Tasks
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div class="grid match-height">
+        <div class="col-12 md:col-8">
+            <div class="card p-0" style="border-radius: 0;">
+                <div class="card-header" style="padding: 10px 12px;background: #cccff5;">
+                    <p class="mb-0 tbold">Team Status</p>
+                </div>
+                <div class="card-body flex justify-content-between align-items-center p-2">
+                    <!-- <div class="w-3 text-center">
+                        <p class="text-xl">Total Summary</p>
+                        <p class="text-md">3005</p>
+                    </div> -->
+                    <div class="w-12">
+                        <p-chart type="bar" [data]="chartData" [options]="stackedOptions"></p-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+            <div class="card p-0">
+                <div class="card p-0">
+                    <div class="card-header" style="background: #0B1165;padding: 10px 12px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                        <p class="mb-0 tbold text-white">User Status</p>
+                    </div>
+                    <div class="card-body px-2 pt-3">
+                        <div class="grid">
+                            <div class="col-6 md:col-4 text-center">
+                                <div class="py-2 px-4 inline-block" style="background: #f5eeda;border-radius: 8px;">
+                                    <img src="assets/images/ebeat.svg" height="25">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="font-bold text-xl">{{seniorData?.userDistadmin}}</span>
+                                    <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                        District Admin
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-6 md:col-4 text-center">
+                                <div class="py-2 px-4 inline-block" style="background: #f5eeda;border-radius: 8px;">
+                                    <img src="assets/images/fieldpolice.svg" height="25">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="font-bold text-xl">{{seniorData?.userSho}}</span>
+                                    <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                        SHO
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-6 md:col-4 text-center">
+                                <div class="py-2 px-4 inline-block" style="background: #f5eeda;border-radius: 8px;">
+                                    <img src="assets/images/criminalrecod.svg" height="25">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="font-bold text-xl">{{seniorData?.userFo}}</span>
+                                    <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                        FO
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-0 h-blog">
+                <div class="card-header" style="padding: 10px 12px;background: #F6E1A0;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Broadcast Message</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <marquee direction="up" height="" scrollamount="6" scrolldelay="250" onmousedown="this.stop()" onmouseover="this.stop()" onmousemove="this.stop()" onmouseout="this.start()">
+                        <ul *ngFor="let msg of msgList">
+                            <li *ngIf="msg.fromDate!==null" class="cp" routerLink="/main/broadcast-message-view">
+                                <div class="ho-ev-date">
+                                    <span>{{msg.fromDate|date:'d'}}</span>
+                                    <span>{{msg.fromDate|date:'MMM y'}}</span>
+                                </div>
+                                <div class="ho-ev-link">
+                                    <p>{{msg.title}}</p>
+                                    <a>{{msg.content}}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </marquee>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="grid match-height">
+        <div class="col-12 md:col-7">
+            <div class="card p-0">
+                <div class="card-header" style="padding: 10px 12px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Map</p>
+                </div>
+                <div class="card-body px-2">
+                    <app-dynamic-map [mapArrayData]="mapData"></app-dynamic-map>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-5">
+            <div class="card p-0 mb-3">
+                <div class="card-header" style="background: #8484F9;padding: 10px 12px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold text-white">Beat Summary</p>
+                </div>
+                <div class="card-body px-2 pt-3">
+                    <div class="grid">
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('created','beat','today')">
+                            <div class="py-2 px-4 inline-block" style="background: #f5eeda;border-radius: 8px;">
+                                <img src="assets/images/ebeat.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.beatMarchedToday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Today Marched
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('pending','beat','today')">
+                            <div class="py-2 px-4 inline-block" style="background: #f5eeda;border-radius: 8px;">
+                                <img src="assets/images/fieldpolice.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.beatPendingToday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Today Pending
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('completed','beat','yesterday')">
+                            <div class="py-2 px-4 inline-block" style="background: #f5eeda;border-radius: 8px;">
+                                <img src="assets/images/criminalrecod.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.beatMarchedYesterday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Yesterday Completed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-0 mb-3">
+                <div class="card-header" style="background: #82DD73;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Task Summary</p>
+                </div>
+                <div class="card-body px-2 pt-3">
+                    <div class="grid">
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('created','task','today')">
+                            <div class="py-2 px-4 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                <img src="assets/images/case.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.taskCompletedToday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Today Completed
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('pending','task','today')">
+                            <div class="py-2 px-4 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                <img src="assets/images/criminalrecod.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.taskPendingToday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Today Pending
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('completed','task','yesterday')">
+                            <div class="py-2 px-4 inline-block" style="background: #E4F1FF;border-radius: 8px;">
+                                <img src="assets/images/fieldpolice.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.taskCompletedYesterday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Yesterday Completed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-0">
+                <div class="card-header" style="background: #F7D4D4;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Duty Summary</p>
+                </div>
+                <div class="card-body px-2 pt-3">
+                    <div class="grid">
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('created','duty','today')">
+                            <div class="py-2 px-4 inline-block" style="background: #f8f0f0;border-radius: 8px;">
+                                <img src="assets/images/criminalrecod.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.dutyCompletedToday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Today Completed
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('pending','duty','today')">
+                            <div class="py-2 px-4 inline-block" style="background: #f8f0f0;border-radius: 8px;">
+                                <img src="assets/images/case.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.dutyPendingToday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Today Pending
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 text-center cp" (click)="listView('completed','duty','yesterday')">
+                            <div class="py-2 px-4 inline-block" style="background: #f8f0f0;border-radius: 8px;">
+                                <img src="assets/images/fieldpolice.svg" height="25">
+                            </div>
+                            <div class="mt-1">
+                                <span class="font-bold text-xl">{{seniorData?.dutyCompletedYesterday}}</span>
+                                <p class="my-0 text-sm tbold" style="color: #6C6C6C;">
+                                    Yesterday Completed
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Broadcast modal -->
+<p-dialog header="Broadcast Message" [(visible)]="broadCastModal" [modal]="true" [style]="{width: '40vw'}"
+    [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false">
+    <div class="grid bg-white">
+        <div class="col-6 md:col-6" routerLink="/main/broadcast-message">
+            <div class="card white border-highlight">
+                <div class="text-center">
+                    <img src="assets/images/dashboard/newmsg.png" alt="Beat" width="34">
+                    <p class="mb-0 text-md font-semibold">
+                      New Message
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 md:col-6" routerLink="/main/broadcast-message-view">
+            <div class="card white border-highlight">
+                <div class="text-center">
+                    <img src="assets/images/dashboard/listmsg.png" alt="Beat" width="34">
+                    <p class="mb-0 text-md font-semibold">
+                      View Broadcast Message
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

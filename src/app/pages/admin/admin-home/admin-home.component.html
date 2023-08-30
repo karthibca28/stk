@@ -1,0 +1,421 @@
+<div class="dashboardAdmin">
+    <div class="grid match-height">
+        <div class="col-12">
+            <div class="card p-0" *ngIf="isAdmin || isDAdmin" style="margin-top: 10px;">
+                <div class="card-header" style="color: #ec1d24;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom: 1px solid #f5f4f1;">
+                    <p class="mb-0 tbold text-lg">Application Status</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <div class="grid">
+                        <div class="col-12 md:col-3">
+                            <div class="flex align-items-center justify-content-between p-2" style="background: #fffefb;border:1px solid #cccbc8;border-radius: 5px;">
+                                <div>
+                                    <p-knob [(ngModel)]="userActive" [disabled]="true" icon="pi pi-users" [max]="200000" [size]="90" textColor="#000" valueColor="#0B1165" rangeColor="#E4F1FF"></p-knob>
+                                </div>
+                                <div>
+                                    <p class="font-semibold hColor">Total users</p> 
+                                    <div class="text-center">
+                                        <div *ngIf="userActive > 0; else elseBlock" style="cursor: pointer;" (click)="listView('userActive','user','all')">
+                                            <!-- routerLink="/main/user-config/user-list" -->
+                                            <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;color: #0B1165;font-size: 12px;">View All</a>
+                                        </div>
+                                        <ng-template #elseBlock>
+                                            <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;">View All</a>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <div class="flex align-items-center justify-content-between p-2" style="background: #fffefb;border:1px solid #cccbc8;border-radius: 5px;">
+                                <div>
+                                    <p-knob [(ngModel)]="loginInactive" [disabled]="true" [max]="100000" [size]="90" textColor="#000" valueColor="#FA383E" rangeColor="#FFBDBC"></p-knob>
+                                </div>
+                                <div>
+                                    <p class="font-semibold hColor">Inactive login</p> 
+                                    <div class="text-center">
+                                        <div *ngIf="loginInactive > 0; else elseBlock" style="cursor: pointer;" (click)="listView('loginInactive','user','all')">
+                                            <!-- routerLink="/main/user-config/user-list" -->
+                                            <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;color: #0B1165;font-size: 12px;">View All</a>
+                                        </div>
+                                        <ng-template #elseBlock>
+                                            <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;">View All</a>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <div class="flex align-items-center justify-content-between p-2" style="background: #fffefb;border:1px solid #cccbc8;border-radius: 5px;">
+                                <div>
+                                    <p-knob [(ngModel)]="loginActive" [disabled]="true" [max]="100000" [size]="90" textColor="#000" valueColor="#F1B814" rangeColor="#FAF0D2"></p-knob>
+                                </div>
+                                <div>
+                                    <p class="font-semibold hColor">Login active</p> 
+                                    <div class="text-center">
+                                        <div *ngIf="loginActive > 0; else elseBlock" style="cursor: pointer;" (click)="listView('loginActive','user','all')">
+                                            <!-- routerLink="/main/user-config/user-list" -->
+                                            <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;color: #0B1165;font-size: 12px;">View All</a>
+                                        </div>
+                                        <ng-template #elseBlock>
+                                            <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;">View All</a>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 md:col-3">
+                            <div class="flex align-items-center justify-content-between p-2" style="background: #fffefb;border:1px solid #cccbc8;border-radius: 5px;">
+                                <div>
+                                    <p-knob [(ngModel)]="notLogin" [disabled]="true" [max]="100000" [size]="90" textColor="#000" valueColor="#18B76B" rangeColor="#e6fbe3"></p-knob>
+                                </div>
+                                <div>
+                                    <p class="font-semibold hColor">Never login</p> 
+                                    <div class="text-center">
+                                        <div *ngIf="notLogin > 0; else elseBlock" style="cursor: pointer;" (click)="listView('notLogin','user','all')">
+                                            <!-- routerLink="/main/user-config/user-list" -->
+                                            <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;color: #0B1165;font-size: 12px;">View All</a>
+                                        </div>
+                                        <ng-template #elseBlock>
+                                            <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;">View All</a>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-12">
+            <div class="card p-0" style="margin-top: 10px;">
+                <div class="card-header" style="background: #F7D4D4;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold color-04">User Statistics</p>
+                </div>
+                <div class="card-body p-2">
+                    <p-chart type="pie" [data]="userchartdata" [options]="userchartOptions" height="200px"></p-chart>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</div>
+<div class="Admin-chart">
+    <div class="grid match-height">
+         <!-- <div class="col-12 md:col-8" *ngIf="isAdmin">
+           <div class="card statistics mb-2 p-0">
+                <div class="card-header" style="padding: 10px 8px;background: #265791;color: #FFF;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Team Status</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <div class="grid">
+                        <div class="col-6 text-center">
+                            <div class="pt-2 pb-1 px-3 inline-block text-white mb-2" style="background: #2197F1;border-radius: 8px;">
+                    
+                                <mat-icon>account_circle</mat-icon>
+                            </div>
+                            <div *ngIf="countData?.userAdmin > 0; else elseBlock">
+                                <p (click)="listView('userAdmin','user','all')" class="cp my-0">Admin: <b>{{countData?.userAdmin}}</b></p>
+                            </div>
+                            <ng-template #elseBlock><p class="my-0">0</p></ng-template>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="pt-2 pb-1 px-3 inline-block text-white mb-2" style="background: #FF5725;border-radius: 8px;">
+                             
+                                <mat-icon>supervised_user_circle</mat-icon>
+                            </div>
+                            <div *ngIf="countData?.userDistadmin > 0; else elseBlock">
+                                <p (click)="listView('userDistadmin','user','all')" class="cp my-0">District Admin: <b>{{countData?.userDistadmin}}</b></p>
+                            </div>
+                            <ng-template #elseBlock><p class="my-0">0</p></ng-template>
+                        </div>
+                        <div class="col-6 md:col-4 text-center">
+                            <div class="pt-2 pb-1 px-3 inline-block text-white mb-2" style="background: #663BB6;border-radius: 8px;">
+                                <mat-icon>supervisor_account</mat-icon>
+                            </div>
+                            <div *ngIf="countData?.userSo > 0; else elseBlock">
+                                <p (click)="listView('userSo','user','all')" class="cp my-0">SO: <b>{{countData?.userSo}}</b></p>
+                            </div>
+                            <ng-template #elseBlock><p class="my-0">0</p></ng-template>
+                        </div>
+                        <div class="col-6 md:col-4 text-center">
+                            <div class="pt-2 pb-1 px-3 inline-block mb-2" style="background: #FFEB3C;border-radius: 8px;">
+                                <mat-icon>account_box</mat-icon>
+                            </div>
+                            <div *ngIf="countData?.userSho > 0; else elseBlock">
+                                <p (click)="listView('userSho','user','all')" class="cp my-0">SHO: <b>{{countData?.userSho}}</b></p>
+                            </div>
+                            <ng-template #elseBlock><p class="my-0">0</p></ng-template>
+                        </div>
+                        <div class="col-6 md:col-4 text-center">
+                            <div class="pt-2 pb-1 px-3 inline-block text-white mb-2" style="background: #BA2D2C;border-radius: 8px;">
+                                <mat-icon>account_box</mat-icon>
+                            </div>
+                            <div *ngIf="countData?.userFo > 0; else elseBlock">
+                                <p (click)="listView('userFo','user','all')" class="cp my-0">FO: <b>{{countData?.userFo}}</b></p>
+                            </div>
+                            <ng-template #elseBlock><p class="my-0">0</p></ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="card statistics p-0">
+                <div class="card-header" style="padding: 10px 8px;background: #BA2D2C;color: #FFF;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Mobile Application</p>
+                </div>
+                <div class="card-body p-3">
+                    <div class="grid">
+                        <div class="col-12 md:col-6">
+                            <div class="flex justify-content-start">
+                                <div class="img">
+                                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M46.4681 30.0599C46.1945 29.5377 45.9963 28.9655 45.8617 28.3913C45.2008 25.627 44.1968 22.9488 42.8778 20.4311L40.6725 16.2218C39.4241 13.8387 35.7399 14.2349 35.0443 16.8487C33.3945 16.2551 31.5321 17.2307 31.0809 18.9251C29.717 18.4342 28.142 19.0123 27.4189 20.2668V5.38607V2.72779C27.4188 1.2679 26.231 0.0800781 24.771 0.0800781H8.98391C8.10773 0.0800781 8.10773 1.43542 8.98391 1.43542H24.771C25.4836 1.43542 26.0634 2.01515 26.0634 2.72779V4.7084H2.06506V2.72779C2.06506 2.01515 2.64479 1.43542 3.35743 1.43542H5.18904C6.06523 1.43542 6.06523 0.0800781 5.18904 0.0800781H3.35743C1.89754 0.0800781 0.709717 1.2679 0.709717 2.72779V5.38607V38.0485V43.6948C0.709717 45.1547 1.89754 46.3425 3.35743 46.3425H24.771C26.2309 46.3425 27.4188 45.1547 27.4188 43.6948V38.0485V35.3341L29.8404 36.5319C30.4388 36.8279 30.9306 37.3207 31.2254 37.9198C32.3012 40.1059 35.0585 41.0123 37.2243 39.8775L41.2619 37.7623C42.0381 37.3557 41.4091 36.1552 40.6329 36.5617L36.5954 38.677C35.0956 39.4631 33.1891 38.8405 32.4415 37.3213C32.0158 36.4564 31.3055 35.7445 30.4413 35.317L20.1648 30.2339C18.2347 29.2964 19.6305 26.2685 21.5907 27.1827L25.3221 29.147C25.8977 29.45 26.5399 28.8092 26.238 28.2329L19.7559 15.8603C18.6915 13.8592 21.542 12.0122 22.6293 14.0878L27.211 22.8332L28.4078 25.1176C28.8028 25.872 30.0139 25.2628 29.6084 24.4887L28.4432 22.2647C27.9714 20.6924 29.9125 19.4247 31.1619 20.5208L32.4584 22.9955C32.8534 23.7499 34.0645 23.1407 33.659 22.3666L32.3407 19.8503C32.2173 18.4047 33.9876 17.4744 35.1066 18.4279L36.4116 20.9189C36.8066 21.6732 38.0177 21.0641 37.6121 20.2899L36.3069 17.7986C36.1294 16.0244 38.6264 15.2368 39.4718 16.8507L41.6771 21.06C42.9441 23.4784 43.9084 26.051 44.5434 28.7061C44.6974 29.3949 44.9398 30.0634 45.2675 30.6887C46.0483 32.1791 45.471 34.0268 43.9807 34.8076C43.2047 35.2144 43.8337 36.4149 44.6097 36.0082C46.7621 34.8806 47.5958 32.2122 46.4681 30.0599ZM26.0634 43.6948C26.0634 44.4074 25.4836 44.9872 24.771 44.9872H3.35743C2.64479 44.9872 2.06506 44.4074 2.06506 43.6948V38.7262H26.0634V43.6948ZM18.1342 27.4035C17.6742 28.3705 17.7636 29.5286 18.363 30.4155C17.2423 31.5882 15.7048 32.2528 14.0642 32.2528C10.7814 32.2528 8.11062 29.582 8.11062 26.2992C8.11062 23.0164 10.7814 20.3456 14.0642 20.3456C17.1791 20.3456 19.7412 22.7506 19.9953 25.8009C19.1926 26.0458 18.495 26.6448 18.1342 27.4035ZM23.0546 12.5099C22.7592 12.27 22.4183 12.0855 22.044 11.9685C19.8733 11.2902 17.6871 13.2808 18.1649 15.5037H5.29964C5.17503 15.5037 5.07375 15.4024 5.07375 15.2778V10.4349C5.07375 10.3103 5.17503 10.209 5.29964 10.209H22.8288C22.9534 10.209 23.0546 10.3103 23.0546 10.4349V12.5099ZM26.0634 17.7223L24.41 14.5665V10.4349C24.41 9.56306 23.7006 8.85368 22.8288 8.85368H5.29964C4.42779 8.85368 3.7184 9.56306 3.7184 10.4349V15.2779C3.7184 16.1498 4.42779 16.8592 5.29964 16.8592H18.749L24.0273 26.934L22.2088 25.9767C22.2008 25.9724 22.1926 25.9682 22.1843 25.9644C21.9151 25.8362 21.6334 25.7499 21.3469 25.7049C21.0431 21.9519 17.894 18.9903 14.0643 18.9903C10.0341 18.9903 6.75537 22.2691 6.75537 26.2992C6.75537 30.3294 10.0341 33.6081 14.0643 33.6081C16.0856 33.6081 17.9809 32.7885 19.3577 31.3393C21.5077 32.5783 23.8389 33.5634 26.0634 34.6637V37.3708H2.06506V6.06374H26.0634V17.7223Z" fill="#060606"/>
+                                    </svg> 
+                                </div>
+                                <div class="content pl-2 cp" (click)="listView('newInstall','mobileApp','all')">
+                                    <p class="text-lg font-bold mb-0">{{mobileApp?.newInstall}}</p>
+                                    <p class="mb-0">New Install</p>
+                                </div>
+                            </div>                               
+                        </div>
+                        <div class="col-12 md:col-6">
+                            <div class="flex justify-content-start">
+                                <div class="img">
+                                    <svg width="45" height="46" viewBox="0 0 45 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.2888 0.665527C11.3638 0.665527 8.98413 3.04522 8.98413 5.97023V40.4508C8.98413 43.3758 11.3638 45.7555 14.2888 45.7555H22.2459L23.13 23.5051L22.2459 0.665527H14.2888Z" fill="#394982"/>
+                                        <path d="M30.2028 0.665527H22.2457V45.7555H30.2028C33.1278 45.7555 35.5075 43.3758 35.5075 40.4508V5.97023C35.5075 3.04522 33.1278 0.665527 30.2028 0.665527Z" fill="#1D3068"/>
+                                        <path d="M22.2459 7.29664H18.2674L16.2781 3.31812H14.2888C12.8263 3.31812 11.6365 4.50796 11.6365 5.97047V12.6013L17.3832 13.4855L22.2459 12.6013L23.13 10.2437L22.2459 7.29664Z" fill="#25C8E4"/>
+                                        <path d="M30.2028 3.31812H28.2135L26.2243 7.29664H22.2457V12.6013L27.5504 13.4855L32.8551 12.6013V5.97047C32.8551 4.50796 31.6653 3.31812 30.2028 3.31812Z" fill="#33A8D9"/>
+                                        <path d="M11.6365 33.8199V40.4508C11.6365 41.9133 12.8263 43.1031 14.2888 43.1031H22.2459L23.13 38.771L22.2459 33.8199L17.3832 32.9358L11.6365 33.8199Z" fill="#25C8E4"/>
+                                        <path d="M22.2457 43.1031H30.2028C31.6653 43.1031 32.8551 41.9133 32.8551 40.4508V33.8199L27.9041 32.9358L22.2457 33.8199V43.1031Z" fill="#33A8D9"/>
+                                        <path d="M18.2673 37.7983V40.4507H22.2459L23.13 39.1245L22.2459 37.7983H18.2673Z" fill="#394982"/><path d="M22.2457 37.7983H26.2243V40.4507H22.2457V37.7983Z" fill="#1D3068"/>
+                                        <path d="M22.2459 12.6011H11.6365V33.8199H22.2459L23.13 23.2105L22.2459 12.6011Z" fill="#7CE2F8"/><path d="M22.2457 12.6011H32.8551V33.8199H22.2457V12.6011Z" fill="#25C8E4"/>
+                                        <path d="M0.420898 43.16L22.2459 21.335L22.6879 22.79L22.2459 25.0859L2.29629 45.0355L0.420898 43.16Z" fill="#FC7267"/><path d="M42.1953 1.3855L44.0707 3.26098L22.2457 25.0859V21.335L42.1953 1.3855Z" fill="#E6225C"/>
+                                    </svg>                                         
+                                </div>
+                                <div class="content pl-2 cp" (click)="listView('appNotUsed','mobileApp','all')">
+                                    <p class="text-lg font-bold mb-0">{{mobileApp?.appNotUsed}}</p>
+                                    <p class="mb-0">Not Used</p>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-12 md:col-6">
+                            <div class="flex justify-content-start">
+                                <div class="img">
+                                    <img src="assets/images/cellphone.svg" height="46" >                                 
+                                </div>
+                                <div class="content pl-2 cp" (click)="listView('totalInstall','mobileApp','all')">
+                                    <p class="text-lg font-bold mb-0">{{mobileApp?.totalInstall}}</p>
+                                    <p class="mb-0">Total installed</p>
+                                </div>
+                            </div>                               
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div> -->
+        <div class="col-12 md:col-8">
+            <div class="card p-0 mb-3">
+                <div class="card-header" style="color: #0B1165;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 1px solid #f5f4f1;">
+                    <p class="mb-0 tbold">Task Summary</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <div class="grid">
+                        <div class="col-6 md:col-4 cp" (click)="listView('created','task','today')">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="inline-block">
+                                    <img src="assets/images/case.svg" height="30">
+                                </div>
+                                <div>
+                                    <span class="font-bold text-xl">{{countData?.taskCompletedToday}}</span>
+                                    <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                        Today Completed
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 cp" (click)="listView('pending','task','today')">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="inline-block">
+                                    <img src="assets/images/criminalrecod.svg" height="30">
+                                </div>
+                                <div>
+                                    <span class="font-bold text-xl">{{countData?.taskPendingToday}}</span>
+                                    <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                        Today Pending
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 cp" (click)="listView('completed','task','yesterday')">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="inline-block">
+                                    <img src="assets/images/fieldpolice.svg" height="30">
+                                </div>
+                                <div>
+                                    <span class="font-bold text-xl">{{countData?.taskCompletedYesterday}}</span>
+                                    <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                        Yesterday Completed
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-0">
+                <div class="card-header" style="color: #0B1165;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 1px solid #f5f4f1;">
+                    <p class="mb-0 tbold">Duty Summary</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <div class="grid">
+                        <div class="col-6 md:col-4 cp" (click)="listView('created','duty','today')">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="inline-block">
+                                    <img src="assets/images/case.svg" height="30">
+                                </div>
+                                <div>
+                                    <span class="font-bold text-xl">{{countData?.dutyCompletedToday}}</span>
+                                    <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                        Today Completed
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 cp" (click)="listView('pending','duty','today')">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="inline-block">
+                                    <img src="assets/images/case.svg" height="30">
+                                </div>
+                                <div>
+                                    <span class="font-bold text-xl">{{countData?.dutyPendingToday}}</span>
+                                    <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                        Today Pending
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 md:col-4 cp" (click)="listView('completed','duty','yesterday')">
+                            <div class="flex align-items-center justify-content-between">
+                                <div class="inline-block">
+                                    <img src="assets/images/case.svg" height="30">
+                                </div>
+                                <div>
+                                    <span class="font-bold text-xl">{{countData?.dutyCompletedYesterday}}</span>
+                                    <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                        Yesterday Completed
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-5" *ngIf="isDAdmin">
+            <div class="card p-0 mb-3">
+                <div class="card-header" style="background: #82DD73;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Team Performance</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <p-chart type="line" [data]="linearData" [options]="stackedOptions"></p-chart>
+                </div>
+            </div>
+            <div class="card p-0">
+                <div class="card-header" style="background: #D9D9D9;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Database</p>
+                </div>
+                <div class="card-body px-3 pt-3">
+                    <div class="grid">
+                        <div class="col-6 text-center cursor-pointer" routerLink="/main/person-blacklist">
+                            <div class="py-2 px-4" style="border:1px dashed #BA2D2C;border-radius: 3px;">
+                                <img src="assets/images/dashboard/ban-user.png" height="30">
+                                <p class="mb-0 text-sm">
+                                    Person Lookout
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center cursor-pointer" routerLink="/main/vehicle-blacklist">
+                            <div class="py-2 px-4" style="border:1px dashed #BA2D2C;border-radius: 3px;">
+                                <img src="assets/images/dashboard/vc.png" height="30">
+                                <p class="mb-0 text-sm">
+                                    Vehicle Lookout
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center cursor-pointer" routerLink="/main/view-approve-location">
+                            <div class="py-2 px-4" style="border:1px dashed #BA2D2C;border-radius: 3px;">
+                                <img src="assets/images/dashboard/settings.png" height="30">
+                                <p class="mb-0 text-sm">
+                                    Map Management
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-6 text-center cursor-pointer" (click)="broadCastModal=true">
+                            <div class="py-2 px-4" style="border:1px dashed #BA2D2C;border-radius: 3px;">
+                                <img src="assets/images/dashboard/messages.png" height="30">
+                                <p class="mb-0 text-sm">
+                                    Broadcast Message
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="grid match-height" *ngIf="isAdmin">
+        <div class="col-12 md:col-8">
+            <div class="card p-0">
+                <div class="card-header" style="padding: 10px 8px;background: #82DD73;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Activities</p>
+                </div>
+                <div class="card-body p-3">
+                    <p-chart type="bar" [data]="stackedData" [options]="stackedOptions"></p-chart>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-4">
+       
+        </div>
+    </div> -->
+</div>
+
+<!-- <div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header pb-2 flex justify-content-between align-items-center">
+                <p class="mb-0 text-lg">Map</p>
+                <a (click)="onTodayBeat('active')" style="background: #E4F1FF;padding: 3px 8px;border-radius: 4px;font-weight: 600;font-size: 12px;color: #265791;">Live Beat</a>
+            </div>
+            <div class="card-body">
+                <app-dynamic-map [mapArrayData]="mapData"></app-dynamic-map>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!--Broadcast modal -->
+<p-dialog header="Broadcast Message" [(visible)]="broadCastModal" [modal]="true" [style]="{width: '40vw'}"
+    [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false">
+    <div class="grid bg-white">
+        <div class="col-6 md:col-6" routerLink="/main/broadcast-message">
+            <div class="card white border-highlight">
+                <div class="text-center">
+                    <img src="assets/images/dashboard/newmsg.png" alt="Beat" width="34">
+                    <p class="mb-0 text-md font-semibold">
+                      New Message
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 md:col-6" routerLink="/main/broadcast-message-view">
+            <div class="card white border-highlight">
+                <div class="text-center">
+                    <img src="assets/images/dashboard/listmsg.png" alt="Beat" width="34">
+                    <p class="mb-0 text-md font-semibold">
+                      View Broadcast Message
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>

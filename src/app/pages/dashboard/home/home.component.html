@@ -1,0 +1,353 @@
+<div class="layout-dashboard">
+    <div class="grid">
+      <div class="col-12 md:col-4">
+          <div class="card" style="background: linear-gradient(to right, #1F3A5F, #4d648d);">
+            <div class="card-body">
+              <p class="text-white">No. of Duty performed</p>
+              <div class="text-white">
+                <p class="text-lg font-bold">{{dcount?.duties}}</p>
+              </div>
+              <div class="flex justify-content-between align-items-center pt-2" style="border-top: 1px solid #fff;">
+                <mat-icon class="text-white">assignment</mat-icon>
+                <button class="btn-list" (click)="listView('dutyList')">
+                  <span class="text">View</span>
+                  <svg class="arrow" viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-12 md:col-4">
+          <div class="card" style="background: linear-gradient(to right, #F6416C, #FFC2D0);">
+            <div class="card-body">
+              <p class="text-white">No. of Task performed</p>
+              <div class="text-white">
+                <p class="text-lg font-bold">{{dcount?.tasks}}</p>
+              </div>
+              <div class="flex justify-content-between align-items-center pt-2" style="border-top: 1px solid #fff;">
+                <mat-icon class="text-white">chrome_reader_mode</mat-icon>
+                <button class="btn-list" (click)="listView('taskList')">
+                  <span class="text">View</span>
+                  <svg class="arrow" viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-12 md:col-4">
+        <div class="card" style="background: linear-gradient(to right, #18B76B, #BEF5D5);">
+          <div class="card-body">
+            <p class="text-white">Total Users</p>
+            <div class="text-white">
+              <p class="text-lg font-bold">4</p>
+            </div>
+            <div class="flex justify-content-between align-items-center pt-2" style="border-top: 1px solid #fff;">
+                <mat-icon class="text-white">assessment</mat-icon>
+              <button class="btn-list" (click)="listView('userList')">
+                <span class="text">View</span>
+                <svg class="arrow" viewBox="0 0 448 512" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid match-height">
+      <div class="col-12 md:col-8">
+          <div class="card p-0" style="margin-top: 10px;">
+              <div class="card-header" style="background: #F1B814;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                  <p class="mb-0 text-white tbold">Application Status</p>
+              </div>
+              <div class="card-body px-3 pt-3">
+                  <div class="grid">
+                      <div class="col-12 md:col-4 text-center">
+                          <p-knob [(ngModel)]="one" [disabled]="true" icon="pi pi-users" [max]="200000" [size]="120" textColor="#000" valueColor="#265791" rangeColor="#E4F1FF"></p-knob>
+                          <div class="flex justify-content-center align-items-center mt-2">
+                              <p class="mb-1 font-semibold hColor mt-1"> Total users </p> 
+                              <!-- <div>
+                                  <div *ngIf="userActive > 0; else elseBlock" style="cursor: pointer;" (click)="listView('userActive','user','all')">
+                                      <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;font-weight: 600;"><i class="pi pi-angle-double-right font-size12" style="cursor: pointer;"></i></a>
+                                  </div>
+                                  <ng-template #elseBlock>
+                                      <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;"><i class="pi pi-angle-double-right font-size12" style="cursor: pointer;"></i></a>
+                                  </ng-template>
+                              </div> -->
+                          </div>
+                      </div>
+                      <div class="col-12 md:col-4 text-center">
+                          <p-knob [(ngModel)]="two" [disabled]="true" [max]="100000" [size]="120" textColor="#000" valueColor="#FA383E" rangeColor="#FFBDBC"></p-knob>
+                          <div class="flex justify-content-center align-items-center mt-2">
+                              <p class="mb-1 font-semibold hColor mt-1"> Inactive Users </p> 
+                              <div>
+                                  <!-- <div *ngIf="loginInactive > 0; else elseBlock" style="cursor: pointer;" (click)="listView('loginInactive','user','all')">
+                                      <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;font-weight: 600;"><i class="pi pi-angle-double-right font-size12" style="cursor: pointer;"></i></a>
+                                  </div>
+                                  <ng-template #elseBlock>
+                                      <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;"><i class="pi pi-angle-double-right font-size12" style="cursor: pointer;"></i></a>
+                                  </ng-template> -->
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-12 md:col-4 text-center">
+                          <p-knob [(ngModel)]="three" [disabled]="true" [max]="100000" [size]="120" textColor="#000" valueColor="#F1B814" rangeColor="#FAF0D2"></p-knob>
+                          <div class="flex justify-content-center align-items-center mt-2">
+                              <p class="mb-1 font-semibold hColor mt-1"> Active Users </p> 
+                              <div>
+                                  <!-- <div *ngIf="loginActive > 0; else elseBlock" style="cursor: pointer;" (click)="listView('loginActive','user','all')">
+                                      <a style="background: #B8D4F4;padding: 2px 6px;border-radius: 2px;font-weight: 600;"><i class="pi pi-angle-double-right font-size12" style="cursor: pointer;"></i></a>
+                                  </div>
+                                  <ng-template #elseBlock>
+                                      <a style="background: #F67070;cursor: not-allowed;padding: 2px 6px;border-radius: 2px;font-weight: 600;color:#fff;"><i class="pi pi-angle-double-right font-size12" style="cursor: pointer;"></i></a>
+                                  </ng-template> -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- <div class="grid">
+                      <div class="col-4 md:col-4 lg:col-3 grid-inblock">
+                          <div class="card white border-highlight flex-align">
+                              <div class="col-8">
+                                  <div *ngIf="countData?.userActive > 0; else elseBlock">
+                                      <h4 routerLink="/main/user-config/user-list" class="cp">{{countData?.userActive}}</h4>
+                                  </div>
+                                  <ng-template #elseBlock><h5>0</h5></ng-template>
+                                  <p class="mb-0 font-semibold hColor mt-2">
+                                      Total Users
+                                  </p>
+                              </div>
+                              <div class="col-4 text-center mImg">
+                                  <img height="45" src='data:image/png;base64,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'/>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-4 md:col-4 lg:col-3 grid-inblock">
+                          <div class="card white border-highlight flex-align">
+                              <div class="col-8">
+                                  <div *ngIf="countData?.loginInactive > 0; else elseBlock">
+                                      <h4 (click)="onUpdate('loginInactive')" class="cp">{{countData?.loginInactive}}</h4>
+                                  </div>
+                                  <ng-template #elseBlock><h5>0</h5></ng-template>
+                                  <p class="mb-0 font-semibold hColor mt-2">
+                                      In-Active Login
+                                  </p>
+                              </div>
+                              <div class="col-4 text-center mImg">
+                                  <img src="assets/images/dashboard/inactive.png" height="40">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-4 md:col-4 lg:col-3 grid-inblock">
+                          <div class="card white border-highlight flex-align">
+                              <div class="col-8">
+                                  <div *ngIf="countData?.loginActive > 0; else elseBlock">
+                                      <h4 (click)="onUpdate('loginActive')" class="cp">{{countData?.loginActive}}</h4>
+                                  </div>
+                                  <ng-template #elseBlock><h5>0</h5></ng-template>
+                                  <p class="mb-0 font-semibold hColor mt-2">
+                                      Login Active
+                                  </p>
+                              </div>
+                              <div class="col-4 text-center mImg">
+                                  <img src="assets/images/dashboard/loginactive.png" height="40">
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-4 md:col-4 lg:col-3 grid-inblock">
+                          <div class="card white border-highlight flex-align">
+                              <div class="col-8">
+                                  <div *ngIf="countData?.notLogin > 0; else elseBlock">
+                                      <h4 (click)="onUpdate('notLogin')" class="cp">{{countData?.notLogin}}</h4>
+                                  </div>
+                                  <ng-template #elseBlock><h5>0</h5></ng-template>
+                                  <p class="mb-0 font-semibold hColor mt-2">
+                                      Not Login
+                                  </p>
+                              </div>
+                              <div class="col-4 text-center mImg">
+                                  <img src="assets/images/soInavtive.png" height="65">
+                              </div>
+                          </div>
+                      </div>
+                  </div> -->
+              </div>
+          </div>
+      </div>
+      <div class="col-12 md:col-4">
+          <div class="card p-0" style="margin-top: 10px;">
+              <div class="card-header" style="background: #B1D2F9;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                  <p class="mb-0 tbold color-02">User Statistics</p>
+              </div>
+              <div class="card-body p-2">
+                  <!-- <p-chart type="pie" [data]="userchartdata" [options]="userchartOptions" height="200px"></p-chart> -->
+              </div>
+          </div>
+      </div>
+  </div>
+    <div class="grid">
+      <div class="col-12">
+        <div class="card">
+            <div class="card-header py-2 justify-content-center" style="background-color: #8484F9; border-radius: 5px;">
+                <p class="mb-0 text-white font-bold text-lg">Total Assets</p> 
+            </div>
+            <div class="card-body pt-2">
+              <div class="flex justify-content-between align-items-center">
+                  <div class="first text-center cp" (click)="listView('assetList')">
+                    <p class="mb-2">Vehicle</p>
+                    <svg width="46" height="40" viewBox="0 0 52 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.48727 24.5704H3.44349C1.98674 24.5704 0.805908 23.3895 0.805908 21.9328C0.805908 20.476 1.98684 19.2952 3.44349 19.2952H5.84968C7.30643 19.2952 8.48727 20.4761 8.48727 21.9328V24.5704Z" fill="#7A8C98"/>
+                      <path d="M36.2877 47.0658H44.1889C45.0952 47.0658 45.8299 46.3311 45.8299 45.4248V40.8105H34.6467V45.4247C34.6467 46.331 35.3814 47.0658 36.2877 47.0658Z" fill="#596C76"/>
+                      <path d="M14.7273 47.0658H6.82606C5.91973 47.0658 5.18506 46.3311 5.18506 45.4248V40.8105H16.3683V45.4247C16.3683 46.331 15.6336 47.0658 14.7273 47.0658Z" fill="#596C76"/>
+                      <path d="M13.3722 40.8105H2.22468C1.44115 40.8105 0.805908 40.1753 0.805908 39.3917V37.6317C0.805908 36.848 1.44115 36.2129 2.22468 36.2129H49.3523C50.136 36.2129 50.7711 36.8481 50.7711 37.6317V39.3917C50.7711 40.1754 50.1359 40.8105 49.3523 40.8105H37.8744" fill="#8D9CA8"/>
+                      <path d="M48.1273 36.2127H3.44995V28.2315C3.44995 26.2158 5.084 24.5818 7.09963 24.5818H44.4776C46.4932 24.5818 48.1273 26.2158 48.1273 28.2315V36.2127Z" fill="#596C76"/>
+                      <path d="M44.4774 24.5818H41.4553C43.471 24.5818 45.105 26.2158 45.105 28.2315V36.2127H48.1271V28.2315C48.1271 26.2158 46.4932 24.5818 44.4774 24.5818Z" fill="#465A61"/>
+                      <path d="M36.1852 43.9857H14.8294C14.12 43.9857 13.5449 43.4106 13.5449 42.7012V40.2999C13.5449 39.5905 14.12 39.0154 14.8294 39.0154H36.1852C36.8946 39.0154 37.4697 39.5905 37.4697 40.2999V42.7012C37.4697 43.4107 36.8946 43.9857 36.1852 43.9857Z" fill="#FFF4F1"/>
+                      <path d="M14.6195 33.3081H7.45711C6.82509 33.3081 6.31274 32.7958 6.31274 32.1637V29.5755C6.31274 28.9435 6.82509 28.4312 7.45711 28.4312H14.6195C15.2515 28.4312 15.7638 28.9435 15.7638 29.5755V32.1637C15.7637 32.7958 15.2514 33.3081 14.6195 33.3081Z" fill="#FFF4F1"/>
+                      <path d="M44.4559 33.3081H37.2935C36.6615 33.3081 36.1492 32.7958 36.1492 32.1637V29.5755C36.1492 28.9435 36.6615 28.4312 37.2935 28.4312H44.4559C45.0879 28.4312 45.6003 28.9435 45.6003 29.5755V32.1637C45.6003 32.7958 45.0879 33.3081 44.4559 33.3081Z" fill="#FFF4F1"/>
+                      <path d="M31.8882 33.3081H19.689C19.057 33.3081 18.5447 32.7958 18.5447 32.1637V29.5755C18.5447 28.9435 19.057 28.4312 19.689 28.4312H31.8882C32.5203 28.4312 33.0326 28.9435 33.0326 29.5755V32.1637C33.0326 32.7958 32.5203 33.3081 31.8882 33.3081Z" fill="#C5D3DD"/>
+                      <path d="M15.8765 6.19556H36.5642V9.70985H15.8765V6.19556Z" fill="#596C76"/>
+                      <path d="M38.6376 9.70996H12.9394C10.6414 9.70996 8.67175 11.2936 8.25903 13.4733L6.66528 24.582H44.9116L43.3179 13.4732C42.9052 11.2936 40.9356 9.70996 38.6376 9.70996Z" fill="#FFF4F1"/>
+                      <path d="M36.575 12.8406H15.0022C13.0731 12.8406 11.4197 14.2756 11.0731 16.2505L9.73535 24.582H41.8417L40.5039 16.2505C40.1575 14.2755 38.5041 12.8406 36.575 12.8406Z" fill="#B3DAFE"/>
+                      <path d="M40.504 16.2505C40.1576 14.2756 38.5042 12.8406 36.5751 12.8406H33.553C35.4821 12.8406 37.1355 14.2756 37.4819 16.2505L38.8197 24.582H41.8418L40.504 16.2505Z" fill="#8AC9FE"/>
+                      <path d="M38.4627 6.98717H14.3075C13.2883 6.98717 12.4619 6.16083 12.4619 5.14158V2.60121C12.4619 1.58196 13.2883 0.755615 14.3075 0.755615H38.4627C39.482 0.755615 40.3083 1.58196 40.3083 2.60121V5.14168C40.3084 6.16093 39.4821 6.98717 38.4627 6.98717Z" fill="#60B7FF"/>
+                      <path d="M15.484 5.14168V2.60121C15.484 1.58196 16.3104 0.755615 17.3296 0.755615H14.3075C13.2883 0.755615 12.4619 1.58196 12.4619 2.60121V5.14168C12.4619 6.16093 13.2883 6.98728 14.3075 6.98728H17.3296C16.3104 6.98728 15.484 6.16103 15.484 5.14168Z" fill="#26A6FE"/>
+                      <path d="M38.4628 0.755615H26.635V6.98728H38.4629C39.4821 6.98728 40.3085 6.16093 40.3085 5.14168V2.60111C40.3085 1.58186 39.4821 0.755615 38.4628 0.755615Z" fill="#FD4755"/>
+                      <path d="M38.4628 0.755615H35.4407C36.4599 0.755615 37.2863 1.58196 37.2863 2.60121V5.14168C37.2863 6.16093 36.4599 6.98728 35.4407 6.98728H38.4628C39.482 6.98728 40.3084 6.16093 40.3084 5.14168V2.60111C40.3085 1.58186 39.4821 0.755615 38.4628 0.755615Z" fill="#FB2B3A"/>
+                      <path d="M20.0466 0.755615H32.7238V6.98728H20.0466V0.755615Z" fill="#D8ECFE"/>
+                      <path d="M50.8216 46.4257H46.3657C46.5064 46.1209 46.5856 45.7819 46.5856 45.4247V41.566H49.3523C50.5513 41.566 51.5267 40.5906 51.5267 39.3917V37.6315C51.5267 36.4327 50.5513 35.4572 49.3523 35.4572H48.8827V28.2315C48.8827 27.1189 48.4672 26.102 47.7844 25.3259H48.1335C50.0045 25.3259 51.5267 23.8037 51.5267 21.9326C51.5267 20.0617 50.0046 18.5395 48.1335 18.5395C48.1335 18.5395 45.1171 18.5829 44.8257 18.663L44.0658 13.3658C44.0642 13.3546 44.0623 13.3436 44.0602 13.3325C43.5799 10.7955 41.2993 8.95426 38.6376 8.95426H37.3198V7.74261H38.4628C39.8971 7.74261 41.0639 6.57578 41.0639 5.14149V2.60112C41.0639 1.16683 39.8971 0 38.4628 0H32.7237H20.0466H14.3075C12.8732 0 11.7064 1.16683 11.7064 2.60112V5.14159C11.7064 6.57588 12.8732 7.74271 14.3075 7.74271H15.121V8.95437H12.9394C10.2776 8.95437 7.99717 10.7956 7.51675 13.3326C7.51464 13.3437 7.51283 13.3547 7.51121 13.3659L6.75146 18.6618C6.45932 18.5813 3.44348 18.5397 3.44348 18.5397C1.5725 18.5397 0.0503682 20.0619 0.0503682 21.9329C0.0503682 23.8038 1.5725 25.3261 3.44348 25.3261H3.79263C3.10984 26.1022 2.6943 27.1191 2.6943 28.2317V35.4574H2.22466C1.0258 35.4574 0.0503682 36.4329 0.0503682 37.6317V39.3919C0.0503682 40.5908 1.0258 41.5662 2.22466 41.5662H4.42948V45.4249C4.42948 45.7821 4.50866 46.1211 4.64939 46.4259H0.755524C0.338273 46.4259 0 46.7642 0 47.1814C0 47.5987 0.338273 47.937 0.755524 47.937H50.8216C51.2389 47.937 51.5771 47.5987 51.5771 47.1814C51.5771 46.764 51.2389 46.4257 50.8216 46.4257ZM45.7274 20.0506H48.1336C49.1714 20.0506 50.0158 20.8949 50.0158 21.9326C50.0158 22.9704 49.1714 23.8148 48.1336 23.8148H45.5649L45.0433 20.179C45.2594 20.0946 45.4904 20.0506 45.7274 20.0506ZM39.5529 2.60112V5.14159C39.5529 5.74268 39.0639 6.23166 38.4628 6.23166H33.4793V1.51095H38.4628C39.0638 1.51095 39.5529 2.00002 39.5529 2.60112ZM31.9682 1.51095V6.23156H20.8021V1.51095H31.9682ZM13.2174 5.14149V2.60112C13.2174 2.00002 13.7064 1.51105 14.3075 1.51105H19.291V6.23166H14.3075C13.7064 6.23156 13.2174 5.74258 13.2174 5.14149ZM35.8088 7.74261V8.95426H16.6321V7.74261H35.8088ZM3.44348 23.8148C2.40569 23.8148 1.56142 22.9705 1.56142 21.9326C1.56142 20.8949 2.40569 20.0506 3.44348 20.0506H5.84967C6.0866 20.0506 6.31608 20.0954 6.53357 20.1804L6.01215 23.8147L3.44348 23.8148ZM15.6127 45.4246C15.6127 45.9129 15.2155 46.3101 14.7273 46.3101H6.826C6.33774 46.3101 5.94053 45.9129 5.94053 45.4246V41.566H7.236V42.7813C7.236 43.1985 7.57428 43.5368 7.99153 43.5368C8.40878 43.5368 8.74705 43.1985 8.74705 42.7813V41.566H10.0211V42.7813C10.0211 43.1985 10.3593 43.5368 10.7766 43.5368C11.1938 43.5368 11.5321 43.1985 11.5321 42.7813V41.566H12.7896V42.7012C12.7896 43.8261 13.7047 44.7412 14.8296 44.7412H15.6127V45.4246ZM14.3007 42.7012V40.2998C14.3007 40.0082 14.5379 39.7709 14.8296 39.7709H36.1855C36.4771 39.7709 36.7144 40.0081 36.7144 40.2998V42.7012C36.7144 42.9929 36.4772 43.2302 36.1855 43.2302H14.8296C14.538 43.2302 14.3007 42.9928 14.3007 42.7012ZM16.9039 46.4257C17.0446 46.1209 17.1238 45.7819 17.1238 45.4246V44.7411H33.8912V45.4246C33.8912 45.7818 33.9704 46.1208 34.1111 46.4257H16.9039ZM45.0745 45.4247C45.0745 45.913 44.6773 46.3102 44.1891 46.3102H36.2878C35.7994 46.3102 35.4022 45.913 35.4022 45.4247V44.7412H36.1854C37.3102 44.7412 38.2254 43.826 38.2254 42.7012V41.566H39.4828V42.7813C39.4828 43.1985 39.8209 43.5368 40.2383 43.5368C40.6556 43.5368 40.9938 43.1985 40.9938 42.7813V41.566H42.2678V42.7813C42.2678 43.1985 42.606 43.5368 43.0233 43.5368C43.4407 43.5368 43.7789 43.1985 43.7789 42.7813V41.566H45.0743V45.4247H45.0745ZM38.2093 40.0549C38.0878 39.0454 37.2273 38.2598 36.1855 38.2598H14.8296C13.7878 38.2598 12.9273 39.0454 12.8057 40.0549H5.18501H2.22466C1.85899 40.0549 1.56142 39.7574 1.56142 39.3917V37.6315C1.56142 37.2659 1.85899 36.9683 2.22466 36.9683H3.44982H40.0682C40.4856 36.9683 40.8238 36.63 40.8238 36.2128C40.8238 35.7955 40.4856 35.4572 40.0682 35.4572H4.20535V28.2315C4.20535 26.6356 5.50364 25.3373 7.0995 25.3373H9.73538H13.9974C14.4147 25.3373 14.753 24.9991 14.753 24.5818C14.753 24.1646 14.4147 23.8263 13.9974 23.8263H10.6219L11.8182 16.3758C12.1032 14.7647 13.4415 13.596 15.0021 13.596H16.2521C16.6694 13.596 17.0076 13.2577 17.0076 12.8405C17.0076 12.4232 16.6694 12.085 16.2521 12.085H15.0021C12.7045 12.085 10.7391 13.7819 10.3289 16.1199C10.3283 16.1235 10.3277 16.127 10.3271 16.1306L9.09147 23.8263H7.537L9.00433 13.5978C9.3563 11.7816 11.0085 10.4653 12.9393 10.4653H38.6376C40.5685 10.4653 42.2206 11.7817 42.5725 13.5979L44.04 23.8263H42.4855L41.2498 16.1305C41.2492 16.1269 41.2486 16.1234 41.248 16.1199C40.8379 13.7819 38.8726 12.085 36.5748 12.085H19.2742C18.857 12.085 18.5187 12.4232 18.5187 12.8405C18.5187 13.2577 18.857 13.596 19.2742 13.596H36.5749C38.1356 13.596 39.4738 14.7647 39.7587 16.3758L40.955 23.8263H17.0195C16.6023 23.8263 16.264 24.1646 16.264 24.5818C16.264 24.9991 16.6023 25.3373 17.0195 25.3373H41.8417C41.909 25.3373 41.9749 25.3274 42.0384 25.3101C42.1017 25.3274 42.168 25.3373 42.2368 25.3373H44.4776C46.0734 25.3373 47.3716 26.6356 47.3716 28.2315V35.4572H43.3305C42.9131 35.4572 42.575 35.7955 42.575 36.2128C42.575 36.63 42.9131 36.9683 43.3305 36.9683H49.3523C49.7181 36.9683 50.0157 37.2659 50.0157 37.6315V39.3917C50.0157 39.7574 49.7181 40.0549 49.3523 40.0549H45.8301H38.2093Z" fill="black"/>
+                      <path d="M14.6194 27.6758H7.45702C6.40946 27.6758 5.55713 28.5281 5.55713 29.5756V32.1637C5.55713 33.2113 6.40936 34.0636 7.45702 34.0636H14.6194C15.6669 34.0636 16.5193 33.2114 16.5193 32.1637V29.5756C16.5193 28.5281 15.667 27.6758 14.6194 27.6758ZM15.0082 32.1638C15.0082 32.3782 14.8339 32.5526 14.6194 32.5526H7.45702C7.24265 32.5526 7.06818 32.3783 7.06818 32.1638V29.5757C7.06818 29.3613 7.24255 29.1869 7.45702 29.1869H14.6194C14.8338 29.1869 15.0082 29.3614 15.0082 29.5757V32.1638Z" fill="black"/>
+                      <path d="M46.3561 32.1637V29.5756C46.3561 28.528 45.5039 27.6758 44.4563 27.6758H37.2938C36.2463 27.6758 35.394 28.5281 35.394 29.5756V32.1637C35.394 33.2113 36.2463 34.0636 37.2938 34.0636H44.4563C45.5039 34.0636 46.3561 33.2113 46.3561 32.1637ZM36.9051 32.1637V29.5756C36.9051 29.3612 37.0795 29.1868 37.2938 29.1868H44.4563C44.6707 29.1868 44.845 29.3613 44.845 29.5756V32.1637C44.845 32.3781 44.6706 32.5525 44.4563 32.5525H37.2938C37.0795 32.5525 36.9051 32.3781 36.9051 32.1637Z" fill="black"/>
+                      <path d="M31.8881 27.6758H19.689C18.6414 27.6758 17.7891 28.5281 17.7891 29.5756V32.1637C17.7891 33.2113 18.6413 34.0636 19.689 34.0636H31.8881C32.9357 34.0636 33.7879 33.2114 33.7879 32.1637V29.5756C33.7879 28.5281 32.9357 27.6758 31.8881 27.6758ZM32.2769 32.1638C32.2769 32.3782 32.1024 32.5526 31.8881 32.5526H19.689C19.4746 32.5526 19.3001 32.3783 19.3001 32.1638V31.6253H32.2769V32.1638ZM32.2769 30.1142H19.3001V29.5757C19.3001 29.3613 19.4746 29.1869 19.689 29.1869H31.8881C32.1025 29.1869 32.2769 29.3614 32.2769 29.5757V30.1142Z" fill="black"/>
+                    </svg>
+                    <p class="mb-0 font-bold">3000</p>
+                  </div>
+                  <div class="second text-center cp" (click)="listView('assetList')">
+                    <p class="mb-2">Barricades</p>
+                    <svg width="52" height="40" viewBox="0 0 67 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15.6775 4.11646H19.5981V35.4813H15.6775V4.11646Z" fill="#8D9CA8"/>
+                      <path d="M26.2229 4.11646H30.1435V35.4813H26.2229V4.11646Z" fill="#8D9CA8"/>
+                      <path d="M36.7683 4.11646H40.6889V35.4813H36.7683V4.11646Z" fill="#8D9CA8"/>
+                      <path d="M47.3137 4.11646H51.2343V35.4813H47.3137V4.11646Z" fill="#8D9CA8"/>
+                      <path d="M58.2827 0.97998H8.62912C6.21298 0.97998 4.24731 2.94564 4.24731 5.36179V34.3052H8.16792V5.36179C8.16792 5.10747 8.3748 4.90059 8.62912 4.90059H58.2826C58.5368 4.90059 58.7437 5.10747 58.7437 5.36179V34.3052H62.6643V5.36179C62.6644 2.94564 60.6987 0.97998 58.2827 0.97998Z" fill="#B6C4CF"/>
+                      <path d="M58.2827 0.97998H54.3621C56.7781 0.97998 58.7437 2.94564 58.7437 5.36179V34.3052H62.6643V5.36179C62.6643 2.94564 60.6987 0.97998 58.2827 0.97998Z" fill="#8D9CA8"/>
+                      <path d="M65.9317 37.1626V40.7088C65.9317 41.7915 65.054 42.6691 63.9714 42.6691C62.8887 42.6691 62.011 41.7915 62.011 40.7088V38.4629C62.011 38.3319 61.9049 38.2258 61.774 38.2258H5.1379C5.00695 38.2258 4.90083 38.3319 4.90083 38.4629V40.7088C4.90083 41.7915 4.02314 42.6691 2.94053 42.6691C1.85792 42.6691 0.980225 41.7915 0.980225 40.7088V37.1626C0.980225 35.5845 2.25952 34.3052 3.8377 34.3052H63.0741C64.6524 34.3052 65.9317 35.5846 65.9317 37.1626Z" fill="#8D9CA8"/>
+                      <path d="M63.0742 34.3052H59.1536C60.7317 34.3052 62.011 35.5845 62.011 37.1626V40.7088C62.011 41.7915 62.8887 42.6691 63.9713 42.6691C65.054 42.6691 65.9316 41.7915 65.9316 40.7088V37.1626C65.9316 35.5846 64.6522 34.3052 63.0742 34.3052Z" fill="#7A8C98"/>
+                      <path d="M63.6446 33.3678V5.36196C63.6446 2.40529 61.2393 0 58.2827 0H55.4972C54.1993 0.0449563 54.2003 1.91587 55.4972 1.9603H58.2827C60.1584 1.9603 61.6843 3.48634 61.6843 5.36196V33.3252H59.724V5.36196C59.724 4.56712 59.0774 3.92061 58.2827 3.92061H8.62913C7.83429 3.92061 7.18779 4.56725 7.18779 5.36196V21.9931C7.23274 23.2909 9.10366 23.2899 9.14809 21.9931V5.88091H14.6973V33.3252H9.14809V26.6371C9.10313 25.3393 7.23222 25.3403 7.18779 26.6371V33.3252H5.22748V5.36196C5.22748 3.48621 6.75351 1.9603 8.62913 1.9603H50.7558C52.0537 1.91535 52.0526 0.0444336 50.7558 0H8.62913C5.67247 0 3.26717 2.40543 3.26717 5.36196V33.3678C1.4207 33.6442 0 35.2405 0 37.1628V40.709C0.162052 44.6109 5.72043 44.6079 5.88091 40.709V39.2061H61.0308V40.709C61.1929 44.6109 66.7513 44.6079 66.9117 40.709V37.1628C66.9117 35.2407 65.491 33.6442 63.6446 33.3678ZM57.7637 33.3252H52.2144V5.88091H57.7637V33.3252ZM50.2541 5.88091V33.3252H48.2938V5.88091H50.2541ZM41.669 33.3252V5.88091H46.3335V33.3252H41.669ZM39.7087 5.88091V33.3252H37.7484V5.88091H39.7087ZM31.1236 33.3252V5.88091H35.788V33.3252H31.1236ZM29.1633 5.88091V33.3252H27.203V5.88091H29.1633ZM20.5782 33.3252V5.88091H25.2427V33.3252H20.5782ZM16.6576 5.88091H18.6179V33.3252H16.6576V5.88091ZM64.9514 40.709C64.9053 42.0066 63.0369 42.0057 62.9911 40.709V38.463C62.9911 37.7918 62.445 37.2458 61.7739 37.2458H5.13783C4.46662 37.2458 3.92061 37.7918 3.92061 38.463V40.709C3.87448 42.0066 2.00605 42.0057 1.9603 40.709V37.1628C1.9603 36.1276 2.80245 35.2855 3.83762 35.2855H63.0741C64.1093 35.2855 64.9514 36.1276 64.9514 37.1628V40.709Z" fill="black"/>
+                    </svg>    
+                    <p class="mb-0 font-bold">13040</p>                  
+                  </div>
+                  <div class="third text-center cp" (click)="listView('assetList')">
+                    <p class="mb-2">Systems</p>
+                    <svg width="49" height="40" viewBox="0 0 49 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M27.169 38.4504L18.8735 41.4082L18.559 42.5075C18.1123 44.0721 16.4156 45.3518 14.7888 45.3518V46.0913H31.993L27.169 38.4504Z" fill="#ADACA7"/>
+                      <path d="M30.441 42.5077L29.2816 38.4507L24.4999 35.4929L19.7182 38.4507L18.8733 41.4084H27.1688L27.4833 42.5077C27.9299 44.0724 29.6267 45.3521 31.2534 45.3521L32.7323 46.0915L34.2112 45.3521C32.5844 45.3521 30.8877 44.0724 30.441 42.5077Z" fill="#8F8F8B"/>
+                      <path d="M43.0845 38.4511H46.0422C47.669 38.4511 49 37.1201 49 35.4933V29.5778L43.0845 23.6624V38.4511Z" fill="#ADACA7"/>
+                      <path d="M0 35.4926C0 37.1193 1.33099 38.4503 2.95775 38.4503H43.0845C44.7113 38.4503 46.0423 37.1193 46.0423 35.4926V17.7461L0 29.5771V35.4926Z" fill="#CBC9C2"/>
+                      <path d="M46.0422 0H43.0845L46.0422 29.5775H49V2.95775C49 1.33099 47.669 0 46.0422 0Z" fill="#404242"/>
+                      <path d="M46.0423 2.95775C46.0423 1.33099 44.7113 0 43.0845 0H2.95775C1.33099 0 0 1.33099 0 2.95775V29.5775H46.0423V26.6197L24.5 14.7875L46.0423 2.95775Z" fill="#565959"/>
+                      <path d="M46.0423 2.9569L43.0851 2.95483C43.0851 2.95533 24.5 14.7871 24.5 14.7871C24.5 14.7871 43.0847 26.6192 43.0845 26.6194L46.0422 26.6174C46.0423 26.6174 46.042 2.9573 46.0423 2.9569Z" fill="#4B88D5"/>
+                      <path d="M43.0845 2.957L2.96644 2.95483C2.96397 2.95602 2.9619 26.619 2.95776 26.6195C2.95776 26.6195 43.0826 26.6175 43.0835 26.6175C43.084 26.6175 43.0804 2.9574 43.0845 2.957Z" fill="#69A7FF"/>
+                      <path d="M24.4999 35.4927C25.3166 35.4927 25.9787 34.8305 25.9787 34.0138C25.9787 33.197 25.3166 32.5349 24.4999 32.5349C23.6831 32.5349 23.021 33.197 23.021 34.0138C23.021 34.8305 23.6831 35.4927 24.4999 35.4927Z" fill="white"/>
+                      <path d="M39.7818 46.8309H9.21844C8.81007 46.8309 8.479 46.5 8.479 46.0915C8.479 45.683 8.81007 45.3521 9.21844 45.3521H39.7818C40.1902 45.3521 40.5213 45.683 40.5213 46.0915C40.5213 46.5 40.1902 46.8309 39.7818 46.8309Z" fill="#8F8F8B"/>
+                    </svg>       
+                    <p class="mb-0 font-bold">23003</p>               
+                  </div>
+                  <div class="fourth text-center cp" (click)="listView('assetList')">
+                    <p class="mb-2">Table chairs</p>
+                    <svg width="47" height="40" viewBox="0 0 54 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M26.3794 6.72012C26.625 4.46639 25.1514 2.38033 22.9431 1.86729C20.6066 1.32448 17.4878 0.777832 14.4019 0.777832C11.316 0.777832 8.19725 1.32438 5.86073 1.86719C3.65245 2.38033 2.17881 4.46629 2.42438 6.72012L4.39415 24.797H24.4097L26.3794 6.72012Z" fill="#E9A982"/>
+                      <path d="M13.324 21.1383C11.3714 18.9214 8.15139 8.05529 12.1505 0.86792C9.84166 1.04471 7.62746 1.4569 5.86073 1.86743C3.65245 2.38047 2.17881 4.46643 2.42438 6.72026L4.39415 24.7971H13.324V21.1383Z" fill="#E6886E"/>
+                      <path d="M7.19839 43.1584H5.57846C4.42395 43.1584 3.48804 42.2225 3.48804 41.068V29.3657H9.28871V41.068C9.28871 42.2225 8.35279 43.1584 7.19839 43.1584Z" fill="#59D5FF"/>
+                      <path d="M21.6055 43.1584H23.2254C24.3799 43.1584 25.3158 42.2225 25.3158 41.068V29.3657H19.5151V41.068C19.515 42.2225 20.4509 43.1584 21.6055 43.1584Z" fill="#59D5FF"/>
+                      <path d="M34.4666 16.4563H39.6859V40.3794H34.4666V16.4563Z" fill="#59D5FF"/>
+                      <path d="M34.4666 16.4563H39.6859V21.6691H34.4666V16.4563Z" fill="#00C4FC"/>
+                      <path d="M50.0514 18.5567H24.1014C22.8368 18.5567 21.8118 17.5316 21.8118 16.2671C21.8118 14.321 23.3894 12.7434 25.3356 12.7434H48.8173C50.7635 12.7434 52.3412 14.321 52.3412 16.2671C52.341 17.5316 51.3159 18.5567 50.0514 18.5567Z" fill="#827CD1"/>
+                      <path d="M41.6873 39.1177H32.4656C31.4568 39.1177 30.6389 39.9355 30.6389 40.9444V41.8941C30.6389 42.5924 31.2051 43.1586 31.9034 43.1586H42.2494C42.9477 43.1586 43.5139 42.5924 43.5139 41.8941V40.9444C43.514 39.9354 42.6961 39.1177 41.6873 39.1177Z" fill="#E9A982"/>
+                      <path d="M36.8705 39.1177H32.4656C31.4568 39.1177 30.6389 39.9355 30.6389 40.9444V41.8941C30.6389 42.5924 31.2051 43.1586 31.9034 43.1586H36.9401C36.2099 42.2851 35.9291 40.4917 36.8705 39.1177Z" fill="#E6886E"/>
+                      <path d="M25.3156 24.7969C25.3156 23.5593 24.5876 22.6806 23.4199 22.062C22.3409 21.4902 20.8863 21.1405 19.2841 20.9347C17.7266 20.7345 16.0293 20.6704 14.4018 20.6704C12.7743 20.6704 11.0771 20.7345 9.51955 20.9347C7.91736 21.1405 6.46281 21.4902 5.38373 22.062C4.21614 22.6806 3.48804 23.5593 3.48804 24.7969H25.3156Z" fill="#FFF0CE"/>
+                      <path d="M13.9287 20.6729C12.4478 20.6847 10.9269 20.7539 9.51955 20.9347C7.91736 21.1405 6.46281 21.4903 5.38373 22.062C4.21614 22.6807 3.48804 23.5593 3.48804 24.7969H13.7359C13.1326 23.5242 13.3044 21.5066 13.9287 20.6729Z" fill="#FFDDB9"/>
+                      <path d="M19.5151 29.3657H25.3158V32.9653H19.5151V29.3657Z" fill="#00C4FC"/>
+                      <path d="M3.48804 29.3657H9.28871V32.9653H3.48804V29.3657Z" fill="#00C4FC"/>
+                      <path d="M25.3876 29.853H3.41598C1.95904 29.853 0.778076 28.6719 0.778076 27.2151C0.778076 25.7582 1.95915 24.5771 3.41598 24.5771H25.3875C26.8443 24.5771 28.0254 25.7582 28.0254 27.2151C28.0255 28.672 26.8444 29.853 25.3876 29.853Z" fill="#E9A982"/>
+                      <path d="M3.41598 24.5771C1.95904 24.5771 0.778076 25.7582 0.778076 27.2151C0.778076 28.6719 1.95915 29.853 3.41598 29.853H14.114C13.1009 28.9021 12.6279 26.3361 13.6986 24.5771H3.41598Z" fill="#E6886E"/>
+                      <path d="M33.0186 12.7434H25.3355C23.3894 12.7434 21.8118 14.321 21.8118 16.2672C21.8118 17.5318 22.8369 18.5569 24.1014 18.5569H33.2436C32.1457 17.4923 31.503 14.7494 33.0186 12.7434Z" fill="#625AC4"/>
+                      <path d="M20.8808 10.1547C21.3106 10.1547 21.6589 9.80639 21.6589 9.37656V8.13158C21.6589 7.70186 21.3106 7.35347 20.8808 7.35347C20.451 7.35347 20.1027 7.70186 20.1027 8.13158V9.37656C20.1027 9.80629 20.451 10.1547 20.8808 10.1547ZM14.4017 10.8956C15.2813 10.8956 16.1177 10.5148 16.6965 9.85069C16.9788 9.52679 16.9451 9.03523 16.6211 8.75283C16.2971 8.47053 15.8057 8.50425 15.5232 8.82825C15.24 9.15319 14.8312 9.33952 14.4016 9.33952C13.972 9.33952 13.5632 9.15319 13.2801 8.82836C12.9978 8.50425 12.5062 8.47063 12.1823 8.75283C11.8583 9.03512 11.8245 9.52669 12.1068 9.85059C12.6857 10.5149 13.5221 10.8956 14.4017 10.8956ZM48.8172 11.9653H45.5326C45.1028 11.9653 44.7545 12.3136 44.7545 12.7434C44.7545 13.1732 45.1028 13.5215 45.5326 13.5215H48.8172C50.3312 13.5215 51.5629 14.7532 51.5629 16.2672C51.5629 17.1006 50.8848 17.7787 50.0514 17.7787H24.1013C23.2679 17.7787 22.5898 17.1006 22.5898 16.2672C22.5898 14.7532 23.8215 13.5215 25.3355 13.5215H41.8305C42.2603 13.5215 42.6086 13.1732 42.6086 12.7434C42.6086 12.3136 42.2603 11.9653 41.8305 11.9653H26.5905L27.1529 6.80454C27.4411 4.15906 25.707 1.71071 23.1191 1.10948C20.9404 0.603296 17.6597 0 14.4018 0C11.1441 0 7.86318 0.6034 5.68458 1.10948C3.09678 1.71081 1.36263 4.15906 1.65084 6.80454L3.38448 22.7145C3.12728 23.0617 2.94396 23.4407 2.83378 23.8497C1.22672 24.127 0 25.53 0 27.215C0 28.8565 1.16395 30.2309 2.7098 30.5572V35.4735C2.7098 35.9033 3.05819 36.2516 3.48791 36.2516C3.91774 36.2516 4.26603 35.9033 4.26603 35.4735V30.631H8.51047V41.0681C8.51047 41.7918 7.9218 42.3803 7.19826 42.3803H5.57844C4.8548 42.3803 4.26603 41.7917 4.26603 41.0681V39.2214C4.26603 38.7917 3.91774 38.4433 3.48791 38.4433C3.05819 38.4433 2.7098 38.7917 2.7098 39.2214V41.0681C2.7098 42.6498 3.99659 43.9366 5.57834 43.9366H7.19816C8.7798 43.9366 10.0666 42.6498 10.0666 41.0681V30.6311H18.7369V41.0682C18.7369 42.6499 20.0237 43.9367 21.6054 43.9367H23.2252C24.8068 43.9367 26.0936 42.6499 26.0936 41.0682V30.5572C27.6396 30.2309 28.8035 28.8565 28.8035 27.215C28.8035 25.53 27.5769 24.127 25.9699 23.8497C25.8598 23.4406 25.6763 23.0617 25.4192 22.7145L25.7874 19.335H33.6885V38.3398H32.4654C31.029 38.3398 29.8606 39.5083 29.8606 40.9446V41.8943C29.8606 43.0205 30.7769 43.9369 31.9032 43.9369H42.2493C43.3756 43.9369 44.292 43.0206 44.292 41.8943V40.9446C44.292 39.5083 43.1235 38.3398 41.6871 38.3398H40.4641V19.3349H50.0513C51.7429 19.3349 53.119 17.9587 53.119 16.2672C53.1191 13.8952 51.1893 11.9653 48.8172 11.9653ZM3.19783 6.63595C2.9948 4.77273 4.21519 3.04854 6.03659 2.62535C8.13594 2.13763 11.2913 1.55612 14.4017 1.55612C17.5121 1.55612 20.6676 2.13753 22.7668 2.62535C24.5883 3.04854 25.8087 4.77273 25.6057 6.63595L25.0236 11.9778C22.7966 12.1382 21.0334 14.0001 21.0334 16.2672C21.0334 17.9588 22.4096 19.3349 24.1011 19.3349H24.2218L23.9872 21.4882C22.652 20.719 20.9185 20.3603 19.3831 20.1632C17.9661 19.981 16.3366 19.8925 14.4015 19.8925C12.4666 19.8925 10.8371 19.9811 9.42013 20.1632C7.88653 20.3601 6.15113 20.7188 4.81599 21.4882L3.19783 6.63595ZM24.2678 23.799H4.53587C5.36545 22.4177 8.0242 21.9114 9.61871 21.7066C10.9693 21.5331 12.5338 21.4487 14.4018 21.4487C16.2698 21.4487 17.8344 21.5332 19.185 21.7066C20.775 21.9108 23.4378 22.4166 24.2678 23.799ZM24.5375 41.0682C24.5375 41.7919 23.9488 42.3804 23.2253 42.3804H21.6055C20.8818 42.3804 20.2933 41.7918 20.2933 41.0682V30.6311H24.5376V41.0682H24.5375ZM27.2474 27.215C27.2474 28.2406 26.4131 29.0748 25.3875 29.0748H3.41602C2.39046 29.0748 1.55622 28.2406 1.55622 27.215C1.55622 26.1895 2.39046 25.3551 3.41602 25.3551H25.3875C26.4131 25.3552 27.2474 26.1896 27.2474 27.215ZM35.2448 19.3349H38.908V38.3397H35.2448V19.3349ZM41.6871 39.8959C42.2653 39.8959 42.7358 40.3663 42.7358 40.9445V41.8942C42.7358 42.1624 42.5176 42.3805 42.2493 42.3805H31.9032C31.635 42.3805 31.4168 42.1624 31.4168 41.8942V40.9445C31.4168 40.3664 31.8872 39.8959 32.4654 39.8959H41.6871ZM7.92284 10.1547C8.35267 10.1547 8.70095 9.80639 8.70095 9.37656V8.13158C8.70095 7.70186 8.35267 7.35347 7.92284 7.35347C7.49301 7.35347 7.14473 7.70186 7.14473 8.13158V9.37656C7.14473 9.80629 7.49311 10.1547 7.92284 10.1547Z" fill="black"/>
+                    </svg>
+                    <p class="mb-0 font-bold">12000</p>
+                  </div>
+                  <div class="fifth text-center cp" (click)="listView('assetList')">
+                    <p class="mb-2">Servers</p>
+                    <svg width="38" height="40" viewBox="0 0 38 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2.52588 9.21533H34.8735V33.5324H2.52588V9.21533Z" fill="#465A61"/>
+                      <path d="M36.421 40H0.978279C0.438046 40 0 39.562 0 39.0217V29.3145C0 28.7742 0.437968 28.3362 0.978279 28.3362H36.421C36.9613 28.3362 37.3993 28.7741 37.3993 29.3145V39.0217C37.3992 39.562 36.9613 40 36.421 40Z" fill="#7A8C98"/>
+                      <path d="M20.7615 35.8991H4.25666C3.3008 35.8991 2.52588 35.1241 2.52588 34.1683C2.52588 33.2124 3.3008 32.4375 4.25666 32.4375H20.7615C21.7173 32.4375 22.4922 33.2124 22.4922 34.1683C22.4922 35.1241 21.7173 35.8991 20.7615 35.8991Z" fill="#9FACBA"/>
+                      <path d="M28.1439 37.1033C27.3983 37.1033 26.7939 36.4989 26.7939 35.7533V32.5839C26.7939 31.8383 27.3984 31.2339 28.1439 31.2339C28.8896 31.2339 29.4939 31.8383 29.4939 32.5839V35.7533C29.494 36.4989 28.8896 37.1033 28.1439 37.1033Z" fill="#FFD15B"/>
+                      <path d="M36.421 25.8876H0.978279C0.438046 25.8876 0 25.4496 0 24.9093V15.2022C0 14.6619 0.437968 14.2239 0.978279 14.2239H36.421C36.9613 14.2239 37.3993 14.6618 37.3993 15.2022V24.9094C37.3992 25.4496 36.9613 25.8876 36.421 25.8876Z" fill="#7A8C98"/>
+                      <path d="M20.7615 21.786H4.25666C3.3008 21.786 2.52588 21.0111 2.52588 20.0552C2.52588 19.0994 3.3008 18.3245 4.25666 18.3245H20.7615C21.7173 18.3245 22.4922 19.0994 22.4922 20.0552C22.4922 21.0111 21.7173 21.786 20.7615 21.786Z" fill="#9FACBA"/>
+                      <path d="M28.1439 22.9903C27.3983 22.9903 26.7939 22.3858 26.7939 21.6403V18.4708C26.7939 17.7252 27.3984 17.1208 28.1439 17.1208C28.8896 17.1208 29.4939 17.7253 29.4939 18.4708V21.6403C29.494 22.3858 28.8896 22.9903 28.1439 22.9903Z" fill="#60B7FF"/>
+                      <path d="M36.421 11.6637H0.978279C0.438046 11.6637 0 11.2258 0 10.6854V0.978279C7.81248e-05 0.437968 0.438046 0 0.978279 0H36.421C36.9613 0 37.3993 0.437968 37.3993 0.978279V10.6855C37.3992 11.2258 36.9613 11.6637 36.421 11.6637Z" fill="#7A8C98"/>
+                      <path d="M20.7615 7.56263H4.25666C3.3008 7.56263 2.52588 6.78771 2.52588 5.83185C2.52588 4.87599 3.3008 4.10107 4.25666 4.10107H20.7615C21.7173 4.10107 22.4922 4.87599 22.4922 5.83185C22.4922 6.78771 21.7173 7.56263 20.7615 7.56263Z" fill="#9FACBA"/>
+                      <path d="M28.1439 8.76641C27.3983 8.76641 26.7939 8.16196 26.7939 7.41642V4.24697C26.7939 3.50135 27.3984 2.89697 28.1439 2.89697C28.8896 2.89697 29.4939 3.50142 29.4939 4.24697V7.41642C29.494 8.16196 28.8896 8.76641 28.1439 8.76641Z" fill="#60B7FF"/>
+                      <path d="M36.4212 28.3362H33.3208C33.8611 28.3362 34.2991 28.7741 34.2991 29.3145V39.0217C34.2991 39.5619 33.8611 40 33.3208 40H36.4212C36.9615 40 37.3995 39.562 37.3995 39.0217V29.3144C37.3994 28.7741 36.9614 28.3362 36.4212 28.3362Z" fill="#596C76"/>
+                      <path d="M36.4212 14.2239H33.3208C33.8611 14.2239 34.2991 14.6618 34.2991 15.2022V24.9094C34.2991 25.4496 33.8611 25.8877 33.3208 25.8877H36.4212C36.9615 25.8877 37.3995 25.4497 37.3995 24.9094V15.2022C37.3994 14.6618 36.9614 14.2239 36.4212 14.2239Z" fill="#596C76"/>
+                      <path d="M36.4212 0H33.3208C33.8611 0 34.2991 0.437968 34.2991 0.978279V10.6855C34.2991 11.2258 33.8611 11.6638 33.3208 11.6638H36.4212C36.9615 11.6638 37.3995 11.2258 37.3995 10.6855V0.978279C37.3994 0.437968 36.9614 0 36.4212 0Z" fill="#596C76"/>
+                      <path d="M33.5236 2.89697C33.4955 2.89697 33.4682 2.89947 33.4406 2.90119C32.7339 2.94432 32.1736 3.52947 32.1736 4.24705V7.41649C32.1736 8.13407 32.7339 8.71923 33.4406 8.76235C33.4682 8.76407 33.4956 8.76657 33.5236 8.76657C34.2692 8.76657 34.8736 8.16212 34.8736 7.41657V4.24705C34.8736 3.50142 34.2691 2.89697 33.5236 2.89697Z" fill="#FFD15B"/>
+                      <path d="M34.2988 3.14282V8.52031C34.6459 8.27602 34.8734 7.87305 34.8734 7.41625V4.24688C34.8734 3.79009 34.646 3.38712 34.2988 3.14282Z" fill="#FFC344"/>
+                      <path d="M33.5236 17.1208C33.4955 17.1208 33.4682 17.1233 33.4406 17.1251C32.7339 17.1682 32.1736 17.7533 32.1736 18.4709V21.6404C32.1736 22.3579 32.7339 22.9431 33.4406 22.9862C33.4682 22.9879 33.4956 22.9904 33.5236 22.9904C34.2692 22.9904 34.8736 22.386 34.8736 21.6404V18.471C34.8736 17.7253 34.2691 17.1208 33.5236 17.1208Z" fill="#FE646F"/>
+                      <path d="M34.2988 17.3667V22.7442C34.6459 22.4999 34.8734 22.0969 34.8734 21.6401V18.4707C34.8734 18.014 34.646 17.611 34.2988 17.3667Z" fill="#FD4755"/>
+                      <path d="M33.5236 31.2332C33.4955 31.2332 33.4682 31.2357 33.4406 31.2374C32.7339 31.2805 32.1736 31.8657 32.1736 32.5832V35.7527C32.1736 36.4703 32.7339 37.0554 33.4406 37.0985C33.4682 37.1002 33.4956 37.1028 33.5236 37.1028C34.2692 37.1028 34.8736 36.4983 34.8736 35.7528V32.5833C34.8736 31.8376 34.2691 31.2332 33.5236 31.2332Z" fill="#60B7FF"/>
+                      <path d="M34.2988 31.4792V36.8567C34.6459 36.6124 34.8734 36.2095 34.8734 35.7527V32.5832C34.8734 32.1265 34.646 31.7235 34.2988 31.4792Z" fill="#26A6FE"/>
+                    </svg>    
+                    <p class="mb-0 font-bold">2300</p>                  
+                  </div>
+                  <div class="more">
+                    <button pButton label="View More" type="button" class="p-button-info p-button-sm" (click)="listView('assetList')"></button>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12 md:col-5">
+        <div class="card">
+          <div class="grid m-0">
+            <div class="col-12 md:col-4 p-0"></div>
+            <div class="col-12 md:col-8 p-0">
+              <mat-form-field appearance="outline" class="w-full mb-0">
+                <mat-label>Choose Station</mat-label>
+                <select matNativeControl required>
+                  <option value="cs">R2 Station</option>
+                  <option value="ss">Salem Station</option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+          <p-chart type="doughnut" [data]="data" [style]="{'width': '40%'}"></p-chart>
+        </div>
+      </div>
+      <div class="col-12 md:col-7">
+        <div class="card" style="overflow: auto;">
+          <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable"></app-dynamic-report-table>
+            <!-- <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Police Station</th>
+                        <th>Location</th>
+                        <th>Sub Divition</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dview of dcount?.liveUsers">
+                        <td>{{dview.firstName}} {{dview.lastName}}</td>
+                        <td>{{dview.policeStationId}}</td>
+                        <td>{{dview.location}}</td>
+                        <td>{{dview.subDivisionId}}</td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
+      </div>
+    </div>
+</div>
+

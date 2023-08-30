@@ -1,0 +1,59 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" routerLink="/main/admin">User List</h5>
+            </div>
+            <div class="btn-top">
+                <app-dynamic-csv [dynamaicDataForTable]="dynamaicDataForTable" *ngIf="toDownload"></app-dynamic-csv>
+                <span *ngIf="!isDAdmin">
+                    <button pButton label="ADD" type="button" icon="pi pi-plus" class="p-button-info border5" (click)="openForm()"></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<p-dialog header="Password Update" [(visible)]="upPwdModal" [modal]="true" [style]="{width: '40vw'}"
+    [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false">
+    <div class="grid bg-white">
+        <div class="col-12">
+            <div class="card py-2">
+                <form [formGroup]="form" (ngSubmit)="resetSubmit()">
+                    <div class="field border border-1 border-round p-2">
+                        <h4 class="mb-2">{{keyData?.firstName}} - {{keyData?.username}}</h4>
+                        <p class="my-2">{{keyData?.gpfCpsNo}}</p>
+                        <p class="my-2">{{keyData?.rankName}}</p>
+                    </div>
+                    <div class="field">
+                        <label for="password" class="block">New Password</label>
+                        <input id="password" type="password" class="w-full" formControlName="password" pInputText [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback text-pink-500">
+                            <small *ngIf="f['password'].errors['required']">Password is required</small>
+                            <small *ngIf="f['password'].errors['minlength']">
+                              Password must be at least 6 characters
+                            </small>
+                            <small *ngIf="f['password'].errors['maxlength']">
+                              Username must not exceed 40 characters
+                            </small>
+                          </div>
+                    </div>
+                    <div class="field">
+                        <label for="confirmPassword" class="block">Confirm Password</label>
+                        <input id="confirmPassword" type="password" class="w-full" formControlName="confirmPassword" pInputText />
+                        <div  *ngIf="submitted && f['confirmPassword'].errors" class="invalid-feedback text-pink-500">
+                            <small *ngIf="f['confirmPassword'].errors['required']">
+                            Confirm Password is required
+                            </small>
+                            <small *ngIf="f['confirmPassword'].errors['matching']">
+                            Confirm Password does not match
+                            </small>
+                        </div>
+                    </div>
+                    <div class="field mb-0">
+                        <p-button type="submit" styleClass="p-button-info border5">Update</p-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</p-dialog>

@@ -1,0 +1,45 @@
+<div class="grid">
+    <div class="col-12 pb-0">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue">{{fHeader}}</h5>
+            </div>
+            <div class="btn-top">
+                <button pButton label="Go to List" type="button" icon="pi pi-arrow-left" class="p-button-info border5" (click)="cancel()"></button>
+            </div>
+        </div>
+	</div>
+	<div class="col-12 md:col-6 pt-0">
+        <div class="card border5 pt-3rem">
+            <app-dynamic-form [jsonFormData]="formData" (emitCancel)="cancel()" (emitSave)="submit($event)"></app-dynamic-form>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="grid">
+    <div class="md:col-8">
+        <div class="card">
+            <h5>State Form</h5>
+            <form >
+                <div class="formgrid grid">
+                    <input id="formKey" type="hidden" pInputText value="master-state">
+                    <div class="field col-12 md:col-6">
+                        <label for="stateName">State Name</label>
+                        <input id="stateName" type="text" pInputText class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="lastname6">State Code</label>
+                        <input id="lastname6" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                    </div>
+                    <div class="field col-12">
+                        <label for="address">Description</label>
+                        <textarea id="address" type="text" rows="4" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"></textarea>
+                    </div>
+                    <div class="col-12 text-right mb-0">
+                        <button pButton type="button" label="Submit" class="p-button-primary border-noround"></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->

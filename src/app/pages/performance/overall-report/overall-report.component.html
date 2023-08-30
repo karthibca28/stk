@@ -1,0 +1,85 @@
+<div class="grid match-height adminDetailReport mt-3">
+    <div *ngIf="repDownload"> 
+        <a (click)="csv_fileDownload()" style="position: absolute;right: 30px;">
+            <img src="assets/images/downloadBtn2.png" height="30" class="cursor-pointer">
+        </a>
+    </div>
+    <div class="col-12 pb-1">
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="p-fluid grid mx-0 my-0 bg-white">
+                <div class="field pb-0 col-12 md:col-3">
+                    <label for="multiselect" class="txt-dark07">Select District<small class="pl-1 text-pink-500">*</small></label>
+                    <p-multiSelect inputId="multiselect" (onChange)="updateSecondDropdown($event)" formControlName="searchDistrcit" [options]="regions" optionLabel="name" optionValue="id"></p-multiSelect>
+                </div>
+                <div class="field pb-0 col-12 md:col-3">
+                    <label for="multiselect" class="txt-dark07">Select Police station<small class="pl-1 text-pink-500">*</small></label>
+                    <p-multiSelect inputId="multiselect" [options]="countries" optionLabel="name" optionValue="id" formControlName="searchPolicestation"></p-multiSelect>
+                </div>
+                <div class="field pb-0 col-12 md:col-2">
+                    <label for="icon" class="txt-dark07">From</label>
+                    <p-calendar [showIcon]="true" inputId="icon" formControlName="fromDate" dateFormat="dd-mm-yy"></p-calendar>
+                </div>
+                <div class="field pb-0 col-12 md:col-2">
+                    <label for="icon" class="txt-dark07">To</label>
+                    <p-calendar [showIcon]="true" inputId="icon" formControlName="toDate" dateFormat="dd-mm-yy"></p-calendar>
+                </div>
+                <div class="field pb-0 col-12 md:col-2 flex align-items-end">
+                    <!-- <p-button type="submit" label="Search" styleClass="p-button-sm p-button-info"></p-button> -->
+                    <button pButton pRipple type="submit" icon="pi pi-search" class="p-button-rounded p-button-primary p-button-outlined"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 pt-0">
+        <p-table #dt1 dataKey="id" [rows]="10" [columns]="cols" [showCurrentPageReport]="true" [value]="dynamaicDataForTable" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['dict','pstat']" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll" styleClass="p-datatable-gridlines">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th rowspan="3"  class="text-center bor-right">District</th>
+                    <th rowspan="3" class="text-center">Police Station</th>
+                </tr>
+                <tr>
+                    <th colspan="4" class="text-center bor-right bor-left">Beat</th>
+                    <th colspan="2" class="text-center bor-right">Task</th>
+                    <th colspan="3" class="text-center">Field Duty</th>
+                </tr>
+                <tr>
+                    <th class="bor-right bor-left">Active</th>
+                    <th class="bor-right">Pending</th>
+                    <th class="bor-right">Completed</th>
+                    <th class="bor-right">Approved</th>
+                    <th class="bor-right">Pending</th>
+                    <th class="bor-right">Completed</th>
+                    <th class="bor-right">Pending</th>
+                    <th class="bor-right">Completed</th>
+                    <th>Approved</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-sumData>
+                <tr>
+                    <td>{{sumData.dict}}</td>
+                    <td>{{sumData.pstat}}</td>
+                    <td>{{sumData.b_process}}</td>
+                    <td>{{sumData.b_pending}}</td>
+                    <td>{{sumData.b_comp}}</td>
+                    <td>{{sumData.b_approve}}</td>
+                    <td>{{sumData.t_pending}}</td>
+                    <td>{{sumData.t_comp}}</td>
+                    <td>{{sumData.sd_pending}}</td>
+                    <td>{{sumData.sd_comp}}</td>
+                    <td>{{sumData.sd_approve}}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="11">No Data found.</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="loadingbody">
+                <tr>
+                    <td colspan="11">Loading data. Please wait.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

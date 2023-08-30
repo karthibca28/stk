@@ -1,0 +1,89 @@
+<div class="grid">
+    <div class="col-12 pb-0 flex justify-content-between align-items-center">
+        <p class="mb-0 text-lg font-bold">Profile Information</p>
+        <button pButton label="Back" type="button" class="p-button-info p-button-sm"></button>
+    </div>
+    <div class="col-12 md:col-5">
+        <div class="card">
+            <div class="flex align-items-center">
+                <div>
+                    <img class="round" src="assets/images/user.png" width="80px" alt="user" />
+                </div>
+                <div>
+                    <h5 class="mb-2 capitalize">{{userData?.username}}</h5>
+                    <p class="mb-0 text-green-500 font-bold">{{userData?.roleName}}</p>
+                </div>
+            </div>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="fbold text-left">
+                                Mobile No.
+                            </td>
+                            <td class="text-right">
+                                {{userData?.mobileNo}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                Email Id
+                            </td>
+                            <td class="text-right">
+                                <span class="text-blue-600">{{userData?.emailId}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                GPF/CPS No.
+                            </td>
+                            <td class="text-right">
+                                {{userData?.gpfCpsNo}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                Role
+                            </td>
+                            <td class="text-right">
+                                {{userData?.roleName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                               Rank
+                            </td>
+                            <td class="text-right">
+                                {{userData?.rankName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                Police Station
+                            </td>
+                            <td class="text-right">
+                                {{userData?.psName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                District
+                            </td>
+                            <td class="text-right">
+                                {{userData?.districtName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                Address
+                            </td>
+                            <td class="text-right">
+                                {{userData?.address}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

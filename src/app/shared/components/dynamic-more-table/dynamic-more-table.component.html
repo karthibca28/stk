@@ -1,0 +1,72 @@
+
+<p-table #dt1 dataKey="id" [rows]="10" [columns]="cols" [sortOrder]="1" [showCurrentPageReport]="true" [value]="tableData" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+selectionMode="multiple" [globalFilterFields]="searchHeader" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll" [loading]="loading" styleClass="p-datatable-gridlines"
+  >
+    <ng-template pTemplate="caption">
+        <div class="flex">
+            <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"
+                (click)="clear(dt1)"></button>
+            <span class="p-input-icon-left ml-auto pr-2">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+                    placeholder="Search keyword" />
+            </span>
+            <!-- <button pbutton="" pripple="" icon="pi pi-upload" class="p-element p-ripple p-button-rounded mx-3 flex-shrink-0 p-button p-component p-button-icon-only" (click)="dt1.exportCSV()"><span class="p-button-icon pi pi-upload" aria-hidden="true"></span><span class="p-ink"></span></button> -->
+            <!-- <button type="button" pButton pRipple icon="pi pi-file" (click)="dt1.exportCSV()" class="mr-2" pTooltip="Excel" tooltipPosition="bottom"></button> -->
+        </div>
+        <!-- <div class="mt-3">
+            <p-chip label="All" styleClass="mr-2" [removable]="true"></p-chip>
+            <p-chip label="Today Assign" styleClass="mr-2" [removable]="true"></p-chip>
+            <p-chip label="Pending/Upcoming" styleClass="mr-2" [removable]="true"></p-chip>
+            <p-chip label="Need to Active" [removable]="true"></p-chip>
+        </div> -->
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <!-- [hidden]="!col.isView" column display or not --> <!--sorting hide or unhide [pSortableColumnDisabled]="!col.sort ? true : false" -->
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                <div class="flex justify-content-between align-items-center">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                    <!-- <p-columnFilter [type]="col.type" [field]="col.field" display="menu" placeholder="Search by {{col.field}}" class="ml-auto">
+                    </p-columnFilter> -->
+                </div>
+            </th>
+            <th style="width: 8rem;">
+                <div class="text-center">
+                    <!-- Action -->
+                </div>
+            </th>
+        </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+             <div>
+                <!-- {{rowData[col.field]}} -->
+                <span *ngIf="col.type !== 'amount'">
+                    {{rowData[col.field]}}
+                  </span>
+                  <span *ngIf="col.type === 'amount'">
+                    {{rowData[col.field] | number:'1.2-2':'en-IN' }}
+                  </span>
+             </div>
+            </td>
+            <td classStyle="width:30%;" class="text-center">
+                <button pbutton="" type="button" label="View" class="hide p-element p-button-sm p-button-raised p-button-cyan p-button p-component" (click)="viewRecord(rowData)"><span class="p-button-label">View</span></button>
+                <!-- <img src="assets/images/viewmore.png" width="90" (click)="viewRecord(rowData)" class="cp" /> -->
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="8">No Data found.</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="loadingbody">
+        <tr>
+            <td colspan="8">Loading data. Please wait.</td>
+        </tr>
+    </ng-template>
+</p-table>

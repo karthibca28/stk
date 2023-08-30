@@ -1,0 +1,40 @@
+.cp {
+    cursor: pointer;
+}
+i {
+    cursor: default;
+}
+.border-highlight{
+    padding: 10px;
+    border: 1px solid #fbeded;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+.grid-inblock {
+    display: inline-grid;
+}
+.flex-align {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
+.hColor {
+    background: -webkit-linear-gradient(rgb(51, 82, 141), #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.mImg img {
+    filter:drop-shadow(4px 4px 3px #b8d1ec);
+}
+.text-bdark {
+    color: #919aa3 !important;
+    text-shadow: 5px 5px 8px #b3b9c6;
+}
+.kris-gradient01 {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, #29539B 0%, #5899E2 100%);
+}
+.kris-gradient02 {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, #5899E2 0%, #29539B 100%);
+}

@@ -1,0 +1,95 @@
+
+<div class="grid bg-white mb-4">
+    <div class="col-6 py-2 flex align-items-center">
+		<h5 class="mb-0 text-rblue">Summary Report</h5>
+	</div>
+	<div class="col-6 py-2 text-right">
+		<button pButton label="Back" type="button" icon="pi pi-arrow-left" class="p-button-info border5" (click)="cancel()"></button>
+	</div>
+</div>
+<div class="grid">
+    <div class="py-0 col-12 text-center">
+        <p-selectButton [options]="highlightData" [(ngModel)]="primColor" optionLabel="name" (onChange)="eventTrg($event)" optionValue="value"></p-selectButton>
+    </div>
+</div>
+<form [formGroup]="summaryForm" (ngSubmit)="onSubmit()">
+	<div class="p-fluid grid">
+        <div class="field mb-0 pb-0 col-12 md:col-4">
+            <label for="userType" class="txt-navy font-bold">User Type</label>
+            <div class="grid">
+                <div class="field-radiobutton mb-0 col-6">
+                    <input type="radio" name="userType" formControlName="userType" value="self" (change)="radOnchange($event)">
+                    <label for="mySelf" class="ml-0">Self Report</label>
+                </div>
+                <div class="field-radiobutton mb-0 col-6">
+                    <input type="radio" name="userType" formControlName="userType" value="fo" (change)="radOnchange($event)">
+                    <label for="Fo" class="ml-0">Fo Report</label>
+                </div>
+            </div>
+        </div>
+        <div class="field mb-0 py-0 col-12 md:col-8"></div>
+		<div class="field mb-0 py-0 col-12 md:col-3" *ngIf="radUpdate">
+			<label for="FoUser" class="txt-navy font-bold">Select User<small class="pl-1 text-pink-500">*</small></label>
+			<p-dropdown [options]="foUser" optionLabel="username" formControlName="foUserId" optionValue="id" [autoDisplayFirst]="true" [style]="{'width': '100%'}"></p-dropdown>
+		</div>
+		<div class="field mb-0 py-0 col-12 md:col-3">
+			<label for="FoUser" class="txt-navy font-bold">Select Duty Type<small class="pl-1 text-pink-500">*</small></label>
+            <p-dropdown [options]="spType" optionLabel="name" formControlName="spType" optionValue="id" [autoDisplayFirst]="false" [style]="{'width': '100%'}"></p-dropdown>
+			<small class="text-pink-500 block" *ngIf="(validFormControl.spType.touched || submitted) && validFormControl.spType.errors?.required">
+                Select any Duty!
+            </small>
+		</div>
+		<div class="field mb-0 py-0 col-12 md:col-2">
+			<label for="icon" class="block txt-navy font-bold">From Date</label>
+            <p-calendar [showIcon]="true" inputId="icon" formControlName="fromDate" dateFormat="dd-mm-yy"></p-calendar>
+		</div>
+		<div class="field mb-0 py-0 col-12 md:col-2">
+			<label for="icon" class="block txt-navy font-bold">To Date</label>
+			<p-calendar [showIcon]="true" inputId="icon" formControlName="toDate" dateFormat="dd-mm-yy"></p-calendar>
+		</div>
+		<div class="field mb-0 py-0 col-12 md:col-2 flex align-items-end">
+			<button pButton pRipple type="submit" icon="pi pi-search" class="p-button-rounded p-button-success p-button-outlined"></button>
+		</div>
+	</div>
+</form>
+
+<div class="grid">
+	<div class="col-12 summaryReport">
+		<div *ngIf="ksLoader">
+			<app-loader></app-loader>
+		</div>
+		<div *ngIf="viewTable">
+			<div class="my-2 flex justify-content-between align-items-center">
+				<h5 class="mb-0"></h5>
+				<div *ngIf="reportData?.length >= 2">
+					<a (click)="csv_fileDownload()">
+						<img src="assets/images/downloadBtn2.png" height="40" class="cursor-pointer">
+					</a>
+				</div>
+			</div>
+			<div class="card border-noround no-shadow">
+				<div class="p-2 tabList">
+					<p-table [value]="[{}]" [scrollable]="true" scrollHeight="400px">
+						<ng-template pTemplate="body" let-customer>
+							<tr *ngFor="let rData of reportData;let i = index;">
+								<td>{{reportData[i+0][0]}}</td>
+								<td class="text-center">{{reportData[i+0][1]}}</td>
+								<td>{{reportData[i+0][2]}}</td>
+								<td>{{reportData[i+0][3]}}</td>
+								<td>{{reportData[i+0][4]}}</td>
+							</tr>
+							<tr *ngIf="!reportData || reportData?.length == 1">
+								<td colspan="5" class="justify-content-center">
+									<div class="text-center">
+										<img src="assets/images/dashboard/NoRecordFound.png" height="170" class="pb-3">
+										<!-- <p>No Data Found!..</p> -->
+									</div>
+								</td>
+							</tr>
+						</ng-template>
+					</p-table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

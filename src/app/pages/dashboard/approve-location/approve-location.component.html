@@ -1,0 +1,74 @@
+<div class="grid">
+    <div class="col-12 py-1 flex justify-content-between align-items-center">
+        <h5 class="mb-0"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" (click)="backClick()">Approval Location</h5>
+        <div>
+            <button pButton label="Approved Location" type="button" class="p-button-info border5" (click)="apListClick()"></button>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <p-table #dt1 dataKey="id" [value]="locationList" [paginator]="true" [rows]="10" [loading]="loading" [globalFilterFields]="searchHeader"
+            [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Location</th>
+                        <th>Category</th>
+                        <th>Sub-Category</th>
+                        <th>Latitude</th>
+                        <th>Longitute</th>
+                        <th>Landmark</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-loc>
+                    <tr>
+                        <td>
+                            {{loc.name}}
+                        </td>
+                        <td>{{loc.locCategoryName}}</td>
+                        <td>{{loc.locSubcategoryName}}</td>
+                        <td>{{loc.locLat}}</td>
+                        <td>{{loc.locLng}}</td>
+                        <td>{{loc.landMark}}</td>
+                        <td>
+                            <div class="flex justify-content-between">
+                                <div class="mr-1">
+                                    <button pButton pRipple type="button" title="Edit" icon="pi pi-user-edit" class="p-button-outlined p-button-sm p-button-rounded" (click)="editLocat(loc.id)"></button>
+                                </div>
+                                <div class="mr-1">
+                                    <button pButton pRipple type="button" title="Approve" icon="pi pi-check" class="p-button-outlined p-button-sm p-button-rounded p-button-success" (click)="approveClick(loc.id)"></button>
+                                </div>
+                                <div>
+                                    <button pButton pRipple type="button" title="Reject" icon="pi pi-times" class="p-button-outlined p-button-sm p-button-rounded p-button-danger" (click)="rejectClick(loc.id)"></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <!-- <div class="grid">
+                <div class="col-12 md:col-6" *ngFor="let location of locationList;let i =index">
+                    <div class="card white">
+                        <div class="flex justify-content-between">
+                            <h5 class="mb-2">{{location.name}}</h5>
+                            <button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-outlined p-button-rounded" (click)="editLocat(location.id)"></button>
+                        </div>
+                        <p class="mb-2"><span class="font-bold pr-2"> Location Category:</span>{{location.locCategoryName}}</p>
+                        <p class="mb-2"><span class="font-bold pr-2">Location sub-Category:</span>{{location.locSubcategoryName}}</p>
+                        <p class="mb-2"><span class="font-bold pr-2">Latitude:</span>{{location.locLat}}</p>
+                        <p class="mb-2"><span class="font-bold pr-2">Longitude:</span>{{location.locLng}}</p>
+                        <p class="mb-2"><span class="font-bold pr-2">Landmark:</span>{{location.landMark}}</p>
+                        <div class="flex justify-content-between">
+                            <div>
+                                <p-button label="Approve" icon="pi pi-check" styleClass="p-button-sm p-button-success" (click)="approveClick(location.id)"></p-button>
+                            </div>
+                            <div>
+                                <p-button label="Reject" icon="pi pi-times" styleClass="p-button-sm p-button-danger" (click)="rejectClick(location.id)"></p-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div> -->
+    </div>
+</div>

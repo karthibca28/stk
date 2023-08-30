@@ -1,0 +1,48 @@
+<div class="grid">
+    <div class="col-12 flex justify-content-between align-items-center">
+        <h5 class="mb-0 uppercase">IMEI Search Information</h5>
+        <p-button label="Back" icon="pi pi-arrow-left" styleClass="p-button-sm p-button-primary" (click)="backClick()"></p-button>
+    </div>
+</div>
+<form [formGroup]="imeiForm" (ngSubmit)="onSubmit()">
+    <div class="grid">
+        <div class="col-1 md:col-4">
+            <label for="imeino" class="block pb-2">Search IMEI No.</label>
+            <div class="field flex">
+                <input type="text" formControlName="imeiNo" pInputText class="w-full"/>
+                <button pButton pRipple type="submit" class="p-button-rounded p-button-info p-button-custom p-button-text">
+                    <i class="pi pi-search text-blue-500"></i>
+                </button>
+            </div>
+            <small class="text-pink-500 block" *ngIf="(imeiFormControl.imeiNo.touched || submitted) && imeiFormControl.imeiNo.errors?.required">
+                Enter IMEI Number.
+            </small>
+        </div>
+    </div>
+</form>
+<div class="grid">
+    <div class="col-12 md:col-7">
+        <div *ngIf="ksLoader">
+			<app-loader></app-loader>
+		</div>
+        <div class="card white" *ngIf="isData">
+            <div class="flex justify-content-between">
+                <h5 class="mb-2">{{imeiData[0]?.imeiNo}}</h5>
+                <p class="title mb-2"><span class="bg-orange-200 border-round p-1 ml-2">{{imeiData[0]?.propertyStatus}}</span></p>
+            </div>
+            <p class="title mb-2">Police Station:<span class="text-primary pl-2">{{imeiData[0]?.PSName}}</span></p>
+            <p class="title mb-2">Crime No:<span class="text-primary pl-2">{{imeiData[0]?.crimeNo}}</span></p>
+            <p class="title mb-2">Distrcit Name:<span class="text-primary pl-2">{{imeiData[0]?.districtName}}</span></p>
+            <p class="title mb-2">Occur Date:<span class="text-primary pl-2">{{imeiData[0]?.occurDate}}</span></p>
+            <p class="title mb-2">Occur Place:<span class="text-primary pl-2">{{imeiData[0].occurPlace}}</span></p>
+            <p class="title mb-2">Register Date:<span class="text-primary pl-2">{{imeiData[0]?.regDate}}</span></p>
+            <p class="title mb-2">Serial No:<span class="text-primary pl-2">{{imeiData[0]?.serialrNo}}</span></p>
+            <!-- <div class="text-center">
+                <p-button label="Submit" styleClass="p-button-sm p-button-info" (click)="imeiSubmit()"></p-button>
+            </div> -->
+        </div>
+        <div class="text-center" *ngIf="empty">
+            <img src="assets/images/dashboard/NoRecordFound.png" height="170" class="pb-3">
+        </div>
+    </div>
+</div>

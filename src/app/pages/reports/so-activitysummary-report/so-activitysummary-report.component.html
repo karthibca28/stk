@@ -1,0 +1,32 @@
+<div class="grid mb-3">
+    <div class="col-6 px-0 flex align-items-center">
+		<h5 class="mb-0 text-rblue">Activity Summary</h5>
+	</div>
+	<div class="col-6 px-0 text-right">
+        <span class="cp" routerLink="/main/so"><img src="assets/images/backarrow.png" height="27" class="pr-1"></span>
+		<!-- <button pButton label="Back" type="button" icon="pi pi-arrow-left" class="p-button-info border5" (click)="cancel()"></button> -->
+	</div>
+</div>
+<form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+	<div class="p-fluid grid bg-white py-2">
+		<div class="field mb-0 py-0 col-12 md:col-3">
+			<label for="icon" class="block txt-navy font-bold">From Date</label>
+            <p-calendar [showIcon]="true" inputId="icon" formControlName="fromDate" dateFormat="dd-mm-yy"></p-calendar>
+		</div>
+		<div class="field mb-0 py-0 col-12 md:col-3">
+			<label for="icon" class="block txt-navy font-bold">To Date</label>
+			<p-calendar [showIcon]="true" inputId="icon" formControlName="toDate" dateFormat="dd-mm-yy"></p-calendar>
+		</div>
+		<div class="field mb-0 py-0 col-12 md:col-2 flex align-items-end">
+            <button pButton pRipple type="submit" icon="pi pi-search" class="p-button-rounded p-button-success p-button-outlined"></button>
+		</div>
+	</div>
+</form>
+
+<div class="grid">
+	<div class="col-12 summaryReport">
+		<div *ngIf="ksLoader">
+			<app-loader></app-loader>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,182 @@
+<div class="grid" style="margin-top: -1rem;">
+	<div class="col-12 flex align-items-center justify-content-between">
+		<h5 class="mb-0 text-blue-800"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" (click)="cancel()">Performance Report</h5>
+        <div class="text-right">
+            <!-- <img src="assets/images/noprinter.jpg" height="50" *ngIf="!viewTable || !IntialTable"> -->
+            <a (click)="downloadFile()">
+                <img src="assets/images/downloadBtn2.png" height="40" class="cursor-pointer" *ngIf="viewTable || IntialTable">
+            </a>
+            <!-- <button class="print-button" (click)="downloadFile()" *ngIf="viewTable || IntialTable"><span class="print-icon"></span></button> -->
+        </div>
+    </div>
+</div>
+<form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+	<div class="grid">
+		<div class="col-12 md:col-4">
+            <div class="field p-fluid">
+                <p-dropdown [options]="stateName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" formControlName="searchState" optionValue="id" (onChange)="updateZone($event)" placeholder="Select City/ District"></p-dropdown>
+                <small class="text-pink-500 block" *ngIf="(validFormControl.searchState.touched || submitted) && validFormControl.searchState.errors?.required">
+                    Select State!
+                </small>
+            </div>
+            <div class="field p-fluid">
+                <p-dropdown [options]="zoneName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" formControlName="searchZone" optionValue="id" (onChange)="updateRange($event)" placeholder="Select Zone"></p-dropdown>
+            </div>
+            <div class="field p-fluid">
+                <p-dropdown [options]="rangeName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" formControlName="searchRange" optionValue="id" (onChange)="updateDistrict($event)" placeholder="Select Range"></p-dropdown>
+            </div>
+            <div class="field p-fluid">
+                <p-dropdown [options]="districtName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" formControlName="searchDistrict" optionValue="id" (onChange)="updateSubdivision($event)" placeholder="Select District"></p-dropdown>
+            </div>
+            <div class="field p-fluid">
+                <p-dropdown [options]="subdivisionName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" formControlName="searchSubdivision" optionValue="id" (onChange)="updatePoliceStation($event)" placeholder="Select Sub Division"></p-dropdown>
+            </div>
+            <div class="field p-fluid">
+                <p-dropdown [options]="psName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" formControlName="searchPoliceStation" optionValue="id" (onChange)="updateUserFo($event)" placeholder="Select Police Station"></p-dropdown>
+            </div>
+            <div class="field p-fluid">
+                <p-dropdown [options]="foName" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" qformControlName="searchUserFo" optionValue="id" placeholder="Select FO"></p-dropdown>
+            </div>
+            <!-- <div class="field">
+                <p-dropdown [options]="foUser" optionLabel="username" formControlName="foUserId" optionValue="id" placeholder="Select Zone" [style]="{'width': '100%'}"></p-dropdown>
+                <small class="text-pink-500 block" *ngIf="(validFormControl.foUserId.touched || submitted) && validFormControl.foUserId.errors?.required">
+                    Select Username!
+                </small>
+            </div> -->
+            <div class="field p-fluid">
+                <p-calendar [showIcon]="true" inputId="icon" formControlName="fromDate" dateFormat="dd-mm-yy" placeholder="From"></p-calendar>
+                <small class="text-pink-500 block" *ngIf="(validFormControl.fromDate.touched || submitted) && validFormControl.fromDate.errors?.required">
+                    Select From Date!
+                </small>
+            </div>
+            <div class="field p-fluid">
+                <p-calendar [showIcon]="true" inputId="icon" formControlName="toDate" dateFormat="dd-mm-yy" placeholder="To"></p-calendar>
+                <small class="text-pink-500 block" *ngIf="(validFormControl.toDate.touched || submitted) && validFormControl.toDate.errors?.required">
+                    Select To Date!
+                </small>
+            </div>
+            <div class="field text-center">
+                <button pButton pRipple type="submit" label="Search" icon="pi pi-search" class="p-button-raised"></button>
+            </div>
+        </div>
+        <div class="col-12 md:col-8">
+            <div class="SummaryReport">
+                <div *ngIf="ksLoader">
+                    <app-loader></app-loader>
+                </div>
+                <!-- Intial Data -->
+                <div *ngIf="IntialTable">
+                    <div class="card py-0 border-noround no-shadow">
+                        <div class="grid p-1">
+                            <div class="col-6 py-0">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Beat Summary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let colPx of reportData">
+                                            <td>{{colPx.header}}</td>
+                                            <td class="font-weight">{{colPx.values}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6 py-0">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Duty Summary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let colPx of dutyList">
+                                            <td>{{colPx.header}}</td>
+                                            <td class="font-weight">{{colPx.values}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card py-0 border-noround no-shadow">
+                        <div class="grid">
+                            <div class="col-12 py-1">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Task Summary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let colPx of taskList">
+                                            <td>{{colPx.header}}</td>
+                                            <td class="font-weight">{{colPx.values}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Intial Data -->
+                <div *ngIf="viewTable">
+                    <div class="card py-0 border-noround no-shadow">
+                        <div class="grid p-1">
+                            <div class="col-6 py-0">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Beat Summary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let colPx of reportData">
+                                            <td>{{colPx.header}}</td>
+                                            <td class="font-weight">{{colPx.values}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-6 py-0">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Duty Summary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let colPx of dutyList">
+                                            <td>{{colPx.header}}</td>
+                                            <td class="font-weight">{{colPx.values}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card py-0 border-noround no-shadow">
+                        <div class="grid">
+                            <div class="col-12 py-1">
+                                <table class="styled-table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Task Summary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let colPx of taskList">
+                                            <td>{{colPx.header}}</td>
+                                            <td class="font-weight">{{colPx.values}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</form>

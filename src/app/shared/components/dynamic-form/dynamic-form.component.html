@@ -1,0 +1,459 @@
+<!-- <mat-card class="card-form"> -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <div class="p-fluid p-formgrid grid">
+    <ng-container *ngFor="let control of clonedJsonFormData?.controls;let i=index">
+      <div class="field col-12 py-2" *ngIf="control.type!=='hidden'">
+        <div class="grid align-items-center">
+          <div
+            [ngClass]="(control?.library?.includes('ocr') || control?.library?.includes('qr')|| control?.library?.includes('tag')  || control.addMore)?'col-8':'col-12 py-1'">
+            <div [ngClass]="((myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)||
+            myForm?.controls?.[control.name]?.value!=='')?'':''" *ngIf="
+                      [
+                        'text',
+                        'password',
+                        'email',
+                        'number',
+                        'search',
+                        'tel',
+                        'url'
+                      ].includes(control.type)
+                    ">
+              <label htmlFor="inputtext" class="block">{{control.label}}</label>
+              <input pInputText id="inputtext" [type]="control.type"
+                  [ngClass]="{'p-filled': ( myForm?.get(control.name)?.value !== '' )}"
+                  [ngClass]="(myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)?'ng-dirty ng-invalid ng-touched':''"
+                  [formControlName]="control.name" [required]="control.validators.required ?? false" [readonly]="control.disabled">
+              <small class="p-error block" *ngIf="
+            ( myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required) 
+            ">{{ control.label }} is required
+              </small>
+            </div>
+          </div>
+          <div class="col-4" *ngIf="
+          [
+            'text',
+            'number'
+          ].includes(control.type)
+          &&( control?.library?.includes('ocr')
+          || control?.library?.includes('qr') || control?.library?.includes('tag')  ||
+           control.addMore)
+        ">
+            <div class="ocrQRcode flex">
+              <!-- <div *ngIf="control?.library?.includes('ocr')">
+                <div>
+                  <span (click)="captureSnap(control)" class="material-symbols-outlined border cp">photo_camera</span>
+                  <p class="font-semibold mb-0">OCR</p>
+                </div>
+              </div> -->
+              <div *ngIf="control?.library?.includes('tag')">
+                <div class="text-center">
+                  <i class="pi pi-map-marker text-primary" (click)="setLatLong()"></i> 
+                  <p class="font-semibold mb-0">Tag Location</p>
+                </div>
+              </div>
+              <!-- <div *ngIf="control?.library?.includes('qr')" class="ml-4">
+                <div>
+                  <span class="material-symbols-outlined cp border" (click)="QRCapture()">qr_code_scanner</span>
+                  <p class="font-semibold mb-0">QR</p>
+                </div>
+              </div> -->
+              <div *ngIf="control.addMore" class="ml-4">
+                <div>
+                  <span class="material-symbols-outlined" (click)="addMore(control)">
+                    add_circle
+                  </span>
+                  <p class="font-semibold mb-0">Add</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="control.type === 'dropdown'" [ngClass]="((myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)||
+        myForm?.controls?.[control.name]?.value!=='')?'py-2':'py-2'">
+            <label for="dropdown" class="block">{{ control.label }}</label>
+            <p-dropdown [options]="control.valueOptions" [formControl]="myForm.controls[control.name]" [filter]="true" filterBy="displayName" [showClear]="true"
+              optionValue="id" (onChange)="onDropdownChange($event,control.events,'dropdown')" [autoDisplayFirst]="false"
+              [ngClass]="(myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)?'ng-dirty ng-invalid ng-touched':''"
+              [required]="control.validators.required ?? false" [readonly]="control.disabled">
+              <ng-template let-item pTemplate="selectedItem">
+                {{item.displayName}}
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                {{item.displayName}}
+              </ng-template>
+            </p-dropdown>
+            <small class="p-error block" *ngIf="
+              (myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required) 
+              ">{{ control.label }} is required
+            </small>
+        </div>
+
+        <div *ngIf="control.type === 'textarea'">
+          <label for="textarea" class="block">{{ control.label }}</label>
+          <textarea inputId="textarea" rows="2" cols="30" [required]="control.validators.required ?? false"
+              #remarkText [formControlName]="control.name" [value]="control.value"
+              [maxlength]="control.validators.maxLength??null" [minlength]="control.validators.minLength??null"
+              pInputTextarea
+              [ngClass]="(myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)?'ng-dirty ng-invalid ng-touched':''"></textarea>
+          <small class="ta-r">{{ remarkText.value.length }}/1000 characters</small>
+          <small class="p-error block" *ngIf="
+        ( myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required) 
+         ">{{ control.label }} is required
+          </small>
+        </div>
+
+        <div *ngIf="control.type === 'date'" [ngClass]="((myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)||
+        myForm?.controls?.[control.name]?.value!=='')?'':'my-2'">
+          <div>
+            <label for="dateCal" class="block">{{control.label}}</label>
+            <p-calendar [matDatepicker]="picker" [showIcon]="true" inputId="icon" dateFormat="dd/mm/yy"
+                id="dateCal" [formControlName]="control.name" [required]="control.validators.required ?? false"
+                [ngClass]="(myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)?'ng-dirty ng-invalid ng-touched':''"
+                [min]="control.validators.min" [max]="control.validators.max">
+            </p-calendar>
+            <small class="p-error block" *ngIf="
+            ( myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required) 
+             ">{{ control.label }} is required
+            </small>
+            <small class="p-error block" *ngIf="
+                            myForm?.controls?.[control.name]?.errors?.min
+                          ">{{ control.label }} should be greater than {{control.validators.min}}
+            </small>
+            <small class="p-error block" *ngIf="
+                            myForm?.controls?.[control.name]?.errors?.max
+                          ">{{ control.label }} should be lesser than {{control.validators.max}}
+            </small>
+          </div>
+        </div>
+
+        <div class="my-1" *ngIf="control.type === 'time'" [ngClass]="((myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)||
+        myForm?.controls?.[control.name]?.value!=='')?'my-4':''">
+          <span class="p-float-label">
+
+            <p-calendar  [timeOnly]="true" inputId="timeonly" id="timeCtl" showButtonBar="true"
+              [formControlName]="control.name" [required]="control.validators.required ?? false" [showTime]="true"
+              [showSeconds]="false" [ngClass]="(myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)?'ng-dirty ng-invalid ng-touched':''"
+              [clearButtonStyleClass]="'clear-button'" [todayButtonStyleClass]="'today-btn'"
+              [dataType]="'string'" >
+            </p-calendar>
+            <label for="timeCtl" class="font-semibold"> {{control.label}}</label>
+          </span>
+          <small class="p-error block" *ngIf="
+            ( myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required) 
+             ">{{ control.label }} is required
+          </small>
+        </div>
+
+        <div *ngIf="control.type === 'datetime'" [ngClass]="((myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)||
+        myForm?.controls?.[control.name]?.value!=='')?'my-3':'my-2'">
+          <div>
+            <label htmlFor="datetimeField" class="font-semibold">{{control.label}}</label>
+            <!-- [showSeconds]="true" -->
+            <p-calendar [matDatepicker]="picker" [showIcon]="true" [hourFormat]="12" [showTime]="true" inputId="time"
+                dateFormat="dd-MM-yy" [formControlName]="control.name" [required]="control.validators.required ?? false"
+                [min]="control.validators.min" [max]="control.validators.max"
+                [ngClass]="(myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.invalid)?'ng-dirty ng-invalid ng-touched':''">
+            </p-calendar>
+            <small class="p-error block" *ngIf="
+          ( myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required) 
+           ">{{ control.label }} is required
+            </small>
+            <small class="p-error block" *ngIf="
+            myForm?.controls?.[control.name]?.errors?.min
+          ">{{ control.label }} should be greater than {{control.validators.min}}
+            </small>
+            <small class="p-error block" *ngIf="
+            myForm?.controls?.[control.name]?.errors?.max
+          ">{{ control.label }} should be lesser than {{control.validators.max}}
+            </small>
+          </div>
+        </div>
+        
+
+        <div *ngIf="control.type === 'radio'" [ngClass]="control.disabled?'no-click':''">
+          <p class="py-1" class="font-semibold">{{control.label}}</p>
+          <div class="grid">
+            <div *ngFor="let opt of control.valueOptions;let i =index" class="field-checkbox py-0 mb-1 col-6">
+              <p-radioButton [inputId]="opt.key" [name]="control.name" [value]="opt.id" id="radioBtn" optionValue="id"
+                (onClick)="onDropdownChange(myForm.controls[control.name],control.events,'radio')" [required]="control.validators.required ?? false"
+                [formControlName]="control.name"></p-radioButton>
+              <label [for]="opt.key">{{opt.displayName}}</label>
+             
+            </div>
+            <small class="p-error block pl-3" *ngIf="myForm?.controls?.[control.name]?.touched && myForm?.controls?.[control.name]?.errors?.required
+            ">{{ control.label }} is required
+             </small>
+          </div>
+        </div>
+
+        <div class="field-checkbox" *ngIf="control.type === 'checkbox'">
+          <p-checkbox [formControlName]="control.name" [checked]="control.value" [value]="control.value" id="ny">
+          </p-checkbox>
+          <label for="ny" class="font-semibold">{{control.label}}</label>
+        </div>
+
+        <div *ngIf="control.type === 'toggle'" class="mt-14">
+          <p-toggleButton onLabel="active" offLabel="Inactive" offIcon="pi pi-times" [formControlName]="control.name"
+            [checked]="control.value">{{control.label}}
+          </p-toggleButton>
+        </div>
+
+        <div *ngIf="control.type === 'map'" class="my-3">
+          <!-- <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.2024912202996!2d80.26938631452597!3d13.022773490822322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52687fe627e619%3A0x3468715af846c949!2sState%20Crime%20Records%20Bureau!5e0!3m2!1sen!2sin!4v1650570584160!5m2!1sen!2sin"
+            height="320" style="border:0;width: 100%;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+        </div>
+
+        <div *ngIf="control.type === 'file' && control.name!=='imageUpload[]'">
+          <div class="lbl" class="font-semibold">{{control.label}}</div>
+          <div class="file-upload mt-2">
+            <i class="pi pi-cloud-upload"></i>
+            <span>Browse here</span>
+            <input type="file" #fileInput (change)="openUploadDoc($event,control)" multiple
+                />
+          </div>
+          <div class="file-names mt-10">
+            <div class="file-upload-files" *ngFor="let document of control.value; let i = index">
+              <!-- (click)="downloadDoc(document)" -->
+              <a *ngIf="document?.fileName" routerLinkActive="active-link" matTooltip="{{ document?.fileName }}">{{
+                document.fileName }}</a>
+              <button type="button" class="close" aria-label="Close" (click)="removeDocument(control, i)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <!-- <label for="uplodFile">{{control.label}}</label>
+        <p-fileUpload type="file" #fileInput (change)="openUploadDoc($event,control)" multiple
+          >
+        </p-fileUpload>
+        <div class="file-names">
+          <div class="file-upload-files" *ngFor="let document of control.value; let i = index"> 
+            <a *ngIf="document?.fileName" routerLinkActive="active-link" matTooltip="{{ document?.fileName }}">{{
+              document.fileName }}</a>
+            <button type="button" class="close" aria-label="Close" (click)="removeDocument(control, i)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div> -->
+        </div>
+
+
+        <div *ngIf="control.type === 'file'&& control.name==='imageUpload[]'">
+          <div class="lbl" class="font-semibold">{{control.label}}</div>
+          <div class="file-upload mt-2">
+            <i class="pi pi-cloud-upload"></i>
+            <span>Browse here</span>
+            <input type="file" #fileInput (change)="openMultiUploadDoc($event,control)" multiple
+                />
+          </div>
+          <div class="file-names mt-10">
+            <div class="file-upload-files" *ngFor="let document of control.value; let i = index">
+              <!-- (click)="downloadDoc(document)" -->
+              <a *ngIf="document?.fileName" routerLinkActive="active-link" matTooltip="{{ document?.fileName }}">{{
+                document.fileName }}</a>
+              <button type="button" class="close" aria-label="Close" (click)="removeDocument(control, i)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <!-- <label for="uplodFile">{{control.label}}</label>
+        <p-fileUpload type="file" #fileInput (change)="openUploadDoc($event,control)" multiple
+          >
+        </p-fileUpload>
+        <div class="file-names">
+          <div class="file-upload-files" *ngFor="let document of control.value; let i = index"> 
+            <a *ngIf="document?.fileName" routerLinkActive="active-link" matTooltip="{{ document?.fileName }}">{{
+              document.fileName }}</a>
+            <button type="button" class="close" aria-label="Close" (click)="removeDocument(control, i)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div> -->
+        </div>
+
+        <div *ngIf="control.type === 'mapautocomplete'" class="mt-14">
+          <app-dynamic-map></app-dynamic-map>
+        </div>
+
+        <div class="voicerecord" *ngIf="control.type === 'voice'">
+          <div>
+            <div>
+              <p class="Btext">{{control.label}}</p> 
+            </div>
+            <div class="mt-2 inline-block text-center border1 p-2">
+              <span class="material-symbols-outlined cp text-blue-600" *ngIf="!isAudioRecording && !audioBlobUrl"
+                (click)="startAudioRecording()" pTooltip="Start audio recording">
+                mic
+              </span>
+              <span class="material-symbols-outlined cp text-pink-500" *ngIf="isAudioRecording && !audioBlobUrl"
+                (click)="stopAudioRecording(control)" pTooltip="Stop audio recording">
+                stop_circle
+              </span>
+              <div id="audioTimer" *ngIf="isAudioRecording && !audioBlobUrl"> {{ audioRecordedTime }} </div>
+              <div class="flex align-items-center justify-content-center">
+                  <audio *ngIf="!isAudioRecording && audioBlobUrl" controls>
+                    <source [src]="audioBlobUrl" type="audio/mp3">
+                  </audio>
+                  <span class="material-symbols-outlined cp" *ngIf="!isAudioRecording && audioBlobUrl"
+                    (click)="clearAudioRecordedData()" pTooltip="Clear Audio Recording">
+                    cancel
+                  </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="videorecord mt-2" *ngIf="control.type === 'videorecord'">
+          <!-- <div>
+            <p>Video</p>
+            <span (click)="videoSnap()" class="material-symbols-outlined cp">videocam</span>
+          </div> -->
+        </div>
+        <!-- <div class="mt-2" *ngIf="control.type === 'camara'">
+          <p class="mb-1"> {{control.label}}</p>
+          <div class="mt-2 inline-block text-center border1 p-2">
+            <span (click)="camClickModal(control)" class="material-symbols-outlined cp">photo_camera</span>
+          </div>
+        </div> -->
+        <div *ngIf="control.type === 'button'" class="my-3 flex justify-content-end">
+          <div>
+            <a type="button" pbutton class="p-element p-button p-component p-custom-green"
+           [href]="control.library[0]" target="_blank"><i class="pi pi-user pr-2"></i><span
+                class="p-button-label text-sm">{{control.label}}</span></a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+  <div class="grid" *ngIf="jsonFormData?.formHeader=='Beat Form'">
+    <div style="margin-top: 20px;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.2024912202996!2d80.26938631452597!3d13.022773490822322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52687fe627e619%3A0x3468715af846c949!2sState%20Crime%20Records%20Bureau!5e0!3m2!1sen!2sin!4v1650570584160!5m2!1sen!2sin"
+        height="320" style="border:0;width: auto;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  <div class="flex justify-content-end mt-3">
+    <p-button type="submit" styleClass="p-button-info border5">{{btnName}}</p-button>
+    <div class="px-2"></div>
+    <!-- <p-button *ngIf="showResetBtn" (click)="reset()" class="mx-2 p-button-rounded p-button-secondary">Reset</p-button> -->
+    <!-- <p-button *ngIf="showCancelBtn" (click)="reset()" styleClass="p-button-warning border5">Reset</p-button> -->
+  </div>
+</form> 
+
+<!-- Camara image capture -->
+<!-- <p-dialog  [(visible)]="cameraModal" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false" [modal]>
+  <ng-template pTemplate="header">
+      Camera Capture
+  </ng-template>
+  <div class="grid mt-2">
+    <div class="col-12 py-0 text-center">
+      <app-ocr-camera (getPicture)="cameraHandle($event)"></app-ocr-camera>
+    </div>
+    <div class="col-12 py-0 text-center">
+      <div class="camImage" *ngIf="camImage">
+        <img [src]="camImage.imageAsDataUrl" height="240" width="300" />
+      </div>
+    </div>
+  </div>
+</p-dialog> -->
+
+<!-- OCR capture  -->
+<!-- <p-dialog header="{{title}}" [(visible)]="captureModal" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false" [modal]>
+  <div>
+    <div class="grid">
+      <div class="col-12">
+        <app-camera [showWebcam]="true"  (getPicture)="handleImage($event)"></app-camera>
+      </div>
+      <div class="col-12 text-center">
+        <div class="webcam-image my-2" *ngIf="webcamImage">
+          <image-cropper
+          [imageBase64]="webcamImage.imageAsDataUrl"
+          format="jpeg"
+          [maintainAspectRatio]="false"
+          [resizeToWidth]="300"
+          (imageCropped)="imageCropped($event)"
+          ></image-cropper>
+          <img [src]="croppedImage" height="150" width="100%" />
+        </div>
+      </div>
+      <div class="col-12 py-0">
+        <div class="grid">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <p-button (click)="submitOcr()"
+             *ngIf="webcamImage" label="Submit" styleClass="p-button-outlined p-button-success"></p-button>
+          </div>
+          <div class="col-3"></div>
+        </div> 
+      </div>
+    </div>
+  </div>
+</p-dialog> -->
+
+<!-- Progress spin popup -->
+<!-- <p-dialog header="{{title}}" [(visible)]="ocrInprogress" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false" [modal]>
+  <div class="grid">
+    <div class="col-12 text-center">
+      <span style="color: #ed0808;">Reading data...</span>
+      <div class="afterProcess text-center">
+        <p-progressSpinner></p-progressSpinner>
+      </div>
+    </div>
+  </div>
+</p-dialog> -->
+<!-- Video capture -->
+<!-- <p-dialog header="{{title}}" [(visible)]="videoModal" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false">
+  <div>
+    <span class="material-symbols-outlined" *ngIf="!isVideoRecording && !videoBlobUrl" (click)="startVideoRecording()"
+      pTooltip="Start video recording">
+      videocam
+    </span>
+
+    <span class="material-symbols-outlined" *ngIf="isVideoRecording && !videoBlobUrl" (click)="stopVideoRecording()"
+      pTooltip="Stop video recording">
+      stop_circle
+    </span>
+
+    <div id="videoTimer" *ngIf="isVideoRecording && !videoBlobUrl"> {{ videoRecordedTime }} </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-center">
+          <video #videoElement width="240" height="240">
+            <source *ngIf="!isVideoRecording && videoBlobUrl" [src]="videoBlobUrl">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div class="grid" *ngIf="!isVideoRecording && videoBlobUrl">
+      <div class="col-6">
+        <p-button (click)="clearVideoRecordedData()" pTooltip="Clear Video Recording" label="Retake"
+          styleClass="p-button-outlined"></p-button>
+      </div>
+      <div class="col-6">
+        <p-button (click)="videoModal=false" label="Ok" styleClass="p-button-outlined p-button-success"></p-button>
+      </div>
+    </div>
+  </div>
+</p-dialog> -->
+
+<!-- QR capture -->
+<!-- <p-dialog header="{{title}}" [(visible)]="QRModal" [modal]="true" [style]="{width: '40vw'}"
+  [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false">
+  <div>
+    <ngx-scanner-qrcode #action="scanner" (data)="bindQrData($event)" (error)="onError($event)"></ngx-scanner-qrcode>
+    <p *ngIf="action.isLoading">⌛ Loading...</p>
+    <button (click)="action.toggleCamera()" class="btn" [class.btn-info]="!action.isStart"
+     [class.btn-warning]="action.isStart"
+     [disabled]="action.isLoading">
+      <img *ngIf="!action.isStart" src="https://img.icons8.com/ios/50/000000/no-camera--v2.png" width="30px"/>
+      <img *ngIf="action.isStart" src="https://img.icons8.com/ios/50/000000/no-camera--v1.png" width="30px"/>
+    </button>
+  </div>
+</p-dialog> -->

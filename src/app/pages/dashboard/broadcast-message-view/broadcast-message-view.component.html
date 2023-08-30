@@ -1,0 +1,76 @@
+<div class="grid">
+    <div class="col-12 pb-0">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" (click)="cancel()">Broadcast Message</h5>
+            </div>
+            <div class="btn-top">
+                <button pButton label="Add" type="button" icon="pi pi-plus" class="p-button-info border5" routerLink="/main/broadcast-message"></button>
+            </div>
+        </div>
+	</div>
+	<div class="col-12 md:col-12 pt-0">
+        <div class="card border-noround no-shadow">
+            <p-table [value]="[{}]" [scrollable]="true" scrollHeight="400px">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Title</th>
+                        <th>User</th>
+                        <th>Content</th>
+                        <th>From Date</th>
+                        <th>To Date</th>
+                        <!-- <th>Records</th> -->
+                        <th>Images</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body">
+                    <tr *ngFor="let msg of msgList;">
+                        <td>{{msg.title}}</td>
+                        <td>{{msg.displayName}}</td>
+                        <td>{{msg.content}}</td>
+                        <td>{{msg.fromDate}}</td>
+                        <td>{{msg.toDate}}</td>
+                        <!-- <td>
+                            <div *ngFor="let audList of msg.voiceRecord">
+                                <audio controls > 
+                                    <source [src]="audList.fileUrl" type="audio/mp3"> 
+                                </audio>
+                            </div>
+                        </td> -->
+                        <td>
+                        <!-- <ul *ngFor="let item of msg.imageUpload" [ngSwitch]="item.fileExt">
+                          <li *ngSwitchCase="'jpg'" 
+                              class="text-success">JPG 
+                          </li>
+                          <li *ngSwitchCase="'pdf'"
+                              class="text-primary">PDF
+                          </li>
+                          <li *ngSwitchCase="'csv'"
+                              class="text-danger">CSV
+                          </li>
+                          <li *ngSwitchDefault
+                              class="text-warning">Default
+                          </li>
+                        </ul> -->
+                            <div *ngFor="let item of msg.imageUpload">
+                                <div *ngIf="item.fileExt === 'jpg' || item.fileExt === 'jpeg' || item.fileExt === 'png' || item.fileExt === 'gif'">
+                                    <img src="{{item.fileUrl}}" height="40" width="40" class="">
+                                </div>
+                                <div *ngIf="item.fileExt === 'csv' || item.fileExt === 'pdf' || item.fileExt === 'xlsx' || item.fileExt === 'xlsm' || item.fileExt === 'xlsb'">
+                                    <a href="{{item.fileUrl}}" target="_blank" title="Download"><i class="px-2 pi pi-download"></i></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!msgList || msgList?.length == 0">
+                        <td colspan="5" class="justify-content-center">
+                            <div class="text-center">
+                                <img src="assets/images/dashboard/NoRecordFound.png" height="170" class="pb-3">
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

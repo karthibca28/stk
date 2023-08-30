@@ -1,0 +1,16 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue"><span class="cp" routerLink="/main/so"><img src="assets/images/backarrow.png" height="20" class="pr-2"></span>Location</h5>
+            </div>
+            <div class="btn-top flex">
+                <app-dynamic-csv [dynamaicDataForTable]="dynamaicDataForTable"></app-dynamic-csv>
+                <!-- <button pButton label="Back" type="button" icon="pi pi-arrow-circle-left" class="p-button-info border5" (click)="cancel()"></button> -->
+            </div>
+        </div>
+        <div class="card border5">
+            <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable"></app-dynamic-report-table>
+        </div>
+    </div>
+</div>

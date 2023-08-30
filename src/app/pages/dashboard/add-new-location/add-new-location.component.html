@@ -1,0 +1,42 @@
+ <div class="grid">
+	<div class="col-12 flex justify-content-between align-items-center pb-0">
+        <h5 class="mb-0">New location</h5>
+        <p-button label="Back" icon="pi pi-arrow-left" styleClass="p-button-sm p-button-primary" (click)="backClick()"></p-button>
+    </div>
+	<div class="col-12 md:col-6"> 
+		<div class="card">
+			<!-- <form [formGroup]="AddLcationForm" (ngSubmit)="onSubmit()">
+				<div class="field">
+					<label for="locCategory">Select Location Category</label>
+					<p-dropdown [options]="loCategory" optionLabel="displayName" [(ngModel)]="selectCategory" formControlName="loCategory" (change)="changeWebsite($event)" placeholder="Select Category" Value="id" styleClass="w-full"></p-dropdown>
+				</div>
+				<div class="field">
+					<label for="locSubCategory">Select Location Sub-Category</label>
+					<p-dropdown [options]="" optionLabel="name" formControlName="loSubCategory" optionValue="id" placeholder="" styleClass="w-full"></p-dropdown>
+				</div>
+				<div class="field">
+					<label for="locName">Location Name</label>
+					<input type="text" formControlName="locName" pInputText class="w-full" />
+				</div>
+				<div class="grid p-fluid mt-2">
+					<div class="field col-6 py-0">
+						<label for="latitude">Latitude</label>
+						<input type="text" formControlName="latitude" pInputText class="w-full" />
+					</div>
+					<div class="field col-6 py-0">
+						<label for="longitude">Longitude</label>
+						<input type="text" formControlName="longitude" pInputText class="w-full" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="landmark">Landmark(optional)</label>
+					<input type="text" formControlName="landmark" pInputText class="w-full" />
+				</div>
+				<div class="text-right mt-3">
+					<button pButton label="Submit" type="submit" class="p-button-primary border5"></button>
+				</div>
+			</form> -->
+			<app-dynamic-form [jsonFormData]="formData" (emitSave)="submit($event)" ></app-dynamic-form>
+		</div>
+	</div>	 
+</div>

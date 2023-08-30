@@ -1,0 +1,56 @@
+.btn-list {
+  width: 100px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.137);
+}
+.text {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  border-radius: 4px;
+}
+.arrow path {
+  fill: red
+}
+.btn-list:hover .arrow {
+  animation: slide-in-left 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-8px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+.btn-list:active {
+  transform: scale(0.97);
+}
+
+table {
+    width: 100%;
+}
+table th {
+    text-align: left;
+    background-color: #374357;
+    padding: 7px 5px;
+    color: #fff;
+}
+table td {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 7px 5px;
+}

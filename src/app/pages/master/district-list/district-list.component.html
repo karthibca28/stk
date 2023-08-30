@@ -1,0 +1,16 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <p class="mb-0 text-rblue tex-xl font-bold">District List</p>
+            </div>
+            <div class="btn-top">
+                <!-- <button pButton label="Back" type="button" class="p-button-info p-button-sm"></button> -->
+            </div>
+        </div>
+        <div class="card" style="background-color: #18B76B;">
+            <app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (edit)="editRecord($event)"
+            (delete)="deleteRecord($event)"></app-dynamic-table>
+        </div>
+    </div>
+</div>

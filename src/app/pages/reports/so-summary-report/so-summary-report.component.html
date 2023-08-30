@@ -1,0 +1,78 @@
+<div class="ReportPage">
+    <div class="grid">
+        <div class="col-12 px-0 flex justify-content-between align-items-center">
+            <h5 class="mb-0">Summary Report</h5>
+            <span class="cp" routerLink="/main/so"><img src="assets/images/backarrow.png" height="27" class="pr-1"></span>
+            <!-- <button pButton label="Back" type="button" icon="pi pi-arrow-left" class="p-button-info border5" (click)="cancel()"></button> -->
+        </div>
+    </div>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="p-fluid grid bg-white">
+            <div class="col-6 pb-0">
+                <label for="radioBtn" class="txt-navy font-bold">Select Type</label>
+                <div class="flex py-2">
+                    <div class="field-radiobutton mb-0 mr-3">
+                        <input type="radio" name="reportType" formControlName="reportType" value="beat" id="beatType">
+                        <label for="beatType" class="ml-0">Beat</label>
+                    </div>
+                    <div class="field-radiobutton mb-0 mr-3">
+                        <input type="radio" name="reportType" formControlName="reportType" value="task" id="taskType">
+                        <label for="taskType" class="ml-0">Task</label>
+                    </div>
+                    <div class="field-radiobutton mb-0">
+                        <input type="radio" name="reportType" formControlName="reportType" value="specialduty" id="spType">
+                        <label for="spType" class="ml-0">Field Duty</label>
+                    </div>
+                </div>
+            </div><div class="col-6 pb-0"></div>
+            <div class="field col-12 md:col-3">
+                <label for="multiselect" class="txt-navy font-bold">Select District<small class="pl-1 text-pink-500">*</small></label>
+                <p-multiSelect inputId="multiselect" (onChange)="updateSecondDropdown($event)" formControlName="searchDistrcit" [options]="policeStat" optionLabel="name" optionValue="id"></p-multiSelect>
+                <small class="text-pink-500 block" *ngIf="(validFormControl.searchDistrcit.touched || submitted) && validFormControl.searchDistrcit.errors?.required">
+                    Select any District!
+                </small>
+            </div>
+            <div class="field col-12 md:col-3">
+                <label for="multiselect" class="txt-navy font-bold">Select Police Station<small class="pl-1 text-pink-500">*</small></label>
+                <p-multiSelect inputId="multiselect" [options]="pstatList" optionLabel="name" optionValue="id" formControlName="searchPolicestation"></p-multiSelect>
+                <small class="text-pink-500 block" *ngIf="(validFormControl.searchPolicestation.touched || submitted) && validFormControl.searchPolicestation.errors?.required">
+                    Select any Police Station!
+                </small>
+            </div>
+            <div class="field col-12 md:col-2">
+                <label for="icon" class="font-bold txt-navy">From Date</label>
+                <p-calendar [showIcon]="true" inputId="icon" formControlName="fromDate" dateFormat="dd-mm-yy"></p-calendar>
+            </div>
+            <div class="field col-12 md:col-2">
+                <label for="icon" class="font-bold txt-navy">To Date</label>
+                <p-calendar [showIcon]="true" inputId="icon" formControlName="toDate" dateFormat="dd-mm-yy"></p-calendar>
+            </div>
+            <div class="field col-12 md:col-2 flex align-items-end">
+                <button pButton pRipple type="submit" icon="pi pi-search" class="p-button-rounded p-button-success p-button-outlined"></button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="grid mt-2">
+    <div class="col-12 adminReport px-0">
+        <div *ngIf="ksLoader">
+			<app-loader></app-loader>
+		</div>
+        <!-- <div *ngIf="viewTable">
+			<div class="mb-2 flex justify-content-between align-items-center">
+				<h5 class="mb-0"></h5>
+				<div>
+					<a (click)="csv_fileDownload()">
+						<img src="assets/images/downloadBtn2.png" height="40" class="cursor-pointer">
+					</a>
+				</div>
+			</div>
+            <div class="card border5">
+                <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable"></app-dynamic-report-table>
+            </div>
+        </div> -->
+        <div class="text-center" *ngIf="empty">
+            <img src="assets/images/dashboard/NoRecordFound.png" height="170" class="pb-3">
+        </div>
+    </div>
+</div>

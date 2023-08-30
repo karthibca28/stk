@@ -1,0 +1,24 @@
+ul li {
+    list-style-type: none;
+}
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+  }
+table tr td {
+    // border: 1px solid #ccc;
+    padding: 5px 5px;
+}
+table tr:first-child td {
+    color: #fff !important;
+    background-color: #95A5A6 !important;
+    font-weight: 600;
+}
+table tr:nth-of-type(odd) td {
+    background-color: #EEEEEE;
+}
+@media only screen and (max-width: 768px) {
+.tabList { 
+    overflow-x: auto; 
+    }
+}

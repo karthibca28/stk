@@ -1,0 +1,16 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h5 class="mb-0 text-rblue">{{title}}</h5>
+            </div>
+            <div class="btn-top">
+                <button pButton label="ADD" type="button" icon="pi pi-plus" class="p-button-info border5" (click)="openForm()"></button>
+            </div>
+        </div>
+        <div class="card border5">
+            <app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (edit)="editRecord($event)"
+            (delete)="deleteRecord($event)"></app-dynamic-table>
+        </div>
+    </div>
+</div>

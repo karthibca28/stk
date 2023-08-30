@@ -1,0 +1,88 @@
+.card{
+    cursor: pointer;
+}
+.border-highlight{
+    padding: 10px;
+    border: 1px solid #fbeded;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+.grid-inblock {
+    display: inline-grid;
+}
+.flex-align {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
+}
+.hColor {
+    background: -webkit-linear-gradient(rgb(51, 82, 141), #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mImg img {
+    filter:drop-shadow(4px 4px 3px #b8d1ec);
+}
+.text-bdark {
+    color: #919aa3 !important;
+    text-shadow: 5px 5px 8px #b3b9c6;
+}
+.kris-gradient01 {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, #29539B 0%, #5899E2 100%);
+}
+.kris-gradient02 {
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, #5899E2 0%, #29539B 100%);
+}
+//Msg marqueee
+.ho-ev-date {
+    border-radius: 3px;
+    display: inline-block;
+    float: left;
+    color: #fff;
+    text-align: center;
+    padding: 10px 3px;
+    margin-right: 10px;
+    text-transform: uppercase;
+    width: 30%;
+    background: #02294e;
+    background: -webkit-linear-gradient(to top, #012951, #03294e);
+    background: linear-gradient(to top, #012951, #03294e);
+}
+.ho-ev-date span:first-child {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 0px;
+    line-height: 20px;
+    color: #fff;
+}
+.ho-ev-date span:last-child {
+    font-size: 12px;
+    color: #fff;
+}
+.ho-event ul li {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0px;
+    position: relative;
+    overflow: hidden;
+}
+.h-blog ul {
+    display: grid;
+    list-style-type: none;
+    background: #fff;
+    padding: 0;
+}
+.ho-ev-link {
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: clip;
+}
+.ho-ev-link p {
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+.ho-ev-link a {
+    font-size: 11px;
+}
