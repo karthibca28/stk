@@ -11,11 +11,14 @@ export class MasterService {
     this.apiUrl = environment.endPoint;
   }
 
-  adList() {
-      return this.http.get(`${this.apiUrl}admin/administration`);
+  //Get Details
+
+  stateList() {
+    return this.http.get(`${this.apiUrl}admin/state`);
   }
-  administration(data: any) {
-      return this.http.post(`${this.apiUrl}admin/administration`, data);
+
+  adminList() {
+    return this.http.get(`${this.apiUrl}admin/administration`);
   }
   zone() {
     return this.http.get(`${this.apiUrl}admin/zone`);
@@ -32,4 +35,27 @@ export class MasterService {
   policeStation() {
     return this.http.get(`${this.apiUrl}admin/policeStation`);
   }
+
+
+  // Add Details
+  administration(data: any) {
+      return this.http.post(`${this.apiUrl}admin/administration`, data);
+  }
+
+  addZone(data: any) {
+    return this.http.post(`${this.apiUrl}admin/zone`, data);
+  }
+  addRange(data: any){
+  return this.http.post(`${this.apiUrl}admin/range`,data);
+  }
+   addDistrict(data: any){
+  return this.http.post(`${this.apiUrl}admin/district`,data);
+  }
+  addSubDivsion(data: any){
+    return this.http.post(`${this.apiUrl}admin/subDivision`,data);
+    }
+  addPoliceStation(data:any){
+  return this.http.post(`${this.apiUrl}admin/policeStation`,data);
+  }
+
 }

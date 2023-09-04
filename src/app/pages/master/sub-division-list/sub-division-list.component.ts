@@ -42,10 +42,10 @@ export class SubDivisionListComponent implements OnInit {
       const cols = [
         { field: 'code', header: 'Code', type: 'text' },
         { field: 'name', header: 'Name', type: 'text' },
-        { field: 'administration', header: 'Administration', type: 'text' },
-        { field: 'zone', header: 'Zone', type: 'text' },
-        { field: 'range', header: 'Range', type: 'text' },
-        { field: 'district', header: 'District', type: 'text' },
+        { field: 'administrationName', header: 'Administration', type: 'text' },
+        { field: 'zoneName', header: 'Zone', type: 'text' },
+        { field: 'rangeName', header: 'Range', type: 'text' },
+        { field: 'districtName', header: 'District', type: 'text' },
         { field: 'description', header: 'Description', type: 'text' },
         { field: 'isActive', header: 'Status', type: 'text' },
       ];

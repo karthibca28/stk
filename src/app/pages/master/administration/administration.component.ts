@@ -42,7 +42,7 @@ export class AdministrationComponent implements OnInit {
     this.getList();
   }
   getList() {
-    this.masterService.adList().subscribe((formData: any) => {
+    this.masterService.adminList().subscribe((formData: any) => {
         const values = formData.data;
         const cols = [
           { field: 'code', header: 'Code', type: 'text' },
