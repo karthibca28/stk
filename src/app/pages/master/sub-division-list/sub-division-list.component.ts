@@ -53,8 +53,8 @@ export class SubDivisionListComponent implements OnInit {
       console.log("master",this.dynamaicDataForTable)
     });
   }
-  editRecord(subdivId:number){
-    this.router.navigateByUrl(`main/master/sub-division-form/${subdivId}`);
+  editRecord(subDivisionId:number){
+    this.router.navigateByUrl(`main/master/sub-division-form/${subDivisionId}`);
   }
   deleteRecord(subdivId:number){
     const dataKey = { formKey: 'master-subdivision', deleteId: subdivId };

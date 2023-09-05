@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppMainComponent } from './app.main.component';
 import { Subscription } from 'rxjs';
@@ -29,7 +29,9 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     isSHO: any;
     isAdmin: any;
     userId: any;
+    isMediumDevice: boolean = false;
     constructor(public app: AppComponent, private formBuilder: FormBuilder, private confirmationService: ConfirmationService,
+        private renderer: Renderer2, private el: ElementRef,
         private swUpdate: SwUpdate, public appMain: AppMainComponent, private router: Router, private authService: AuthService, private sharedService: SharedService) {
     }
     // gpfCpsNo
@@ -59,6 +61,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
                 validators: [PasswordValidation.match('newPassword', 'confirmPassword')]
             }
         );
+        this.checkDeviceSize();
     }
     checkForUpdates() {
         this.confirmUpdate();
@@ -128,5 +131,20 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     }
     openForm(){
         this.router.navigate(['main/user-config/user-form'])
+    }
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any) {
+      this.checkDeviceSize();
+    }
+  
+    checkDeviceSize() {
+
+      this.isMediumDevice = window.innerWidth <= 990;
+      const element = this.el.nativeElement.querySelector('.layout-topbar-left'); 
+      if (this.isMediumDevice) {
+        this.renderer.setStyle(element, 'padding', '10px');
+      } else {
+        this.renderer.removeStyle(element, 'padding');
+      }
     }
 }

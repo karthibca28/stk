@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -14,14 +14,36 @@ export class AdministrationAddComponent implements OnInit {
   loading = false;
   submitting = false;
   submitted = false;
-
-  constructor(private router: Router, private formBuilder: FormBuilder, private masterService: MasterService, private sharedService:SharedService) { }
+  editMasterId:any
+  stateList:any
+  constructor(private router: Router, private formBuilder: FormBuilder, 
+    private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
+    this.editMasterId = this.route.snapshot.params['adminId'];
+    console.log(this.route.snapshot.params['adminId'])
     this.form = this.formBuilder.group({
       code: [''],
       name: ['', Validators.required],
+      stateId:[''],
       description: ['']
+    });
+    const id=this.editMasterId
+    this.masterService.getAdmistrationbyId(id).subscribe((resp:any) => {
+      this.form.patchValue({
+        code: resp.data.code,
+        name: resp.data.name,
+        stateId: resp.data.stateId,
+        description: resp.data.description,
+
+      });
+    });
+    this.getStateList()
+  }
+  
+  getStateList() {
+    this.masterService.stateList().subscribe((resp: any) => {
+       this.stateList = resp.data
     });
   }
 

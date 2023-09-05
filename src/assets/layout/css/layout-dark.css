@@ -1300,7 +1300,7 @@ a {
     height: 100vh;
   }
   .layout-wrapper.layout-mobile-active .menu-wrapper {
-    transform: translate3d(0px, 0px, 0px);
+    transform: translate3d(0px, 10px, 0px);
   }
   .layout-wrapper.layout-mobile-active .menu-wrapper .layout-menu {
     max-width: 230px;

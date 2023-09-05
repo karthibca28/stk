@@ -24,10 +24,12 @@ export class PoliceStationFormComponent implements OnInit {
   districtList:any
   subDivisionList:any
   adminList:any
-  constructor(private formService: FormService, private router: Router,private masterService:MasterService,
+  constructor(private formService: FormService, private router: Router,private masterService:MasterService,private route: ActivatedRoute,
     private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+        this.editMasterId = this.route.snapshot.params['policeStationId'];
+    console.log(this.editMasterId)
     // this.editMasterId = this.actRouter.snapshot.params['pstatId'];
     // if(this.editMasterId > 0){
     //   this.editMasterForm();
@@ -38,12 +40,27 @@ export class PoliceStationFormComponent implements OnInit {
       code: [''],
       name: ['', Validators.required],
       adminId:['',Validators.required],
-      stateId:['',Validators.required],
+      stateId:[''],
       zoneId:['',Validators.required],
       rangeId:['',Validators.required],
       districtId:['',Validators.required],
       subDivisionId:['',Validators.required],
       description: ['']
+    });
+    const id=this.editMasterId
+    this.masterService.getPoliceStationbyId(id).subscribe((resp:any) => {
+      this.form.patchValue({
+        code: resp.data.code,
+        name: resp.data.name,
+        adminId:resp.data.administration.id,
+        stateId: resp.data.stateId,
+        rangeId:resp.data.range.id,
+        description: resp.data.description,
+        zoneId:resp.data.zone.id,
+        subDivisionId:resp.data.subDivision.id,
+        districtId:resp.data.district.id
+      });
+      console.log(resp.data)
     });
     this.getStateList()
     this.getZoneList()
@@ -72,40 +89,34 @@ export class PoliceStationFormComponent implements OnInit {
   getAdminList() {
     this.masterService.adminList().subscribe((resp: any) => {
        this.adminList = resp.data
-       console.log(resp.data)
     });
   }
 
   getStateList() {
     this.masterService.stateList().subscribe((resp: any) => {
        this.stateList = resp.data
-       console.log(resp.data)
     });
   }
 
   getZoneList() {
     this.masterService.zone().subscribe((resp: any) => {
        this.zoneList = resp.data
-       console.log(resp.data)
     });
   }
 
   getRangeList() {
     this.masterService.range().subscribe((resp: any) => {
        this.rangeList = resp.data
-       console.log(resp.data)
     });
   }
    getDistrictList() {
     this.masterService.district().subscribe((resp: any) => {
        this.districtList = resp.data
-       console.log(resp.data)
     });
   }
   getSubDivision() {
     this.masterService.subDivision().subscribe((resp: any) => {
        this.subDivisionList = resp.data
-       console.log(resp.data)
     });
   }
 
@@ -118,7 +129,7 @@ export class PoliceStationFormComponent implements OnInit {
           this.loading = false;
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/sub-division-list`);
+          this.router.navigateByUrl(`main/master/police-station-list`);
         }
       });
     } else {

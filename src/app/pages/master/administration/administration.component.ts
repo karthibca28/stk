@@ -35,6 +35,12 @@ export class AdministrationComponent implements OnInit {
   deleteModal: boolean = false;
   stat: number;
   toDownload:boolean;
+  childPageNumber:any
+
+  onChildPageChange(newPageNumber: number) {
+    this.childPageNumber = newPageNumber;
+    console.log(this.childPageNumber);
+  }
 
   constructor(private router: Router, private sharedService: SharedService, private masterService:MasterService) {}
 
@@ -54,8 +60,9 @@ export class AdministrationComponent implements OnInit {
         console.log("master",this.dynamaicDataForTable)
     });
   }
-  editRecord(stateId:number){
-    // this.router.navigateByUrl(`main/master/state-form/${stateId}`);
+  editRecord(adminId:any){
+    // debugger
+    this.router.navigate([`main/master/administration-form`,adminId])
   }
   deleteRecord(stateId:number){
     // const dataKey = { formKey: 'master-state', deleteId: stateId };

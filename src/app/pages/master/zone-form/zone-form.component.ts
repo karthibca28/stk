@@ -20,24 +20,39 @@ export class ZoneFormComponent implements OnInit {
   stateList:any
   adminList:any
 
-  constructor(private formService: FormService, private router: Router,private formBuilder: FormBuilder,
+  constructor(private formService: FormService, private router: Router,private formBuilder: FormBuilder, private route: ActivatedRoute,
     private masterService:MasterService, private sharedService: SharedService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+     this.editMasterId = this.route.snapshot.params['zoneId'];
+     console.log(this.editMasterId)
       // this.editMasterId = this.activatedRoute.snapshot.params['zoneId'];
       // if (this.editMasterId > 0) {
       //   this.editMasterForm();
       // } else {
       //   this.buildMasterForm();
       // }
+     
 
       this.form = this.formBuilder.group({
         code: [''],
         name: ['', Validators.required],
         adminId:['',Validators.required],
-        stateId:['',Validators.required],
+        stateId:[''],
         description: ['']
       });
+       const id=this.editMasterId
+    this.masterService.getZonebyId(id).subscribe((resp:any) => {
+      this.form.patchValue({
+        code: resp.data.code,
+        name: resp.data.name,
+        adminId:resp.data.administration.id,
+        stateId: resp.data.stateId,
+        description: resp.data.description,
+
+      });
+      console.log(resp.data)
+    });
       
       this.getStateList()
       this.getAdminList()
@@ -64,14 +79,12 @@ export class ZoneFormComponent implements OnInit {
   getAdminList() {
     this.masterService.adminList().subscribe((resp: any) => {
        this.adminList = resp.data
-       console.log(resp.data)
     });
   }
 
     getStateList() {
     this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
-       console.log(resp.data)
+       this.stateList = resp.data 
     });
   }
 

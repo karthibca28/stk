@@ -25,6 +25,10 @@ const routes: Routes = [
     component: AdministrationAddComponent
   },
   {
+    path: 'administration-form/:adminId',
+    component: AdministrationAddComponent
+  },
+  {
     path: 'zone-form',
     component: ZoneFormComponent
   },
@@ -53,7 +57,7 @@ const routes: Routes = [
     component: DistrictFormComponent
   },
   {
-    path: 'district-form/:distId',
+    path: 'district-form/:districtId',
     component: DistrictFormComponent
   },
   {
@@ -65,7 +69,7 @@ const routes: Routes = [
     component: SubDivisionFormComponent
   },
   {
-    path: 'sub-division-form/:subdivId',
+    path: 'sub-division-form/:subDivisionId',
     component: SubDivisionFormComponent
   },
   {
@@ -77,7 +81,7 @@ const routes: Routes = [
     component: PoliceStationFormComponent
   },
   {
-    path: 'police-station-form/:pstatId',
+    path: 'police-station-form/:policeStationId',
     component: PoliceStationFormComponent
   },
   {

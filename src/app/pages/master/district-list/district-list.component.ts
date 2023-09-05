@@ -54,8 +54,8 @@ export class DistrictListComponent implements OnInit {
       console.log("master",this.dynamaicDataForTable)
     });
   }
-  editRecord(distId:number){
-    this.router.navigateByUrl(`main/master/district-form/${distId}`);
+  editRecord(districtId:number){
+    this.router.navigateByUrl(`main/master/district-form/${districtId}`);
   }
   deleteRecord(distId:number){
     // const dataKey = { formKey: 'master-district', deleteId: distId };

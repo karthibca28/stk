@@ -54,8 +54,8 @@ export class PoliceStationListComponent implements OnInit {
       console.log("master",this.dynamaicDataForTable)
     });
   }
-  editRecord(pstatId:number){
-    this.router.navigateByUrl(`main/master/police-station-form/${pstatId}`);
+  editRecord(policeStationId:number){
+    this.router.navigateByUrl(`main/master/police-station-form/${policeStationId}`);
   }
   deleteRecord(pstatId:number){
     const dataKey = { formKey: 'master-police-station', deleteId: pstatId };

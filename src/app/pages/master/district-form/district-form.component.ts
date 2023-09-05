@@ -21,10 +21,12 @@ export class DistrictFormComponent implements OnInit {
   zoneList:any
   rangeList:any
   adminList:any
-  constructor(private formService: FormService, private router: Router,private masterService:MasterService,
+  constructor(private formService: FormService, private router: Router,private masterService:MasterService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.editMasterId = this.route.snapshot.params['districtId'];
+    console.log(this.editMasterId)
       // this.sharedService.getDynamicFormData().subscribe((formData: any) => {
       //   this.formData = formData.district;
       // });
@@ -39,10 +41,24 @@ export class DistrictFormComponent implements OnInit {
       code: [''],
       name: ['', Validators.required],
       adminId:['',Validators.required],
-      stateId:['',Validators.required],
+      stateId:[''],
       zoneId:['',Validators.required],
       rangeId:['',Validators.required],
       description: ['']
+    });
+    const id=this.editMasterId
+    this.masterService.getDistrictbyId(id).subscribe((resp:any) => {
+      this.form.patchValue({
+        code: resp.data.code,
+        name: resp.data.name,
+        adminId:resp.data.administration.id,
+        stateId: resp.data.stateId,
+        description: resp.data.description,
+        zoneId:resp.data.zone.id,
+        rangeId:resp.data.range.id
+
+      });
+      console.log(resp.data)
     });
     this.getStateList()
     this.getZoneList()
@@ -68,28 +84,25 @@ export class DistrictFormComponent implements OnInit {
   getAdminList() {
     this.masterService.adminList().subscribe((resp: any) => {
        this.adminList = resp.data
-       console.log(resp.data)
+
     });
   }
 
   getStateList() {
     this.masterService.stateList().subscribe((resp: any) => {
        this.stateList = resp.data
-       console.log(resp.data)
     });
   }
 
   getZoneList() {
     this.masterService.zone().subscribe((resp: any) => {
        this.zoneList = resp.data
-       console.log(resp.data)
     });
   }
 
   getRangeList() {
     this.masterService.range().subscribe((resp: any) => {
        this.rangeList = resp.data
-       console.log(resp.data)
     });
   }
   submit(formValue: any) {
