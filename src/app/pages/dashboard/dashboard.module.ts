@@ -17,6 +17,7 @@ import { AddVehicleBlacklistComponent } from './add-vehicle-blacklist/add-vehicl
 import { BroadcastMessageViewComponent } from './broadcast-message-view/broadcast-message-view.component';
 import { ImeiSearchComponent } from './imei-search/imei-search.component';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
+import { DlChecksComponent } from './dl-checks/dl-checks.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MaterialModule } from 'src/app/shared/modules/material/material.module'
     AddPersonBlacklistComponent,
     AddVehicleBlacklistComponent,
     BroadcastMessageViewComponent,
-    ImeiSearchComponent
+    ImeiSearchComponent,
+    DlChecksComponent
   ],
   imports: [
     CommonModule,

@@ -54,3 +54,63 @@ table td {
     border-bottom: 1px solid #e0e0e0;
     padding: 7px 5px;
 }
+
+.Dashboard{
+  display: flex;
+  width:100%;
+  height:200px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+:root {
+  --card-color-1: #27A9DC;
+  --card-color-2: #D65673;
+  --card-color-3: #EFC025;
+  --card-color-4: #439B49;
+}
+
+.card-layout {
+  width: 180px;
+  height: 130px;
+  border-radius: 15px;
+  border-style: solid;
+  text-align: center;
+  border-color: var(--card-color); 
+}
+.background-image{
+width:30px;
+height: 30px;
+border-radius: 50px;
+background-size: auto;
+background-color: #EFC025;
+}
+
+.recentDuties-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.left-side {
+  flex: 0; 
+  margin-right: 10px;
+}
+
+.right-side {
+  flex: 1;
+  text-align: right; 
+}
+
+.background-image {
+  max-width: 50px;
+  max-height: 50px; 
+}
+
+.viewbutton{
+justify-content: flex-end;
+cursor: pointer;
+}

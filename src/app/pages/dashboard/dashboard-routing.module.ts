@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { ImeiSearchComponent } from './imei-search/imei-search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { VehicleBlacklistComponent } from './vehicle-blacklist/vehicle-blacklist.component';
+import { DlChecksComponent } from './dl-checks/dl-checks.component';
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
   {
     path: 'imei-search',
     component: ImeiSearchComponent
+  },
+  {
+    path: 'dl-checks',
+    component: DlChecksComponent
   }
 ];
 

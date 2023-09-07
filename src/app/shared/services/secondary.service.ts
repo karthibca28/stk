@@ -25,6 +25,9 @@ export class SecondaryService {
   getPerformanceSummaryNew(data: any) {
       return this.http.post(`${this.apiUrl}Officer/getPerformanceSummaryNew`, data);
   }
+  getDlCheck(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/dlCheck?dateFilter=thisYear`);
+  }
 
 
 }
