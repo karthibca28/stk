@@ -15,30 +15,45 @@ export class TaskComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   tableData:any[]=[];
-  dynamaicDataForTable = {
-    cols: [
-        { field: 'name', header: 'Name', type: 'text' },
-        { field: 'module', header: 'Task Name', type: 'text' },
-        { field: 'date', header: 'Date', type: 'text' },
-        { field: 'accessRight', header: 'Status', type: 'text' },
-    ],
-    values: [{ name: 'Ranjith P', module: 'General', date: '02-08-2023', accessRight: 'Completed' },
-    { name: 'Praveen', module: 'Patrol', date: '03-08-2023', accessRight: 'Pending' },
-    { name: 'Nageswarn', module: 'General', date: '10-08-2023', accessRight: 'Completed' }],
-  };
+  dynamaicDataForTable:any
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
   }
   getList() {
-    // const fKey = {
-    //     formKey : "master-rank"
-    // }
-    // this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
-    //     this.dynamaicDataForTable = formData.data;
-    // });
+    this.formService.getTaskforSeniorOfficer().subscribe((formData: any) => {
+      const values = formData.data;
+      console.log(formData.data);
+      const cols = [
+        { field: 'taskType', header: 'Task Type', type: 'text' },
+        { field: 'challan', header: 'Challan', type: 'text' },
+        { field: 'idType', header: 'ID Type', type: 'text' }, 
+        { field: 'name', header: 'Name', type: 'text' },
+        { field: 'fatherName', header: 'Father Name', type: 'text' },
+        { field: 'age', header: 'Age', type: 'text' },
+        { field: 'gender', header: 'Gender', type: 'text' },
+        { field: 'engineNo', header: 'EngineNo', type: 'text' },
+        { field: 'locationName', header: 'Location Name', type: 'text' },
+        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+      ];
+
+      values.forEach((value) => {
+        value.idType = value.vehicleCheck?.idType; 
+        value.name = value.vehicleCheck?.name; 
+        value.fatherName = value.vehicleCheck?.fatherName; 
+        value.age = value.vehicleCheck?.age; 
+        value.gender = value.vehicleCheck?.gender; 
+        value.engineNo = value.vehicleCheck?.engineNo; 
+        value.locationName = value.vehicleCheck?.locationName; 
+      });
+  
+      this.dynamaicDataForTable = { cols, values };
+      console.log("master", this.dynamaicDataForTable);
+    });
   }
+  
   
   clear(table: Table) {
       table.clear();

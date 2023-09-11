@@ -39,13 +39,13 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userInfo', JSON.stringify(resp));
           this.userRole = resp.data.userData.roleId;
           // console.log("role id", this.userRole);
-          if (this.userRole === 5 || this.userRole === 4) {
+          if (this.userRole === 4) {
             this.sharedService.showSuccess(resp.message);
             this.router.navigate(['/main'])
           } else if (this.userRole === 3) {
             this.sharedService.showSuccess(resp.message);
             this.router.navigate(['/main/admin'])
-          } else if (this.userRole === 2) {
+          } else if (this.userRole === 5) {
             this.sharedService.showSuccess(resp.message);
             this.router.navigate(['/main/so'])
           } else {

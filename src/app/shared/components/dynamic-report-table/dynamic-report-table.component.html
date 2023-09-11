@@ -1,6 +1,6 @@
 
 <p-table #dt1 dataKey="id" [rows]="10" [columns]="cols" [showCurrentPageReport]="true" [value]="tableData" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-[globalFilterFields]="searchHeader" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll" [loading]="loading" styleClass="p-datatable-gridlines">
+[globalFilterFields]="searchHeader" [paginator]="true" (onPage)="onPageChange($event)" [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll" [loading]="loading" styleClass="p-datatable-gridlines">
 <ng-template pTemplate="caption">
     <div class="flex">
         <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash"

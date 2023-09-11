@@ -9,6 +9,7 @@ import { DutyComponent } from './duty/duty.component';
 import { UserComponent } from './user/user.component';
 import { AssetComponent } from './asset/asset.component';
 import { DutyPointsComponent } from './duty-points/duty-points.component';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DutyPointsComponent } from './duty-points/duty-points.component';
     MainRoutingModule,
     PrimeModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class MainModule { }

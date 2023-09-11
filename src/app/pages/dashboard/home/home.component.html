@@ -1,35 +1,32 @@
 <div class="layout-dashboard" >
-    <!-- <div class="grid "> -->
-<div class="grid match-height " style="justify-content: space-around;border-radius: 10px;
-box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06);padding-top: 20px;padding-bottom: 20px;">
-  <!-- <div class="card"> -->
-    <div>
+  <div class="grid match-height" style="justify-content: space-around; border-radius: 10px; box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06); padding-top: 20px; padding-bottom: 20px;">
+    <div style="padding-bottom: 15px;padding-top: 15px;">
       <label style="display: block; text-align: center; font-size: 200%;">Tasks</label>
-      <div class="card-layout mt-2" style="--card-color: var(--card-color-1);">
-        <div class="card-layout-content" style="padding-top: 52px; text-align: center; font-size: 80px;color:#27A9DC">{{dcount.tasks}}</div>
+      <div class="card-layout mt-4" style="--card-color: var(--card-color-1);">
+        <div class="card-layout-content" style="--card-color: var(--card-color-1);">{{dcount.tasks}}</div>
       </div>
     </div>
-    
-    <div>
+  
+    <div style="padding-bottom: 15px;padding-top: 15px;">
       <label style="display: block; text-align: center; font-size: 200%;">Duties</label>
-      <div class="card-layout mt-2" style="--card-color: var(--card-color-2);">
-        <div class="card-layout-content" style="padding-top: 52px; text-align: center; font-size: 80px;color:#D65673">{{dcount.duties}}</div>
+      <div class="card-layout mt-4" style="--card-color: var(--card-color-2);">
+        <div class="card-layout-content" style="--card-color: var(--card-color-2);">{{dcount.duties}}</div>
       </div>
     </div>
-    <div>
+    <div style="padding-bottom: 15px;padding-top: 15px;">
       <label style="display: block; text-align: center; font-size: 200%;">VIP Routes</label>
-      <div class="card-layout mt-2" style="--card-color: var(--card-color-3);">
-        <div class="card-layout-content" style="padding-top: 52px; text-align: center; font-size: 80px;color:#EFC025">{{dcount.vipRoutes}}</div>
+      <div class="card-layout mt-4" style="--card-color: var(--card-color-3);">
+        <div class="card-layout-content" style="--card-color: var(--card-color-3);">{{dcount.vipRoutes}}</div>
       </div>
     </div>
-    <div>
+    <div style="padding-bottom: 15px;padding-top: 15px;">
       <label style="display: block; text-align: center; font-size: 200%;">PoliceStation</label>
-      <div class="card-layout mt-2" style="--card-color: var(--card-color-4);">
-        <div class="card-layout-content" style="padding-top: 52px; text-align: center; font-size: 80px;color:#439B49">{{dcount.policeStations}}</div>
+      <div class="card-layout mt-4" style="--card-color: var(--card-color-4);">
+        <div class="card-layout-content" style="--card-color: var(--card-color-4);">{{dcount.policeStations}}</div>
       </div>
     </div>
-<!-- </div> -->
-      </div>
+  </div>
+  
       
       <!-- <div class="col-12 md:col-6">
           <div class="card" style="background: linear-gradient(to right, #1F3A5F, #4d648d);">
@@ -88,7 +85,7 @@ box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06);padding-top: 20px;padding-botto
           <div class="card p-0" style="margin-top: 10px;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0  tbold color-02">DL Checks</p>
-                  <a class="viewbutton" routerLink="/main/dl-checks">View All</a>
+              <img src="../../../../assets/icons/bike_scooter.png">
               </div>
               <p-table #dt1 dataKey="id"  [columns]="cols"  [value]="tableData" responsiveLayout="scroll" [loading]="loading" styleClass="p-datatable-gridlines">
   <ng-template pTemplate="header" let-columns>
@@ -237,9 +234,10 @@ box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06);padding-top: 20px;padding-botto
                       </div>
                   </div> -->
               <!-- </div> -->
-          
+              <div style="display:flex;justify-content: end;padding-right: 10px;">
+              <a  routerLink="/main/dl-checks">View All</a>
+            </div>
           </div>
-            
       </div>
         <div class="col-12 md:col-4">
           <div class="card p-0" style="margin-top: 10px;">
@@ -247,7 +245,7 @@ box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06);padding-top: 20px;padding-botto
                   <p class="mb-0 tbold color-02">Map</p>
               </div>
               <div class="card-body p-2">
-                  <!-- <p-chart type="pie" [data]="userchartdata" [options]="userchartOptions" height="200px"></p-chart> -->
+                <app-dynamic-map [mapArrayData]="mapData"></app-dynamic-map>
               </div>
           </div>
       </div>
@@ -255,7 +253,7 @@ box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06);padding-top: 20px;padding-botto
           <div class="card p-0" style="margin-top: 10px;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0 tbold color-02">Recent Duties</p>
-                  <a class="viewbutton">View All</a>
+              <img src="../../../../assets/icons/work_history.png">
               </div>
               <div class="card-body p-2" *ngFor="let value of dcount.recentDuties">
                 <div *ngFor="let item of value.assignedTo">
@@ -273,11 +271,14 @@ box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06);padding-top: 20px;padding-botto
                     </div>
                   </div>
                 </div>
-              </div>              
+              </div>  
+              <div style="display:flex;justify-content: end;padding-right: 10px;">
+                <a class="viewbutton">View All</a> 
+            </div>            
              
           </div>
           
-      </div>
+    </div>
   </div>
     <!-- <div class="grid">
       <div class="col-12">

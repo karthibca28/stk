@@ -325,8 +325,8 @@ export class FormService {
   getChartData() {
     return this.http.get(`${this.apiUrl}Admin/getChartData`);
   }
-  getProfile() {
-    return this.http.get(`${this.apiUrl}Admin/getProfile`);
+  getProfile(userId:string) {
+    return this.http.get(`${this.apiUrl}user/profile?userId=${userId}`);
   }
   // DAdmin
   getChartLinearData() {
@@ -335,5 +335,17 @@ export class FormService {
   // Access Hierarchy based
   getAccessFilter() {
     return this.http.get(`${this.apiUrl}Officer/getAccessFilter`);
+  }
+  getUserforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/user`);
+  }
+  getTaskforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&taskType=all`);
+  }
+  getDutyforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear`);
+  }
+  getInventoryforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/inventory?`);
   }
 }

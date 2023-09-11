@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   recentDuties:any;
+  mapData: any[]=[];
   tableData:any[]=[];
   
   

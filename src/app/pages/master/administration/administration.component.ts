@@ -37,11 +37,6 @@ export class AdministrationComponent implements OnInit {
   toDownload:boolean;
   childPageNumber:any
 
-  onChildPageChange(newPageNumber: number) {
-    this.childPageNumber = newPageNumber;
-    console.log(this.childPageNumber);
-  }
-
   constructor(private router: Router, private sharedService: SharedService, private masterService:MasterService) {}
 
   ngOnInit() {

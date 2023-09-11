@@ -20,7 +20,10 @@ export class AppMenuComponent implements OnInit {
         this.model = [
             { label: 'Dashboard', icon: 'fa fa-tachometer', access: '1,2,3', routerLink: ['/main/admin'] },
             { label: 'Dashboard', icon: 'fa fa-tachometer', access: '5', routerLink: ['/main/so'] },
-            { label: 'Dashboard', icon: 'fa fa-tachometer', access: '4', routerLink: ['/main'] },
+            { label: 'Dashboard', icon: 'fa fa-tachometer', access: '4', routerLink: ['/main/'] },
+            { label: 'User', icon: 'far fa-user-circle',access: '4', routerLink: ['/main/lot/userList'] },
+            { label: 'Duty', icon: 'fa fa-list-alt',access: '4', routerLink: ['/main/lot/dutyList'] },
+            { label: 'Task', icon: 'fa fa-tasks',access: '4', routerLink: ['/main/lot/taskList'] },
             // Admin
             {
                 label: 'Users', icon: 'far fa-user-circle', access: '5', routerLink: ['/main/user-config'],

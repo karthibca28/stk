@@ -10,6 +10,8 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class ProfileComponent implements OnInit {
   userData: any;
+  userId:any
+  profiledata:any
   isAdmin: boolean = false;
   isDAdmin: boolean = false;
   issofficer: boolean = false;
@@ -28,11 +30,14 @@ export class ProfileComponent implements OnInit {
     } else if(this.userData.data.roleId === 4) {
       this.isSHO = true;
     }
+    // this.userId=this.userData.data.userData.id
     this.getUserData();
   }
   getUserData() { 
-    this.formService.getProfile().subscribe((resp: APIResponse) => {
-      this.userData = resp.data;
+    const userId = this.userData.data.userData.id
+    console.log(userId)
+    this.formService.getProfile(userId).subscribe((resp: APIResponse) => {
+      this.profiledata = resp.data;
       //console.log("USer data ", this.userData);
     });
   }

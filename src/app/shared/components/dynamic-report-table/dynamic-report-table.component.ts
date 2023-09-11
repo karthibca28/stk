@@ -13,6 +13,7 @@ export class DynamicReportTableComponent implements OnInit {
   searchHeader: any[] = ['firstName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName','locCategoryName','locSubcategoryName'];
   loading: boolean;
+  pageNumber:number
   @Input() dynamaicDataForTable = {
     cols:[],
     values:[]
@@ -31,6 +32,14 @@ export class DynamicReportTableComponent implements OnInit {
 
   ngOnInit(): void {
    
+  }
+
+  onPageChange(event: any) {
+    // The 'event' object will contain the new page number in the 'first' property
+    this.pageNumber = event.first / event.rows + 1;
+  console.log(this.pageNumber);
+    // Now, you can make your API request using this.pageNumber
+
   }
 
   editRecord(data:any){ 

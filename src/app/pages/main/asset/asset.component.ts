@@ -15,31 +15,29 @@ export class AssetComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   tableData:any[]=[];
-  dynamaicDataForTable = {
-    cols: [
-        { field: 'name', header: 'City/District', type: 'text' },
-        { field: 'module', header: 'Police Station', type: 'text' },
-        { field: 'count', header: 'Total Assets', type: 'text' },
-        { field: 'accessRight', header: 'Date', type: 'text' },
-    ],
-    values: [{ name: 'Chennai City', module: 'Adayar Station', count: '3044', accessRight: '14-08-2023' },
-    { name: 'Salem', module: 'Salem Station', count: '12303', accessRight: '10-08-2023' },
-    { name: 'Karur', module: 'Karur Station', count: '30303', accessRight: '12-08-2023' },
-    { name: 'Erode', module: 'Erode Station', count: '39494', accessRight: '14-08-2023' }],
-  };
+  dynamaicDataForTable :any;
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
   }
   getList() {
-    // const fKey = {
-    //     formKey : "master-rank"
-    // }
-    // this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
-    //     this.dynamaicDataForTable = formData.data;
-    // });
+    this.formService.getInventoryforSeniorOfficer().subscribe((formData: any) => {
+      const values = formData.data;
+      console.log(formData.data)
+      const cols = [
+        { field: 'locationName', header: 'Location Name', type: 'text' },
+        { field: 'itemName', header: 'Item Name', type: 'text' },
+        { field: 'model', header: 'Model', type: 'text' },
+        { field: 'description', header: 'Description', type: 'text' },
+        { field: 'year', header: 'Year', type: 'text' },
+      ];
+      this.dynamaicDataForTable = {cols, values};
+      console.log("master",this.dynamaicDataForTable)
+  });
   }
+
+  
   
   clear(table: Table) {
       table.clear();

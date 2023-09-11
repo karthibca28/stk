@@ -19,10 +19,12 @@
                     <tbody>
                         <tr>
                             <td class="fbold text-left">
-                                Mobile No.
+                                Name
                             </td>
                             <td class="text-right">
-                                {{userData?.mobileNo}}
+                                {{profiledata?.User.firstName}}&nbsp;
+                                <!-- {{profiledata?.User.middleName}}&nbsp; -->
+                                {{profiledata?.User.lastName}}
                             </td>
                         </tr>
                         <tr>
@@ -30,7 +32,7 @@
                                 Email Id
                             </td>
                             <td class="text-right">
-                                <span class="text-blue-600">{{userData?.emailId}}</span>
+                                <span class="text-blue-600"> {{profiledata?.User.email}}</span>
                             </td>
                         </tr>
                         <tr>
@@ -38,15 +40,23 @@
                                 GPF/CPS No.
                             </td>
                             <td class="text-right">
-                                {{userData?.gpfCpsNo}}
+                                {{profiledata?.User.gpfCpsNo}}
                             </td>
                         </tr>
                         <tr>
                             <td class="fbold text-left">
-                                Role
+                                Mobile Number
                             </td>
                             <td class="text-right">
-                                {{userData?.roleName}}
+                                {{profiledata?.User.phone}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                RoleId
+                            </td>
+                            <td class="text-right">
+                                {{profiledata?.User.roleId}}
                             </td>
                         </tr>
                         <tr>
@@ -54,7 +64,7 @@
                                Rank
                             </td>
                             <td class="text-right">
-                                {{userData?.rankName}}
+                                {{profiledata?.User.rankNo}}
                             </td>
                         </tr>
                         <tr>
@@ -62,7 +72,7 @@
                                 Police Station
                             </td>
                             <td class="text-right">
-                                {{userData?.psName}}
+                                {{profiledata?.User.policeStation.name}}
                             </td>
                         </tr>
                         <tr>
@@ -70,15 +80,39 @@
                                 District
                             </td>
                             <td class="text-right">
-                                {{userData?.districtName}}
+                                {{profiledata?.User.district.name}}
                             </td>
                         </tr>
                         <tr>
                             <td class="fbold text-left">
-                                Address
+                                Range
                             </td>
                             <td class="text-right">
-                                {{userData?.address}}
+                                {{profiledata?.User.range.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                Zone
+                            </td>
+                            <td class="text-right">
+                                {{profiledata?.User.zone.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                Administration
+                            </td>
+                            <td class="text-right">
+                                {{profiledata?.User.administration.name}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="fbold text-left">
+                                State
+                            </td>
+                            <td class="text-right">
+                                {{profiledata?.User.state.name}}
                             </td>
                         </tr>
                     </tbody>

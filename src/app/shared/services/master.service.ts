@@ -20,15 +20,16 @@ export class MasterService {
   adminList() {
     return this.http.get(`${this.apiUrl}admin/administration`);
   }
+  pageadminList(pageNumber:number) {
+    return this.http.get(`${this.apiUrl}admin/administration?pageNumber=${pageNumber}&pageSize=10`);
+  }
   zone() {
     return this.http.get(`${this.apiUrl}admin/zone`);
   }
   range(){
     return this.http.get(`${this.apiUrl}admin/range`);
   }
-  rangeList(pageNumber:number) {
-    return this.http.get(`${this.apiUrl}admin/range?pageNumber=${pageNumber}&pageSize=10`);
-  }
+ 
   district() {
     return this.http.get(`${this.apiUrl}admin/district`);
   }
@@ -60,6 +61,10 @@ export class MasterService {
   addPoliceStation(data:any){
   return this.http.post(`${this.apiUrl}admin/policeStation`,data);
   }
+
+  UserRegistration(data:any){
+    return this.http.post(`${this.apiUrl}admin/user`,data);
+    }
 
   //GetById
 getAdmistrationbyId(adminId:any){

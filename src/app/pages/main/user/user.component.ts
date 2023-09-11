@@ -15,30 +15,28 @@ export class UserComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   tableData:any[]=[];
-  dynamaicDataForTable = {
-    cols: [
-        { field: 'name', header: 'Name', type: 'text' },
-        { field: 'module', header: 'Role', type: 'text' },
-        { field: 'date', header: 'Station', type: 'text' },
-        { field: 'accessRight', header: 'Status', type: 'text' },
-    ],
-    values: [{ name: 'Ramarajan', module: 'SP', date: 'Adayar Station', accessRight: 'Active' },
-    { name: 'Praveen', module: 'SI', date: 'Erode Station', accessRight: 'Active' },
-    { name: 'Murali', module: 'SI', date: 'Chennai Station', accessRight: 'Active' },
-    { name: 'Nageswarn', module: 'ASP', date: 'Chennai Station', accessRight: 'De-Active' }],
-  };
+  dynamaicDataForTable :any
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
   }
   getList() {
-    const fKey = {
-        formKey : "master-rank"
-    }
-    this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
-        this.dynamaicDataForTable = formData.data;
-    });
+    this.formService.getUserforSeniorOfficer().subscribe((formData: any) => {
+      const values = formData.data;
+      const cols = [
+        { field: 'fullName', header: 'Name', type: 'text' },
+        { field: 'rankNo', header: 'Rank No', type: 'text' },
+        { field: 'gpfCpsNo', header: 'Gpf Cps No', type: 'text' },
+        { field: 'email', header: 'Email', type: 'text' },
+        { field: 'phone', header: 'Phone Number', type: 'text' },
+        { field: 'address', header: 'Address', type: 'text' },
+        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+      ];
+      this.dynamaicDataForTable = {cols, values};
+      console.log("master",this.dynamaicDataForTable)
+  });
   }
   
   clear(table: Table) {

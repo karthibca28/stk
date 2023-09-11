@@ -16,27 +16,27 @@ export class DutyComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   tableData:any[]=[];
-  dynamaicDataForTable = {
-    cols: [
-        { field: 'name', header: 'Name', type: 'text' },
-        { field: 'module', header: 'Duty Type', type: 'text' },
-        { field: 'accessRight', header: 'Status', type: 'text' },
-    ],
-    values: [{ name: 'Muthukumar', module: 'S.Duty', accessRight: 'Completed' },
-    { name: 'Rajwaran', module: 'S.Duty', accessRight: 'Pending' }],
-  };
+  dynamaicDataForTable :any
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
   }
   getList() {
-    // const fKey = {
-    //     formKey : "master-rank"
-    // }
-    // this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
-    //     this.dynamaicDataForTable = formData.data;
-    // });
+    this.formService.getDutyforSeniorOfficer().subscribe((formData: any) => {
+      const values = formData.data;
+      console.log(formData.data)
+      const cols = [
+        { field: 'dutyType', header: 'Duty Type', type: 'text' },
+        { field: 'status', header: 'Status', type: 'text' },
+        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+        { field: 'startLocationName', header: 'Start Location Name', type: 'text' },
+        { field: 'endLocationName', header: 'End Location Name', type: 'text' },
+      ];
+      this.dynamaicDataForTable = {cols, values};
+      console.log("master",this.dynamaicDataForTable)
+  });
   }
   
   clear(table: Table) {

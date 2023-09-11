@@ -1,15 +1,23 @@
 <div class="grid">
     <div class="col-12">
         <div class="flex align-items-center justify-content-between mb-2">
-            <div class="title">
+            <!-- <div class="title">
                 <h5 class="mb-0 text-rblue"><img src="assets/images/backarrow.png" height="20" class="pr-2 cp pt-1" routerLink="/main/admin">User List</h5>
+            </div> -->
+            <div class="title">
+                <p class="mb-0 text-rblue tex-xl font-bold">User List</p>
             </div>
             <div class="btn-top">
-                <app-dynamic-csv [dynamaicDataForTable]="dynamaicDataForTable" *ngIf="toDownload"></app-dynamic-csv>
+                <!-- <app-dynamic-csv [dynamaicDataForTable]="dynamaicDataForTable" *ngIf="toDownload"></app-dynamic-csv> -->
                 <span *ngIf="!isDAdmin">
                     <button pButton label="ADD" type="button" icon="pi pi-plus" class="p-button-info border5" (click)="openForm()"></button>
-                </span>
+                  </span>
+                  
             </div>
+        </div>
+        <div class="card" style="background-color: #18B76B;">
+            <app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (edit)="editRecord($event)"
+            (delete)="deleteRecord($event)"></app-dynamic-table>
         </div>
     </div>
 </div>

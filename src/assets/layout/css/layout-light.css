@@ -361,7 +361,7 @@ a {
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right {
   height: 100%;
   flex-grow: 1;
-  padding: 0 16px 0 12px;
+  padding: 0 16px 0 30px;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -369,6 +369,7 @@ a {
   -ms-flex-pack: justify;
   justify-content: space-between;
   border-right: solid 1px transparent;
+  margin-top: -5px;
 }
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions {
   display: -ms-flexbox;
@@ -548,7 +549,7 @@ a {
     -ms-flex-align: start;
     align-items: flex-start;
     position: relative;
-    padding: 0 6px;
+    /* padding: 0 6px; */
   }
 }
 @media (max-width: 576px) {
@@ -577,10 +578,10 @@ a {
   box-shadow: 0 10px 40px 0 rgba(41, 50, 65, 0.06);
 }
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-left .menu-button > i {
-  color: #293241;
+  color: white
 }
 .layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-left .menu-button:hover {
-  background-color: #E8EDF0;
+  background-color: #142D46;
   -moz-transition: background-color 0.2s;
   -o-transition: background-color 0.2s;
   -webkit-transition: background-color 0.2s;
@@ -1132,7 +1133,7 @@ a {
 .menu-wrapper .layout-menu-container .layout-menu li > ul {
   list-style-type: none;
   overflow: hidden;
-  padding: 0;
+  padding: inherit;
   margin: 0;
 }
 .menu-wrapper .layout-menu-container .layout-menu li > ul > li {
@@ -1228,6 +1229,7 @@ a {
   .layout-wrapper.layout-static .menu-wrapper .layout-menu li > a > span {
     visibility: visible;
     white-space: normal;
+    color:white
   }
   .layout-wrapper.layout-static .menu-wrapper .layout-menu li > a i.layout-submenu-toggler {
     visibility: visible;
@@ -1349,6 +1351,7 @@ a {
   }
   .layout-wrapper.layout-mobile-active .menu-wrapper .layout-menu li ul li a {
     padding-left: 20px;
+    margin-top:5px
   }
   .layout-wrapper.layout-mobile-active .menu-wrapper .layout-menu li ul li ul li a {
     padding-left: 30px;
@@ -1377,6 +1380,7 @@ a {
   .layout-wrapper.layout-mobile-active .menu-wrapper .layout-menu li > a > span {
     visibility: visible;
     white-space: normal;
+    color:white
   }
   .layout-wrapper.layout-mobile-active .menu-wrapper .layout-menu li > a i.layout-submenu-toggler {
     visibility: visible;
@@ -1961,6 +1965,7 @@ a {
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a:hover {
   color: #2170E7;
   color: var(--primary-color);
+  background-color: #FA383E;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > a.active-route {
   color: #2170E7;
@@ -1973,6 +1978,7 @@ a {
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li.active-menuitem > a {
   color: #2170E7;
   color: var(--primary-color);
+  background-color: #FA383E;
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li.active-menuitem > a::before {
   background-color: #2170E7;
@@ -1999,6 +2005,7 @@ a {
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li a:hover {
   background-color: rgba(33, 112, 231, 0.2);
+  color:#FA383E;
   background-color: var(--primary-lighter-color);
 }
 .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li.active-menuitem > a {
@@ -2048,13 +2055,13 @@ a {
     color: #293241;
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li > a:hover {
-    color: #2170E7;
-    color: var(--primary-color);
+    color:white;
+    /* color: var(--primary-color); */
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li.active-menuitem > a {
-    color: #2170E7;
-    color: var(--primary-color);
-    background: #e7ffe7;
+    color: white;
+    /* color: var(--primary-color); */
+    background: #FA383E;
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li.active-menuitem > a::before {
     background-color: #2170E7;
@@ -2065,15 +2072,15 @@ a {
     background-color: var(--primary-lighter-color);
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li > ul > li.active-menuitem > a {
-    background-color: #fff;
-    background-color: #fff;
+    background-color:#FA383E;
     color: #293241;
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li > ul li a {
     color: rgba(41, 50, 65, 0.7);
+    margin-top:5px;
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li > ul li a:hover {
-    background-color: #fff;
+    background-color: #FA383E;
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li > ul li.active-menuitem > a {
     color: #293241;
@@ -2227,9 +2234,17 @@ a {
   .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li a:hover {
     background-color: rgba(33, 112, 231, 0.1);
     background-color: var(--primary-lighter-color);
+    background-color: #FA383E;
   }
   .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li.active-menuitem > a {
     color: #293241;
+    background-color: #FA383E;
+    margin-top: 5px;
+  }
+  .layout-menu-light .menu-wrapper .layout-menu-container .layout-menu > li > ul li.active-menuitem > a:hover {
+    background-color: rgba(33, 112, 231, 0.1);
+    background-color: var(--primary-lighter-color);
+    background-color: #FA383E; 
   }
 }
 

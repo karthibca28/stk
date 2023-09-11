@@ -15,6 +15,7 @@ import { RoleListComponent } from './role-list/role-list.component';
 import { RolePermissionFormComponent } from './role-permission-form/role-permission-form.component';
 import { RolePermissionListComponent } from './role-permission-list/role-permission-list.component';
 import { LoginDetailsComponent } from './login-details/login-details.component';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 @NgModule({
   declarations: [
     RoleFormComponent,
@@ -34,7 +35,8 @@ import { LoginDetailsComponent } from './login-details/login-details.component';
     SharedModule,
     PrimeModule,
     ReactiveFormsModule,
-    UserConfigRoutingModule
+    UserConfigRoutingModule,
+    MaterialModule
   ]
 })
 export class UserConfigModule { }

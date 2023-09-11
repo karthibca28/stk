@@ -37,7 +37,7 @@ export class UserRegistrationListComponent implements OnInit {
   
   ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
-    if(this.userData.data.roleId === 2) {
+    if(this.userData.data.userData.roleId === 4) {
       this.isDAdmin = true;
     }
     this.getList();
@@ -52,13 +52,28 @@ export class UserRegistrationListComponent implements OnInit {
     );
   }
   getList() {
-    const fKey = {
-        formKey : "user"
-    }
-    this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
-        this.dynamaicDataForTable = formData.data;
-        this.toDownload = true;
-    });
+    this.formService.getUserforSeniorOfficer().subscribe((formData: any) => {
+      const values = formData.data;
+      const cols = [
+        { field: 'fullName', header: 'Name', type: 'text' },
+        { field: 'rankNo', header: 'Rank No', type: 'text' },
+        { field: 'gpfCpsNo', header: 'Gpf Cps No', type: 'text' },
+        { field: 'email', header: 'Email', type: 'text' },
+        { field: 'phone', header: 'Phone Number', type: 'text' },
+        { field: 'address', header: 'Address', type: 'text' },
+        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+      ];
+      this.dynamaicDataForTable = {cols, values};
+      console.log("master",this.dynamaicDataForTable)
+  });
+    // const fKey = {
+    //     formKey : "user"
+    // }
+    // this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
+    //     this.dynamaicDataForTable = formData.data;
+    //     this.toDownload = true;
+    // });
   }
   editRecord(userId:number){
     this.router.navigateByUrl(`main/user-config/user-form/${userId}`);
