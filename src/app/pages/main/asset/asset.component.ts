@@ -16,25 +16,63 @@ export class AssetComponent implements OnInit {
   cols: any[];
   tableData:any[]=[];
   dynamaicDataForTable :any;
+  inventoryItems: any[] = [];  
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
+    this.getInventorySummary()
   }
   getList() {
     this.formService.getInventoryforSeniorOfficer().subscribe((formData: any) => {
       const values = formData.data;
-      console.log(formData.data)
       const cols = [
-        { field: 'locationName', header: 'Location Name', type: 'text' },
         { field: 'itemName', header: 'Item Name', type: 'text' },
         { field: 'model', header: 'Model', type: 'text' },
         { field: 'description', header: 'Description', type: 'text' },
         { field: 'year', header: 'Year', type: 'text' },
+        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
       ];
       this.dynamaicDataForTable = {cols, values};
-      console.log("master",this.dynamaicDataForTable)
   });
+  }
+
+  getInventorySummary() {
+    this.formService.getInventorySummaryforSeniorOfficer().subscribe((formData: any) => {
+      this.inventoryItems = [
+        {
+          type: formData.data.CAR.type,
+          imageSrc: '../../../../assets/inventory/Vechile.png', // Replace with actual asset path
+          count: formData.data.CAR.count
+        },
+        {
+          type: formData.data.BARRICADES.type,
+          imageSrc: '../../../../assets/inventory/Barricade.png',
+          count: formData.data.BARRICADES.count
+        },
+        {
+          type: formData.data.COMPUTER.type,
+          imageSrc: '../../../../assets/inventory/Computer.png',
+          count: formData.data.COMPUTER.count
+        },
+        {
+          type: formData.data.WALKIETALKIE.type,
+          imageSrc: '../../../../assets/inventory/Walkitakie.png',
+          count: formData.data.WALKIETALKIE.count
+        },
+        {
+          type: formData.data.TABLE_CHAIR.type,
+          imageSrc: '../../../../assets/inventory/Table and chair.png',
+          count: formData.data.TABLE_CHAIR.count
+        },
+        {
+          type: formData.data.CHALLAN_DEVICE.type,
+          imageSrc: '../../../../assets/inventory/Challan Machile.png',
+          count: formData.data.CHALLAN_DEVICE.count
+        },
+      ];
+    });
   }
 
   

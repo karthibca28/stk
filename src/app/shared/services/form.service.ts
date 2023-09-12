@@ -348,4 +348,7 @@ export class FormService {
   getInventoryforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/inventory?`);
   }
+  getInventorySummaryforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/inventory/summary`);
+  }
 }

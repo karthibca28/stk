@@ -16,19 +16,23 @@ export class ProfileComponent implements OnInit {
   isDAdmin: boolean = false;
   issofficer: boolean = false;
   isSHO: boolean = false;
+  Admin:boolean = false;
 
   constructor(private router: Router, private formService: FormService) { }
 
   ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
-    if (this.userData.data.roleId === 1) {
+    if (this.userData.data.userData.roleId === 1) {
       this.isAdmin = true;
-    } else if(this.userData.data.roleId === 2) {
+    } else if(this.userData.data.userData.roleId === 2) {
       this.isDAdmin = true;
-    } else if(this.userData.data.roleId === 3) {
+    } else if(this.userData.data.userData.roleId === 3) {
       this.issofficer = true;
-    } else if(this.userData.data.roleId === 4) {
-      this.isSHO = true;
+    } else if(this.userData.data.userData.roleId === 4) {
+      this.isSHO  = true;
+    }
+    else if(this.userData.data.userData.roleId === 5) {
+      this.Admin  = true;
     }
     // this.userId=this.userData.data.userData.id
     this.getUserData();

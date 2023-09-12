@@ -12,7 +12,8 @@ const routes: Routes = [
     {
         path: 'main', component: AppMainComponent,canActivate:[AuthenticationGuard],
         children: [
-            { path: '', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+            // { path: '', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+            { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
             { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) },
             { path: 'so', loadChildren: () => import('./pages/so/so.module').then(m => m.SoModule) },
             { path: 'master', loadChildren: () => import('./pages/master/master.module').then(m => m.MasterModule) },

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           // console.log("role id", this.userRole);
           if (this.userRole === 4) {
             this.sharedService.showSuccess(resp.message);
-            this.router.navigate(['/main'])
+            this.router.navigate(['/main/dashboard'])
           } else if (this.userRole === 3) {
             this.sharedService.showSuccess(resp.message);
             this.router.navigate(['/main/admin'])

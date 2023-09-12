@@ -1080,7 +1080,7 @@ a {
   border-radius: 8px;
 }
 .menu-wrapper .layout-menu-container .layout-menu li {
-  padding: 10px 0;
+  padding: 12px 0;
 }
 .menu-wrapper .layout-menu-container .layout-menu li.active-menuitem > a i.layout-submenu-toggler {
   -webkit-transform: rotate(-180deg);
@@ -2062,6 +2062,7 @@ a {
     color: white;
     /* color: var(--primary-color); */
     background: #FA383E;
+    height: 40px;
   }
   .layout-menu-light.layout-static .menu-wrapper .layout-menu-container .layout-menu > li.active-menuitem > a::before {
     background-color: #2170E7;

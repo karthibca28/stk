@@ -1,26 +1,26 @@
 <div class="layout-dashboard" >
   <div class="grid match-height" style="justify-content: space-around; border-radius: 10px; box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06); padding-top: 20px; padding-bottom: 20px;">
-    <div style="padding-bottom: 15px;padding-top: 15px;">
-      <label style="display: block; text-align: center; font-size: 200%;">Tasks</label>
+    <div class="container-layout">
+      <label class="container-layout-content">Tasks</label>
       <div class="card-layout mt-4" style="--card-color: var(--card-color-1);">
         <div class="card-layout-content" style="--card-color: var(--card-color-1);">{{dcount.tasks}}</div>
       </div>
     </div>
   
-    <div style="padding-bottom: 15px;padding-top: 15px;">
-      <label style="display: block; text-align: center; font-size: 200%;">Duties</label>
+    <div class="container-layout">
+      <label class="container-layout-content">Duties</label>
       <div class="card-layout mt-4" style="--card-color: var(--card-color-2);">
         <div class="card-layout-content" style="--card-color: var(--card-color-2);">{{dcount.duties}}</div>
       </div>
     </div>
-    <div style="padding-bottom: 15px;padding-top: 15px;">
-      <label style="display: block; text-align: center; font-size: 200%;">VIP Routes</label>
+    <div class="container-layout">
+      <label class="container-layout-content">VIP Routes</label>
       <div class="card-layout mt-4" style="--card-color: var(--card-color-3);">
         <div class="card-layout-content" style="--card-color: var(--card-color-3);">{{dcount.vipRoutes}}</div>
       </div>
     </div>
-    <div style="padding-bottom: 15px;padding-top: 15px;">
-      <label style="display: block; text-align: center; font-size: 200%;">PoliceStation</label>
+    <div class="container-layout">
+      <label class="container-layout-content">PoliceStation</label>
       <div class="card-layout mt-4" style="--card-color: var(--card-color-4);">
         <div class="card-layout-content" style="--card-color: var(--card-color-4);">{{dcount.policeStations}}</div>
       </div>
@@ -82,7 +82,7 @@
     <!-- </div> -->
     <div class="grid match-height">
       <div class="col-12 md:col-5">
-          <div class="card p-0" style="margin-top: 10px;">
+          <div class="card p-0" style="margin-top: 10px;flex: 0;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0  tbold color-02">DL Checks</p>
               <img src="../../../../assets/icons/bike_scooter.png">
@@ -235,12 +235,12 @@
                   </div> -->
               <!-- </div> -->
               <div style="display:flex;justify-content: end;padding-right: 10px;">
-              <a  routerLink="/main/dl-checks">View All</a>
+              <a  routerLink="/main/dashboard/dl-checks">View All</a>
             </div>
           </div>
       </div>
         <div class="col-12 md:col-4">
-          <div class="card p-0" style="margin-top: 10px;">
+          <div class="card p-0" style="margin-top: 10px;flex: 0;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0 tbold color-02">Map</p>
               </div>
@@ -250,7 +250,7 @@
           </div>
       </div>
       <div class="col-12 md:col-3">
-          <div class="card p-0" style="margin-top: 10px;">
+          <div class="card p-0" style="margin-top: 10px;flex: 0;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0 tbold color-02">Recent Duties</p>
               <img src="../../../../assets/icons/work_history.png">
@@ -275,9 +275,7 @@
               <div style="display:flex;justify-content: end;padding-right: 10px;">
                 <a class="viewbutton">View All</a> 
             </div>            
-             
           </div>
-          
     </div>
   </div>
     <!-- <div class="grid">
