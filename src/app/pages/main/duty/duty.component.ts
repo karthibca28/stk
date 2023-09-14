@@ -17,10 +17,12 @@ export class DutyComponent implements OnInit {
   cols: any[];
   tableData:any[]=[];
   dynamaicDataForTable :any
+  DutyItems: any[] = [];  
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
+    this.getDutySummary()
   }
   getList() {
     this.formService.getDutyforSeniorOfficer().subscribe((formData: any) => {
@@ -37,6 +39,33 @@ export class DutyComponent implements OnInit {
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)
   });
+  }
+
+  getDutySummary() {
+    this.formService.getDutySummaryforSeniorOfficer().subscribe((formData: any) => {
+      this.DutyItems = [
+        {
+          type: formData.data.TRAFFIC_DUTY.type,
+          imageSrc: '../../../../assets/Duty/icons8-check-book-48.png', // Replace with actual asset path
+          count: formData.data.TRAFFIC_DUTY.count
+        },
+        {
+          type: formData.data.VEHICLE_POINT.type,
+          imageSrc: '../../../../assets/Duty/icons8-traffic-48.png',
+          count: formData.data.VEHICLE_POINT.count
+        },
+        {
+          type: formData.data.GENERAL_CHECK.type,
+          imageSrc: '../../../../assets/Duty/icons8-traffic-jam-48.png',
+          count: formData.data.GENERAL_CHECK.count
+        },
+        {
+          type: formData.data.VIP_ROUTES.type,
+          imageSrc: '../../../../assets/Duty/icons8-vip-48.png',
+          count: formData.data.VIP_ROUTES.count
+        }
+      ];
+    });
   }
   
   clear(table: Table) {

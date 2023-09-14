@@ -5,6 +5,10 @@ import { Subject } from 'rxjs/internal/Subject';
   providedIn: 'root'
 })
 export class LoaderService {
+  isLoadingBar: any;
+  isLoadingState() {
+    throw new Error('Method not implemented.');
+  }
 
   showLoader: boolean = false;
   public status: Subject<boolean> = new Subject();

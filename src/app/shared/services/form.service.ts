@@ -351,4 +351,10 @@ export class FormService {
   getInventorySummaryforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/inventory/summary`);
   }
+  getDutySummaryforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/duty/summary?dateFilter=thisYear`);
+  }
+  getTaskSummaryforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/task/summary?dateFilter=thisYear&taskType=all`);
+  }
 }

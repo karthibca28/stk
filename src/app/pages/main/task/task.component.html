@@ -8,8 +8,28 @@
                 <!-- <button pButton label="Back" type="button" class="p-button-info p-button-sm"></button> -->
             </div>
         </div>
+        <div class="col-12">
+            <div class="card-header" style="background-color:#8484F9; text-align: center; padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                <p class="mb-0 tbold color-02" style="color:white">Task Items</p>
+            </div>
+            <div class="card">
+                <div class="grid mx-0 mt-0" style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+                  <div class="col-12 md:col-3" style="text-align: center;" *ngFor="let item of TaskItems">
+                    <div class="item-type">
+                      <p class="font-semibold" style="white-space: nowrap;">{{ item.type }}</p>
+                    </div>
+                    <div class="item-image">
+                      <img [src]="item.imageSrc" style="height: 50px;" alt="Inventory Item">
+                    </div>
+                    <div class="item-count">
+                      <p class="font-semibold mt-3" style="white-space: nowrap;">{{ item.count }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
         <div class="card" style="background-color: #18B76B;">
-            <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable"></app-dynamic-report-table>
+            <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable" (onPage)="onPage($event)"></app-dynamic-report-table>
         </div>
     </div>
 </div>

@@ -26,6 +26,7 @@ import { MessageService, SharedModule } from 'primeng/api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MaterialModule } from './shared/modules/material/material.module';
+import { LoadingBarComponent } from './pages/loading-bar/loading-bar.component';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import { MaterialModule } from './shared/modules/material/material.module';
         AppNotfoundComponent,
         AppErrorComponent,
         AppAccessdeniedComponent,
-        LoginComponent
+        LoginComponent,
+        LoadingBarComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

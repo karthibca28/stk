@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   userRole: any;
   hide = true;
   
-  constructor(private authService: AuthService, private router: Router, private sharedService: SharedService) { }
+  constructor(private authService: AuthService, private router: Router, private sharedService: SharedService,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.initLoginForm();
@@ -33,33 +35,54 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      this.authService.authenticate(this.loginForm.value).subscribe((resp: any) => {
-        console.log("login resp", resp)
-        if (resp.data.session.accessToken) {
-          sessionStorage.setItem('userInfo', JSON.stringify(resp));
-          this.userRole = resp.data.userData.roleId;
-          // console.log("role id", this.userRole);
-          if (this.userRole === 4) {
-            this.sharedService.showSuccess(resp.message);
-            this.router.navigate(['/main/dashboard'])
-          } else if (this.userRole === 3) {
-            this.sharedService.showSuccess(resp.message);
-            this.router.navigate(['/main/admin'])
-          } else if (this.userRole === 5) {
-            this.sharedService.showSuccess(resp.message);
-            this.router.navigate(['/main/so'])
+      this.loadingService.showLoader();
+      this.authService.authenticate(this.loginForm.value).subscribe(
+        (resp: any) => {
+          console.log("login resp", resp)
+          if (resp.data.session.accessToken) {
+            sessionStorage.setItem('userInfo', JSON.stringify(resp));
+            this.userRole = resp.data.userData.roleId;
+  
+            let navigateTo = '';
+            let successMessage = '';
+            switch (this.userRole) {
+              case 4:
+                navigateTo = '/main/dashboard';
+                successMessage = resp.message;
+                break;
+              case 3:
+                navigateTo = '/main/admin';
+                successMessage = resp.message;
+                break;
+              case 5:
+                navigateTo = '/main/so';
+                successMessage = resp.message;
+                break;
+              default:
+                this.sharedService.showError('Access Denied!');
+                break;
+            }
+            if (navigateTo) {
+              this.sharedService.showSuccess(successMessage);
+              this.router.navigate([navigateTo]);
+            }
           } else {
-            this.sharedService.showError('Access Denied!');
+            this.sharedService.showError('User name or password mismatch');
+            this.loginError = 'User name or password mismatch';
           }
-        } else {
-          this.sharedService.showError('User name or password mismatch');
-          this.loginError = 'User name or password mismatch';
+        },
+        (error) => {
+          this.sharedService.showError('An error occurred during authentication');
+          this.loginError = 'An error occurred during authentication';
         }
-      })
+      ).add(() => {
+        this.loadingService.hideLoader();
+      });
     } else {
       this.loginForm.markAllAsTouched();
     }
   }
+  
   forgotPassword() {
     this.display = true;
   }

@@ -15,12 +15,25 @@ export class TaskComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   tableData:any[]=[];
+  TaskItems:any[]=[];
   dynamaicDataForTable:any
+  currentPageNumber: number | undefined = 1;
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
+    this.getTaskSummary();
+    this.onPage({ page: 0 });
   }
+
+  onPage(event: any) {
+    if (event && typeof event.page === 'number') {
+      this.currentPageNumber = event.page + 1; 
+      console.log('Parent Component - onPage: event', event);
+      console.log('Current Page Number:', event.page + 1);
+    }
+  }
+  
   getList() {
     this.formService.getTaskforSeniorOfficer().subscribe((formData: any) => {
       const values = formData.data;
@@ -28,29 +41,65 @@ export class TaskComponent implements OnInit {
       const cols = [
         { field: 'taskType', header: 'Task Type', type: 'text' },
         { field: 'challan', header: 'Challan', type: 'text' },
-        { field: 'idType', header: 'ID Type', type: 'text' }, 
-        { field: 'name', header: 'Name', type: 'text' },
-        { field: 'fatherName', header: 'Father Name', type: 'text' },
-        { field: 'age', header: 'Age', type: 'text' },
-        { field: 'gender', header: 'Gender', type: 'text' },
-        { field: 'engineNo', header: 'EngineNo', type: 'text' },
-        { field: 'locationName', header: 'Location Name', type: 'text' },
+        { field: 'vehicleNumber', header: 'Vehicle Number', type: 'text' }, 
+        { field: 'vehicleType', header: 'Vehicle Type', type: 'text' },
         { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
       ];
 
       values.forEach((value) => {
-        value.idType = value.vehicleCheck?.idType; 
-        value.name = value.vehicleCheck?.name; 
-        value.fatherName = value.vehicleCheck?.fatherName; 
-        value.age = value.vehicleCheck?.age; 
-        value.gender = value.vehicleCheck?.gender; 
-        value.engineNo = value.vehicleCheck?.engineNo; 
-        value.locationName = value.vehicleCheck?.locationName; 
+        value.vehicleNumber = value.abandonedVehicle?.vehicleNumber; 
+        value.vehicleType = value.abandonedVehicle?.vehicleType; 
       });
   
       this.dynamaicDataForTable = { cols, values };
       console.log("master", this.dynamaicDataForTable);
+    });
+  }
+  getTaskSummary() {
+    this.formService.getTaskSummaryforSeniorOfficer().subscribe((formData: any) => {
+      this.TaskItems = [
+        {
+          type: formData.data.RC_DL_CHECK.type,
+          imageSrc: '../../../../assets/task/RC_DL_CHECK.png', // Replace with actual asset path
+          count: formData.data.RC_DL_CHECK.count
+        },
+        {
+          type: formData.data.ACCIDENT_REPORT.type,
+          imageSrc: '../../../../assets/task/ACCIDENT_REPORT.png',
+          count: formData.data.ACCIDENT_REPORT.count
+        },
+        {
+          type: formData.data.GENERAL_VIOLATER_REPORT.type,
+          imageSrc: '../../../../assets/task/GENERAL_VIOLATER_REPORT.png',
+          count: formData.data.GENERAL_VIOLATER_REPORT.count
+        },
+        {
+          type: formData.data.CHALLAN.type,
+          imageSrc: '../../../../assets/task/Challan Machile.png',
+          count: formData.data.CHALLAN.count
+        },
+        {
+          type: formData.data.GENERAL_INCIDENT_REPORT.type,
+          imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
+          count: formData.data.GENERAL_INCIDENT_REPORT.count
+        },
+        {
+          type: formData.data.ROAD_INCIDENT_REPORT.type,
+          imageSrc: './../../../assets/task/ROAD_INCIDENT_REPORT.png',
+          count: formData.data.ROAD_INCIDENT_REPORT.count
+        },
+        {
+          type: formData.data.ENCROACHMENT_REPORT.type,
+          imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
+          count: formData.data.ENCROACHMENT_REPORT.count
+        },
+        {
+          type: formData.data.ABANDONED_VEHICLE.type,
+          imageSrc: '../../../../assets/task/ABANDONED_VEHICLE.png',
+          count: formData.data.ABANDONED_VEHICLE.count
+        }
+      ];
     });
   }
   
