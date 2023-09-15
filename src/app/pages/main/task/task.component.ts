@@ -18,24 +18,22 @@ export class TaskComponent implements OnInit {
   TaskItems:any[]=[];
   dynamaicDataForTable:any
   currentPageNumber: number | undefined = 1;
+  selected = 'all';
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
     this.getTaskSummary();
-    this.onPage({ page: 0 });
   }
 
-  onPage(event: any) {
-    if (event && typeof event.page === 'number') {
-      this.currentPageNumber = event.page + 1; 
-      console.log('Parent Component - onPage: event', event);
-      console.log('Current Page Number:', event.page + 1);
-    }
+  onSelectionChange(event: any) {
+    this.selected = event.value;
+    this.getList();  // Call the getList() function when selection changes
   }
   
   getList() {
-    this.formService.getTaskforSeniorOfficer().subscribe((formData: any) => {
+    console.log('Selected value:', this.selected);
+    this.formService.getTaskforSeniorOfficer(this.selected).subscribe((formData: any) => {
       const values = formData.data;
       console.log(formData.data);
       const cols = [

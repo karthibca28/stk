@@ -339,11 +339,11 @@ export class FormService {
   getUserforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/user`);
   }
-  getTaskforSeniorOfficer(){
-    return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&taskType=all`);
+  getTaskforSeniorOfficer(tasktype:any){
+    return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&taskType=${tasktype}`);
   }
-  getDutyforSeniorOfficer(){
-    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear`);
+  getDutyforSeniorOfficer(dutyType:string){
+    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear&dutyType=${dutyType}`);
   }
   getDutyPointsforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint`);
@@ -351,8 +351,8 @@ export class FormService {
   getDutyPointsforSeniorOfficerbyId(dutyPointId:string){
     return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint?dutyPointId=${dutyPointId}`);
   }
-  getInventoryforSeniorOfficer(){
-    return this.http.get(`${this.apiUrl}seniorOfficer/inventory?`);
+  getInventoryforSeniorOfficer(inventorytype:string){
+    return this.http.get(`${this.apiUrl}seniorOfficer/inventory?type=${inventorytype}`);
   }
   getInventorySummaryforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/inventory/summary`);

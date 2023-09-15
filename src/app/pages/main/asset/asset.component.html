@@ -1,14 +1,7 @@
 <div class="grid">
     <div class="col-12">
-        <div class="flex align-items-center justify-content-between mb-2">
-            <div class="title">
-                <p class="mb-0 text-rblue tex-xl font-bold">Inventory List</p>
-            </div>
-            <div class="btn-top">
-                <!-- <button pButton label="Back" type="button" class="p-button-info p-button-sm"></button> -->
-            </div>
-        </div>
-        <div class="col-12">
+        
+        <div class="col-12" style="padding-left: 0px;padding-right: 0px;">
           <div class="card-header" style="background-color:#8484F9; text-align: center; padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
             <p class="mb-0 tbold color-02" style="color:white">Inventory Items</p>
         </div>
@@ -28,9 +21,28 @@
               </div>
             </div>
           </div>
-          
-          
-        
+          <div class="flex align-items-center justify-content-between mb-2 mt-4">
+            <div class="title">
+                <p class="mb-0 text-rblue tex-xl font-bold">Inventory List</p>
+            </div>
+            <div class="btn-top">
+                <!-- <button pButton label="Back" type="button" class="p-button-info p-button-sm"></button> -->
+            </div>
+            <div style="justify-content: flex-end;">
+              <mat-form-field>
+              <mat-label>Select an option</mat-label>
+              <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event)">
+                <mat-option value="">All</mat-option>
+                <mat-option value="CAR">CAR</mat-option>
+                <mat-option value="BARRICADES">BARRICADES</mat-option>
+                <mat-option value="COMPUTER">COMPUTER</mat-option>
+                <mat-option value="WALKIETALKIE">WALKIETALKIE</mat-option>
+                <mat-option value="TABLE_CHAIR">TABLE CHAIR</mat-option>
+                <mat-option value="CHALLAN_DEVICE">CHALLAN DEVICE</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
         <div class="card" style="background-color: #18B76B;">
             <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable" ></app-dynamic-report-table>
         </div>

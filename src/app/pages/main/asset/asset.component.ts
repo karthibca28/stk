@@ -17,14 +17,19 @@ export class AssetComponent implements OnInit {
   tableData:any[]=[];
   dynamaicDataForTable :any;
   inventoryItems: any[] = [];  
+  selected = '';
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
     this.getInventorySummary()
   }
+  onSelectionChange(event: any) {
+    this.selected = event.value;
+    this.getList(); 
+  }
   getList() {
-    this.formService.getInventoryforSeniorOfficer().subscribe((formData: any) => {
+    this.formService.getInventoryforSeniorOfficer(this.selected).subscribe((formData: any) => {
       const values = formData.data;
       const cols = [
         { field: 'itemName', header: 'Item Name', type: 'text' },

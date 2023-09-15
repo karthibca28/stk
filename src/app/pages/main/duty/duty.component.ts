@@ -18,14 +18,20 @@ export class DutyComponent implements OnInit {
   tableData:any[]=[];
   dynamaicDataForTable :any
   DutyItems: any[] = [];  
+  selected ='all'
+
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getList();
     this.getDutySummary()
   }
+  onSelectionChange(event: any) {
+    this.selected = event.value;
+    this.getList();
+  }
   getList() {
-    this.formService.getDutyforSeniorOfficer().subscribe((formData: any) => {
+    this.formService.getDutyforSeniorOfficer(this.selected).subscribe((formData: any) => {
       const values = formData.data;
       console.log(formData.data)
       const cols = [
