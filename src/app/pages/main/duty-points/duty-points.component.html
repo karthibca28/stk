@@ -1,4 +1,4 @@
-<div class="grid mx-0 mt-2" style="background-color: #f5f5f5;">
+<!-- <div class="grid mx-0 mt-2" style="background-color: #f5f5f5;">
     <div class="col-12 py-2 text-center" style="background-color: #82DD73;border-top-left-radius: 5px;border-top-right-radius: 5px;">
         <p class="mb-0 font-bold text-lg">Recent Uploads</p>
     </div>
@@ -116,5 +116,26 @@
             </span>
         </div>
         <p class="mb-0">Madurai Station</p>
+    </div>
+</div> -->
+
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <p class="mb-0 text-rblue tex-xl font-bold">Duty Point List</p>
+            </div>
+            <div class="btn-top">
+                <!-- <button class="add-btn" (click)="openForm()">
+                    <svg xmlns="" width="18" viewBox="0 0 20 20" height="18" fill="none" class="svg-icon"><g stroke-width="1.5" stroke-linecap="round" stroke="#fff"><circle r="7.5" cy="10" cx="10"></circle><path d="m9.99998 7.5v5"></path><path d="m7.5 9.99998h5"></path></g></svg>
+                    <span class="add-label">Add</span>
+                </button> -->
+            </div>
+        </div>
+        <div class="card" style="background-color: #18B76B;">
+            <app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (edit)="editRecord($event)"
+            (delete)="deleteRecord($event)"></app-dynamic-table>
+        </div>
+         
     </div>
 </div>

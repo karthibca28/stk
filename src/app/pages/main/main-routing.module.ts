@@ -5,6 +5,7 @@ import { DutyComponent } from './duty/duty.component';
 import { UserComponent } from './user/user.component';
 import { AssetComponent } from './asset/asset.component';
 import { DutyPointsComponent } from './duty-points/duty-points.component';
+import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,11 @@ const routes: Routes = [
   {
     path: 'dutyPoints',
     component: DutyPointsComponent
-  }
+  },
+  {
+    path: 'dutPoints-form/:dutyPointId',
+    component: DutyPointsFormComponent
+  },
 ];
 
 @NgModule({

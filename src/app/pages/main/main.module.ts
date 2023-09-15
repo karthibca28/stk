@@ -10,6 +10,7 @@ import { UserComponent } from './user/user.component';
 import { AssetComponent } from './asset/asset.component';
 import { DutyPointsComponent } from './duty-points/duty-points.component';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
+import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MaterialModule } from 'src/app/shared/modules/material/material.module'
     DutyComponent,
     UserComponent,
     AssetComponent,
-    DutyPointsComponent
+    DutyPointsComponent,
+    DutyPointsFormComponent
   ],
   imports: [
     CommonModule,

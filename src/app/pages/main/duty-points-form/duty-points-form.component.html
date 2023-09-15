@@ -1,0 +1,41 @@
+<form  [formGroup]="form" >
+    <div>
+        <div>
+            <p class="font-bold" style="text-align: center;">{{dutyPoints.locationName}}</p>
+        </div>
+        <div style="display: flex;justify-content: space-around;">
+           <mat-card>
+            
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Point Type</mat-label>
+                    <input matInput  placeholder="Point Type" formControlName="pointType">
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Status</mat-label>
+                    <input matInput  placeholder="Status" formControlName="status">
+                </mat-form-field>
+            
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                  <mat-label>Latitude</mat-label>
+                  <input matInput placeholder="Latitude" [formControl]="form.get('latitude')">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                  <mat-label>Longitude</mat-label>
+                  <input matInput placeholder="Longitude" [formControl]="form.get('longitude')">
+                </mat-form-field>
+                
+                    <div class="card p-0" style="margin-top: 10px;flex: 0;">
+                        <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+                            <p class="mb-0 tbold color-02">Map</p>
+                        </div>
+                        <div class="card-body p-2">
+                          <app-dynamic-map [latitude]="latitude" [longitude]="longitude"></app-dynamic-map>
+                        </div>
+                    </div>
+               
+                </mat-card>
+        </div>
+    </div>
+</form>

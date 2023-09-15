@@ -345,6 +345,12 @@ export class FormService {
   getDutyforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear`);
   }
+  getDutyPointsforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint`);
+  }
+  getDutyPointsforSeniorOfficerbyId(dutyPointId:string){
+    return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint?dutyPointId=${dutyPointId}`);
+  }
   getInventoryforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/inventory?`);
   }

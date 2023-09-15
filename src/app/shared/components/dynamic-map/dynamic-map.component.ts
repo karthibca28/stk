@@ -22,55 +22,54 @@ Leaflet.Marker.prototype.options.icon = iconDefault;
   templateUrl: './dynamic-map.component.html',
   styleUrls: ['./dynamic-map.component.scss']
 })
-export class DynamicMapComponent implements OnInit, OnDestroy {
-  @Input() public mapArrayData: any;
-  map: Leaflet.Map;
-  propertyList = [];
+export class DynamicMapComponent implements OnInit {
+
 
   constructor(private markerService:MapMarkerService) { }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.mapArrayData !== null ) {
-      for (const property of this.mapArrayData) {
-        Leaflet.marker([property.lat, property.lng]).addTo(this.map)
-        .bindPopup("<b>"+ property.beatTypeName +"</b><br><table><tr><td style='color:#0D4C92;font-weight:600;'>Name</td><td>"+
-        property.userName + "</td></tr><tr><td style='color:#0D4C92;font-weight:600;'>Mob.No</td><td>" + property.userMobile +
-        "</td></tr><tr><td style='color:#0D4C92;font-weight:600;'>PS.Name</td><td>" + property.policeStation +
-        "</td></tr><tr><td style='color:#0D4C92;font-weight:600;'>Sub Div.</td><td>" + property.subdivision + 
-        "</td></tr><tr><td style='color:#0D4C92;font-weight:600;'>District</td><td>" + property.district + "</td></tr></table>").openPopup();
-      }
-    }
-  }
+  @Input() latitude: number;
+  @Input() longitude: number;
+
+  map: Leaflet.Map;
+
+
+
   ngOnInit(): void {
-    //this.getMapData();
+    // Initialize the map and add a tile layer
     this.map = new Leaflet.Map('map').setView([11.127123, 78.656891], 6.5);
 
     Leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: 'TAMILNADU'
+      attribution: 'CANADA'
     }).addTo(this.map);
 
-    this.propertyList = this.mapArrayData;
-    // this.leafletMap();
+    // Add a marker based on the latitude and longitude
+    if (this.latitude !== undefined && this.longitude !== undefined) {
+      this.addMarker(this.latitude, this.longitude);
+    }
   }
 
-  // getMapData() {
-  //   this.markerService.getLiveBeatTrack().subscribe((resp: any) => {
-  //     const mapData = resp.data;
-  //     console.log("map data", mapData)
-  //   });
-  // }
+  ngOnChanges(changes: SimpleChanges): void {
+    // Update the marker when latitude or longitude changes
+    if ((changes.latitude || changes.longitude) && !changes.latitude.firstChange && !changes.longitude.firstChange) {
+      this.updateMarker();
+    }
+  }
 
-  // leafletMap(): void {
-  //   console.log("Its working-",this.propertyList)
-  //   for (const property of this.propertyList) {
-  //     Leaflet.marker([property.lat, property.long]).addTo(this.map)
-  //       .bindPopup(property.city)
-  //       .openPopup();
-  //   }
-  // }
+  private addMarker(latitude: number, longitude: number): void {
+    Leaflet.marker([latitude, longitude])
+      .addTo(this.map)
+      .bindPopup('Location')
+      .openPopup();
+  }
 
-  ngOnDestroy(): void {
-    this.map.remove();
+  private updateMarker(): void {
+    // Remove the old marker and add a new one with updated coordinates
+    this.map.eachLayer(layer => {
+      if (layer instanceof Leaflet.Marker) {
+        this.map.removeLayer(layer);
+      }
+    });
+    this.addMarker(this.latitude, this.longitude);
   }
 
 }

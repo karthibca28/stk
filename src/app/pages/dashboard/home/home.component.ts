@@ -30,9 +30,9 @@ export class HomeComponent implements OnInit {
   recentDuties:any;
   mapData: any[]=[];
   tableData:any[]=[];
+  latitude: number;
+  longitude: number;
   
-  
-
   constructor(private beatService: BeatService, private router: Router, private formService: FormService, private secondaryService: SecondaryService) {}
 
   ngOnInit() {

@@ -19,9 +19,10 @@ import { DynamicCsvComponent } from './components/dynamic-csv/dynamic-csv.compon
 import { LoaderComponent } from './components/loader/loader.component';
 import { MaterialModule } from './modules/material/material.module';
 import { DynamicMoreTableComponent } from './components/dynamic-more-table/dynamic-more-table.component';
+import { DynamicMultipledataMapComponent } from './components/dynamic-multipledata-map/dynamic-multipledata-map.component';
 
 @NgModule({
-  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent],
+  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -34,7 +35,7 @@ import { DynamicMoreTableComponent } from './components/dynamic-more-table/dynam
     })
   ], 
   providers:[AudioRecordingService,VideoRecordingService,MapMarkerService,AuthguardServiceService],
-  exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent]
+  exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent]
 })
 export class SharedModule { }
  
