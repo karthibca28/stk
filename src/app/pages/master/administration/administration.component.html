@@ -13,7 +13,7 @@
         </div>
         <div class="card" style="background-color: #18B76B;">
             <app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (edit)="editRecord($event)"
-            (delete)="deleteRecord($event)"></app-dynamic-table>
+            (delete)="deleteRecord($event)" (onPage)="onPageChange($event)" ></app-dynamic-table>
         </div>
     </div>
 </div>

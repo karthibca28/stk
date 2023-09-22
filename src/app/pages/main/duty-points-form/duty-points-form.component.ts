@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
+import { LocationService } from 'src/app/shared/services/location.service';
 
 @Component({
   selector: 'app-duty-points-form',
@@ -16,12 +17,16 @@ export class DutyPointsFormComponent implements OnInit {
   mapData: any[]=[];
   latitude: number;
   longitude: number;
-  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,private formService: FormService) {}
-
-  ngOnInit(): void {
-    this.editMasterId = this.route.snapshot.params['dutyPointId'];
-    console.log(this.route.snapshot.params['dutyPointId'])
-    this.form = this.formBuilder.group({
+  latitudedata: number;
+  longitudedata: number;
+  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder,private formService: FormService,
+    private locationService: LocationService) {
+    }
+    
+    ngOnInit(): void {
+      this.editMasterId = this.route.snapshot.params['dutyPointId'];
+      console.log(this.route.snapshot.params['dutyPointId'])
+      this.form = this.formBuilder.group({
       pointType: ['', Validators.required], // Add your form controls here
       status: ['', Validators.required],
       latitude:({ value: 'initialLatitudeValue', disabled: true }),
@@ -41,6 +46,19 @@ export class DutyPointsFormComponent implements OnInit {
       this.longitude = parseFloat(formData.data.longitude);
       
   })
+  this.locationService.getLocationData().subscribe(data => {
+    if (data) {
+      this.form.patchValue({
+  
+        latitude: data.latitude,
+        longitude: data.longitude
+
+      });
+      this.latitude = data.latitude;
+      this.longitude = data.longitude;
+    }
+  });
 
 }
+
 }

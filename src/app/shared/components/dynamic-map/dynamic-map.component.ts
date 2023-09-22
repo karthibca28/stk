@@ -3,6 +3,7 @@ import * as Leaflet from 'leaflet';
 import { antPath } from 'leaflet-ant-path';
 import { APIResponse } from '../../models/api-response';
 import { MapMarkerService } from '../../services/map-marker.service';
+import {LocationService} from '../../services/location.service';
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
 const shadowUrl = 'assets/marker-shadow.png';
@@ -24,52 +25,53 @@ Leaflet.Marker.prototype.options.icon = iconDefault;
 })
 export class DynamicMapComponent implements OnInit {
 
-
-  constructor(private markerService:MapMarkerService) { }
+  constructor(private markerService:MapMarkerService,private locationService: LocationService) { }
 
   @Input() latitude: number;
   @Input() longitude: number;
 
-  map: Leaflet.Map;
-
-
+  private map: Leaflet.Map;
+  private marker: Leaflet.Marker;
 
   ngOnInit(): void {
-    // Initialize the map and add a tile layer
-    this.map = new Leaflet.Map('map').setView([11.127123, 78.656891], 6.5);
+    this.initializeMap();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ((changes.latitude || changes.longitude) && this.map) {
+      this.updateMarker();
+    }
+  }
+
+  private initializeMap(): void {
+    this.map = Leaflet.map('map').setView([11.127123, 78.656891], 6.5);
 
     Leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
       attribution: 'CANADA'
     }).addTo(this.map);
 
-    // Add a marker based on the latitude and longitude
-    if (this.latitude !== undefined && this.longitude !== undefined) {
-      this.addMarker(this.latitude, this.longitude);
-    }
+    this.map.on('click', this.onMapClick.bind(this));
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // Update the marker when latitude or longitude changes
-    if ((changes.latitude || changes.longitude) && !changes.latitude.firstChange && !changes.longitude.firstChange) {
-      this.updateMarker();
-    }
-  }
-
-  private addMarker(latitude: number, longitude: number): void {
-    Leaflet.marker([latitude, longitude])
-      .addTo(this.map)
-      .bindPopup('Location')
-      .openPopup();
+  private onMapClick(event: Leaflet.MouseEvent): void {
+    const { lat, lng } = event.latlng;
+    this.latitude = lat;
+    this.longitude = lng;
+    this.updateMarker();
+    this.locationService.setLocationData(this.latitude,this.longitude);
   }
 
   private updateMarker(): void {
-    // Remove the old marker and add a new one with updated coordinates
-    this.map.eachLayer(layer => {
-      if (layer instanceof Leaflet.Marker) {
-        this.map.removeLayer(layer);
-      }
-    });
-    this.addMarker(this.latitude, this.longitude);
-  }
+    if (this.marker) {
+      this.map.removeLayer(this.marker);
+    }
 
+    if (this.latitude !== undefined && this.longitude !== undefined) {
+      this.marker = Leaflet.marker([this.latitude, this.longitude])
+        .addTo(this.map)
+        .bindPopup('Location')
+        .openPopup();
+    }
+  }
+  
 }

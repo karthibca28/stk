@@ -16,6 +16,7 @@ export class TaskComponent implements OnInit {
   cols: any[];
   tableData:any[]=[];
   TaskItems:any[]=[];
+  pageNumber:number
   dynamaicDataForTable:any
   currentPageNumber: number | undefined = 1;
   selected = 'all';
@@ -28,14 +29,14 @@ export class TaskComponent implements OnInit {
 
   onSelectionChange(event: any) {
     this.selected = event.value;
-    this.getList();  // Call the getList() function when selection changes
+    this.getList();  
   }
-  
+  onPageChange(event: any) {
+    this.pageNumber = event.first / event.rows + 1;
+  }
   getList() {
-    console.log('Selected value:', this.selected);
     this.formService.getTaskforSeniorOfficer(this.selected).subscribe((formData: any) => {
       const values = formData.data;
-      console.log(formData.data);
       const cols = [
         { field: 'taskType', header: 'Task Type', type: 'text' },
         { field: 'challan', header: 'Challan', type: 'text' },
@@ -51,55 +52,60 @@ export class TaskComponent implements OnInit {
       });
   
       this.dynamaicDataForTable = { cols, values };
-      console.log("master", this.dynamaicDataForTable);
     });
   }
   getTaskSummary() {
     this.formService.getTaskSummaryforSeniorOfficer().subscribe((formData: any) => {
       this.TaskItems = [
         {
-          type: formData.data.RC_DL_CHECK.type,
-          imageSrc: '../../../../assets/task/RC_DL_CHECK.png', // Replace with actual asset path
+          type: this.replaceUnderscores(formData.data.RC_DL_CHECK.type),
+          imageSrc: '../../../../assets/task/RC_DL_CHECK.png',
           count: formData.data.RC_DL_CHECK.count
         },
         {
-          type: formData.data.ACCIDENT_REPORT.type,
+          type: this.replaceUnderscores(formData.data.ACCIDENT_REPORT.type),
           imageSrc: '../../../../assets/task/ACCIDENT_REPORT.png',
           count: formData.data.ACCIDENT_REPORT.count
         },
         {
-          type: formData.data.GENERAL_VIOLATER_REPORT.type,
+          type: this.replaceUnderscores(formData.data.GENERAL_VIOLATER_REPORT.type),
           imageSrc: '../../../../assets/task/GENERAL_VIOLATER_REPORT.png',
           count: formData.data.GENERAL_VIOLATER_REPORT.count
         },
         {
-          type: formData.data.CHALLAN.type,
+          type: this.replaceUnderscores(formData.data.CHALLAN.type),
           imageSrc: '../../../../assets/task/Challan Machile.png',
           count: formData.data.CHALLAN.count
         },
         {
-          type: formData.data.GENERAL_INCIDENT_REPORT.type,
+          type: this.replaceUnderscores(formData.data.GENERAL_INCIDENT_REPORT.type),
           imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
           count: formData.data.GENERAL_INCIDENT_REPORT.count
         },
         {
-          type: formData.data.ROAD_INCIDENT_REPORT.type,
+          type: this.replaceUnderscores(formData.data.ROAD_INCIDENT_REPORT.type),
           imageSrc: './../../../assets/task/ROAD_INCIDENT_REPORT.png',
           count: formData.data.ROAD_INCIDENT_REPORT.count
         },
         {
-          type: formData.data.ENCROACHMENT_REPORT.type,
+          type: this.replaceUnderscores(formData.data.ENCROACHMENT_REPORT.type),
           imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
           count: formData.data.ENCROACHMENT_REPORT.count
         },
         {
-          type: formData.data.ABANDONED_VEHICLE.type,
+          type: this.replaceUnderscores(formData.data.ABANDONED_VEHICLE.type),
           imageSrc: '../../../../assets/task/ABANDONED_VEHICLE.png',
           count: formData.data.ABANDONED_VEHICLE.count
         }
       ];
     });
   }
+  
+  replaceUnderscores(type: string): string {
+    return type.replace(/_/g, '-'); 
+  }
+  
+  
   
   
   clear(table: Table) {

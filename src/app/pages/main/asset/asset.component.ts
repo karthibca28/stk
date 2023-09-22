@@ -47,38 +47,43 @@ export class AssetComponent implements OnInit {
     this.formService.getInventorySummaryforSeniorOfficer().subscribe((formData: any) => {
       this.inventoryItems = [
         {
-          type: formData.data.CAR.type,
-          imageSrc: '../../../../assets/inventory/Vechile.png', // Replace with actual asset path
+          type: this.replaceUnderscore(formData.data.CAR.type),
+          imageSrc: '../../../../assets/inventory/Vechile.png',
           count: formData.data.CAR.count
         },
         {
-          type: formData.data.BARRICADES.type,
+          type: this.replaceUnderscore(formData.data.BARRICADES.type),
           imageSrc: '../../../../assets/inventory/Barricade.png',
           count: formData.data.BARRICADES.count
         },
         {
-          type: formData.data.COMPUTER.type,
+          type: this.replaceUnderscore(formData.data.COMPUTER.type),
           imageSrc: '../../../../assets/inventory/Computer.png',
           count: formData.data.COMPUTER.count
         },
         {
-          type: formData.data.WALKIETALKIE.type,
+          type: this.replaceUnderscore(formData.data.WALKIETALKIE.type),
           imageSrc: '../../../../assets/inventory/Walkitakie.png',
           count: formData.data.WALKIETALKIE.count
         },
         {
-          type: formData.data.TABLE_CHAIR.type,
+          type: this.replaceUnderscore(formData.data.TABLE_CHAIR.type),
           imageSrc: '../../../../assets/inventory/Table and chair.png',
           count: formData.data.TABLE_CHAIR.count
         },
         {
-          type: formData.data.CHALLAN_DEVICE.type,
+          type: this.replaceUnderscore(formData.data.CHALLAN_DEVICE.type),
           imageSrc: '../../../../assets/inventory/Challan Machile.png',
           count: formData.data.CHALLAN_DEVICE.count
-        },
+        }
       ];
     });
   }
+  
+  replaceUnderscore(type: string): string {
+    return type.replace(/_/g, '-'); // Replace underscores with spaces in the type
+  }
+  
 
   
   

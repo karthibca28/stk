@@ -20,6 +20,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { MaterialModule } from './modules/material/material.module';
 import { DynamicMoreTableComponent } from './components/dynamic-more-table/dynamic-more-table.component';
 import { DynamicMultipledataMapComponent } from './components/dynamic-multipledata-map/dynamic-multipledata-map.component';
+import { LocationService } from './services/location.service';
 
 @NgModule({
   declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent],
@@ -34,7 +35,7 @@ import { DynamicMultipledataMapComponent } from './components/dynamic-multipleda
       apiKey: 'AIzaSyCYCM2u1Vb6YOhi2dnZk0v5s_hIbNHOmNQ',
     })
   ], 
-  providers:[AudioRecordingService,VideoRecordingService,MapMarkerService,AuthguardServiceService],
+  providers:[AudioRecordingService,VideoRecordingService,MapMarkerService,AuthguardServiceService,LocationService],
   exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent]
 })
 export class SharedModule { }

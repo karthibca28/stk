@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private primengConfig: PrimeNGConfig, public loader: LoaderService, private confirmationService: ConfirmationService,
     private readonly swUpdate: SwUpdate, private cdRef: ChangeDetectorRef, private appRef: ApplicationRef) {
     // if (this.swUpdate.isEnabled) {
-    console.log('update avaialble');
+    // console.log('update avaialble');
     this.swUpdate.available.subscribe(() => {
       // this.display = true
       this.confirmUpdate();

@@ -18,6 +18,7 @@ export class AdministrationComponent implements OnInit {
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
   tableData:any[]=[];
+  pageNumber:number=1;
   // dynamaicDataForTable: any;
   dynamaicDataForTable: any;
   //   cols: [
@@ -42,6 +43,15 @@ export class AdministrationComponent implements OnInit {
   ngOnInit() {
     this.getList();
   }
+
+  onPageChange(event: any) {
+    // The 'event' object will contain the new page number in the 'first' property
+    this.pageNumber = event.first / event.rows + 1;
+  console.log(this.pageNumber);
+    // Now, you can make your API request using this.pageNumber
+
+  }
+
   getList() {
     this.masterService.adminList().subscribe((formData: any) => {
         const values = formData.data;
