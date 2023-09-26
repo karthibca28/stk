@@ -11,6 +11,8 @@ import { AssetComponent } from './asset/asset.component';
 import { DutyPointsComponent } from './duty-points/duty-points.component';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.component';
+import { VIPRoutesComponent } from './vip-routes/vip-routes.component';
+import { PoliceStationComponent } from './police-station/police-station.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.com
     UserComponent,
     AssetComponent,
     DutyPointsComponent,
-    DutyPointsFormComponent
+    DutyPointsFormComponent,
+    VIPRoutesComponent,
+    PoliceStationComponent
   ],
   imports: [
     CommonModule,

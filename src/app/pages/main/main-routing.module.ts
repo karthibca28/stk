@@ -6,6 +6,8 @@ import { UserComponent } from './user/user.component';
 import { AssetComponent } from './asset/asset.component';
 import { DutyPointsComponent } from './duty-points/duty-points.component';
 import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.component';
+import { VIPRoutesComponent } from './vip-routes/vip-routes.component';
+import { PoliceStationComponent } from './police-station/police-station.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,14 @@ const routes: Routes = [
   {
     path: 'dutyPoints',
     component: DutyPointsComponent
+  },
+  {
+    path: 'vip-Routes',
+    component: VIPRoutesComponent
+  },
+  {
+    path: 'policeStation',
+    component: PoliceStationComponent
   },
   {
     path: 'dutPoints-form/:dutyPointId',

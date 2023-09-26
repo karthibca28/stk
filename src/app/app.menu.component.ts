@@ -103,6 +103,13 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Report', icon: 'fab fa-delicious', access: '4,5', routerLink: ['/main/performance/report']
             },
+            ,
+            {
+                label: 'VIP-Routes', icon: 'fa fa-car', access: '4', routerLink: ['/main/lot/vip-Routes']
+            },
+            {
+                label: 'PoliceStation', icon: 'fa fa-home', access: '4', routerLink: ['/main/lot/policeStation']
+            },
             {
                 label: 'Report', icon: 'fas fa-database', access: '3', routerLink: ['/main/reports'],
                 items: [
@@ -113,7 +120,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Location Report', icon: 'pi pi-file', routerLink: ['/main/reports/locationReport'] }
                 ]
             },
-            { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
+            // { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
         ];
         this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
         this.userName = this.userData.data.firstName;

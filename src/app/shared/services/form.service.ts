@@ -367,4 +367,10 @@ export class FormService {
   getUserListAdmin(){
     return this.http.get(`${this.apiUrl}admin/user`);
   }
+  getVipRoutesforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/vipRoutes`);
+  }
+  getPoliceStationforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}seniorOfficer/policeStation`);
+  }
 }
