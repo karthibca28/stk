@@ -52,7 +52,7 @@ export class UserRegistrationListComponent implements OnInit {
     );
   }
   getList() {
-    this.formService.getUserforSeniorOfficer().subscribe((formData: any) => {
+    this.formService.getUserListAdmin().subscribe((formData: any) => {
       const values = formData.data;
       const cols = [
         { field: 'fullName', header: 'Name', type: 'text' },

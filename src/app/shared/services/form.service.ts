@@ -363,4 +363,8 @@ export class FormService {
   getTaskSummaryforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/task/summary?dateFilter=thisYear&taskType=all`);
   }
+
+  getUserListAdmin(){
+    return this.http.get(`${this.apiUrl}admin/user`);
+  }
 }
