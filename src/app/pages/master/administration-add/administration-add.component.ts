@@ -21,7 +21,6 @@ export class AdministrationAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['adminId'];
-    console.log(this.route.snapshot.params['adminId'])
     this.form = this.formBuilder.group({
       code: [''],
       name: ['', Validators.required],
@@ -30,13 +29,17 @@ export class AdministrationAddComponent implements OnInit {
     });
     const id=this.editMasterId
     this.masterService.getAdmistrationbyId(id).subscribe((resp:any) => {
+      // const stateData = {
+      //   id: resp.data.state.id,
+      //   name: resp.data.state.name
+      // };
       this.form.patchValue({
         code: resp.data.code,
         name: resp.data.name,
-        stateId: resp.data.stateId,
+        stateId: resp.data.state.id,
         description: resp.data.description,
-
       });
+      // this.stateList = [stateData]
     });
     this.getStateList()
   }
@@ -48,6 +51,14 @@ export class AdministrationAddComponent implements OnInit {
   }
 
   onSubmit() {
+    if (this.editMasterId === 0) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+  }
+  
+  addRecord() {
     if (this.form.valid) {
       this.loading = true;
       this.masterService.administration(this.form.value).subscribe((data: any) => {
@@ -58,32 +69,37 @@ export class AdministrationAddComponent implements OnInit {
           this.router.navigateByUrl(`main/master/administration`);
         }
       });
-      // if(this.editMasterId > 0){
-      //   const name = this.form.value.name;
-      //   const districtId = this.editMasterId;
-      //   const updateData = { districtId, name }
-      //   this.formService.districtUpdate(updateData).subscribe((data: any) => {
-      //     if (data) {
-      //       this.isNotLoader = true;
-      //       this.isLoader = false;
-      //       this.sharedService.showSuccess('District updated successfully!');
-      //       this.router.navigateByUrl(`main/master/district`);
-      //     }
-      //   });
-      // }else{
-      //   this.formService.addDistrict(this.form.value).subscribe((data: any) => {
-      //     if (data) {
-      //       this.isNotLoader = true;
-      //       this.isLoader = false;
-      //       this.sharedService.showSuccess('District added successfully!');
-      //       this.form.reset();
-      //       this.router.navigateByUrl(`main/master/district`);
-      //     }
-      //   });
-      // }
     } else {
       this.form.markAllAsTouched();
     }
   }
-
+  
+  updateRecord() {
+    if (this.form.valid) {
+      this.loading = true;
+      let value = {
+        id :this.editMasterId,
+        code:this.form.value.code,
+        name:this.form.value.name,
+        description:this.form.value.description, 
+        stateId:this.form.value.stateId
+      }
+      // const updatedData = this.form.value;
+      this.masterService.updateAdminstration(value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.sharedService.showSuccess('Updated successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/master/administration`);
+        },
+        (error) => {
+          console.error('Error updating record:', error);
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+  
 }
+  

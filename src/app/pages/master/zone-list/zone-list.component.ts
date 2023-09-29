@@ -47,20 +47,16 @@ export class ZoneListComponent implements OnInit {
         this.router.navigateByUrl(`main/master/zone-form/${zoneId}`);
     }
     deleteRecord(zoneId:number){
-        const dataKey = { formKey: 'master-zone', deleteId: zoneId };
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete the record?',
             accept: () => {
-                this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                    //console.log("datakey",dataKey);
-                    if (resp.statusCode == '200') {
+                this.masterService.deleteZoneList(zoneId).subscribe((resp: any) => {             
                       this.getList();
-                      this.sharedService.showSuccess('Record delete successfully');
-                    }
+                      this.sharedService.showSuccess('Record deleted successfully');
                 })
             },
             reject: () => {
-                this.sharedService.showWarn('Cencelled');
+                this.sharedService.showWarn('Cancelled');
             }
         });
     }

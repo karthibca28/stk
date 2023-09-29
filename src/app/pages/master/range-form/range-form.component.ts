@@ -39,7 +39,6 @@ export class RangeFormComponent implements OnInit {
       code: [''],
       name: ['', Validators.required],
       adminId:['',Validators.required],
-      stateId:[''],
       zoneId:['',Validators.required],
       description: ['']
     });
@@ -49,14 +48,12 @@ export class RangeFormComponent implements OnInit {
         code: resp.data.code,
         name: resp.data.name,
         adminId:resp.data.administration.id,
-        stateId: resp.data.stateId,
         description: resp.data.description,
         zoneId:resp.data.zone.id
 
       });
       console.log(resp.data)
     });
-    this.getStateList()
     this.getZoneList()
     this.getAdminList()
   }
@@ -84,19 +81,21 @@ export class RangeFormComponent implements OnInit {
     });
   }
 
-  getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
-    });
-  }
 
   getZoneList() {
     this.masterService.zone().subscribe((resp: any) => {
        this.zoneList = resp.data
     });
   }
+  submit() {
+    if (this.editMasterId === 0) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+  }
 
-  submit(formValue: any) {
+  addRecord() {
 
     if (this.form.valid) {
       this.loading = true;
@@ -112,38 +111,33 @@ export class RangeFormComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-
-  // submit(formValue: any) {
-  //   if (this.editMasterId > 0) {
-  //     formValue.editId = this.editMasterId;
-  //     this.formService.saveMasterEditForm(formValue).subscribe((resp: APIResponse) => {
-  //       if (resp.statusCode == 200) {
-  //         //this.editMasterId = resp.data.Id;
-  //         this.sharedService.showSuccess(resp.message);
-  //         setTimeout(() => {
-  //           this.router.navigate(['main/master/range-list']);
-  //         }, 600);
-  //       } else {
-  //         this.sharedService.showSuccess(resp.message);
-  //       }
-  //     }, (err: Error) => {
-  //       this.sharedService.showError('Problem occurred, Please try again');
-  //     })
-  //   } else {
-  //     this.formService.saveMasterForm(formValue).subscribe((resp: APIResponse) => {
-  //       if (resp.statusCode == 200) {
-  //         this.sharedService.showSuccess(resp.message);
-  //         setTimeout(() => {
-  //           this.router.navigate(['main/master/range-list']);
-  //         }, 800);
-  //       } else {
-  //         this.sharedService.showSuccess(resp.message);
-  //       }
-  //     }, (err: Error) => {
-  //       this.sharedService.showError('Problem occurred, Please try again');
-  //     })
-  //   }
-  // }
+  updateRecord(){
+    if (this.form.valid) {
+      this.loading = true;
+      let value = {
+        id:this.editMasterId,
+        code:this.form.value.code,
+        name:this.form.value.name,
+        adminId:this.form.value.adminId,
+        zoneId:this.form.value.zoneId,
+        description:this.form.value.description, 
+      }
+      // const updatedData = this.form.value;
+      this.masterService.updateRange(value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.sharedService.showSuccess('Updated successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/master/range-list`);
+        },
+        (error) => {
+          console.error('Error updating record:', error);
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
   cancel() {
     this.router.navigate(['main/master/range-list'])
   }

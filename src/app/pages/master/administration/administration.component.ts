@@ -38,7 +38,7 @@ export class AdministrationComponent implements OnInit {
   toDownload:boolean;
   childPageNumber:any
 
-  constructor(private router: Router, private sharedService: SharedService, private masterService:MasterService) {}
+  constructor(private router: Router, private sharedService: SharedService, private masterService:MasterService,private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
     this.getList();
@@ -69,23 +69,19 @@ export class AdministrationComponent implements OnInit {
     // debugger
     this.router.navigate([`main/master/administration-form`,adminId])
   }
-  deleteRecord(stateId:number){
-    // const dataKey = { formKey: 'master-state', deleteId: stateId };
-    // this.confirmationService.confirm({
-    //     message: 'Are you sure you want to delete the record?',
-    //     accept: () => {
-    //         this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-    //             //console.log("datakey",dataKey);
-    //             if (resp.statusCode == '200') {
-    //               this.getList();
-    //               this.sharedService.showSuccess('Record deleted successfully');
-    //             }
-    //         })
-    //     },
-    //     reject: () => {
-    //         this.sharedService.showWarn('Cencelled');
-    //     }
-    // });
+  deleteRecord(adminId:number){
+    this.confirmationService.confirm({
+        message: 'Are you sure you want to delete the record?',
+        accept: () => {
+            this.masterService.deleteAdministrationList(adminId).subscribe((resp: any) => {             
+                  this.getList();
+                  this.sharedService.showSuccess('Record deleted successfully');
+            })
+        },
+        reject: () => {
+            this.sharedService.showWarn('Cancelled');
+        }
+    });
   }
   clear(table: Table) {
       table.clear();

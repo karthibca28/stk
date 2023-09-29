@@ -85,6 +85,50 @@ getSubDivisionbyId(subDivisionId:any){
 getPoliceStationbyId(policeStationId:any){
   return this.http.get(`${this.apiUrl}admin/policeStation?policeStationId=${policeStationId}`)
 }
+
+//Delete Details
+
+deleteAdministrationList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/administration?Id=${dataId}`);
+}
+deleteZoneList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/zone?Id=${dataId}`);
+}
+deleteRangeList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/range?Id=${dataId}`);
+}
+deleteDistrictList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/district?Id=${dataId}`);
+}
+deleteSubDivisiontList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/subDivision?Id=${dataId}`);
+}
+deletePoliceStationList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/policeStation?Id=${dataId}`);
+}
+
+
+//Update Details
+
+updateAdminstration(data: any){
+  return this.http.put(`${this.apiUrl}admin/administration`,data);
+}
+updateZone(data: any){
+  return this.http.put(`${this.apiUrl}admin/zone`,data);
+}
+updateRange(data: any){
+  return this.http.put(`${this.apiUrl}admin/range`,data);
+}
+updateDistrict(data: any){
+  return this.http.put(`${this.apiUrl}admin/district`,data);
+}
+updateSubDivision(data: any){
+  return this.http.put(`${this.apiUrl}admin/subDivision`,data);
+}
+updatePoliceStation(data: any){
+  return this.http.put(`${this.apiUrl}admin/policeStation`,data);
+}
+
 }
 
 

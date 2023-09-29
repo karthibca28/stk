@@ -57,22 +57,19 @@ export class PoliceStationListComponent implements OnInit {
   editRecord(policeStationId:number){
     this.router.navigateByUrl(`main/master/police-station-form/${policeStationId}`);
   }
-  deleteRecord(pstatId:number){
-    const dataKey = { formKey: 'master-police-station', deleteId: pstatId };
+  deleteRecord(policeStationId:number){
     this.confirmationService.confirm({
-        message: 'Are you sure you want to delete the record?',
-        accept: () => {
-            this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                if (resp.statusCode == '200') {
-                  this.getList();
-                  this.sharedService.showSuccess('Record deleted successfully');
-                }
-            })
-        },
-        reject: () => {
-            // this.sharedService.showWarn('Cencelled');
-        }
-    });
+      message: 'Are you sure you want to delete the record?',
+      accept: () => {
+          this.masterService.deletePoliceStationList(policeStationId).subscribe((resp: any) => {             
+                this.getList();
+                this.sharedService.showSuccess('Record deleted successfully');
+          })
+      },
+      reject: () => {
+          this.sharedService.showWarn('Cancelled');
+      }
+  });
   }
   clear(table: Table) {
       table.clear();

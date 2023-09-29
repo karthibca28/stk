@@ -17,7 +17,6 @@ export class DistrictFormComponent implements OnInit {
   editMasterId: any;
   form!: FormGroup;
   loading = false;
-  stateList:any
   zoneList:any
   rangeList:any
   adminList:any
@@ -52,7 +51,7 @@ export class DistrictFormComponent implements OnInit {
         code: resp.data.code,
         name: resp.data.name,
         adminId:resp.data.administration.id,
-        stateId: resp.data.stateId,
+        // stateId: resp.data.state,
         description: resp.data.description,
         zoneId:resp.data.zone.id,
         rangeId:resp.data.range.id
@@ -60,37 +59,15 @@ export class DistrictFormComponent implements OnInit {
       });
       console.log(resp.data)
     });
-    this.getStateList()
-    this.getZoneList()
-    this.getRangeList()
-    this.getAdminList()
+    this.getZoneList();
+    this.getRangeList();
+    this.getAdminList();
   }
-  // buildMasterForm() {
-  //   const data = { formKey: 'master-district' };
-  //   this.formService.getDynamicFormData(data).subscribe((formData: any) => {
-  //     this.formData = formData.data;
-  //     this.fHeader = this.formData.formHeader;
-  //   });
-  // }
-  // editMasterForm() {
-  //   const dataKey = { formKey: 'master-district', editId: this.editMasterId };
-  //   this.formService.updateMasterForm(dataKey).subscribe((resp: APIResponse) => {
-  //     //console.log("Edit form", resp.data.controls);
-  //     if (resp.statusCode == '200') {
-  //       this.formData = resp.data;
-  //     }
-  //   })
-  // }
+
   getAdminList() {
     this.masterService.adminList().subscribe((resp: any) => {
        this.adminList = resp.data
 
-    });
-  }
-
-  getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
     });
   }
 
@@ -105,8 +82,15 @@ export class DistrictFormComponent implements OnInit {
        this.rangeList = resp.data
     });
   }
-  submit(formValue: any) {
 
+  submit() {
+    if (this.editMasterId === 0) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+  }
+  addRecord() {
     if (this.form.valid) {
       this.loading = true;
       this.masterService.addDistrict(this.form.value).subscribe((data: any) => {
@@ -121,38 +105,33 @@ export class DistrictFormComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-  // submit(formValue: any) {
-  //   if (this.editMasterId > 0) {
-  //     //console.log("ACtiive route id", this.editMasterId);
-  //     formValue.editId = this.editMasterId;
-  //     this.formService.saveMasterEditForm(formValue).subscribe((resp: APIResponse) => {
-  //       if (resp.statusCode == 200) {
-  //         //this.editMasterId = resp.data.Id;
-  //         this.sharedService.showSuccess(resp.message);
-  //         setTimeout(() => {
-  //           this.router.navigate(['main/master/district-list']);
-  //         }, 600);
-  //       } else {
-  //         this.sharedService.showSuccess(resp.message);
-  //       }
-  //     }, (err: Error) => {
-  //       this.sharedService.showError('Problem occurred, Please try again');
-  //     })
-  //   } else {
-  //     this.formService.saveMasterForm(formValue).subscribe((resp: APIResponse) => {
-  //       if (resp.statusCode == 200) {
-  //         this.sharedService.showSuccess(resp.message);
-  //         setTimeout(() => {
-  //           this.router.navigate(['main/master/district-list']);
-  //         }, 800);
-  //       } else {
-  //         this.sharedService.showSuccess(resp.message);
-  //       }
-  //     }, (err: Error) => {
-  //       this.sharedService.showError('Problem occurred, Please try again');
-  //     })
-  //   }
-  // }
+  updateRecord() {
+    if (this.form.valid) {
+      this.loading = true;
+      let value = {
+        id :this.editMasterId,
+        code:this.form.value.code,
+        name:this.form.value.name,
+        description:this.form.value.description, 
+        adminId:this.form.value.adminId,
+        zoneId:this.form.value.zoneId,
+        rangeId:this.form.value.rangeId
+      }
+      this.masterService.updateDistrict(value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.sharedService.showSuccess('Updated successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/master/district-list`);
+        },
+        (error) => {
+          console.error('Error updating record:', error);
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
   cancel() {
     this.router.navigate(['main/master/district-list'])
   }

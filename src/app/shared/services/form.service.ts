@@ -342,6 +342,9 @@ export class FormService {
   getTaskforSeniorOfficer(tasktype:any){
     return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&taskType=${tasktype}`);
   }
+  getTaskforSeniorOfficerPaginaton(pageNumber:any,tasktype:any){
+    return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&pageNumber=${pageNumber}&PageSize=10&taskType=${tasktype}`);
+  }
   getDutyforSeniorOfficer(dutyType:string){
     return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear&dutyType=${dutyType}`);
   }

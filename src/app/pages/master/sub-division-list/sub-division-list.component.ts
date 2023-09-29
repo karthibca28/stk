@@ -56,22 +56,19 @@ export class SubDivisionListComponent implements OnInit {
   editRecord(subDivisionId:number){
     this.router.navigateByUrl(`main/master/sub-division-form/${subDivisionId}`);
   }
-  deleteRecord(subdivId:number){
-    const dataKey = { formKey: 'master-subdivision', deleteId: subdivId };
+  deleteRecord(subDivisionId:number){
     this.confirmationService.confirm({
-        message: 'Are you sure you want to delete the record?',
-        accept: () => {
-            this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                if (resp.statusCode == '200') {
-                  this.getList();
-                  this.sharedService.showSuccess('Record deleted successfully');
-                }
-            })
-        },
-        reject: () => {
-            this.sharedService.showWarn('Cencelled');
-        }
-    });
+      message: 'Are you sure you want to delete the record?',
+      accept: () => {
+          this.masterService.deleteSubDivisiontList(subDivisionId).subscribe((resp: any) => {             
+                this.getList();
+                this.sharedService.showSuccess('Record deleted successfully');
+          })
+      },
+      reject: () => {
+          this.sharedService.showWarn('Cancelled');
+      }
+  });
   }
   clear(table: Table) {
       table.clear();

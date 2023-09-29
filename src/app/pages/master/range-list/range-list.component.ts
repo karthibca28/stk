@@ -58,22 +58,18 @@ export class RangeListComponent implements OnInit {
   }
 
   deleteRecord(rangeId:number){
-    const dataKey = { formKey: 'master-range', deleteId: rangeId };
     this.confirmationService.confirm({
-        message: 'Are you sure you want to delete the record?',
-        accept: () => {
-            this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                //console.log("datakey",dataKey);
-                if (resp.statusCode == '200') {
-                  this.getList();
-                  this.sharedService.showSuccess('Record deleted successfully');
-                }
-            })
-        },
-        reject: () => {
-            this.sharedService.showWarn('Cencelled');
-        }
-    });
+      message: 'Are you sure you want to delete the record?',
+      accept: () => {
+          this.masterService.deleteRangeList(rangeId).subscribe((resp: any) => {             
+                this.getList();
+                this.sharedService.showSuccess('Record deleted successfully');
+          })
+      },
+      reject: () => {
+          this.sharedService.showWarn('Cancelled');
+      }
+  });
   }
   clear(table: Table) {
       table.clear();

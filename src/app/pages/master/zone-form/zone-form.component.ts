@@ -25,20 +25,12 @@ export class ZoneFormComponent implements OnInit {
 
   ngOnInit(): void {
      this.editMasterId = this.route.snapshot.params['zoneId'];
-     console.log(this.editMasterId)
-      // this.editMasterId = this.activatedRoute.snapshot.params['zoneId'];
-      // if (this.editMasterId > 0) {
-      //   this.editMasterForm();
-      // } else {
-      //   this.buildMasterForm();
-      // }
-     
+     console.log(this.editMasterId)    
 
       this.form = this.formBuilder.group({
         code: [''],
         name: ['', Validators.required],
         adminId:['',Validators.required],
-        stateId:[''],
         description: ['']
       });
        const id=this.editMasterId
@@ -47,7 +39,6 @@ export class ZoneFormComponent implements OnInit {
         code: resp.data.code,
         name: resp.data.name,
         adminId:resp.data.administration.id,
-        stateId: resp.data.stateId,
         description: resp.data.description,
 
       });
@@ -57,25 +48,6 @@ export class ZoneFormComponent implements OnInit {
       this.getStateList()
       this.getAdminList()
   }
-  // buildMasterForm() {
-  //   const data = { formKey: 'master-zone' };
-  //   // console.log("This is create-",this.editMasterId);
-  //   this.formService.getDynamicFormData(data).subscribe((resp: APIResponse) => {
-  //     this.formData = resp.data;
-  //     this.fHeader = this.formData.formHeader;
-  //    // console.log(resp, 'resp');
-  //   });
-  // }
-  // editMasterForm() {
-  //   const dataKey = { formKey: 'master-zone', editId: this.editMasterId };
-  //   // console.log("This is edit-",this.editMasterId);
-  //   this.formService.updateMasterForm(dataKey).subscribe((resp: APIResponse) => {
-  //     // console.log(resp);
-  //     if (resp.statusCode == '200') {
-  //       this.formData = resp.data;
-  //     }
-  //   })
-  // }
   getAdminList() {
     this.masterService.adminList().subscribe((resp: any) => {
        this.adminList = resp.data
@@ -88,7 +60,15 @@ export class ZoneFormComponent implements OnInit {
     });
   }
 
-  submit(formValue: any) {
+  submit() {
+    if (this.editMasterId === 0) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+  }
+
+  addRecord() {
 
     if (this.form.valid) {
       this.loading = true;
@@ -103,36 +83,32 @@ export class ZoneFormComponent implements OnInit {
     } else {
       this.form.markAllAsTouched();
     }
-    // if (this.editMasterId > 0) {
-    //   //console.log("ACtiive route id", this.editMasterId);
-    //   formValue.editId = this.editMasterId;
-    //   this.formService.saveMasterEditForm(formValue).subscribe((resp: APIResponse) => {
-    //     if (resp.statusCode == 200) {
-    //       //this.editMasterId = resp.data.Id;
-    //       this.sharedService.showSuccess(resp.message);
-    //       setTimeout(() => {
-    //         this.router.navigate(['main/master/zone-list']);
-    //       }, 600);
-    //     } else {
-    //       this.sharedService.showSuccess(resp.message);
-    //     }
-    //   }, (err: Error) => {
-    //     this.sharedService.showError('Problem occurred, Please try again');
-    //   })
-    // } else {
-    //   this.formService.saveMasterForm(formValue).subscribe((resp: APIResponse) => {
-    //     if (resp.statusCode == 200) {
-    //       this.sharedService.showSuccess(resp.message);
-    //       setTimeout(() => {
-    //         this.router.navigate(['main/master/zone-list']);
-    //       }, 800);
-    //     } else {
-    //       this.sharedService.showSuccess(resp.message);
-    //     }
-    //   }, (err: Error) => {
-    //     this.sharedService.showError('Problem occurred, Please try again');
-    //   })
-    // }
+  }
+  updateRecord(){
+    if (this.form.valid) {
+      this.loading = true;
+      let value = {
+        id:this.editMasterId,
+        code:this.form.value.code,
+        name:this.form.value.name,
+        adminId:this.form.value.adminId,
+        description:this.form.value.description, 
+      }
+      // const updatedData = this.form.value;
+      this.masterService.updateZone(value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.sharedService.showSuccess('Updated successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/master/zone-list`);
+        },
+        (error) => {
+          console.error('Error updating record:', error);
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
   cancel() {
     this.router.navigate(['main/master/zone-list'])

@@ -57,22 +57,19 @@ export class DistrictListComponent implements OnInit {
   editRecord(districtId:number){
     this.router.navigateByUrl(`main/master/district-form/${districtId}`);
   }
-  deleteRecord(distId:number){
-    // const dataKey = { formKey: 'master-district', deleteId: distId };
-    // this.confirmationService.confirm({
-    //     message: 'Are you sure you want to delete the record?',
-    //     accept: () => {
-    //         this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-    //             if (resp.statusCode == '200') {
-    //               this.getList();
-    //               this.sharedService.showSuccess('Record deleted successfully');
-    //             }
-    //         })
-    //     },
-    //     reject: () => {
-    //         this.sharedService.showWarn('Cencelled');
-    //     }
-    // });
+  deleteRecord(districtId:number){
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete the record?',
+      accept: () => {
+          this.masterService.deleteDistrictList(districtId).subscribe((resp: any) => {             
+                this.getList();
+                this.sharedService.showSuccess('Record deleted successfully');
+          })
+      },
+      reject: () => {
+          this.sharedService.showWarn('Cancelled');
+      }
+  });
   }
   clear(table: Table) {
       table.clear();

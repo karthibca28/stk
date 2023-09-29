@@ -18,7 +18,6 @@ export class PoliceStationFormComponent implements OnInit {
   editMasterId: any;
   form!: FormGroup;
   loading = false;
-  stateList:any
   zoneList:any
   rangeList:any
   districtList:any
@@ -62,7 +61,6 @@ export class PoliceStationFormComponent implements OnInit {
       });
       console.log(resp.data)
     });
-    this.getStateList()
     this.getZoneList()
     this.getRangeList()
     this.getDistrictList()
@@ -92,11 +90,6 @@ export class PoliceStationFormComponent implements OnInit {
     });
   }
 
-  getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
-    });
-  }
 
   getZoneList() {
     this.masterService.zone().subscribe((resp: any) => {
@@ -120,7 +113,15 @@ export class PoliceStationFormComponent implements OnInit {
     });
   }
 
-  submit(formValue: any) {
+  submit() {
+    if (this.editMasterId === 0) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+  }
+
+  addRecord() {
 
     if (this.form.valid) {
       this.loading = true;
@@ -137,6 +138,37 @@ export class PoliceStationFormComponent implements OnInit {
     }
   }
 
+  updateRecord() {
+    if (this.form.valid) {
+      this.loading = true;
+      let value = {
+        id :this.editMasterId,
+        code:this.form.value.code,
+        name:this.form.value.name,
+        description:this.form.value.description, 
+        adminId:this.form.value.adminId,
+        zoneId:this.form.value.zoneId,
+        rangeId:this.form.value.rangeId,
+        districtId:this.form.value.districtId,
+        subDivisionId:this.form.value.subdivisionId
+      }
+      this.masterService.updatePoliceStation(value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.sharedService.showSuccess('Updated successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/master/police-station-list`);
+        },
+        (error) => {
+          console.error('Error updating record:', error);
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  
   // submit(formValue: any) {
   //   if (this.editMasterId > 0) {
   //     formValue.editId = this.editMasterId;
