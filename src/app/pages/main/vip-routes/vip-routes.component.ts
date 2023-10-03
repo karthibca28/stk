@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class VIPRoutesComponent implements OnInit {
   dynamaicDataForTable:any;
   selected ='all'
 
-  constructor(private formService: FormService,) { }
+  constructor(private formService: FormService,private router: Router) { }
 
   ngOnInit(): void {
     this.getList()
@@ -53,5 +54,8 @@ export class VIPRoutesComponent implements OnInit {
   }
   deleteRecord(stateId:number){
   }
+//   openForm() {
+//     this.router.navigate(['/main/lot/vipRoutes-form']);
+// }
 
 }

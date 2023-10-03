@@ -13,6 +13,9 @@ import { MaterialModule } from 'src/app/shared/modules/material/material.module'
 import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.component';
 import { VIPRoutesComponent } from './vip-routes/vip-routes.component';
 import { PoliceStationComponent } from './police-station/police-station.component';
+import { BroadcastComponent } from './broadcast/broadcast.component';
+import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { PoliceStationComponent } from './police-station/police-station.componen
     DutyPointsComponent,
     DutyPointsFormComponent,
     VIPRoutesComponent,
-    PoliceStationComponent
+    PoliceStationComponent,
+    BroadcastComponent,
+    BroadcastFormComponent,
   ],
   imports: [
     CommonModule,

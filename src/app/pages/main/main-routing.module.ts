@@ -8,6 +8,8 @@ import { DutyPointsComponent } from './duty-points/duty-points.component';
 import { DutyPointsFormComponent } from './duty-points-form/duty-points-form.component';
 import { VIPRoutesComponent } from './vip-routes/vip-routes.component';
 import { PoliceStationComponent } from './police-station/police-station.component';
+import { BroadcastComponent } from './broadcast/broadcast.component';
+import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
 
 const routes: Routes = [
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'dutPoints-form/:dutyPointId',
     component: DutyPointsFormComponent
+  },
+  {
+    path: 'broadCast',
+    component: BroadcastComponent
+  },
+  {
+    path: 'broadCast-form',
+    component: BroadcastFormComponent
   },
 ];
 
