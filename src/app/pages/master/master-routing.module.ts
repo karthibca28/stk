@@ -14,6 +14,14 @@ import { StateFormComponent } from './state-form/state-form.component';
 import { StateListComponent } from './state-list/state-list.component';
 import { AdministrationComponent } from './administration/administration.component';
 import { AdministrationAddComponent } from './administration-add/administration-add.component';
+import { AccesscontrolFormComponent } from './accesscontrol-form/accesscontrol-form.component';
+import { AccesscontrolListComponent } from './accesscontrol-list/accesscontrol-list.component';
+import { InventorytypeListComponent } from './inventorytype-list/inventorytype-list.component';
+import { InventorytypeFormComponent } from './inventorytype-form/inventorytype-form.component';
+import { RankListComponent } from './rank-list/rank-list.component';
+import { RankFormComponent } from './rank-form/rank-form.component';
+import { RoleListComponent } from './role-list/role-list.component';
+import { RoleFormComponent } from './role-form/role-form.component';
 
 const routes: Routes = [
   {
@@ -100,6 +108,51 @@ const routes: Routes = [
     path: 'state-list',
     component: StateListComponent
   },
+  {
+    path: 'accesscontrol-list',
+    component: AccesscontrolListComponent
+  },
+  {
+    path: 'accesscontrol-form/:accessControlId',
+    component: AccesscontrolFormComponent
+  },
+  {
+    path: 'accesscontrol-form',
+    component: AccesscontrolFormComponent
+  },
+  {
+    path: 'inventorytype-list',
+    component: InventorytypeListComponent
+  },
+  {
+    path: 'inventorytype-form',
+    component: InventorytypeFormComponent
+  },
+  {
+    path: 'rank-list',
+    component: RankListComponent
+  },
+  {
+    path: 'rank-form/:rankId',
+    component: RankFormComponent
+  },
+  {
+    path: 'rank-form',
+    component: RankFormComponent
+  },
+  {
+    path: 'role-list',
+    component: RoleListComponent
+  },
+  {
+    path: 'role-form/:roleId',
+    component: RoleFormComponent
+  },
+  {
+    path: 'role-form',
+    component: RoleFormComponent
+  },
+  
 
 ];
 

@@ -39,6 +39,18 @@ export class MasterService {
   policeStation() {
     return this.http.get(`${this.apiUrl}admin/policeStation`);
   }
+  accessControlList(){
+    return this.http.get(`${this.apiUrl}admin/accessControl`);
+  }
+  inventoryTypeList(){
+    return this.http.get(`${this.apiUrl}admin/inventoryType`);
+  }
+  rankList(){
+    return this.http.get(`${this.apiUrl}admin/rank`);
+  }
+  roleList(){
+    return this.http.get(`${this.apiUrl}admin/role`);
+  }
 
 
   // Add Details
@@ -65,6 +77,15 @@ export class MasterService {
   UserRegistration(data:any){
     return this.http.post(`${this.apiUrl}admin/user`,data);
     }
+    accessControl(data: any) {
+        return this.http.post(`${this.apiUrl}admin/accessControl`, data);
+    }
+    addRole(data: any) {
+        return this.http.post(`${this.apiUrl}admin/role`, data);
+    }
+    addRank(data: any) {
+      return this.http.post(`${this.apiUrl}admin/rank`, data);
+    }
 
   //GetById
 getAdmistrationbyId(adminId:any){
@@ -84,6 +105,15 @@ getSubDivisionbyId(subDivisionId:any){
 }
 getPoliceStationbyId(policeStationId:any){
   return this.http.get(`${this.apiUrl}admin/policeStation?policeStationId=${policeStationId}`)
+}
+getAccessControlbyId(accessControlId:any){
+  return this.http.get(`${this.apiUrl}admin/accessControl?accessId=${accessControlId}`)
+}
+getRolebyId(roleId:any){
+  return this.http.get(`${this.apiUrl}admin/role?roleId=${roleId}`)
+}
+getRankbyId(rankId:any){
+  return this.http.get(`${this.apiUrl}admin/rank?rankId=${rankId}`)
 }
 
 //Delete Details
@@ -106,7 +136,18 @@ deleteSubDivisiontList(dataId:any){
 deletePoliceStationList(dataId:any){
   return this.http.delete(`${this.apiUrl}admin/policeStation?Id=${dataId}`);
 }
-
+deleteAccessControlList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/accessControl?Id=${dataId}`);
+}
+deleteRoleList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/role?Id=${dataId}`);
+}
+deleteRankList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/rank?Id=${dataId}`);
+}
+deleteInventoryTypeList(dataId:any){
+  return this.http.delete(`${this.apiUrl}admin/inventoryType?Id=${dataId}`);
+}
 
 //Update Details
 
@@ -127,6 +168,12 @@ updateSubDivision(data: any){
 }
 updatePoliceStation(data: any){
   return this.http.put(`${this.apiUrl}admin/policeStation`,data);
+}
+updateRole(data: any){
+  return this.http.put(`${this.apiUrl}admin/role`,data);
+}
+updateRank(data: any){
+  return this.http.put(`${this.apiUrl}admin/rank`,data);
 }
 
 }

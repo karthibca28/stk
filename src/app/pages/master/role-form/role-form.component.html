@@ -1,0 +1,31 @@
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="submit()">
+    <h3 class="color-04">AccessControl</h3>
+    <div class="grid">
+        <div class="col-12 md:col-6">
+            <mat-card class="md:px-5">
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Role Code</mat-label>
+                        <input matInput formControlName="roleCode">
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name">
+                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.name?.touched && form?.controls?.name?.errors?.required)">Name is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="text-right">
+                    <button mat-raised-button mat-button color="primary">Add</button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</form>

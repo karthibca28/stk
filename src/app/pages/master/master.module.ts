@@ -19,6 +19,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdministrationComponent } from './administration/administration.component';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 import { AdministrationAddComponent } from './administration-add/administration-add.component';
+import { RoleListComponent } from './role-list/role-list.component';
+import { RoleFormComponent } from './role-form/role-form.component';
+import { RankListComponent } from './rank-list/rank-list.component';
+import { RankFormComponent } from './rank-form/rank-form.component';
+import { AccesscontrolListComponent } from './accesscontrol-list/accesscontrol-list.component';
+import { AccesscontrolFormComponent } from './accesscontrol-form/accesscontrol-form.component';
+import { InventorytypeListComponent } from './inventorytype-list/inventorytype-list.component';
+import { InventorytypeFormComponent } from './inventorytype-form/inventorytype-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +44,14 @@ import { AdministrationAddComponent } from './administration-add/administration-
     SubDivisionListComponent,
     AdministrationComponent,
     AdministrationAddComponent,
+    RoleListComponent,
+    RoleFormComponent,
+    RankListComponent,
+    RankFormComponent,
+    AccesscontrolListComponent,
+    AccesscontrolFormComponent,
+    InventorytypeListComponent,
+    InventorytypeFormComponent,
   ],
   imports: [
     CommonModule,

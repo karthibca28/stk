@@ -11,12 +11,12 @@
                 </div>
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
-                        <mat-label>Type</mat-label>
-                        <textarea matInput ></textarea>
+                        <mat-label>Message</mat-label>
+                        <input matInput >
                     </mat-form-field>
                 </div>
                 <div class="custom-card" style="display: flex;justify-content: space-around;">
-                    <div class="card-selection mat-elevation-z4">
+                    <div class="card-selection">
                         <label style="display: flex;justify-content: center;margin-top: 15px;">Add Voice Note</label>
                         <div style="margin-top:5px;padding-left: 20px;">
                             <svg width="40" height="40" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,7 +31,9 @@
                                 
                         </div>
                     </div>
-                <div class="card-selection mat-elevation-z4">
+                    </div>
+                    <div class="custom-card" style="display: flex;justify-content: space-around;margin-top: 30px;">
+                <div class="card-selection">
                     <label style="display: flex;justify-content: center;margin-top: 15px;">Upload Media</label>
                     <div style="margin-top:5px;display: flex;justify-content: space-around;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -43,27 +45,20 @@
                               <path d="M20.0046 25.2845C21.2045 25.2845 22.2245 24.8645 23.0645 24.0245C23.9045 23.1846 24.3245 22.1646 24.3245 20.9646C24.3245 19.7647 23.9045 18.7447 23.0645 17.9047C22.2245 17.0647 21.2045 16.6447 20.0046 16.6447C18.8046 16.6447 17.7846 17.0647 16.9446 17.9047C16.1047 18.7447 15.6847 19.7647 15.6847 20.9646C15.6847 22.1646 16.1047 23.1846 16.9446 24.0245C17.7846 24.8645 18.8046 25.2845 20.0046 25.2845ZM20.0046 23.3646C19.3326 23.3646 18.7646 23.1326 18.3006 22.6686C17.8366 22.2046 17.6046 21.6366 17.6046 20.9646C17.6046 20.2926 17.8366 19.7247 18.3006 19.2607C18.7646 18.7967 19.3326 18.5647 20.0046 18.5647C20.6765 18.5647 21.2445 18.7967 21.7085 19.2607C22.1725 19.7247 22.4045 20.2926 22.4045 20.9646C22.4045 21.6366 22.1725 22.2046 21.7085 22.6686C21.2445 23.1326 20.6765 23.3646 20.0046 23.3646ZM12.3248 28.6444C11.7968 28.6444 11.3448 28.4564 10.9688 28.0804C10.5928 27.7045 10.4048 27.2525 10.4048 26.7245V15.2048C10.4048 14.6768 10.5928 14.2248 10.9688 13.8488C11.3448 13.4728 11.7968 13.2848 12.3248 13.2848H15.3487L17.1246 11.3649H22.8845L24.6604 13.2848H27.6844C28.2124 13.2848 28.6643 13.4728 29.0403 13.8488C29.4163 14.2248 29.6043 14.6768 29.6043 15.2048V26.7245C29.6043 27.2525 29.4163 27.7045 29.0403 28.0804C28.6643 28.4564 28.2124 28.6444 27.6844 28.6444H12.3248ZM27.6844 26.7245V15.2048H23.7965L22.0445 13.2848H17.9646L16.2127 15.2048H12.3248V26.7245H27.6844Z" fill="#1C1B1F"/>
                             </g>
                           </svg>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
-                            <circle cx="19.5" cy="19.5" r="19.5" fill="#33DD6D"/>
-                            <mask id="mask0_743_551" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="23" height="23">
-                              <rect x="8.28156" y="8.28162" width="22.4457" height="22.4457" fill="#D9D9D9"/>
-                            </mask>
-                            <g mask="url(#mask0_743_551)">
-                              <path d="M18.5692 24.1806H20.4397V20.2527L21.936 21.749L23.2454 20.4397L19.5044 16.6988L15.7635 20.4397L17.0728 21.749L18.5692 20.2527V24.1806ZM12.0225 26.9864C11.5082 26.9864 11.0678 26.8032 10.7015 26.4369C10.3352 26.0706 10.1521 25.6303 10.1521 25.1159V13.8931C10.1521 13.3787 10.3352 12.9383 10.7015 12.572C11.0678 12.2057 11.5082 12.0226 12.0225 12.0226H17.634L19.5044 13.8931H26.9863C27.5007 13.8931 27.941 14.0762 28.3073 14.4425C28.6736 14.8088 28.8568 15.2491 28.8568 15.7635V25.1159C28.8568 25.6303 28.6736 26.0706 28.3073 26.4369C27.941 26.8032 27.5007 26.9864 26.9863 26.9864H12.0225ZM12.0225 13.8931V25.1159H26.9863V15.7635H18.7329L16.8624 13.8931H12.0225Z" fill="#1C1B1F"/>
-                            </g>
-                          </svg>
+                          <div (click)="triggerFileInput.click()" style="cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                              <!-- SVG content here -->
+                              <circle cx="19.5" cy="19.5" r="19.5" fill="#33DD6D"/>
+                              <mask id="mask0_743_551" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="23" height="23">
+                                <rect x="8.28156" y="8.28162" width="22.4457" height="22.4457" fill="#D9D9D9"/>
+                              </mask>
+                              <g mask="url(#mask0_743_551)">
+                                <path d="M18.5692 24.1806H20.4397V20.2527L21.936 21.749L23.2454 20.4397L19.5044 16.6988L15.7635 20.4397L17.0728 21.749L18.5692 20.2527V24.1806ZM12.0225 26.9864C11.5082 26.9864 11.0678 26.8032 10.7015 26.4369C10.3352 26.0706 10.1521 25.6303 10.1521 25.1159V13.8931C10.1521 13.3787 10.3352 12.9383 10.7015 12.572C11.0678 12.2057 11.5082 12.0226 12.0225 12.0226H17.634L19.5044 13.8931H26.9863C27.5007 13.8931 27.941 14.0762 28.3073 14.4425C28.6736 14.8088 28.8568 15.2491 28.8568 15.7635V25.1159C28.8568 25.6303 28.6736 26.0706 28.3073 26.4369C27.941 26.8032 27.5007 26.9864 26.9863 26.9864H12.0225ZM12.0225 13.8931V25.1159H26.9863V15.7635H18.7329L16.8624 13.8931H12.0225Z" fill="#1C1B1F"/>
+                              </g>
+                            </svg>
+                            <input type="file" (change)="onFileSelected($event)" accept="image/*" style="display: none;" #triggerFileInput>
+                          </div>                          
                     </div>
-                </div>
-            </div>
-            <div class="custom-card" style="display: flex;justify-content: space-around;margin-top: 20px;">
-                <div class="card-selection mat-elevation-z4">
-                    <label style="display: flex;justify-content: center;margin-top: 15px;">Priority</label>
-                    <div style="display: flex;justify-content: space-around;margin-top:5px;">
-                    <mat-radio-group aria-label="Select an option">
-                        <mat-radio-button value="1">High Emergency</mat-radio-button>&nbsp;&nbsp;&nbsp;
-                        <mat-radio-button value="2">Medium</mat-radio-button>
-                      </mat-radio-group> 
-                    </div>                     
                 </div>
             </div>
             </mat-card>

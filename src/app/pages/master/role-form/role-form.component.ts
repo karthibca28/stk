@@ -5,11 +5,11 @@ import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-administration-add',
-  templateUrl: './administration-add.component.html',
-  styleUrls: ['./administration-add.component.scss']
+  selector: 'app-role-form',
+  templateUrl: './role-form.component.html',
+  styleUrls: ['./role-form.component.scss']
 })
-export class AdministrationAddComponent implements OnInit {
+export class RoleFormComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitting = false;
@@ -20,37 +20,26 @@ export class AdministrationAddComponent implements OnInit {
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
-    this.editMasterId = this.route.snapshot.params['adminId'];
+    this.editMasterId = this.route.snapshot.params['roleId'];
+    console.log(this.editMasterId)
     this.form = this.formBuilder.group({
-      code: [''],
+      roleCode:[''],
       name: ['', Validators.required],
-      stateId:[''],
-      description: ['']
+      description:[''],
+
     });
     const id=this.editMasterId
-    this.masterService.getAdmistrationbyId(id).subscribe((resp:any) => {
-      // const stateData = {
-      //   id: resp.data.state.id,
-      //   name: resp.data.state.name
-      // };
+    this.masterService.getRolebyId(id).subscribe((resp:any) => {
       this.form.patchValue({
-        code: resp.data.code,
-        name: resp.data.name,
-        stateId: resp.data.state.id,
-        description: resp.data.description,
+        roleCode: resp.data[0].roleCode,
+        name: resp.data[0].roleName,
+        description: resp.data[0].description,
       });
-      // this.stateList = [stateData]
     });
-    this.getStateList()
   }
   
-  getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
-    });
-  }
 
-  onSubmit() {
+  submit() {
     if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
       this.addRecord();
     } else {
@@ -58,17 +47,15 @@ export class AdministrationAddComponent implements OnInit {
     }
   }
   
-  
-  
   addRecord() {
     if (this.form.valid) {
       this.loading = true;
-      this.masterService.administration(this.form.value).subscribe((data: any) => {
+      this.masterService.addRole(this.form.value).subscribe((data: any) => {
         if (data) {
           this.loading = false;
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/administration`);
+          this.router.navigateByUrl(`main/master/role-list`);
         }
       });
     } else {
@@ -81,18 +68,17 @@ export class AdministrationAddComponent implements OnInit {
       this.loading = true;
       let value = {
         id :this.editMasterId,
-        code:this.form.value.code,
+        roleCode:this.form.value.roleCode,
         name:this.form.value.name,
-        description:this.form.value.description, 
-        stateId:this.form.value.stateId
+        description:this.form.value.description,
       }
       // const updatedData = this.form.value;
-      this.masterService.updateAdminstration(value).subscribe(
+      this.masterService.updateRole(value).subscribe(
         (data: any) => {
           this.loading = false;
           this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/administration`);
+          this.router.navigateByUrl(`main/master/role-list`);
         },
         (error) => {
           console.error('Error updating record:', error);
@@ -104,4 +90,3 @@ export class AdministrationAddComponent implements OnInit {
   }
   
 }
-  

@@ -14,6 +14,7 @@ export class AppMenuComponent implements OnInit {
     myDate = new Date();
     userName: any;
     roleName: any;
+    roleId:any;
     constructor(public appMain: AppMainComponent, private router: Router) {}
 
     ngOnInit() {
@@ -87,6 +88,10 @@ export class AppMenuComponent implements OnInit {
                     { label: 'District', icon: 'pi pi-file', routerLink: ['/main/master/district-list'] },
                     { label: 'Sub Division', icon: 'pi pi-file', routerLink: ['/main/master/sub-division-list'] },
                     { label: 'Police Station', icon: 'pi pi-file', routerLink: ['/main/master/police-station-list'] },
+                    { label: 'Access Control', icon: 'pi pi-file', routerLink: ['/main/master/accesscontrol-list'] },
+                    { label: 'Inventory', icon: 'pi pi-file', routerLink: ['/main/master/inventorytype-list'] },
+                    { label: 'Rank', icon: 'pi pi-file', routerLink: ['/main/master/rank-list'] },
+                    { label: 'Role', icon: 'pi pi-file', routerLink: ['/main/master/role-list'] },
                 ]
             },
             // {
@@ -126,15 +131,17 @@ export class AppMenuComponent implements OnInit {
         this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
         this.userName = this.userData.data.firstName;
         this.roleName = this.userData.data.roleName; 
-        if (this.userData.data.userData.roleId === 1) { 
+        this.roleId = parseInt(this.userData.data.userData.rank.role.roleCode)
+        console.log(this.roleId)
+        if (this.roleId === 1) { 
             this.model = this.model.filter(f => f.access.includes('1'))
-        } else if(this.userData.data.userData.roleId === 2) {
+        } else if(this.roleId === 2) {
             this.model = this.model.filter(f => f.access.includes('2'))
-        } else if(this.userData.data.userData.roleId === 3) {
+        } else if(this.roleId === 3) {
             this.model = this.model.filter(f => f.access.includes('3'))
-        } else if(this.userData.data.userData.roleId === 4) {
+        } else if(this.roleId === 4) {
             this.model = this.model.filter(f => f.access.includes('4'))
-        } else if(this.userData.data.userData.roleId === 5) {
+        } else if(this.roleId === 5) {
             this.model = this.model.filter(f => f.access.includes('5'))
         } else {}
         // else {

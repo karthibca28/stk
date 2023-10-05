@@ -5,52 +5,61 @@ import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-administration-add',
-  templateUrl: './administration-add.component.html',
-  styleUrls: ['./administration-add.component.scss']
+  selector: 'app-rank-form',
+  templateUrl: './rank-form.component.html',
+  styleUrls: ['./rank-form.component.scss']
 })
-export class AdministrationAddComponent implements OnInit {
+export class RankFormComponent implements OnInit {  
   form!: FormGroup;
   loading = false;
   submitting = false;
   submitted = false;
   editMasterId:any
-  stateList:any
+  roleList:any
+  accessControlList:any
   constructor(private router: Router, private formBuilder: FormBuilder, 
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
-    this.editMasterId = this.route.snapshot.params['adminId'];
+    this.editMasterId = this.route.snapshot.params['rankId'];
+    console.log(this.editMasterId)
     this.form = this.formBuilder.group({
-      code: [''],
+      rankCode:[''],
       name: ['', Validators.required],
-      stateId:[''],
-      description: ['']
+      accessId:[''],
+      roleId:[''],
+      description:[''],
+
     });
+    this.getRole();
+    this.getAccessControl();
     const id=this.editMasterId
-    this.masterService.getAdmistrationbyId(id).subscribe((resp:any) => {
-      // const stateData = {
-      //   id: resp.data.state.id,
-      //   name: resp.data.state.name
-      // };
+    this.masterService.getRankbyId(id).subscribe((resp:any) => {
+      console.log(resp.data[0].role)
       this.form.patchValue({
-        code: resp.data.code,
-        name: resp.data.name,
-        stateId: resp.data.state.id,
-        description: resp.data.description,
+        rankCode: resp.data[0].rankCode,
+        name: resp.data[0].rankName,
+        accessId: resp.data[0].access.id,
+        roleId: resp.data[0].role.id,
+        description: resp.data[0].description,
       });
-      // this.stateList = [stateData]
-    });
-    this.getStateList()
-  }
-  
-  getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
     });
   }
 
-  onSubmit() {
+  getRole() {
+    this.masterService.roleList().subscribe((formData: any) => {
+      this.roleList=formData.data
+      console.log(this.roleList)
+    });
+  }
+  getAccessControl() {
+    this.masterService.accessControlList().subscribe((formData: any) => {
+       this.accessControlList=formData.data 
+    });
+  }
+  
+
+  submit() {
     if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
       this.addRecord();
     } else {
@@ -58,17 +67,15 @@ export class AdministrationAddComponent implements OnInit {
     }
   }
   
-  
-  
   addRecord() {
     if (this.form.valid) {
       this.loading = true;
-      this.masterService.administration(this.form.value).subscribe((data: any) => {
+      this.masterService.addRank(this.form.value).subscribe((data: any) => {
         if (data) {
           this.loading = false;
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/administration`);
+          this.router.navigateByUrl(`main/master/rank-list`);
         }
       });
     } else {
@@ -81,18 +88,20 @@ export class AdministrationAddComponent implements OnInit {
       this.loading = true;
       let value = {
         id :this.editMasterId,
-        code:this.form.value.code,
+        rankCode:this.form.value.rankCode,
         name:this.form.value.name,
-        description:this.form.value.description, 
-        stateId:this.form.value.stateId
+        accessId:this.form.value.accessId, 
+        roleId:this.form.value.roleId,
+        description:this.form.value.description
+
       }
       // const updatedData = this.form.value;
-      this.masterService.updateAdminstration(value).subscribe(
+      this.masterService.updateRank(value).subscribe(
         (data: any) => {
           this.loading = false;
           this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/administration`);
+          this.router.navigateByUrl(`main/master/rank-list`);
         },
         (error) => {
           console.error('Error updating record:', error);
@@ -102,6 +111,4 @@ export class AdministrationAddComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-  
 }
-  

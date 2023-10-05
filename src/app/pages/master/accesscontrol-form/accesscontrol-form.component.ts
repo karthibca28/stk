@@ -5,11 +5,11 @@ import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-administration-add',
-  templateUrl: './administration-add.component.html',
-  styleUrls: ['./administration-add.component.scss']
+  selector: 'app-accesscontrol-form',
+  templateUrl: './accesscontrol-form.component.html',
+  styleUrls: ['./accesscontrol-form.component.scss']
 })
-export class AdministrationAddComponent implements OnInit {
+export class AccesscontrolFormComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitting = false;
@@ -20,37 +20,41 @@ export class AdministrationAddComponent implements OnInit {
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
-    this.editMasterId = this.route.snapshot.params['adminId'];
+    this.editMasterId = this.route.snapshot.params['accessControlId'];
     this.form = this.formBuilder.group({
-      code: [''],
       name: ['', Validators.required],
-      stateId:[''],
-      description: ['']
+      description:[''],
+      isCustom: [false],
+      stateAccess: [false],
+      admAccess: [false],
+      zoneAccess: [false],
+      rangeAccess: [false],
+      districtAccess: [false],
+      subDivAccess: [false],
+      psAccess: [false],
+
     });
     const id=this.editMasterId
-    this.masterService.getAdmistrationbyId(id).subscribe((resp:any) => {
-      // const stateData = {
-      //   id: resp.data.state.id,
-      //   name: resp.data.state.name
-      // };
+    this.masterService.getAccessControlbyId(id).subscribe((resp:any) => {
+      console.log(resp.data[0].name)
       this.form.patchValue({
-        code: resp.data.code,
-        name: resp.data.name,
-        stateId: resp.data.state.id,
-        description: resp.data.description,
+        name: resp.data[0].name,
+        description: resp.data[0].description,
+        isCustom: resp.data[0].isCustom,
+        stateAccess: resp.data[0].stateAccess,
+        admAccess: resp.data[0].admAccess,
+        zoneAccess: resp.data[0].zoneAccess,
+        rangeAccess: resp.data[0].rangeAccess,
+        districtAccess: resp.data[0].districtAccess,
+        subDivAccess: resp.data[0].subDivAccess,
+        psAccess: resp.data[0].psAccess,
       });
       // this.stateList = [stateData]
     });
-    this.getStateList()
   }
   
-  getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
-    });
-  }
 
-  onSubmit() {
+  submit() {
     if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
       this.addRecord();
     } else {
@@ -58,17 +62,15 @@ export class AdministrationAddComponent implements OnInit {
     }
   }
   
-  
-  
   addRecord() {
     if (this.form.valid) {
       this.loading = true;
-      this.masterService.administration(this.form.value).subscribe((data: any) => {
+      this.masterService.accessControl(this.form.value).subscribe((data: any) => {
         if (data) {
           this.loading = false;
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/administration`);
+          this.router.navigateByUrl(`main/master/accesscontrol-list`);
         }
       });
     } else {
@@ -104,4 +106,3 @@ export class AdministrationAddComponent implements OnInit {
   }
   
 }
-  

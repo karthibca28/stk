@@ -44,4 +44,12 @@ export class BroadcastFormComponent implements OnInit {
     }
   }
 
+  onFileSelected(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement?.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+      console.log('Selected file:', file);
+    }
+  }
+
 }

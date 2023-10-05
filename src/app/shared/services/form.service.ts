@@ -376,4 +376,7 @@ export class FormService {
   getPoliceStationforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/policeStation`);
   }
+  getBroadCastforSeniorOfficer(){
+    return this.http.get(`${this.apiUrl}common/broadcastMessage`);
+  }
 }

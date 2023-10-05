@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
           console.log("login resp", resp)
           if (resp.data.session.accessToken) {
             sessionStorage.setItem('userInfo', JSON.stringify(resp));
-            this.userRole = resp.data.userData.roleId;
+            this.userRole = parseInt(resp.data.userData.rank.role.roleCode);
+            console.log(this.userRole);
   
             let navigateTo = '';
             let successMessage = '';

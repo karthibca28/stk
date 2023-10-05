@@ -98,7 +98,7 @@ export class SubDivisionFormComponent implements OnInit {
     });
   }
   submit() {
-    if (this.editMasterId === 0) {
+    if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
       this.addRecord();
     } else {
       this.updateRecord();
