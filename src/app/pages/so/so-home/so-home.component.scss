@@ -86,3 +86,21 @@
 .ho-ev-link a {
     font-size: 11px;
 }
+
+.card-content {
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .knob-container {
+    margin: 0 5px;
+  }
+  
+  .small-knob {
+    max-width: 75px;
+  }
+  
+  
+  
