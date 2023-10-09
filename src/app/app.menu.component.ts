@@ -104,7 +104,10 @@ export class AppMenuComponent implements OnInit {
             // },
             // Senior officer
             {
-                label: 'Inventory', icon: 'fab fa-delicious', access: '4,5', routerLink: ['/main/lot/assetList']
+                label: 'Inventory', icon: 'fab fa-delicious', access: '4', routerLink: ['/main/lot/assetList']
+            },
+            {
+                label: 'Inventory', icon: 'fab fa-delicious', access: '5', routerLink: ['/main/lot/inventory']
             },
             {
                 label: 'Report', icon: 'fab fa-delicious', access: '4,5', routerLink: ['/main/performance/report']

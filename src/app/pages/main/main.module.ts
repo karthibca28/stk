@@ -15,6 +15,7 @@ import { VIPRoutesComponent } from './vip-routes/vip-routes.component';
 import { PoliceStationComponent } from './police-station/police-station.component';
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { BroadcastFormComponent } from './broadcast-form/broadcast-form.componen
     PoliceStationComponent,
     BroadcastComponent,
     BroadcastFormComponent,
+    InventoryComponent,
   ],
   imports: [
     CommonModule,

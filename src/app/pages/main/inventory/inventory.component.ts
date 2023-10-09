@@ -1,16 +1,16 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Table } from 'primeng/table';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Table } from 'exceljs';
+import { ConfirmationService } from 'primeng/api';
 import { FormService } from 'src/app/shared/services/form.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { ConfirmationService } from 'primeng/api';
 
 @Component({
-  selector: 'app-asset',
-  templateUrl: './asset.component.html',
-  styleUrls: ['./asset.component.scss']
+  selector: 'app-inventory',
+  templateUrl: './inventory.component.html',
+  styleUrls: ['./inventory.component.scss']
 })
-export class AssetComponent implements OnInit {
+export class InventoryComponent implements OnInit {
   @ViewChild('dt') table: Table;
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
@@ -97,9 +97,9 @@ export class AssetComponent implements OnInit {
 
   
   
-  clear(table: Table) {
-      table.clear();
-      this.filter.nativeElement.value = '';
-  }
+  // clear(table: Table) {
+  //     table.clear();
+  //     this.filter.nativeElement.value = '';
+  // }
 
 }

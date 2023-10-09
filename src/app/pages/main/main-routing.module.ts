@@ -10,6 +10,7 @@ import { VIPRoutesComponent } from './vip-routes/vip-routes.component';
 import { PoliceStationComponent } from './police-station/police-station.component';
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
+import { InventoryComponent } from './inventory/inventory.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'broadCast-form',
     component: BroadcastFormComponent
+  },
+  {
+    path: 'inventory',
+    component: InventoryComponent
   },
 ];
 
