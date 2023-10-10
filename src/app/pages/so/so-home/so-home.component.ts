@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { APIResponse } from 'src/app/shared/models/api-response';
@@ -55,12 +56,12 @@ export class SoHomeComponent implements OnInit {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
           {
-              label: 'My First dataset',
+              label: 'Driving Licence',
               backgroundColor: '#42A5F5',
               data: [65, 59, 80, 81, 56, 55, 40]
           },
           {
-              label: 'My Second dataset',
+              label: 'Registration Certificates',
               backgroundColor: '#FFA726',
               data: [28, 48, 40, 19, 86, 27, 90]
           }
@@ -100,7 +101,7 @@ this.stackedData = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [{
       type: 'bar',
-      label: 'Dataset 1',
+      label: 'Constable',
       backgroundColor: '#42A5F5',
       data: [
           50,
@@ -113,7 +114,7 @@ this.stackedData = {
       ]
   }, {
       type: 'bar',
-      label: 'Dataset 2',
+      label: 'Inspector',
       backgroundColor: '#66BB6A',
       data: [
           21,
@@ -126,7 +127,7 @@ this.stackedData = {
       ]
   }, {
       type: 'bar',
-      label: 'Dataset 3',
+      label: 'Senior Officer',
       backgroundColor: '#FFA726',
       data: [
           41,

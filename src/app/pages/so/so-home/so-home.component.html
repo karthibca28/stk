@@ -15,17 +15,17 @@
                             <div class="knob-container">
                                 <p>Constable</p>
                               <p-knob [(ngModel)]="value" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
-                              <p>cons:100</p>
+                              <p>130</p>
                             </div>
                             <div class="knob-container">
                                 <p>Inspector</p>
                               <p-knob [(ngModel)]="value3" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
-                              <p>cons:100</p>
+                              <p>300</p>
                             </div>
                             <div class="knob-container">
                                 <p>Senior Officer</p>
                               <p-knob [(ngModel)]="value4" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
-                              <p>cons:100</p>
+                              <p>450</p>
                             </div>
                           </div>
                         </div>
@@ -42,17 +42,17 @@
                                 <div class="knob-container">
                                     <p>Constable</p>
                                   <p-knob [(ngModel)]="value2" [strokeWidth]="9" valueColor="#05386B" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>cons:100</p>
+                                  <p>130</p>
                                 </div>
                                 <div class="knob-container">
                                      <p>Inspector</p>
                                   <p-knob [(ngModel)]="value" [strokeWidth]="9" valueColor="#05386B" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>cons:100</p>
+                                  <p>300</p>
                                 </div>
                                 <div class="knob-container">
                                     <p>Senior Officer</p>
                                   <p-knob [(ngModel)]="value4" [strokeWidth]="9" valueColor="#05386B" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>cons:100</p>
+                                  <p>450</p>
                                 </div>
                               </div>
                         </div>
@@ -67,17 +67,17 @@
                                 <div class="knob-container">
                                     <p>Constable</p>
                                   <p-knob [(ngModel)]="value1" [strokeWidth]="9" valueColor="#4280F7" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>cons:100</p>
+                                  <p>130</p>
                                 </div>
                                 <div class="knob-container">
                                      <p>Inspector</p>
                                   <p-knob [(ngModel)]="value" [strokeWidth]="9" valueColor="#4280F7" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>cons:100</p>
+                                  <p>300</p>
                                 </div>
                                 <div class="knob-container">
                                     <p>Senior Officer</p>
                                   <p-knob [(ngModel)]="value3" [strokeWidth]="9" valueColor="#4280F7" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>cons:100</p>
+                                  <p>450</p>
                                 </div>
                               </div>
                         </div>
@@ -160,4 +160,54 @@
             </div>
         </div>
     </div>
-   </div>
+    
+    <!-- <div class="grid match-height">
+        <div class="col-12 md:col-12">
+            <div class="card p-0">
+                <div class="card-header" style="padding: 10px 12px;border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <p class="mb-0 tbold">Types of Duties</p>
+                </div>
+                <div class="card-body px-2">
+                    <div class="col-12 md:col-3" style="border-radius: 15px;border: solid 0.5px black">
+                        <div>
+                            
+                        </div>
+                      </div>   
+                      <div class="col-12 md:col-3" style="border-radius: 15px;border: solid 0.5px black">
+                    </div>   
+                    <div class="col-12 md:col-3" style="border-radius: 15px;border: solid 0.5px black">
+                    </div>   
+                    <div class="col-12 md:col-3" style="border-radius: 15px;border: solid 0.5px black">
+                    </div>   
+                    
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+<!-- Broadcast modal -->
+<p-dialog header="Broadcast Message" [(visible)]="broadCastModal" [modal]="true" [style]="{width: '40vw'}"
+    [breakpoints]="{'960px': '95vw'}" [draggable]="false" [resizable]="false">
+    <div class="grid bg-white">
+        <div class="col-6 md:col-6" routerLink="/main/broadcast-message">
+            <div class="card white border-highlight">
+                <div class="text-center">
+                    <img src="assets/images/dashboard/newmsg.png" alt="Beat" width="34">
+                    <p class="mb-0 text-md font-semibold">
+                      New Message
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 md:col-6" routerLink="/main/broadcast-message-view">
+            <div class="card white border-highlight">
+                <div class="text-center">
+                    <img src="assets/images/dashboard/listmsg.png" alt="Beat" width="34">
+                    <p class="mb-0 text-md font-semibold">
+                      View Broadcast Message
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</p-dialog>
