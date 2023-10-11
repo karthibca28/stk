@@ -102,7 +102,7 @@ this.stackedData = {
   datasets: [{
       type: 'bar',
       label: 'Constable',
-      backgroundColor: '#42A5F5',
+      backgroundColor: '#4155C6',
       data: [
           50,
           25,
@@ -115,7 +115,7 @@ this.stackedData = {
   }, {
       type: 'bar',
       label: 'Inspector',
-      backgroundColor: '#66BB6A',
+      backgroundColor: '#FF7E79',
       data: [
           21,
           84,
@@ -128,7 +128,7 @@ this.stackedData = {
   }, {
       type: 'bar',
       label: 'Senior Officer',
-      backgroundColor: '#FFA726',
+      backgroundColor: '#FFE500',
       data: [
           41,
           52,
