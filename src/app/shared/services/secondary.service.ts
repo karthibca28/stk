@@ -19,6 +19,9 @@ export class SecondaryService {
   getDashboard() {
       return this.http.get(`${this.apiUrl}seniorOfficer/dashboard`);
   }
+  getDashboardAdmin() {
+    return this.http.get(`${this.apiUrl}admin/dashboard`);
+}
   getList(data: any) {
       return this.http.post(`${this.apiUrl}webSo/getList`, data);
   }
@@ -28,6 +31,11 @@ export class SecondaryService {
   getDlCheck(){
     return this.http.get(`${this.apiUrl}seniorOfficer/dlCheck?dateFilter=thisYear`);
   }
-
+  getChartDataForAdminDLRC(){
+    return this.http.get(`${this.apiUrl}admin/dlrcDashboard?dateType=day`);
+  }
+  getChartDataForAdmin(){
+    return this.http.get(`${this.apiUrl}admin/challanDashboard?dateType=day`);
+  }
 
 }

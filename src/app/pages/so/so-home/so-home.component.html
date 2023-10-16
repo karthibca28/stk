@@ -1,90 +1,48 @@
 <div class="seniorOfficer">
     <div class="grid match-height">
-        <div class="col-12">
+        <div class="col-12 md:col-12">
+        <div class="col-12 md:col-12">
             <div class="card"  style="box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);" >
                 <div class="grid mx-0 mt-0" style="border-radius: 8px;">
-                    <!-- <div class="col-12 text-center pb-2">
-                        <p class="mb-0 font-bold text-lg">User Activities</p>
-                    </div> -->
-                    <div class="col-12 md:col-4" style="border-radius: 15px;" >
-                        <div class="card text-center cp" style="border: solid 0.5px black;" (click)="listView('activeLogin','user','all')">
-                          <p class="font-semibold">
-                            Active User
-                          </p>
-                          <div class="card-content">
-                            <div class="knob-container">
-                                <p>Constable</p>
-                              <p-knob [(ngModel)]="value" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
-                              <p>130</p>
-                            </div>
-                            <div class="knob-container">
-                                <p>Inspector</p>
-                              <p-knob [(ngModel)]="value3" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
-                              <p>300</p>
-                            </div>
-                            <div class="knob-container">
-                                <p>Senior Officer</p>
-                              <p-knob [(ngModel)]="value4" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
-                              <p>450</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>                  
-                      
-                      
-                    <div class="col-12 md:col-4" style="border-radius: 15px;">
-                        <!-- routerLink="/main/so/userInact" -->
-                        <div class="card text-center cp" style="border: solid 0.5px black;" (click)="listView('inactiveLogin','user','all')">
-                            <p class="font-semibold">
-                                Inactive User
-                            </p>
-                            <div class="card-content">
-                                <div class="knob-container">
-                                    <p>Constable</p>
-                                  <p-knob [(ngModel)]="value2" [strokeWidth]="9" valueColor="#05386B" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>130</p>
-                                </div>
-                                <div class="knob-container">
-                                     <p>Inspector</p>
-                                  <p-knob [(ngModel)]="value" [strokeWidth]="9" valueColor="#05386B" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>300</p>
-                                </div>
-                                <div class="knob-container">
-                                    <p>Senior Officer</p>
-                                  <p-knob [(ngModel)]="value4" [strokeWidth]="9" valueColor="#05386B" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>450</p>
-                                </div>
-                              </div>
+                    <div class="col-12 md:col-4" style="display: flex; flex-direction: column;">
+                        <h3 class="font-semibold">
+                            Total User
+                        </h3>
+                        <div class="card text-center cp" style="border: solid 0.3px rgb(95, 93, 93);height: 170px;">
+                            <p class="tbold mt-2">Total User Count</p>
+                            <p class="font-semibold"><span style="color: red;font-size: 4.5rem;">{{dashboardData?.userSummary.userTotal}}</span></p>
                         </div>
                     </div>
-                    <div class="col-12 md:col-4">
-                        <!-- routerLink="/main/so/user" -->
-                        <div class="card text-center cp" style="border: solid 0.5px black;" (click)="listView('notLogin','user','all')">
-                            <p class="font-semibold">
-                                Never Logged
-                            </p>
+                    <div class="col-12 md:col-8" style="border-radius: 15px; display: flex; flex-direction: column;">
+                        <h3 class="font-semibold">
+                            User Summary
+                        </h3>
+                        <div class="card text-center cp" style="border: solid 0.3px rgb(95, 93, 93);height: 170px;" (click)="listView('activeLogin','user','all')">
                             <div class="card-content">
                                 <div class="knob-container">
-                                    <p>Constable</p>
-                                  <p-knob [(ngModel)]="value1" [strokeWidth]="9" valueColor="#4280F7" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>130</p>
+                                    <p class="tbold">Active</p>
+                                    <p-knob [(ngModel)]="userActivePercentage" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
+                                    <p>{{dashboardData?.userSummary.userActive}}</p>
                                 </div>
+                
                                 <div class="knob-container">
-                                     <p>Inspector</p>
-                                  <p-knob [(ngModel)]="value" [strokeWidth]="9" valueColor="#4280F7" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>300</p>
+                                    <p class="tbold">Inactive</p>
+                                    <p-knob [(ngModel)]="userInActivePercentage" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
+                                    <p>{{dashboardData?.userSummary.userInActive}}</p>
                                 </div>
+                
                                 <div class="knob-container">
-                                    <p>Senior Officer</p>
-                                  <p-knob [(ngModel)]="value3" [strokeWidth]="9" valueColor="#4280F7" [size]="60" class="knob small-knob"></p-knob>
-                                  <p>450</p>
+                                    <p class="tbold">Not Logged In</p>
+                                    <p-knob [(ngModel)]="userNotLoginPercentage" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
+                                    <p>{{dashboardData?.userSummary.userNotLogin}}</p>
                                 </div>
-                              </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div>                
             </div>
         </div>
+    </div>
     </div>
     <div class="grid match-height">
         <div class="col-12 md:col-6">
@@ -121,31 +79,38 @@
             <p class="mb-0 tbold">Types of Duties</p>
             <div class="duty-container">
                 <div class="duty-item">
-                    <img src="../../../../assets/Admin Dashboard/no-alcohol_10641470 1.png">
+                    <img src="../../../../assets/Admin Dashboard/JP2.png">
                     <div class="duty-content">
-                        <span class="font-semibold">Drunk and Drive</span>
-                        <span class="mt-2">13</span>
+                        <span class="font-semibold">Junction Points</span>
+                        <span class="mt-2">{{junctionPoint}}</span>
                     </div>
                 </div>
                 <div class="duty-item">
-                    <img src="../../../../assets/Admin Dashboard/police_2043131 2.png">
+                    <img src="../../../../assets/Admin Dashboard/Vip Routes.png">
                     <div class="duty-content">
                         <span class="font-semibold">VIP Routes</span>
-                        <span class="mt-2">24</span>
+                        <span class="mt-2">{{vipRoutes}}</span>
                     </div>
                 </div>
                 <div class="duty-item">
-                    <img src="../../../../assets/Admin Dashboard/road-barrier.png">
+                    <img src="../../../../assets/Admin Dashboard/Sector2.png">
                     <div class="duty-content">
-                        <span class="font-semibold">Civil and RodeCuts</span>
-                        <span class="mt-2">28</span>
+                        <span class="font-semibold">Sector Duty</span>
+                        <span class="mt-2">{{sectorDuty}}</span>
                     </div>
                 </div>
                 <div class="duty-item">
-                    <img src="../../../../assets/Admin Dashboard/ruler_10049354 1.png">
+                    <img src="../../../../assets/Admin Dashboard/patrol 1.png">
                     <div class="duty-content">
-                        <span class="font-semibold">Broadcast</span>
-                        <span class="mt-2">7</span>
+                        <span class="font-semibold">Patrol Duty</span>
+                        <span class="mt-2">{{patrolDuty}}</span>
+                    </div>
+                </div>
+                <div class="duty-item">
+                    <img src="../../../../assets/Admin Dashboard/Vehicle Check.png">
+                    <div class="duty-content">
+                        <span class="font-semibold">Vehicle Check</span>
+                        <span class="mt-2">{{vehicleCheck}}</span>
                     </div>
                 </div>
             </div>

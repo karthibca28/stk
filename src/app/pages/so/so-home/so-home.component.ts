@@ -27,15 +27,20 @@ export class SoHomeComponent implements OnInit {
   msgList: any;
   totalUser: any;
   userStatus: any;
-  chartData: any;
   actionKey: any;
   basicData:any;
   basicOptions:any
-  value: number = 50;
-  value1: number = 40;
-  value2: number = 80;
-  value3: number = 30;
-  value4: number = 90;
+  dashboardData: any;
+  userActivePercentage: number;
+  userInActivePercentage: number;
+  userNotLoginPercentage: number;
+  junctionPoint:any
+  vehicleCheck:any
+  vipRoutes:any
+  sectorDuty:any
+  patrolDuty:any
+  chartData: any;
+  
 
   constructor(private router: Router, private formService: FormService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
 
@@ -45,28 +50,24 @@ export class SoHomeComponent implements OnInit {
     // this.getMapData();
     // this.getChartData();
     // this.getMessageQ();
-    this.stackedOptions = {
-      plugins: {
-        legend: {
-          position: 'right'
-        }
-      },
-    };
-    this.basicData = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-          {
-              label: 'Driving Licence',
-              backgroundColor: '#42A5F5',
-              data: [65, 59, 80, 81, 56, 55, 40]
-          },
-          {
-              label: 'Registration Certificates',
-              backgroundColor: '#FFA726',
-              data: [28, 48, 40, 19, 86, 27, 90]
-          }
-      ]
-  };
+    this.getChartDataDlRC();
+    this.getChartDataChallanCheck()
+   
+//     this.basicData = {
+//       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//       datasets: [
+//           {
+//               label: 'Driving Licence',
+//               backgroundColor: '#42A5F5',
+//               data: [65, 59, 80, 81, 56, 55, 40]
+//           },
+//           {
+//               label: 'Registration Certificates',
+//               backgroundColor: '#FFA726',
+//               data: [28, 48, 40, 19, 86, 27, 90]
+//           }
+//       ]
+//   };
 
   this.basicOptions = {
       plugins: {
@@ -97,49 +98,49 @@ export class SoHomeComponent implements OnInit {
   };
 
 
-this.stackedData = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [{
-      type: 'bar',
-      label: 'Constable',
-      backgroundColor: '#4155C6',
-      data: [
-          50,
-          25,
-          12,
-          48,
-          90,
-          76,
-          42
-      ]
-  }, {
-      type: 'bar',
-      label: 'Inspector',
-      backgroundColor: '#FF7E79',
-      data: [
-          21,
-          84,
-          24,
-          75,
-          37,
-          65,
-          34
-      ]
-  }, {
-      type: 'bar',
-      label: 'Senior Officer',
-      backgroundColor: '#FFE500',
-      data: [
-          41,
-          52,
-          24,
-          74,
-          23,
-          21,
-          32
-      ]
-  }]
-};
+// this.stackedData = {
+//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+//   datasets: [{
+//       type: 'bar',
+//       label: 'Constable',
+//       backgroundColor: '#4155C6',
+//       data: [
+//           50,
+//           25,
+//           12,
+//           48,
+//           90,
+//           76,
+//           42
+//       ]
+//   }, {
+//       type: 'bar',
+//       label: 'Inspector',
+//       backgroundColor: '#FF7E79',
+//       data: [
+//           21,
+//           84,
+//           24,
+//           75,
+//           37,
+//           65,
+//           34
+//       ]
+//   }, {
+//       type: 'bar',
+//       label: 'Senior Officer',
+//       backgroundColor: '#FFE500',
+//       data: [
+//           41,
+//           52,
+//           24,
+//           74,
+//           23,
+//           21,
+//           32
+//       ]
+//   }]
+// };
 
 this.stackedOptions = {
   plugins: {
@@ -176,65 +177,63 @@ this.stackedOptions = {
 };
 }
         
-
-  // getMapData() {
-  //   this.formService.getLiveBeatTracking().subscribe((resp: APIResponse) => {
-  //       this.mapData = resp.data;
-  //   })
-  // }
-  // getMessageQ() {
-  //   this.formService.getBroadcastList().subscribe((resp: any) => {
-  //     this.msgList = resp.data;
-  //   });
-  // }
-  // getSOfficerData() {
-  //   this.formService.getSOfficerData().subscribe((resp: APIResponse) => {
-  //     this.seniorData = resp.data;
-  //     console.log("senior DAta-", this.seniorData);
-  //   })
-  // }
   getDashboard() {
-    this.secondaryService.getDashboard().subscribe((resp: any) => {
-      this.actionKey = resp.nextAction;
-      this.seniorData = resp.data;
-      // console.log("SO Data-", this.actionKey);
-      this.userStatus = resp.data.chartData;
-      this.chartData = {
-        labels: this.userStatus.labels,
-        datasets: [
-            {
-                label: 'Beat',
-                summary: '00040',
-                backgroundColor: '#265791',
-                data: this.userStatus.beat
-            },
-            {
-                label: 'Task',
-                summary: '00040',
-                backgroundColor: '#18B76B',
-                data: this.userStatus.task
-            },
-            {
-              label: 'Field Duty',
-              summary: '00040',
-              backgroundColor: '#F67070',
-              data: this.userStatus.duty
-          }
-        ]
-      };
-    })
+    this.secondaryService.getDashboardAdmin().subscribe((resp: any) => {
+      this.dashboardData = resp.data;
+
+      const userTotal = this.dashboardData.userSummary.userTotal;
+      this.userActivePercentage = (this.dashboardData.userSummary.userActive / userTotal) * 100;
+      this.userInActivePercentage = (this.dashboardData.userSummary.userInActive / userTotal) * 100;
+      this.userNotLoginPercentage = (this.dashboardData.userSummary.userNotLogin / userTotal) * 100;
+      this.junctionPoint  =this.dashboardData.dutySummary.junctionPoint
+      this.vehicleCheck =this.dashboardData.dutySummary.vehicleCheck
+      this.vipRoutes =this.dashboardData.dutySummary.vipRoutes
+      this.sectorDuty =this.dashboardData.dutySummary.sectorDuty
+      this.patrolDuty =this.dashboardData.dutySummary.patrolDuty
+
+
+    });
   }
+
   listView(status: string, reType: any, calSearch: any) {
-    // nextAction: {nextAction: 'listAll', inputKey: 'all', inputId: '', reportType: ''}
     const nAction = this.actionKey.nextAction;
     const inKey = this.actionKey.inputKey;
-    const inId = 'all'; //this.actionKey.inputId;
+    const inId = 'all';
     this.router.navigate([`/main/lot/${nAction}/${status}/${reType}/${calSearch}/${inKey}/${inId}`]);
   }
-  // getChartData() {
-  //   this.formService.getChartData().subscribe((resp: any) => {
-  //     this.stackedData = resp.data;
-  //   });
-  // }
+  getChartDataDlRC() {
+    this.secondaryService.getChartDataForAdminDLRC().subscribe((resp: any) => {
+        if (resp.data) {
+          this.basicData = {
+            labels: resp.data.map(item => item.Date),
+            datasets: [
+              {
+                label: 'Total',
+                backgroundColor: '#4E4FEB',
+                data: resp.data.map(item => item.Total),
+              }
+            ]
+          };
+          console.log(this.basicData);
+        }
+      });
+  }  
+  getChartDataChallanCheck(){
+    this.secondaryService.getChartDataForAdmin().subscribe((resp: any) => {
+        if (resp.data) {
+          this.stackedData = {
+            labels: resp.data.map(item => item.Date),
+            datasets: [
+              {
+                label: 'Total',
+                backgroundColor: '#FFD93D',
+                data: resp.data.map(item => item.Total),
+              }
+            ]
+          };
+          console.log(this.basicData);
+        }
+      });
+  }
 
 }
