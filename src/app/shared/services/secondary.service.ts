@@ -31,11 +31,11 @@ export class SecondaryService {
   getDlCheck(){
     return this.http.get(`${this.apiUrl}seniorOfficer/dlCheck?dateFilter=thisYear`);
   }
-  getChartDataForAdminDLRC(){
-    return this.http.get(`${this.apiUrl}admin/dlrcDashboard?dateType=day`);
+  getChartDataForAdminDLRC(dayType:any,limit:any){
+    return this.http.get(`${this.apiUrl}admin/summaryDashboard?dateType=${dayType}&limit=${limit}`);
   }
-  getChartDataForAdmin(){
-    return this.http.get(`${this.apiUrl}admin/challanDashboard?dateType=day`);
+  getChartDataForAdmin(dayType:any,date:any,dutyType:any){
+    return this.http.get(`${this.apiUrl}admin/summaryDetailDashboard?dateType=${dayType}&date=${date}&type=${dutyType}`);
   }
 
 }

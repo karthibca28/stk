@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { SoRoutingModule } from './so-routing.module';
 import { SoHomeComponent } from './so-home/so-home.component';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 import { PrimeModule } from 'src/app/shared/modules/prime/prime.module'; 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -30,7 +31,8 @@ import { SoUserInactiveComponent } from './so-user-inactive/so-user-inactive.com
     SoRoutingModule,
     PrimeModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class SoModule { }

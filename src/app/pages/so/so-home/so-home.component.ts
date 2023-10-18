@@ -40,160 +40,52 @@ export class SoHomeComponent implements OnInit {
   sectorDuty:any
   patrolDuty:any
   chartData: any;
+  selected ='day'
+  selectedvalue = '3'
+  selectedtask = 'task'
+  data:any
+  firstDate:any
   
 
   constructor(private router: Router, private formService: FormService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
 
   ngOnInit(): void {
     this.getDashboard();
-    // this.getSOfficerData();
-    // this.getMapData();
-    // this.getChartData();
-    // this.getMessageQ();
     this.getChartDataDlRC();
     this.getChartDataChallanCheck()
-   
-//     this.basicData = {
-//       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//       datasets: [
-//           {
-//               label: 'Driving Licence',
-//               backgroundColor: '#42A5F5',
-//               data: [65, 59, 80, 81, 56, 55, 40]
-//           },
-//           {
-//               label: 'Registration Certificates',
-//               backgroundColor: '#FFA726',
-//               data: [28, 48, 40, 19, 86, 27, 90]
-//           }
-//       ]
-//   };
-
-  this.basicOptions = {
-      plugins: {
-          legend: {
-              labels: {
-                  color: '#495057'
-              }
-          }
-      },
-      scales: {
-          x: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          },
-          y: {
-              ticks: {
-                  color: '#495057'
-              },
-              grid: {
-                  color: '#ebedef'
-              }
-          }
-      }
-  };
+    }
 
 
-// this.stackedData = {
-//   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-//   datasets: [{
-//       type: 'bar',
-//       label: 'Constable',
-//       backgroundColor: '#4155C6',
-//       data: [
-//           50,
-//           25,
-//           12,
-//           48,
-//           90,
-//           76,
-//           42
-//       ]
-//   }, {
-//       type: 'bar',
-//       label: 'Inspector',
-//       backgroundColor: '#FF7E79',
-//       data: [
-//           21,
-//           84,
-//           24,
-//           75,
-//           37,
-//           65,
-//           34
-//       ]
-//   }, {
-//       type: 'bar',
-//       label: 'Senior Officer',
-//       backgroundColor: '#FFE500',
-//       data: [
-//           41,
-//           52,
-//           24,
-//           74,
-//           23,
-//           21,
-//           32
-//       ]
-//   }]
-// };
-
-this.stackedOptions = {
-  plugins: {
-      tooltips: {
-          mode: 'index',
-          intersect: false
-      },
-      legend: {
-          labels: {
-              color: '#495057'
-          }
-      }
-  },
-  scales: {
-      x: {
-          stacked: true,
-          ticks: {
-              color: '#495057'
-          },
-          grid: {
-              color: '#ebedef'
-          }
-      },
-      y: {
-          stacked: true,
-          ticks: {
-              color: '#495057'
-          },
-          grid: {
-              color: '#ebedef'
-          }
-      }
-  }
-};
+onSelectionChange(event: any) {
+  this.selected = event.value;
+  this.getChartDataDlRC();
+  this.getChartDataChallanCheck();
+}
+onSelectionChangeLimit(event: any) {
+  this.selectedvalue = event.value;
+  this.getChartDataDlRC();
+}
+onSelectionChangeTask(event:any){
+  this.selectedtask = event.value;
+  this.getChartDataChallanCheck()
 }
         
-  getDashboard() {
-    this.secondaryService.getDashboardAdmin().subscribe((resp: any) => {
-      this.dashboardData = resp.data;
+getDashboard() {
+  this.secondaryService.getDashboardAdmin().subscribe((resp: any) => {
+    this.dashboardData = resp.data;
+    const userTotal = this.dashboardData.userSummary.userTotal;
+    this.userActivePercentage = parseFloat(((this.dashboardData.userSummary.userActive / userTotal) * 100).toFixed(0));
+    this.userInActivePercentage = parseFloat(((this.dashboardData.userSummary.userInActive / userTotal) * 100).toFixed(0));
+    this.userNotLoginPercentage = parseFloat(((this.dashboardData.userSummary.userNotLogin / userTotal) * 100).toFixed(0));
+    this.junctionPoint = this.dashboardData.dutySummary.junctionPoint;
+    this.vehicleCheck = this.dashboardData.dutySummary.vehicleCheck;
+    this.vipRoutes = this.dashboardData.dutySummary.vipRoutes;
+    this.sectorDuty = this.dashboardData.dutySummary.sectorDuty;
+    this.patrolDuty = this.dashboardData.dutySummary.patrolDuty;
+  });
+}
 
-      const userTotal = this.dashboardData.userSummary.userTotal;
-      this.userActivePercentage = (this.dashboardData.userSummary.userActive / userTotal) * 100;
-      this.userInActivePercentage = (this.dashboardData.userSummary.userInActive / userTotal) * 100;
-      this.userNotLoginPercentage = (this.dashboardData.userSummary.userNotLogin / userTotal) * 100;
-      this.junctionPoint  =this.dashboardData.dutySummary.junctionPoint
-      this.vehicleCheck =this.dashboardData.dutySummary.vehicleCheck
-      this.vipRoutes =this.dashboardData.dutySummary.vipRoutes
-      this.sectorDuty =this.dashboardData.dutySummary.sectorDuty
-      this.patrolDuty =this.dashboardData.dutySummary.patrolDuty
 
-
-    });
-  }
 
   listView(status: string, reType: any, calSearch: any) {
     const nAction = this.actionKey.nextAction;
@@ -202,38 +94,53 @@ this.stackedOptions = {
     this.router.navigate([`/main/lot/${nAction}/${status}/${reType}/${calSearch}/${inKey}/${inId}`]);
   }
   getChartDataDlRC() {
-    this.secondaryService.getChartDataForAdminDLRC().subscribe((resp: any) => {
-        if (resp.data) {
-          this.basicData = {
-            labels: resp.data.map(item => item.Date),
-            datasets: [
-              {
-                label: 'Total',
-                backgroundColor: '#4E4FEB',
-                data: resp.data.map(item => item.Total),
-              }
-            ]
-          };
-          console.log(this.basicData);
-        }
-      });
-  }  
-  getChartDataChallanCheck(){
-    this.secondaryService.getChartDataForAdmin().subscribe((resp: any) => {
-        if (resp.data) {
-          this.stackedData = {
-            labels: resp.data.map(item => item.Date),
-            datasets: [
-              {
-                label: 'Total',
-                backgroundColor: '#FFD93D',
-                data: resp.data.map(item => item.Total),
-              }
-            ]
-          };
-          console.log(this.basicData);
-        }
-      });
+    this.secondaryService.getChartDataForAdminDLRC(this.selected, this.selectedvalue).subscribe((resp: any) => {
+      if (resp.data && resp.data.length > 0) {
+         this.firstDate = resp.data[0].Date; 
+        console.log('First Date:', this.firstDate);
+  
+        this.basicData = {
+          labels: resp.data.map(item => item.Date),
+          datasets: [
+            {
+              label: 'Task Total',
+              backgroundColor: '#4E4FEB',
+              data: resp.data.map(item => item.taskTotal),
+            },
+            {
+              label: 'Duty Total',
+              backgroundColor: '#C70039',
+              data: resp.data.map(item => item.dutyTotal),
+            }
+          ]
+        };
+        console.log(this.basicData);
+        this.getChartDataChallanCheck();
+      }
+    });
   }
-
+   
+  getChartDataChallanCheck() {
+    this.secondaryService.getChartDataForAdmin(this.selected, this.firstDate, this.selectedtask).subscribe((resp: any) => {
+      const datasetColors = ['#4E4FEB', '#C70039', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733'];
+  
+      this.data = {
+        labels: resp.data.map(item => item.dutyType || item.taskType),
+        datasets: [
+          {
+            backgroundColor: datasetColors,
+            data: resp.data.map(item => item.taskTotal),
+            label: 'Task Total'
+          },
+          {
+            backgroundColor: datasetColors,
+            data: resp.data.map(item => item.dutyTotal),
+            label: 'Duty Total'
+          }
+        ]
+      }
+    });
+  }
+  
+  
 }
