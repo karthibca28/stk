@@ -21,19 +21,19 @@
                             <div class="card-content">
                                 <div class="knob-container">
                                     <p class="tbold">Active</p>
-                                    <p-knob [(ngModel)]="userActivePercentage" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
+                                    <p-knob [(ngModel)]="userActivePercentage" [strokeWidth]="12" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
                                     <p>{{dashboardData?.userSummary.userActive}}</p>
                                 </div>
                 
                                 <div class="knob-container">
                                     <p class="tbold">Inactive</p>
-                                    <p-knob [(ngModel)]="userInActivePercentage" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
+                                    <p-knob [(ngModel)]="userInActivePercentage" [strokeWidth]="12" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
                                     <p>{{dashboardData?.userSummary.userInActive}}</p>
                                 </div>
                 
                                 <div class="knob-container">
                                     <p class="tbold">Not Logged In</p>
-                                    <p-knob [(ngModel)]="userNotLoginPercentage" [strokeWidth]="9" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
+                                    <p-knob [(ngModel)]="userNotLoginPercentage" [strokeWidth]="12" valueColor="#9C58F9" [size]="60" class="knob small-knob"></p-knob>
                                     <p>{{dashboardData?.userSummary.userNotLogin}}</p>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
         <div class="col-12 md:col-7">
             <div class="card p-0" style="border-radius: 0;">
                 <div class="card-header" style="padding: 10px 12px;">
-                    <h3 class="mb-0 font-semibold">DL / RC Check</h3>
+                    <h3 class="mb-0 font-semibold">Summary</h3>
                 </div>
                     <div style="display: flex;justify-content: flex-start;">
                         <mat-form-field class="ml-4">
@@ -81,14 +81,14 @@
         <div class="col-12 md:col-5">
             <div class="card p-0" style="border-radius: 0;">
                 <div class="card-header" style="padding: 10px 12px;">
-                    <p class="mb-0 tbold">Challan Check</p>
+                    <p class="mb-0 tbold">Summary Details</p>
                 </div>
                 <div style="display: flex;justify-content: flex-start;">
                     <mat-form-field class="ml-4">
-                    <mat-label>Date</mat-label>
+                    <mat-label>Type</mat-label>
                     <mat-select [(value)]="selectedtask" (selectionChange)="onSelectionChangeTask($event)">
-                      <mat-option value="task">Task Duty</mat-option>
-                      <mat-option value="duty">Duty Points</mat-option>
+                      <mat-option value="task">Task</mat-option>
+                      <mat-option value="duty">Duty</mat-option>
                     </mat-select>
                   </mat-form-field>
                 </div>

@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MasterService } from 'src/app/shared/services/master.service';
 
 @Component({
   selector: 'app-broadcast-form',
@@ -9,11 +11,86 @@ export class BroadcastFormComponent implements OnInit {
    @ViewChild('videoElement') videoElement: ElementRef;
    isCameraOpen: boolean = false;
    photoData: string | null = null;
+  form!: FormGroup;
+   zoneList:any
+   rangeList:any
+   districtList:any
+   subDivisionList:any
+   adminList:any
+   stateList:any
+   policeStationList:any
+   data:any = {}
 
-  constructor() { }
+  constructor(private masterService:MasterService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      title: [''],
+      message: ['',],
+      stateId:[''],
+      adminId:[''],
+      zoneId:[''],
+      rangeId:[''],
+      districtId:[''],
+      subDivisionId:[''],
+      policeStationId:[''],
+      description: ['']
+    });
+    this.getZoneList()
+    this.getRangeList()
+    this.getDistrictList()
+    this.getSubDivision()
+    this.getAdminList()
+    this.getStateList()
+    this.getPoliceStaion()
+    this.getAccessControl()
   }
+
+  getStateList() {
+    this.masterService.stateList().subscribe((resp: any) => {
+       this.stateList = resp.data
+    });
+  }
+
+  getAdminList() {
+    this.masterService.adminList().subscribe((resp: any) => {
+       this.adminList = resp.data
+    });
+  }
+
+
+  getZoneList() {
+    this.masterService.zone().subscribe((resp: any) => {
+       this.zoneList = resp.data
+    });
+  }
+
+  getRangeList() {
+    this.masterService.range().subscribe((resp: any) => {
+       this.rangeList = resp.data
+    });
+  }
+   getDistrictList() {
+    this.masterService.district().subscribe((resp: any) => {
+       this.districtList = resp.data
+    });
+  }
+  getSubDivision() {
+    this.masterService.subDivision().subscribe((resp: any) => {
+       this.subDivisionList = resp.data
+    });
+  }
+  getPoliceStaion() {
+    this.masterService.policeStation().subscribe((resp: any) => {
+       this.policeStationList = resp.data
+    });
+  }
+  getAccessControl() {
+    this.masterService.findAccessControl().subscribe((resp: any) => {
+      this.data = resp.data; 
+    });
+  }
+  
 
   openCamera() {
     const video = this.videoElement.nativeElement;
@@ -29,6 +106,9 @@ export class BroadcastFormComponent implements OnInit {
     } else {
       console.error('getUserMedia is not supported on this browser');
     }
+  }
+  submit(){
+    
   }
 
   takePhoto() {

@@ -51,6 +51,9 @@ export class MasterService {
   roleList(){
     return this.http.get(`${this.apiUrl}admin/role`);
   }
+  findAccessControl() {
+    return this.http.get(`${this.apiUrl}common/access`);
+  }
 
 
   // Add Details
