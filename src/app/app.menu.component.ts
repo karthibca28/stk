@@ -89,7 +89,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Sub Division', icon: 'pi pi-file', routerLink: ['/main/master/sub-division-list'] },
                     { label: 'Police Station', icon: 'pi pi-file', routerLink: ['/main/master/police-station-list'] },
                     { label: 'Access Control', icon: 'pi pi-file', routerLink: ['/main/master/accesscontrol-list'] },
-                    { label: 'Inventory', icon: 'pi pi-file', routerLink: ['/main/master/inventorytype-list'] },
+                    { label: 'Inventory Type', icon: 'pi pi-file', routerLink: ['/main/master/inventorytype-list'] },
                     { label: 'Rank', icon: 'pi pi-file', routerLink: ['/main/master/rank-list'] },
                     { label: 'Role', icon: 'pi pi-file', routerLink: ['/main/master/role-list'] },
                 ]
