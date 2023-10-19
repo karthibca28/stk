@@ -83,18 +83,23 @@ export class AccesscontrolFormComponent implements OnInit {
       this.loading = true;
       let value = {
         id :this.editMasterId,
-        code:this.form.value.code,
-        name:this.form.value.name,
-        description:this.form.value.description, 
-        stateId:this.form.value.stateId
+        description:this.form.value.description,
+        isCustom: this.form.value.isCustom,
+        stateAccess: this.form.value.stateAccess,
+        admAccess: this.form.value.admAccess,
+        zoneAccess: this.form.value.zoneAccess,
+        rangeAccess: this.form.value.rangeAccess,
+        districtAccess: this.form.value.districtAccess,
+        subDivAccess: this.form.value.subDivAccess,
+        psAccess: this.form.value.psAccess,
       }
       // const updatedData = this.form.value;
-      this.masterService.updateAdminstration(value).subscribe(
+      this.masterService.updateAccessControl(value).subscribe(
         (data: any) => {
           this.loading = false;
           this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
-          this.router.navigateByUrl(`main/master/administration`);
+          this.router.navigateByUrl(`main/master/accesscontrol-list`);
         },
         (error) => {
           console.error('Error updating record:', error);

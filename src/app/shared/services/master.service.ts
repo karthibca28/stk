@@ -90,6 +90,10 @@ export class MasterService {
       return this.http.post(`${this.apiUrl}admin/rank`, data);
     }
 
+    addBroadCast(data: FormData) {
+      return this.http.post(`${this.apiUrl}common/broadcastMessage`, data);
+  }
+
   //GetById
 getAdmistrationbyId(adminId:any){
   return this.http.get(`${this.apiUrl}admin/administration?adminId=${adminId}`)
@@ -177,6 +181,9 @@ updateRole(data: any){
 }
 updateRank(data: any){
   return this.http.put(`${this.apiUrl}admin/rank`,data);
+}
+updateAccessControl(data: any){
+  return this.http.put(`${this.apiUrl}admin/accessControl`,data);
 }
 
 }
