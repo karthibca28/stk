@@ -43,8 +43,10 @@ export class SoHomeComponent implements OnInit {
   selected ='day'
   selectedvalue = '3'
   selectedtask = 'task'
+  selectedDate:any
   data:any
   firstDate:any
+  dates:any
   
 
   constructor(private router: Router, private formService: FormService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
@@ -67,6 +69,12 @@ onSelectionChangeLimit(event: any) {
 }
 onSelectionChangeTask(event:any){
   this.selectedtask = event.value;
+  console.log(this.selectedtask)
+  this.getChartDataChallanCheck()
+}
+onSelectionChangeDate(event:any){
+  this.firstDate = event.value;
+  console.log(this.selectedDate)
   this.getChartDataChallanCheck()
 }
         
@@ -95,22 +103,23 @@ getDashboard() {
   }
   getChartDataDlRC() {
     this.secondaryService.getChartDataForAdminDLRC(this.selected, this.selectedvalue).subscribe((resp: any) => {
-      if (resp.data && resp.data.length > 0) {
-         this.firstDate = resp.data[0].Date; 
-        console.log('First Date:', this.firstDate);
+      if (resp.data && resp.data.summary && resp.data.summary.length > 0) {
+        this.firstDate = resp.data.dates[0];
+        this.dates = resp.data.dates
+        console.log('First Date:', resp.data.dates);
   
         this.basicData = {
-          labels: resp.data.map(item => item.Date),
+          labels: resp.data.dates,
           datasets: [
             {
               label: 'Task Total',
               backgroundColor: '#4E4FEB',
-              data: resp.data.map(item => item.taskTotal),
+              data: resp.data.summary.map(item => item.taskTotal),
             },
             {
               label: 'Duty Total',
               backgroundColor: '#C70039',
-              data: resp.data.map(item => item.dutyTotal),
+              data: resp.data.summary.map(item => item.dutyTotal),
             }
           ]
         };
@@ -122,7 +131,7 @@ getDashboard() {
    
   getChartDataChallanCheck() {
     this.secondaryService.getChartDataForAdmin(this.selected, this.firstDate, this.selectedtask).subscribe((resp: any) => {
-      const datasetColors = ['#4E4FEB', '#C70039', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733'];
+    const datasetColors = [ '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733','#4E4FEB', '#C70039'];
   
       this.data = {
         labels: resp.data.map(item => item.dutyType || item.taskType),

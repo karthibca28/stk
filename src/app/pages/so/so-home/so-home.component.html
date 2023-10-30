@@ -84,7 +84,17 @@
                     <p class="mb-0 tbold">Summary Details</p>
                 </div>
                 <div style="display: flex;justify-content: flex-start;">
-                    <mat-form-field class="ml-4">
+                    <mat-form-field class="ml-2">
+                    <mat-label>Date</mat-label>
+                    <mat-select (selectionChange)="onSelectionChangeDate($event)">
+                        <mat-option *ngFor="let dates of dates" [value]="dates" >
+                          {{dates}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                </div>
+                  <div style="display: flex;justify-content: flex-start;">
+                  <mat-form-field class="ml-2">
                     <mat-label>Type</mat-label>
                     <mat-select [(value)]="selectedtask" (selectionChange)="onSelectionChangeTask($event)">
                       <mat-option value="task">Task</mat-option>
