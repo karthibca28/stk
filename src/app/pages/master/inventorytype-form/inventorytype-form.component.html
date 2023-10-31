@@ -1,1 +1,30 @@
-<p>inventorytype-form works!</p>
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="submit()">
+    <h3 class="color-04">Inventory List</h3>
+    <div class="grid">
+        <div class="col-12 md:col-6">
+            <mat-card class="md:px-5">
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Inventory Type</mat-label>
+                        <input matInput formControlName="inventoryType">
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Inventory Type Code</mat-label>
+                        <input matInput formControlName="inventoryTypeCode">
+                    </mat-form-field>
+                </div>
+               <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="text-right">
+                    <button mat-raised-button mat-button color="primary">Add</button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</form>

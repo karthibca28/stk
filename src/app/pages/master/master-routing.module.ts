@@ -129,6 +129,10 @@ const routes: Routes = [
     component: InventorytypeFormComponent
   },
   {
+    path: 'inventorytype-form/:inventoryTypeId',
+    component: InventorytypeFormComponent
+  },
+  {
     path: 'rank-list',
     component: RankListComponent
   },

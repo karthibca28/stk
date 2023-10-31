@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -10,7 +11,10 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   styleUrls: ['./inventorytype-list.component.scss']
 })
 export class InventorytypeListComponent implements OnInit {
-  dynamaicDataForTable:any
+  dynamaicDataForTable:any;
+  @ViewChild('dt') table: Table;
+  @ViewChild('filter') filter: ElementRef;
+  //stateId:any;
 
   constructor(private router: Router,private masterService:MasterService,private confirmationService: ConfirmationService,
     private sharedService: SharedService,) { }
@@ -23,25 +27,26 @@ export class InventorytypeListComponent implements OnInit {
     this.masterService.inventoryTypeList().subscribe((formData: any) => {
         const values = formData.data;
         const cols = [
-          { field: 'fullName', header: 'FullName', type: 'text' },
+         // { field: 'fullName', header: 'FullName', type: 'text' },
           { field: 'inventoryType', header: 'Inventory Type', type: 'text' },
-          { field: 'description', header: 'Description', type: 'text' },
-          { field: 'inventoryTypeCode', header: 'InventoryType Code', type: 'text' },
+         { field: 'inventoryTypeCode', header: 'InventoryType Code', type: 'text' },
+         { field: 'description', header: 'Description', type: 'text' },
 
 
         ];
         this.dynamaicDataForTable = {cols, values};
-        values.forEach((value) => {
-          value.fullName = value.createdBy?.fullName; 
-        });  
+        console.log("data",this.dynamaicDataForTable)
+        // values.forEach((value) => {
+        //   value.fullName = value.createdBy?.fullName; 
+        // });  
     });
     
   }
 
-  editRecord(adminId:any){
-    // debugger
-    // this.router.navigate([`main/master/administration-form`,adminId])
+  editRecord(stateId: number) {
+      this.router.navigateByUrl(`main/master/inventorytype-form/${stateId}`);
   }
+  
   deleteRecord(inventoryTypeId:number){
     this.confirmationService.confirm({
         message: 'Are you sure you want to delete the record?',
@@ -56,6 +61,10 @@ export class InventorytypeListComponent implements OnInit {
         }
     });
   }
+  clear(table: Table) {
+    table.clear();
+    this.filter.nativeElement.value = '';
+}
   openForm() {
     this.router.navigate(['main/master/inventorytype-form']);
 }

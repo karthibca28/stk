@@ -76,6 +76,9 @@ export class MasterService {
   addPoliceStation(data:any){
   return this.http.post(`${this.apiUrl}admin/policeStation`,data);
   }
+  addInventoryType(data:any){
+    return this.http.post(`${this.apiUrl}admin/inventoryType`, data);
+  }
 
   UserRegistration(data:any){
     return this.http.post(`${this.apiUrl}admin/user`,data);
@@ -112,6 +115,9 @@ getSubDivisionbyId(subDivisionId:any){
 }
 getPoliceStationbyId(policeStationId:any){
   return this.http.get(`${this.apiUrl}admin/policeStation?policeStationId=${policeStationId}`)
+}
+getInventoryTypeId(inventoryTypeId:any){
+  return this.http.get(`${this.apiUrl}admin/inventoryType?inventoryTypeId=${inventoryTypeId}`)
 }
 getAccessControlbyId(accessControlId:any){
   return this.http.get(`${this.apiUrl}admin/accessControl?accessId=${accessControlId}`)
@@ -184,6 +190,9 @@ updateRank(data: any){
 }
 updateAccessControl(data: any){
   return this.http.put(`${this.apiUrl}admin/accessControl`,data);
+}
+updateInventoryType(data:any){
+  return this.http.put(`${this.apiUrl}admin/inventoryType`, data);
 }
 
 }
