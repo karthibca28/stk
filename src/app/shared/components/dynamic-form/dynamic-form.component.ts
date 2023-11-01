@@ -143,13 +143,13 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
     if (!changes.jsonFormData.firstChange) {
       //console.log(this.jsonFormData);
       const userData = JSON.parse(sessionStorage.getItem('userInfo'));
-      if ((this.jsonFormData.formHeader === 'Beat Form') && userData.data.roleId == 5) {
+      if ((this.jsonFormData.formHeader === 'Beat Form') && userData.data.roleId == 6) {
         this.jsonFormData.controls[1].value = this.jsonFormData.controls[1].value == '' ?? userData.data.userId;
         this.jsonFormData.controls[1].type = 'hidden';
       }
       if ((this.jsonFormData.formHeader === 'Court Duty' || this.jsonFormData.formHeader === 'Hospital Duty' ||
         this.jsonFormData.formHeader === 'Tappal Service' || this.jsonFormData.formHeader === 'Petition Enquiry' ||
-        this.jsonFormData.formHeader === 'Summon / Warrant') && userData.data.roleId == 5) {
+        this.jsonFormData.formHeader === 'Summon / Warrant') && userData.data.roleId == 6) {
         this.jsonFormData.controls[0].value = userData.data.userId;
         this.jsonFormData.controls[0].type = 'hidden';
       }
@@ -168,7 +168,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
       // 10: {id: "12", displayName: "Alerts",
 
       if ((this.jsonFormData.formHeader === 'Person Check'
-      ) && userData.data.roleId == 5) {
+      ) && userData.data.roleId == 6) {
 
         this.jsonFormData.controls[1].value = userData.data.userId;
         this.jsonFormData.controls[1].type = 'hidden';
@@ -182,7 +182,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
         this.jsonFormData.formHeader === 'Locked House' ||
         this.jsonFormData.formHeader === 'Alerts' ||
         this.jsonFormData.formHeader === 'Unregistered Senior Citizen check'
-      ) && userData.data.roleId == 5) {
+      ) && userData.data.roleId == 6) {
 
         this.jsonFormData.controls[0].value = userData.data.userId;
         this.jsonFormData.controls[0].type = 'hidden';

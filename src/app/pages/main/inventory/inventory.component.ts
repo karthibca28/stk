@@ -28,7 +28,7 @@ export class InventoryComponent implements OnInit {
     this.getInventorySummary();
     const userData = JSON.parse(sessionStorage.getItem('userInfo'));
     this.roleId = parseInt(userData.data.userData.rank.role.roleCode)
-    if (this.roleId === 5) {
+    if (this.roleId === 6) {
       this.isAdmin = true;
     } else if(this.roleId === 2) {
       this.isDAdmin = true;

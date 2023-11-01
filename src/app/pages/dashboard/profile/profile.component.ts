@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
     } else if(this.roleId === 4) {
       this.isSHO  = true;
     }
-    else if(this.roleId === 5) {
+    else if(this.roleId === 6) {
       this.Admin  = true;
     }
     // this.userId=this.userData.data.userData.id
