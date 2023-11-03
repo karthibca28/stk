@@ -20,24 +20,42 @@ export class MasterService {
   adminList() {
     return this.http.get(`${this.apiUrl}admin/administration`);
   }
+  adminListUser(stateId:any) {
+    return this.http.get(`${this.apiUrl}admin/administration?stateId=${stateId}`);
+  }
   pageadminList(pageNumber:number) {
     return this.http.get(`${this.apiUrl}admin/administration?pageNumber=${pageNumber}&pageSize=10`);
   }
   zone() {
     return this.http.get(`${this.apiUrl}admin/zone`);
   }
+  getZoneUser(adminId:any) {
+    return this.http.get(`${this.apiUrl}admin/zone?adminId=${adminId}`);
+  }
   range(){
     return this.http.get(`${this.apiUrl}admin/range`);
+  }
+  getRangeUser(zoneId:any){
+    return this.http.get(`${this.apiUrl}admin/range?zoneId=${zoneId}`);
   }
  
   district() {
     return this.http.get(`${this.apiUrl}admin/district`);
   }
+  getDistrictUser(rangeId:any) {
+    return this.http.get(`${this.apiUrl}admin/district?rangeId=${rangeId}`);
+  }
   subDivision() {
     return this.http.get(`${this.apiUrl}admin/subDivision`);
   }
+  getSubDivisionUser(districtId:any) {
+    return this.http.get(`${this.apiUrl}admin/subDivision?districtId=${districtId}`);
+  }
   policeStation() {
     return this.http.get(`${this.apiUrl}admin/policeStation`);
+  }
+  getPoliceStationUser(subDivisionId:any) {
+    return this.http.get(`${this.apiUrl}admin/policeStation?subDivisionId=${subDivisionId}`);
   }
   accessControlList(){
     return this.http.get(`${this.apiUrl}admin/accessControl`);

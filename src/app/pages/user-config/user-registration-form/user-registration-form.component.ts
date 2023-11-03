@@ -20,12 +20,15 @@ export class UserRegistrationFormComponent implements OnInit {
   editMasterId: any;
   loading = false;
   stateList:any
+  rankList:any
   zoneList:any
   rangeList:any
+  roleList:any
   districtList:any
   subDivisionList:any
   adminList:any
   policeStationList:any
+  userData:any
   constructor(private formService: FormService, private router: Router,private masterService:MasterService, private formBuilder: FormBuilder,
      private sharedService: SharedService, private actRouter: ActivatedRoute) { }
 
@@ -48,7 +51,7 @@ export class UserRegistrationFormComponent implements OnInit {
       password:['',Validators.required],
       pinHash:[''],
       roleId:['',Validators.required],
-      rankNo:['',Validators.required],
+      rankName:['',Validators.required],
       adminId:['',Validators.required],
       stateId:[''],
       zoneId:['',Validators.required],
@@ -57,23 +60,31 @@ export class UserRegistrationFormComponent implements OnInit {
       subDivisionId:['',Validators.required],
       policeStationId: ['',Validators.required]
     });
+    this.getRoleList()
+    this.getRankList()
     this.getStateList()
-    this.getZoneList()
-    this.getRangeList()
-    this.getDistrictList()
-    this.getSubDivision()
-    this.getAdminList()
-    this.getPoliceStationList()
+    //this.getZoneList()
+    //this.getRangeList()
+    //this.getDistrictList()
+    //this.getSubDivision()
+    // this.getAdminList()
+    //this.getPoliceStationList()
   }
 
-  getPoliceStationList() {
-    this.masterService.policeStation().subscribe((resp: any) => {
+getRoleList(){
+  this.masterService.roleList().subscribe((resp: any) =>{
+    this.roleList = resp.data
+  })
+}
+
+  getPoliceStationList(subDivisionId:any) {
+    this.masterService.getPoliceStationUser(subDivisionId).subscribe((resp: any) => {
     this.policeStationList = resp.data
     });
   }
 
-  getAdminList() {
-    this.masterService.adminList().subscribe((resp: any) => {
+  getAdminList(stateId:any) {
+    this.masterService.adminListUser(stateId).subscribe((resp: any) => {
        this.adminList = resp.data
     });
   }
@@ -83,25 +94,31 @@ export class UserRegistrationFormComponent implements OnInit {
        this.stateList = resp.data
     });
   }
+  getRankList(){
+    this.masterService.rankList().subscribe((resp: any) =>{
+      this.rankList = resp.data
+      console.log("da",resp.data)
+    })
+  }
 
-  getZoneList() {
-    this.masterService.zone().subscribe((resp: any) => {
+  getZoneList(adminId:any) {
+    this.masterService.getZoneUser(adminId).subscribe((resp: any) => {
        this.zoneList = resp.data
     });
   }
 
-  getRangeList() {
-    this.masterService.range().subscribe((resp: any) => {
+  getRangeList(zoneId:any) {
+    this.masterService.getRangeUser(zoneId).subscribe((resp: any) => {
        this.rangeList = resp.data
     });
   }
-   getDistrictList() {
-    this.masterService.district().subscribe((resp: any) => {
+   getDistrictList(rangeId:any) {
+    this.masterService.getDistrictUser(rangeId).subscribe((resp: any) => {
        this.districtList = resp.data
     });
   }
-  getSubDivision() {
-    this.masterService.subDivision().subscribe((resp: any) => {
+  getSubDivision(districtId:any) {
+    this.masterService.getSubDivisionUser(districtId).subscribe((resp: any) => {
        this.subDivisionList = resp.data
     });
   }

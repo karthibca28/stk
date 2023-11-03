@@ -37,6 +37,7 @@ export class UserRegistrationListComponent implements OnInit {
   
   ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log("LoginData",this.userData)
     if(this.userData.data.userData.roleId === 4) {
       this.isDAdmin = true;
     }

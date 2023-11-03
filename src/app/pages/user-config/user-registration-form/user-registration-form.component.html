@@ -1,200 +1,240 @@
 <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="submit()">
-<div class="grid">
+  <div class="grid">
     <div class="col-12 pb-0">
-        <div class="flex align-items-center justify-content-between mb-2">
-            <div class="title">
-                <h3 class="color-04">User Registration</h3>
-                
-            </div>
-            <div class="btn-top">
-                <button pButton label="Go to List" type="button" icon="pi pi-arrow-left" class="p-button-info border5" (click)="cancel()"></button>
-            </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <div class="title">
+          <h3 class="color-04">User Registration</h3>
+
         </div>
-	</div>
-	<div class="col-12 md:col-6 pt-0">
-        <mat-card class="md:px-5">
-            <!-- <label class="form-label">First Name</label>
+        <div class="btn-top">
+          <button pButton label="Go to List" type="button" icon="pi pi-arrow-left" class="p-button-info border5"
+            (click)="cancel()"></button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 md:col-12 pt-0">
+      <mat-card class="md:px-5">
+        <!-- <label class="form-label">First Name</label>
             <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
             <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                 <div *ngIf="f.firstName.errors.required">First Name is required</div>
             </div> -->
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>FirstName</mat-label>
-                    <input matInput formControlName="firstName">
-                    <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.firstName?.touched && form?.controls?.firstName?.errors?.required)">FirstName is required</mat-error>
-                </mat-form-field>
-            </div>
+        <div class="md:flex">
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>FirstName</mat-label>
+              <input matInput formControlName="firstName">
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.firstName?.touched && form?.controls?.firstName?.errors?.required)">FirstName is
+                required</mat-error>
+            </mat-form-field>
+          </div>
 
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Middle Name</mat-label>
-                    <input matInput formControlName="middleName">
-                </mat-form-field>
-            </div>
-        
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Last Name</mat-label>
-                    <input matInput formControlName="lastName">
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Gpfcps No</mat-label>
-                    <input matInput formControlName="gpfCpsNo">
-                    <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.gpfCpsNo?.touched && form?.controls?.gpfCpsNo?.errors?.required)">Gpfcs No is required</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="field">
-              <mat-form-field class="w-full">
-                <mat-label>Address</mat-label>
-                <textarea matInput placeholder="Address"></textarea>
-              </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Phone Number</mat-label>
-                    <input matInput formControlName="phone">
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email">
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>UserName</mat-label>
-                    <input matInput formControlName="userName">
-                    <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.userName?.touched && form?.controls?.userName?.errors?.required)">UserName is required</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Password</mat-label>
-                    <input matInput formControlName="password">
-                    <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.password?.touched && form?.controls?.password?.errors?.required)">Password is required</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>PinHash</mat-label>
-                    <input matInput formControlName="pinHash">
-                </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Role</mat-label>
-                    <mat-select  formControlName="roleId">
-                      <mat-option value="2">FO</mat-option>
-                      <mat-option value="3">SHO</mat-option>
-                      <mat-option value="4">SO</mat-option>
-                      <mat-option value="5">ADMIN</mat-option>
-                    </mat-select>
-                    <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.roleId?.touched && form?.controls?.roleId?.errors?.required)">Role is required</mat-error>
-                  </mat-form-field>
-            </div>
-            <div class="field">
-                <mat-form-field appearance="" class="w-full">
-                    <mat-label>Rank No</mat-label>
-                    <input matInput formControlName="rankNo">
-                    <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.rankNo?.touched && form?.controls?.rankNo?.errors?.required)">Rank No is required</mat-error>
-                </mat-form-field>
-            </div>
-           
-            <div class="field">
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Middle Name</mat-label>
+              <input matInput formControlName="middleName">
+            </mat-form-field>
+          </div>
+
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Last Name</mat-label>
+              <input matInput formControlName="lastName">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="md:flex">
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Gpfcps No</mat-label>
+              <input matInput formControlName="gpfCpsNo">
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.gpfCpsNo?.touched && form?.controls?.gpfCpsNo?.errors?.required)">Gpfcs No is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email">
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phone">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="field">
+          <mat-form-field class="w-full">
+            <mat-label>Address</mat-label>
+            <textarea matInput placeholder="Address"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="md:flex">
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>UserName</mat-label>
+              <input matInput formControlName="userName">
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.userName?.touched && form?.controls?.userName?.errors?.required)">UserName is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password">
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.password?.touched && form?.controls?.password?.errors?.required)">Password is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>PinHash</mat-label>
+              <input matInput formControlName="pinHash">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="md:flex">
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Role</mat-label>
+              <mat-select formControlName="roleId">
+                <mat-option *ngFor="let roleList of roleList" [value]="roleList.id">
+                  {{roleList.roleName}}
+                </mat-option>
+              </mat-select>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.roleId?.touched && form?.controls?.roleId?.errors?.required)">Role is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field appearance="" class="w-full">
+              <mat-label>Rank</mat-label>
+              <mat-select formControlName="rankName">
+                <mat-option *ngFor="let rankList of rankList" [value]="rankList.id">
+                  {{rankList.rankName}}
+                </mat-option>
+              </mat-select>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.rankNo?.touched && form?.controls?.rankNo?.errors?.required)">Rank is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field class="w-full">
+              <mat-label>State</mat-label>
+              <mat-select formControlName="stateId" >
+                <mat-option *ngFor="let stateList of stateList" [value]="stateList.id" (click)="getAdminList(stateList.id)">
+                  {{stateList.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="md:flex">
+          <div class="md:w-4 md:mx-1">
             <mat-form-field class="w-full">
               <mat-label>Administration</mat-label>
               <mat-select formControlName="adminId">
-                <mat-option *ngFor="let adminList of adminList" [value]="adminList.id">
+                <mat-option *ngFor="let adminList of adminList" [value]="adminList.id" (click)="getZoneList(adminList.id)">
                   {{adminList.name}}
                 </mat-option>
               </mat-select>
-              <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.adminId?.touched && form?.controls?.adminId?.errors?.required)">Administration is required</mat-error>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.adminId?.touched && form?.controls?.adminId?.errors?.required)">Administration
+                is required</mat-error>
             </mat-form-field>
-            </div>
+          </div>
 
-            <div class="field">
-                <mat-form-field class="w-full">
-                  <mat-label>State</mat-label>
-                  <mat-select formControlName="stateId">
-                    <mat-option *ngFor="let stateList of stateList" [value]="stateList.id">
-                      {{stateList.name}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                </div>
 
-                <div class="field">
-                    <mat-form-field class="w-full">
-                      <mat-label>Zone</mat-label>
-                      <mat-select formControlName="zoneId">
-                        <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id">
-                          {{zoneList.name}}
-                        </mat-option>
-                      </mat-select>
-                      <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.zoneId?.touched && form?.controls?.zoneId?.errors?.required)">Zone is required</mat-error>
-                    </mat-form-field>
-                    </div>
 
-                    <div class="field">
-                        <mat-form-field class="w-full">
-                          <mat-label>Range</mat-label>
-                          <mat-select formControlName="rangeId">
-                            <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id">
-                              {{rangeList.name}}
-                            </mat-option>
-                          </mat-select>
-                          <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.rangeId?.touched && form?.controls?.rangeId?.errors?.required)">Range is required</mat-error>
-                        </mat-form-field>
-                        </div>
-    
-                        <div class="field">
-                            <mat-form-field class="w-full">
-                                   <mat-label>District</mat-label>
-                              <mat-select formControlName="districtId">
-                                <mat-option *ngFor="let districtList of districtList" [value]="districtList.id">
-                                  {{districtList.name}}
-                                </mat-option>
-                              </mat-select>
-                      <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.districtId?.touched && form?.controls?.districtId?.errors?.required)">District is required</mat-error>
-                            </mat-form-field>
-                   </div>
-            
-                   <div class="field">
-                    <mat-form-field class="w-full">
-                           <mat-label>SubDivision</mat-label>
-                      <mat-select formControlName="subDivisionId">
-                        <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id">
-                          {{subDivisionList.name}}
-                        </mat-option>
-                      </mat-select>
-              <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivsion is required</mat-error>
-                    </mat-form-field>
-           </div>
-           <div class="field">
+          <div class="md:w-4 md:mx-1">
             <mat-form-field class="w-full">
-                   <mat-label>Police Station</mat-label>
+              <mat-label>Zone</mat-label>
+              <mat-select formControlName="zoneId">
+                <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id" (click)="getRangeList(zoneList.id)">
+                  {{zoneList.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.zoneId?.touched && form?.controls?.zoneId?.errors?.required)">Zone is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field class="w-full">
+              <mat-label>Range</mat-label>
+              <mat-select formControlName="rangeId">
+                <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id" (click)="getDistrictList(rangeList.id)">
+                  {{rangeList.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.rangeId?.touched && form?.controls?.rangeId?.errors?.required)">Range is
+                required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="md:flex">
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field class="w-full">
+              <mat-label>District</mat-label>
+              <mat-select formControlName="districtId">
+                <mat-option *ngFor="let districtList of districtList" [value]="districtList.id" (click)="getSubDivision(districtList.id)">
+                  {{districtList.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.districtId?.touched && form?.controls?.districtId?.errors?.required)">District
+                is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field class="w-full">
+              <mat-label>SubDivision</mat-label>
+              <mat-select formControlName="subDivisionId">
+                <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id" (click)="getPoliceStationList(subDivisionList.id)">
+                  {{subDivisionList.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivsion
+                is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="md:w-4 md:mx-1">
+            <mat-form-field class="w-full">
+              <mat-label>Police Station</mat-label>
               <mat-select formControlName="policeStationId">
                 <mat-option *ngFor="let policeStationList of policeStationList" [value]="policeStationList.id">
                   {{policeStationList.name}}
                 </mat-option>
               </mat-select>
-      <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.policeStationId?.touched && form?.controls?.policeStationId?.errors?.required)">Police Station is required</mat-error>
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.policeStationId?.touched && form?.controls?.policeStationId?.errors?.required)">Police
+                Station is required</mat-error>
             </mat-form-field>
-   </div>
+          </div>
+        </div>
 
-            <div class="text-right">
-                <button mat-raised-button mat-button color="primary">Add</button>
-            </div>
-        </mat-card>
+        <div class="text-right">
+          <button mat-raised-button mat-button color="primary">Add</button>
+        </div>
+      </mat-card>
 
-        <!-- <div class="card border5 pt-3rem">
+      <!-- <div class="card border5 pt-3rem">
             <app-dynamic-form [jsonFormData]="formData" (emitCancel)="cancel()" (emitSave)="submit($event)" ></app-dynamic-form>
         </div> -->
     </div>
-</div> 
-    
+  </div>
+
 </form>
