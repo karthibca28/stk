@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { APIResponse } from 'src/app/shared/models/api-response';
-import { JsonFormData } from 'src/app/shared/models/json-form-data';
-import { FormService } from 'src/app/shared/services/form.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
@@ -10,35 +9,106 @@ import { SharedService } from 'src/app/shared/services/shared.service';
   templateUrl: './rank-form.component.html',
   styleUrls: ['./rank-form.component.scss']
 })
-export class RankFormComponent implements OnInit {
-
-  public formData!: JsonFormData;
-
-  constructor(private formService: FormService, private router: Router, private sharedService: SharedService) { }
+export class RankFormComponent implements OnInit {  
+  form!: FormGroup;
+  loading = false;
+  submitting = false;
+  submitted = false;
+  editMasterId:any
+  roleList:any
+  accessControlList:any
+  constructor(private router: Router, private formBuilder: FormBuilder, 
+    private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
-     this.sharedService.getDynamicFormData().subscribe((formData: any) => {
-        this.formData = formData.rank;
+    this.editMasterId = this.route.snapshot.params['rankId'];
+    console.log(this.editMasterId)
+    this.form = this.formBuilder.group({
+      rankCode:[''],
+      name: ['', Validators.required],
+      accessId:[''],
+      roleId:[''],
+      description:[''],
+
+    });
+    this.getRole();
+    this.getAccessControl();
+    const id=this.editMasterId
+    this.masterService.getRankbyId(id).subscribe((resp:any) => {
+      console.log(resp.data[0].role)
+      this.form.patchValue({
+        rankCode: resp.data[0].rankCode,
+        name: resp.data[0].rankName,
+        accessId: resp.data[0].access.id,
+        roleId: resp.data[0].role.id,
+        description: resp.data[0].description,
       });
-  }
-  submit(formValue: any) {
-    // this.formService.saveRankForm(formValue).subscribe((resp: APIResponse) => {
-    //   if (resp.statusCode == 200) {
-    //     // this.currentBeatId = resp.data.beatId;
-    //     this.sharedService.showSuccess(resp.message);
-    //     // setTimeout(() => {
-          
-    //     // }, 800);
-    //   } else {
-    //     this.sharedService.showSuccess(resp.message);
-    //   }
-    // }, (err: Error) => {
-    //   this.sharedService.showError('Problem occurred, Please try again');
-    // })
-  }
-  cancel() {
-    this.router.navigate(['main/user-config/rank-list'])
+    });
   }
 
+  getRole() {
+    this.masterService.roleList().subscribe((formData: any) => {
+      this.roleList=formData.data
+      console.log(this.roleList)
+    });
+  }
+  getAccessControl() {
+    this.masterService.accessControlList().subscribe((formData: any) => {
+       this.accessControlList=formData.data 
+    });
+  }
+  
 
+  submit() {
+    if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+  }
+  
+  addRecord() {
+    if (this.form.valid) {
+      this.loading = true;
+      this.masterService.addRank(this.form.value).subscribe((data: any) => {
+        if (data) {
+          this.loading = false;
+          this.sharedService.showSuccess('Added successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/user-config/rank-list`);
+        }
+      });
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+  
+  updateRecord() {
+    if (this.form.valid) {
+      this.loading = true;
+      let value = {
+        id :this.editMasterId,
+        rankCode:this.form.value.rankCode,
+        name:this.form.value.name,
+        accessId:this.form.value.accessId, 
+        roleId:this.form.value.roleId,
+        description:this.form.value.description
+
+      }
+      // const updatedData = this.form.value;
+      this.masterService.updateRank(value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          this.sharedService.showSuccess('Updated successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/user-config/rank-list`);
+        },
+        (error) => {
+          console.error('Error updating record:', error);
+        }
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
 }

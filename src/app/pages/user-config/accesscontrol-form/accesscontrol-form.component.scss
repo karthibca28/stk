@@ -1,0 +1,19 @@
+.field-toggle-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .field-toggle-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .field-toggle-row mat-label {
+    flex: 1;
+  }
+  
+  .field-toggle-row mat-slide-toggle {
+    flex: 1;
+  }
+  

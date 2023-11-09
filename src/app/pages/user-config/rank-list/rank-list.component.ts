@@ -1,11 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Table } from 'primeng/table';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormService } from 'src/app/shared/services/form.service';
-import { SharedService } from 'src/app/shared/services/shared.service';
-import { APIResponse } from 'src/app/shared/models/api-response';
 import { ConfirmationService } from 'primeng/api';
-import { JsonFormData } from 'src/app/shared/models/json-form-data';
+import { MasterService } from 'src/app/shared/services/master.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-rank-list',
@@ -13,53 +10,51 @@ import { JsonFormData } from 'src/app/shared/models/json-form-data';
   styleUrls: ['./rank-list.component.scss']
 })
 export class RankListComponent implements OnInit {
-  title: string = 'Rank List';
-  public formData!: JsonFormData;
-  @ViewChild('dt') table: Table;
-  @ViewChild('filter') filter: ElementRef;
-  cols: any[];
-  tableData:any[]=[];
-  dynamaicDataForTable: any; 
-  constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
+  dynamaicDataForTable:any
+
+  constructor(private router: Router,private masterService:MasterService,private confirmationService: ConfirmationService,
+    private sharedService: SharedService,) { }
+  
   ngOnInit(): void {
-    this.getList();
+    this.getList()
   }
+
   getList() {
-    const fKey = {
-        formKey : "master-rank"
-    }
-    this.formService.getDynamicListData(fKey).subscribe((formData: any) => {
-        this.dynamaicDataForTable = formData.data;
+    this.masterService.rankList().subscribe((formData: any) => {
+        const values = formData.data;
+        const cols = [
+          { field: 'rankName', header: 'Rank Name', type: 'text' },
+          { field: 'description', header: 'Description', type: 'text' },
+          { field: 'roleName', header: 'Role Name', type: 'text' },
+
+        ];
+        this.dynamaicDataForTable = {cols, values};
+        console.log("master",this.dynamaicDataForTable)
+        values.forEach((value) => {
+          value.roleName = value.role?.roleName; 
+        });        
     });
   }
-  editRecord(rankId:number){
-      this.router.navigateByUrl(`main/user-config/rank-form/${rankId}`);
+
+  editRecord(rankId:any){
+   this.router.navigate([`main/user-config/rank-form`,rankId])
   }
   deleteRecord(rankId:number){
-      const dataKey = { formKey: 'master-rank', deleteId: rankId };
-      this.confirmationService.confirm({
-          message: 'Are you sure you want to delete the record?',
-          accept: () => {
-              this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                  //console.log("datakey",dataKey);
-                  if (resp.statusCode == '200') {
-                    this.getList();
-                    this.sharedService.showSuccess('Record delete successfully');
-                  }
-              })
-          },
-          reject: () => {
-              this.sharedService.showWarn('Cencelled');
-          }
-      });
-  }
-  clear(table: Table) {
-      table.clear();
-      this.filter.nativeElement.value = '';
+    this.confirmationService.confirm({
+        message: 'Are you sure you want to delete the record?',
+        accept: () => {
+            this.masterService.deleteRankList(rankId).subscribe((resp: any) => {             
+                  this.getList();
+                  this.sharedService.showSuccess('Record deleted successfully');
+            })
+        },
+        reject: () => {
+            this.sharedService.showWarn('Cancelled');
+        }
+    });
   }
   openForm() {
-      this.router.navigate(['main/user-config/rank-form']);
-  }
-
+    this.router.navigate(['main/user-config/rank-form']);
+}
 }

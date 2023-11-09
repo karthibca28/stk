@@ -11,6 +11,8 @@ import { RoleFormComponent } from './role-form/role-form.component';
 import { RolePermissionFormComponent } from './role-permission-form/role-permission-form.component';
 import { RolePermissionListComponent } from './role-permission-list/role-permission-list.component';
 import { LoginDetailsComponent } from './login-details/login-details.component';
+import { AccesscontrolFormComponent } from './accesscontrol-form/accesscontrol-form.component';
+import { AccesscontrolListComponent } from './accesscontrol-list/accesscontrol-list.component';
 
 const routes: Routes = [
   {
@@ -20,14 +22,6 @@ const routes: Routes = [
   {
     path:'department-list',
     component:DepartmentListComponent
-  },
-  {
-    path:'rank-form',
-    component:RankFormComponent
-  },
-  {
-    path:'rank-list',
-    component:RankListComponent
   },
   {
     path:'user-list',
@@ -46,20 +40,48 @@ const routes: Routes = [
     component:UserRegistrationFormComponent
   },
   {
-    path: 'role-form',
-    component: RoleFormComponent
-  },
-  {
-    path: 'role-list',
-    component: RoleListComponent
-  },
-  {
     path: 'role-permission-form',
     component: RolePermissionFormComponent
   },
   {
     path: 'role-permission-list',
     component: RolePermissionListComponent
+  },
+  {
+    path: 'accesscontrol-list',
+    component: AccesscontrolListComponent
+  },
+  {
+    path: 'accesscontrol-form/:accessControlId',
+    component: AccesscontrolFormComponent
+  },
+  {
+    path: 'accesscontrol-form',
+    component: AccesscontrolFormComponent
+  },
+  {
+    path: 'rank-list',
+    component: RankListComponent
+  },
+  {
+    path: 'rank-form/:rankId',
+    component: RankFormComponent
+  },
+  {
+    path: 'rank-form',
+    component: RankFormComponent
+  },
+  {
+    path: 'role-list',
+    component: RoleListComponent
+  },
+  {
+    path: 'role-form/:roleId',
+    component: RoleFormComponent
+  },
+  {
+    path: 'role-form',
+    component: RoleFormComponent
   }
 ];
 

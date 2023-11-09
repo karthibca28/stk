@@ -34,7 +34,10 @@ export class AppMenuComponent implements OnInit {
                     { label: 'User Registration', icon: 'pi pi-id-card', routerLink: ['/main/user-config/user-list'] },
                     // { label: 'Role Permission', icon: 'pi pi-share-alt', routerLink: ['/main/user-config/role-permission-list'] },
                     // { label: 'Rank', icon: 'pi pi-circle-off', routerLink: ['/main/user-config/rank-list'] },
-                    { label: 'Role Master', icon: 'pi pi-check-square', routerLink: ['/main/user-config/role-list'] }
+                   // { label: 'Role Master', icon: 'pi pi-check-square', routerLink: ['/main/user-config/role-list'] }
+                   { label: 'Access Control', icon: 'pi pi-file', routerLink: ['/main/user-config/accesscontrol-list'] },
+                   { label: 'Rank Master', icon: 'pi pi-file', routerLink: ['/main/user-config/rank-list'] },
+                    { label: 'Role Master', icon: 'pi pi-file', routerLink: ['/main/user-config/role-list'] },
                 ]
             },
             {
@@ -88,10 +91,9 @@ export class AppMenuComponent implements OnInit {
                     { label: 'District', icon: 'pi pi-file', routerLink: ['/main/master/district-list'] },
                     { label: 'Sub Division', icon: 'pi pi-file', routerLink: ['/main/master/sub-division-list'] },
                     { label: 'Police Station', icon: 'pi pi-file', routerLink: ['/main/master/police-station-list'] },
-                    { label: 'Access Control', icon: 'pi pi-file', routerLink: ['/main/master/accesscontrol-list'] },
+                  
                     { label: 'Inventory Type', icon: 'pi pi-file', routerLink: ['/main/master/inventorytype-list'] },
-                    { label: 'Rank', icon: 'pi pi-file', routerLink: ['/main/master/rank-list'] },
-                    { label: 'Role', icon: 'pi pi-file', routerLink: ['/main/master/role-list'] },
+                    
                 ]
             },
             // {

@@ -16,6 +16,8 @@ import { RolePermissionFormComponent } from './role-permission-form/role-permiss
 import { RolePermissionListComponent } from './role-permission-list/role-permission-list.component';
 import { LoginDetailsComponent } from './login-details/login-details.component';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
+import { AccesscontrolFormComponent } from './accesscontrol-form/accesscontrol-form.component';
+import { AccesscontrolListComponent } from './accesscontrol-list/accesscontrol-list.component';
 @NgModule({
   declarations: [
     RoleFormComponent,
@@ -28,7 +30,9 @@ import { MaterialModule } from 'src/app/shared/modules/material/material.module'
     DepartmentListComponent,
     RolePermissionFormComponent,
     RolePermissionListComponent,
-    LoginDetailsComponent
+    LoginDetailsComponent,
+    AccesscontrolFormComponent,
+    AccesscontrolListComponent
   ],
   imports: [
     CommonModule,
