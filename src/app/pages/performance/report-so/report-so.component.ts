@@ -25,6 +25,11 @@ export class ReportSoComponent implements OnInit {
   data:any
   report:any
   downloadflag:boolean=false
+  userData:any
+  subTypeFilterList:any
+  selectedvalue:any
+  selectedtask:any
+  roleId:any
   constructor(private fb: FormBuilder, private formService: FormService, public router: Router, private sharedService: SharedService, private secondaryService: SecondaryService,
     private masterService: MasterService) { }
 
@@ -42,6 +47,9 @@ export class ReportSoComponent implements OnInit {
       subDivisionId: [''],
       policeStationId: [''],
     });
+    this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    this.roleId = this.userData.data.userData.rank.role.roleCode
+    console.log(this.roleId)
     this.getZoneList()
     this.getRangeList()
     this.getDistrictList()
@@ -50,6 +58,14 @@ export class ReportSoComponent implements OnInit {
     this.getStateList()
     this.getPoliceStaion()
     this.getAccessControl()
+  }
+  onSelectionChangeLimit(event: any) {
+    this.selectedvalue = event.value;
+    // this.getSubTypeFilter();
+  }
+  onSelectionChangeTask(event:any){
+    this.selectedtask = event.value;
+    this.getSubTypeFilter()
   }
   getStateList() {
     this.masterService.commonStateList().subscribe((resp: any) => {
@@ -92,9 +108,16 @@ export class ReportSoComponent implements OnInit {
       this.data = resp.data; 
     });
   }
+  getSubTypeFilter() {
+    this.masterService.subTypeFilter(this.selectedvalue,this.selectedtask).subscribe((resp: any) => {
+      this.subTypeFilterList = resp.data; 
+    });
+  }
 
   onSubmit() {
-    this.masterService.getReports(
+    debugger
+    if(this.roleId === "4"){
+    this.masterService.getReportsforSo(
       this.reportForm.value.dateFilter,
       this.reportForm.value.type,
       this.reportForm.value.reportType,
@@ -107,14 +130,26 @@ export class ReportSoComponent implements OnInit {
       this.reportForm.value.subDivisionId,
       this.reportForm.value.policeStationId
     ).subscribe((resp: any) => {
-      const blob = new Blob([resp.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      link.download = 'report.xlsx';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    this.report = resp.data
     });
+  }
+  else if(this.roleId === "6"){
+    this.masterService.getReportsfoAdmin(
+      this.reportForm.value.dateFilter,
+      this.reportForm.value.type,
+      this.reportForm.value.reportType,
+      this.reportForm.value.reportSubType,
+      this.reportForm.value.stateId,
+      this.reportForm.value.adminId,
+      this.reportForm.value.zoneId,
+      this.reportForm.value.rangeId,
+      this.reportForm.value.districtId,
+      this.reportForm.value.subDivisionId,
+      this.reportForm.value.policeStationId
+    ).subscribe((resp: any) => {
+    this.report = resp.data
+    });
+  }
   }
   
   

@@ -72,8 +72,73 @@ export class MasterService {
   findAccessControl() {
     return this.http.get(`${this.apiUrl}common/access`);
   }
-  getReports(dateFilter:any,type:any,reportType:any,reportSubType:any,stateId:any,adminId:any,zoneId:any,rangeId:any,districtId:any,subDivisionId:any,policeStationId) {
-    return this.http.get(`${this.apiUrl}seniorOfficer/report/?dateFilter=${dateFilter}&type=${type}&reportType=${reportType}&reportSubType=${reportSubType}&stateId=${stateId}&adminId=${adminId}&zoneId=${zoneId}&rangeId=${rangeId}&districtId=${districtId}&subDivisionId=${subDivisionId}&policeStationId=${policeStationId}`);
+  subTypeFilter(type:any,reportType:any) {
+    return this.http.get(`${this.apiUrl}common/rptSubType?type=${type}&reportType=${reportType}`);
+  }
+  getReportsforSo(
+    dateFilter: any,
+    type: any,
+    reportType: any,
+    reportSubType: any,
+    stateId: any,
+    adminId: any,
+    zoneId: any,
+    rangeId: any,
+    districtId: any,
+    subDivisionId: any,
+    policeStationId: any
+  ) {
+    let apiUrl = `${this.apiUrl}seniorOfficer/report?`;
+  
+    // Add parameters only if they are not empty
+    if (dateFilter) apiUrl += `dateFilter=${dateFilter}&`;
+    if (type) apiUrl += `type=${type}&`;
+    if (reportType) apiUrl += `reportType=${reportType}&`;
+    if (reportSubType) apiUrl += `reportSubType=${reportSubType}&`;
+    if (stateId) apiUrl += `stateId=${stateId}&`;
+    if (adminId) apiUrl += `adminId=${adminId}&`;
+    if (zoneId) apiUrl += `zoneId=${zoneId}&`;
+    if (rangeId) apiUrl += `rangeId=${rangeId}&`;
+    if (districtId) apiUrl += `districtId=${districtId}&`;
+    if (subDivisionId) apiUrl += `subDivisionId=${subDivisionId}&`;
+    if (policeStationId) apiUrl += `policeStationId=${policeStationId}&`;
+    if (apiUrl.endsWith('&')) {
+      apiUrl = apiUrl.slice(0, -1);
+    }
+    return this.http.get(apiUrl);
+  }
+  
+  getReportsfoAdmin(
+    dateFilter: any,
+    type: any,
+    reportType: any,
+    reportSubType: any,
+    stateId: any,
+    adminId: any,
+    zoneId: any,
+    rangeId: any,
+    districtId: any,
+    subDivisionId: any,
+    policeStationId: any
+  ) {
+    let apiUrl = `${this.apiUrl}admin/report?`;
+  
+    // Add parameters only if they are not empty
+    if (dateFilter) apiUrl += `dateFilter=${dateFilter}&`;
+    if (type) apiUrl += `type=${type}&`;
+    if (reportType) apiUrl += `reportType=${reportType}&`;
+    if (reportSubType) apiUrl += `reportSubType=${reportSubType}&`;
+    if (stateId) apiUrl += `stateId=${stateId}&`;
+    if (adminId) apiUrl += `adminId=${adminId}&`;
+    if (zoneId) apiUrl += `zoneId=${zoneId}&`;
+    if (rangeId) apiUrl += `rangeId=${rangeId}&`;
+    if (districtId) apiUrl += `districtId=${districtId}&`;
+    if (subDivisionId) apiUrl += `subDivisionId=${subDivisionId}&`;
+    if (policeStationId) apiUrl += `policeStationId=${policeStationId}&`;
+    if (apiUrl.endsWith('&')) {
+      apiUrl = apiUrl.slice(0, -1);
+    }
+    return this.http.get(apiUrl);
   }
   
   commonStateList() {

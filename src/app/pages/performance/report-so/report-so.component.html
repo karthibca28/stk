@@ -86,7 +86,7 @@
         <div class="col-12 md:col-4">
             <mat-form-field appearance="" class="w-full">
                 <mat-label>Type</mat-label>
-                <mat-select formControlName="type">
+                <mat-select formControlName="type" (selectionChange)="onSelectionChangeLimit($event)">
                     <mat-option value="summary">summary</mat-option>
                     <mat-option value="detail">detail</mat-option>
                 </mat-select>
@@ -95,7 +95,7 @@
         <div class="col-12 md:col-4">
             <mat-form-field appearance="" class="w-full">
                 <mat-label>Report Type</mat-label>
-                <mat-select formControlName="reportType">
+                <mat-select formControlName="reportType" (selectionChange)="onSelectionChangeTask($event)">
                     <mat-option value="task">task</mat-option>
                     <mat-option value="duty">duty</mat-option>
                 </mat-select>
@@ -105,8 +105,9 @@
             <mat-form-field appearance="" class="w-full">
                 <mat-label>Report SubType</mat-label>
                 <mat-select formControlName="reportSubType">
-                    <!-- <mat-option value="task">task</mat-option>
-                <mat-option value="duty">duty</mat-option> -->
+                    <mat-option *ngFor="let subTypeFilterList of subTypeFilterList" [value]="subTypeFilterList.code">
+                        {{subTypeFilterList.name}}
+                    </mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
