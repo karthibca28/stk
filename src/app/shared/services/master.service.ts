@@ -72,7 +72,33 @@ export class MasterService {
   findAccessControl() {
     return this.http.get(`${this.apiUrl}common/access`);
   }
+  getReports(dateFilter:any,type:any,reportType:any,reportSubType:any,stateId:any,adminId:any,zoneId:any,rangeId:any,districtId:any,subDivisionId:any,policeStationId) {
+    return this.http.get(`${this.apiUrl}seniorOfficer/report/?dateFilter=${dateFilter}&type=${type}&reportType=${reportType}&reportSubType=${reportSubType}&stateId=${stateId}&adminId=${adminId}&zoneId=${zoneId}&rangeId=${rangeId}&districtId=${districtId}&subDivisionId=${subDivisionId}&policeStationId=${policeStationId}`);
+  }
+  
+  commonStateList() {
+    return this.http.get(`${this.apiUrl}common/state`);
+  }
+  commonAdminList() {
+    return this.http.get(`${this.apiUrl}common/administration`);
+  }
+  commonZone() {
+    return this.http.get(`${this.apiUrl}common/zone`);
+  }
 
+  commonRange(){
+    return this.http.get(`${this.apiUrl}common/range`);
+  }
+ 
+  commonDistrict() {
+    return this.http.get(`${this.apiUrl}common/district`);
+  }
+  commonSubDivision() {
+    return this.http.get(`${this.apiUrl}common/subDivision`);
+  }
+  commonPoliceStation() {
+    return this.http.get(`${this.apiUrl}common/policeStation`);
+  }
 
   // Add Details
   administration(data: any) {

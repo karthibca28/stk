@@ -30,18 +30,18 @@ export class BroadcastFormComponent implements OnInit {
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      title: [''],
-      message: ['',],
-      // stateId:[''],
-      adminId:[''],
-      zoneId:[''],
-      rangeId:[''],
-      districtId:[''],
-      subDivisionId:[''],
-      policeStationId:[''],
-      files:['']
-    });
+      this.form = this.formBuilder.group({
+        title: [''],
+        message: ['',],
+        // stateId:[''],
+        adminId:[''],
+        zoneId:[''],
+        rangeId:[''],
+        districtId:[''],
+        subDivisionId:[''],
+        policeStationId:[''],
+        files:['']
+      });
     this.getZoneList()
     this.getRangeList()
     this.getDistrictList()
@@ -53,41 +53,41 @@ export class BroadcastFormComponent implements OnInit {
   }
 
   getStateList() {
-    this.masterService.stateList().subscribe((resp: any) => {
+    this.masterService.commonStateList().subscribe((resp: any) => {
        this.stateList = resp.data
     });
   }
 
   getAdminList() {
-    this.masterService.adminList().subscribe((resp: any) => {
+    this.masterService.commonAdminList().subscribe((resp: any) => {
        this.adminList = resp.data
     });
   }
 
 
   getZoneList() {
-    this.masterService.zone().subscribe((resp: any) => {
+    this.masterService.commonZone().subscribe((resp: any) => {
        this.zoneList = resp.data
     });
   }
 
   getRangeList() {
-    this.masterService.range().subscribe((resp: any) => {
+    this.masterService.commonRange().subscribe((resp: any) => {
        this.rangeList = resp.data
     });
   }
    getDistrictList() {
-    this.masterService.district().subscribe((resp: any) => {
+    this.masterService.commonDistrict().subscribe((resp: any) => {
        this.districtList = resp.data
     });
   }
   getSubDivision() {
-    this.masterService.subDivision().subscribe((resp: any) => {
+    this.masterService.commonSubDivision().subscribe((resp: any) => {
        this.subDivisionList = resp.data
     });
   }
   getPoliceStaion() {
-    this.masterService.policeStation().subscribe((resp: any) => {
+    this.masterService.commonPoliceStation().subscribe((resp: any) => {
        this.policeStationList = resp.data
     });
   }
@@ -119,8 +119,6 @@ export class BroadcastFormComponent implements OnInit {
   // }
   submit() {
     const formData = new FormData();
-    
-    // Always include these fields
     formData.append('title', this.form.get('title')?.value);
     formData.append('message', this.form.get('message')?.value);
   

@@ -1,5 +1,5 @@
-<div class="grid">
-    <div class="col-12 md:col-7">
+<!-- <div class="grid"> -->
+<!-- <div class="col-12 md:col-7">
         <div class="grid mx-0" style="background-color: #EFEFEF;">
             <div class="col-12 py-2" style="background-color: #F6E1A0;">
                 <p class="mb-0 font-bold text-lg">Current Reports</p>
@@ -57,160 +57,131 @@
                 <p class="mb-0">Field Police: <span class="color-06 font-bold">10</span></p>     
             </div>
         </div>
-    </div>
-    <div class="col-12 md:col-5">
+    </div> -->
+<!-- <div class="col-12 md:col-5">
 
     </div>
-</div>
+</div> -->
 <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
-	<div class="grid mx-0 mt-2" style="background-color: #E3E5FF;">
-        <div class="col-12 py-2" style="background-color: #0B1165;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+    <div class="grid mx-0 mt-2" style="background-color: #E3E5FF;">
+        <div class="col-12 py-2"
+            style="background-color: #0B1165;border-top-left-radius: 5px;border-top-right-radius: 5px;">
             <p class="mb-0 text-white font-bold text-lg">View Reports</p>
         </div>
         <div class="col-12 md:col-4">
             <mat-form-field appearance="" class="w-full">
-                <mat-label>Select Police Station</mat-label>
-                <mat-select [formControl]="station">
-                  <mat-option *ngFor="let station of stationList" [value]="station">{{station}}</mat-option>
+                <mat-label>Date</mat-label>
+                <mat-select formControlName="dateFilter">
+                    <mat-option value="today">Today</mat-option>
+                    <mat-option value="yesterday">Yesterday</mat-option>
+                    <mat-option value="lastWeek">Last Week</mat-option>
+                    <mat-option value="thisWeek">This Week</mat-option>
+                    <mat-option value="lastMonth">Last Month</mat-option>
+                    <mat-option value="thisMonth">This Month</mat-option>
+                    <mat-option value="lastYeat">Last Year</mat-option>
+                    <mat-option value="thisYear">This Year</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="col-12 md:col-4">
             <mat-form-field appearance="" class="w-full">
-                <mat-label>Select User</mat-label>
-                <mat-select [formControl]="user" >
-                  <mat-option *ngFor="let user of userList" [value]="user">{{user}}</mat-option>
+                <mat-label>Type</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option value="summary">summary</mat-option>
+                    <mat-option value="detail">detail</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="col-12 md:col-4">
             <mat-form-field appearance="" class="w-full">
-                <mat-label>Select Type</mat-label>
-                <mat-select [formControl]="toppings">
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                <mat-label>Report Type</mat-label>
+                <mat-select formControlName="reportType">
+                    <mat-option value="task">task</mat-option>
+                    <mat-option value="duty">duty</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-    </div>
+        <div class="col-12 md:col-4">
+            <mat-form-field appearance="" class="w-full">
+                <mat-label>Report SubType</mat-label>
+                <mat-select formControlName="reportSubType">
+                    <!-- <mat-option value="task">task</mat-option>
+                <mat-option value="duty">duty</mat-option> -->
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-4" *ngIf="data?.adminId === true">
+            <mat-form-field class="w-full">
+                <mat-label>Administration</mat-label>
+                <mat-select formControlName="adminId">
+                    <mat-option *ngFor="let adminList of adminList" [value]="adminList.id">
+                        {{adminList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-4" *ngIf="data?.zoneId === true">
+            <mat-form-field class="w-full">
+                <mat-label>Zone</mat-label>
+                <mat-select formControlName="zoneId">
+                    <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id">
+                        {{zoneList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-4" *ngIf="data?.rangeId === true">
+            <mat-form-field class="w-full">
+                <mat-label>Range</mat-label>
+                <mat-select formControlName="rangeId">
+                    <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id">
+                        {{rangeList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-4" *ngIf="data?.districtId === true">
+            <mat-form-field class="w-full">
+                <mat-label>District</mat-label>
+                <mat-select formControlName="districtId">
+                    <mat-option *ngFor="let districtList of districtList" [value]="districtList.id">
+                        {{districtList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-4" *ngIf="data?.subDivisionId === true">
+            <mat-form-field class="w-full">
+                <mat-label>SubDivision</mat-label>
+                <mat-select formControlName="subDivisionId">
+                    <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id">
+                        {{subDivisionList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-4" *ngIf="data?.policeStationId === true">
+            <mat-form-field class="w-full">
+                <mat-label>Police Station</mat-label>
+                <mat-select formControlName="policeStationId">
+                    <mat-option *ngFor="let policeStationList of policeStationList" [value]="policeStationList.id">
+                        {{policeStationList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="col-12 md:col-12" style="display: flex;justify-content: end;">
+            <button mat-raised-button mat-button color="primary">Submit</button>
+        </div>
+    </div> 
 </form>
-<div class="grid">
-    <div class="col-12 md:col-8">
-        <div class="SummaryReport">
-            <div *ngIf="ksLoader">
-                <app-loader></app-loader>
-            </div>
-            <!-- Intial Data -->
-            <div *ngIf="IntialTable">
-                <div class="card py-0 border-noround no-shadow">
-                    <div class="grid p-1">
-                        <div class="col-6 py-0">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Beat Summary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let colPx of reportData">
-                                        <td>{{colPx.header}}</td>
-                                        <td class="font-weight">{{colPx.values}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-6 py-0">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Duty Summary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let colPx of dutyList">
-                                        <td>{{colPx.header}}</td>
-                                        <td class="font-weight">{{colPx.values}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="card py-0 border-noround no-shadow">
-                    <div class="grid">
-                        <div class="col-12 py-1">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Task Summary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let colPx of taskList">
-                                        <td>{{colPx.header}}</td>
-                                        <td class="font-weight">{{colPx.values}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Intial Data -->
-            <div *ngIf="viewTable">
-                <div class="card py-0 border-noround no-shadow">
-                    <div class="grid p-1">
-                        <div class="col-6 py-0">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Beat Summary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let colPx of reportData">
-                                        <td>{{colPx.header}}</td>
-                                        <td class="font-weight">{{colPx.values}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-6 py-0">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Duty Summary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let colPx of dutyList">
-                                        <td>{{colPx.header}}</td>
-                                        <td class="font-weight">{{colPx.values}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="card py-0 border-noround no-shadow">
-                    <div class="grid">
-                        <div class="col-12 py-1">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Task Summary</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let colPx of taskList">
-                                        <td>{{colPx.header}}</td>
-                                        <td class="font-weight">{{colPx.values}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- <div class="col-12 md:col-12 mt-4" *ngIf="downloadflag" style="display: flex;justify-content: space-between;border: solid 0.5px black;">
+<svg width="35" height="40" viewBox="0 0 36 43" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.9939 16.5879H28.1125C29.1489 16.5879 29.992 15.7448 29.992 14.7084V6.27124C29.992 5.2349 29.1489 4.39172 28.1125 4.39172H20.9939C19.9576 4.39172 19.1144 5.23482 19.1144 6.27124V14.7084C19.1144 15.7447 19.9576 16.5879 20.9939 16.5879ZM20.9939 6.03992H28.1125C28.2401 6.03992 28.3439 6.14367 28.3439 6.27132V14.3954C27.8599 13.261 26.7931 12.4355 25.519 12.2959C26.0684 11.9743 26.4377 11.3783 26.4377 10.6957V10.0269C26.4377 9.00323 25.6079 8.17341 24.5841 8.17341C23.5605 8.17341 22.7307 9.00323 22.7307 10.0269V10.6957C22.7307 11.3742 23.0955 11.9674 23.6395 12.2903C22.3425 12.4129 21.2532 13.2456 20.7625 14.3954V6.27124C20.7625 6.14367 20.8663 6.03992 20.9939 6.03992Z" fill="#265791"/>
+    <path d="M16.1158 37.4896L18.1857 38.2299C18.3096 38.2742 18.4451 38.2742 18.569 38.2299L20.6389 37.4896C22.4425 36.8444 23.6462 35.1355 23.6462 33.22C23.6462 32.092 23.2585 30.9982 22.5481 30.1221C22.3078 29.8256 22.1766 29.4555 22.1766 29.0738C22.1766 28.7223 22.2878 28.3799 22.4944 28.0956L22.856 27.5978C23.0205 27.3714 22.9959 27.0589 22.798 26.861L21.9936 26.0566C21.8415 25.9045 21.6164 25.8514 21.4123 25.9194C20.3786 26.2636 19.3683 26.1166 18.5601 25.8433C18.4414 25.8032 18.3136 25.8032 18.195 25.8433C17.3867 26.1166 16.3764 26.2635 15.3428 25.9194C15.1387 25.8514 14.9136 25.9044 14.7615 26.0566L13.9571 26.861C13.7592 27.0589 13.7346 27.3714 13.8991 27.5978L14.2607 28.0956C14.4673 28.38 14.5785 28.7224 14.5785 29.0739C14.5785 29.4556 14.4473 29.8257 14.2069 30.1222C13.4965 30.9984 13.1089 32.0921 13.1089 33.2201C13.1085 35.1355 14.3122 36.8444 16.1158 37.4896Z" fill="#265791"/>
+    <path d="M35.176 19.6386H33.3318V1.54488C33.3318 1.08976 32.9628 0.720825 32.5077 0.720825H10.8067C10.5881 0.720825 10.3786 0.807681 10.224 0.962192L3.6643 7.52186C3.50979 7.67637 3.42294 7.88593 3.42294 8.10455V15.8835H1.5787C1.12365 15.8835 0.754639 16.2524 0.754639 16.7076V38.8933C0.754639 41.1096 2.55776 42.9126 4.77406 42.9126H31.9807C34.197 42.9126 36 41.1096 36 38.8933V20.4627C36.0001 20.0076 35.6311 19.6386 35.176 19.6386ZM5.07105 8.45378H10.5597C10.889 8.45378 11.1559 8.18687 11.1559 7.85758V2.36894H31.6836V19.6386H13.14L10.3706 16.1914C10.2142 15.9968 9.97782 15.8835 9.72813 15.8835H5.07105V8.45378ZM34.352 38.8933C34.352 40.2008 33.2883 41.2645 31.9807 41.2645H4.77406C3.46653 41.2645 2.40284 40.2007 2.40284 38.8933V17.5316H9.33316L12.1026 20.9788C12.259 21.1735 12.4953 21.2868 12.745 21.2868H34.352V38.8933Z" fill="#265791"/>
+    <path d="M16.8107 13.6213H12.7849C12.3298 13.6213 11.9608 13.9902 11.9608 14.4453C11.9608 14.9005 12.3298 15.2694 12.7849 15.2694H16.8107C17.2658 15.2694 17.6348 14.9005 17.6348 14.4453C17.6348 13.9902 17.2659 13.6213 16.8107 13.6213Z" fill="#265791"/>
+    <path d="M17.6347 11.1491C17.6347 10.6939 17.2657 10.325 16.8107 10.325H8.75912C8.30407 10.325 7.93506 10.6939 7.93506 11.1491C7.93506 11.6042 8.30407 11.9731 8.75912 11.9731H16.8107C17.2658 11.9731 17.6347 11.6042 17.6347 11.1491Z" fill="#265791"/>
+</svg>
+<button mat-raised-button mat-button color="warn" (click)="downloadReport()">Download</button>
+</div> -->

@@ -33,7 +33,6 @@
                         {{adminList.name}}
                       </mat-option>
                     </mat-select>
-                    <!-- <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.adminId?.touched && form?.controls?.adminId?.errors?.required)">Administration is required</mat-error> -->
                   </mat-form-field>
                   </div>
   
@@ -45,7 +44,6 @@
                                 {{zoneList.name}}
                               </mat-option>
                             </mat-select>
-                            <!-- <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.zoneId?.touched && form?.controls?.zoneId?.errors?.required)">Zone is required</mat-error> -->
                           </mat-form-field>
                           </div>
   
@@ -57,7 +55,6 @@
                                     {{rangeList.name}}
                                   </mat-option>
                                 </mat-select>
-                                <!-- <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.rangeId?.touched && form?.controls?.rangeId?.errors?.required)">Range is required</mat-error> -->
                               </mat-form-field>
                               </div>
           
@@ -69,20 +66,18 @@
                                         {{districtList.name}}
                                       </mat-option>
                                     </mat-select>
-                            <!-- <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.districtId?.touched && form?.controls?.districtId?.errors?.required)">District is required</mat-error> -->
                                   </mat-form-field>
                          </div>
                   
                          <div class="field"  *ngIf="data.subDivisionId === true">
-                          <mat-form-field class="w-full">
-                                 <mat-label>SubDivision</mat-label>
-                            <mat-select formControlName="subDivisionId">
-                              <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id">
-                                {{subDivisionList.name}}
-                              </mat-option>
-                            </mat-select>
-                    <!-- <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivsion is required</mat-error> -->
-                          </mat-form-field>
+                            <mat-form-field class="w-full">
+                                  <mat-label>SubDivision</mat-label>
+                              <mat-select formControlName="subDivisionId">
+                                <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id">
+                                  {{subDivisionList.name}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
                  </div>
                  <div class="field"  *ngIf="data.subDivisionId === true">
                   <mat-form-field class="w-full">
@@ -92,7 +87,6 @@
                         {{policeStationList.name}}
                       </mat-option>
                     </mat-select>
-            <!-- <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivsion is required</mat-error> -->
                   </mat-form-field>
          </div>
                 <!-- <div class="custom-card" style="display: flex;justify-content: space-around;">
