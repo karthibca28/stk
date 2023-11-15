@@ -1,10 +1,8 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { APIResponse } from 'src/app/shared/models/api-response';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 
@@ -115,7 +113,6 @@ export class ReportSoComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
     if(this.roleId === "4"){
     this.masterService.getReportsforSo(
       this.reportForm.value.dateFilter,
@@ -130,7 +127,12 @@ export class ReportSoComponent implements OnInit {
       this.reportForm.value.subDivisionId,
       this.reportForm.value.policeStationId
     ).subscribe((resp: any) => {
-    this.report = resp.data
+      setTimeout(() => {
+        // this.ksLoader = false;
+        this.report = resp.data;
+        console.log("Response data", this.report);
+        this.downloadFile(this.report);
+      }, 2400);
     });
   }
   else if(this.roleId === "6"){
@@ -152,6 +154,13 @@ export class ReportSoComponent implements OnInit {
   }
   }
   
-  
+  downloadFile(report){
+    const link = document.createElement('a');
+    link.setAttribute('target', '_blank');
+    link.setAttribute('href', report);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
   
 }
