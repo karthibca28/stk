@@ -112,9 +112,9 @@ export class ReportSoComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if(this.roleId === "4"){
-    this.masterService.getReportsforSo(
+    await this.masterService.getReportsforSo(
       this.reportForm.value.dateFilter,
       this.reportForm.value.type,
       this.reportForm.value.reportType,
@@ -126,14 +126,7 @@ export class ReportSoComponent implements OnInit {
       this.reportForm.value.districtId,
       this.reportForm.value.subDivisionId,
       this.reportForm.value.policeStationId
-    ).subscribe((resp: any) => {
-      setTimeout(() => {
-        // this.ksLoader = false;
-        this.report = resp.data;
-        console.log("Response data", this.report);
-        this.downloadFile(this.report);
-      }, 2400);
-    });
+    ).then(res=>{console.log('>>> res', res); this.downloadFile(res)}).catch(e=>console.log('>> error ion onsubmit ', e))
   }
   else if(this.roleId === "6"){
     this.masterService.getReportsfoAdmin(
@@ -148,19 +141,19 @@ export class ReportSoComponent implements OnInit {
       this.reportForm.value.districtId,
       this.reportForm.value.subDivisionId,
       this.reportForm.value.policeStationId
-    ).subscribe((resp: any) => {
-    this.report = resp.data
-    });
+    ).then(res=>{console.log('>>> res', res); this.downloadFile(res)}).catch(e=>console.log('>> error ion onsubmit ', e))
   }
   }
   
   downloadFile(report){
+    console.log('>>>>',report);
     const link = document.createElement('a');
-    link.setAttribute('target', '_blank');
-    link.setAttribute('href', report);
+    link.href = window.URL.createObjectURL(report);
+    link.download = 'report.xlsx';
     document.body.appendChild(link);
+    console.log('link',link)
     link.click();
-    link.remove();
+    document.body.removeChild(link);
   }
   
 }

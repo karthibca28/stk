@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -75,7 +75,7 @@ export class MasterService {
   subTypeFilter(type:any,reportType:any) {
     return this.http.get(`${this.apiUrl}common/rptSubType?type=${type}&reportType=${reportType}`);
   }
-  getReportsforSo(
+  async getReportsforSo(
     dateFilter: any,
     type: any,
     reportType: any,
@@ -89,8 +89,6 @@ export class MasterService {
     policeStationId: any
   ) {
     let apiUrl = `${this.apiUrl}seniorOfficer/report?`;
-  
-    // Add parameters only if they are not empty
     if (dateFilter) apiUrl += `dateFilter=${dateFilter}&`;
     if (type) apiUrl += `type=${type}&`;
     if (reportType) apiUrl += `reportType=${reportType}&`;
@@ -104,11 +102,33 @@ export class MasterService {
     if (policeStationId) apiUrl += `policeStationId=${policeStationId}&`;
     if (apiUrl.endsWith('&')) {
       apiUrl = apiUrl.slice(0, -1);
+
     }
-    return this.http.get(apiUrl);
+    // debugger
+    let params = new HttpParams();
+    const userData = JSON.parse(sessionStorage.getItem('userInfo') as string);
+    let auth: any; 
+    let token=null;
+    if (userData) {
+      token = userData.data.session.accessToken; 
+    } 
+    return await fetch(apiUrl, {headers: {'Authorization':token}}).then(res=>{
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.blob();
+    }).catch(e=>console.log('error in fetch > ', e));
+    
+    // return this.http.get(apiUrl, {
+    //   params,
+    //   responseType: 'blob' as 'json' ,
+    //   // headers: {'content-type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+    // })
+
+
   }
-  
-  getReportsfoAdmin(
+
+  async getReportsfoAdmin(
     dateFilter: any,
     type: any,
     reportType: any,
@@ -122,8 +142,6 @@ export class MasterService {
     policeStationId: any
   ) {
     let apiUrl = `${this.apiUrl}admin/report?`;
-  
-    // Add parameters only if they are not empty
     if (dateFilter) apiUrl += `dateFilter=${dateFilter}&`;
     if (type) apiUrl += `type=${type}&`;
     if (reportType) apiUrl += `reportType=${reportType}&`;
@@ -137,9 +155,62 @@ export class MasterService {
     if (policeStationId) apiUrl += `policeStationId=${policeStationId}&`;
     if (apiUrl.endsWith('&')) {
       apiUrl = apiUrl.slice(0, -1);
+
     }
-    return this.http.get(apiUrl);
+    // debugger
+    let params = new HttpParams();
+    const userData = JSON.parse(sessionStorage.getItem('userInfo') as string);
+    let auth: any; 
+    let token=null;
+    if (userData) {
+      token = userData.data.session.accessToken; 
+    } 
+    return await fetch(apiUrl, {headers: {'Authorization':token}}).then(res=>{
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.blob();
+    }).catch(e=>console.log('error in fetch > ', e));
+    
+    // return this.http.get(apiUrl, {
+    //   params,
+    //   responseType: 'blob' as 'json' ,
+    //   // headers: {'content-type':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+    // })
+
+
   }
+  
+  // getReportsfoAdmin(
+  //   dateFilter: any,
+  //   type: any,
+  //   reportType: any,
+  //   reportSubType: any,
+  //   stateId: any,
+  //   adminId: any,
+  //   zoneId: any,
+  //   rangeId: any,
+  //   districtId: any,
+  //   subDivisionId: any,
+  //   policeStationId: any
+  // ) {
+  //   let apiUrl = `${this.apiUrl}admin/report?`;
+  //   if (dateFilter) apiUrl += `dateFilter=${dateFilter}&`;
+  //   if (type) apiUrl += `type=${type}&`;
+  //   if (reportType) apiUrl += `reportType=${reportType}&`;
+  //   if (reportSubType) apiUrl += `reportSubType=${reportSubType}&`;
+  //   if (stateId) apiUrl += `stateId=${stateId}&`;
+  //   if (adminId) apiUrl += `adminId=${adminId}&`;
+  //   if (zoneId) apiUrl += `zoneId=${zoneId}&`;
+  //   if (rangeId) apiUrl += `rangeId=${rangeId}&`;
+  //   if (districtId) apiUrl += `districtId=${districtId}&`;
+  //   if (subDivisionId) apiUrl += `subDivisionId=${subDivisionId}&`;
+  //   if (policeStationId) apiUrl += `policeStationId=${policeStationId}&`;
+  //   if (apiUrl.endsWith('&')) {
+  //     apiUrl = apiUrl.slice(0, -1);
+  //   }
+  //   return this.http.get(apiUrl);
+  // }
   
   commonStateList() {
     return this.http.get(`${this.apiUrl}common/state`);
