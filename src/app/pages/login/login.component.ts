@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { OneSignal } from 'onesignal-ngx';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,15 @@ export class LoginComponent implements OnInit {
   hide = true;
   
   constructor(private authService: AuthService, private router: Router, private sharedService: SharedService,
-    private loadingService: LoadingService) { }
+    private loadingService: LoadingService,private oneSignal: OneSignal) { 
+
+    }
 
   ngOnInit(): void {
     this.initLoginForm();
-
+    this.oneSignal.init({
+      appId: "8e7fe838-fbcd-4152-980d-32565a2dcf03",
+    });
   }
   initLoginForm() {
     this.loginForm = new FormGroup({
@@ -42,7 +47,8 @@ export class LoginComponent implements OnInit {
           if (resp.data.session.accessToken) {
             sessionStorage.setItem('userInfo', JSON.stringify(resp));
             this.userRole = parseInt(resp.data.userData.rank.role.roleCode);
-            console.log(this.userRole);
+            console.log(resp.data.userData.id);
+            
   
             let navigateTo = '';
             let successMessage = '';
@@ -67,6 +73,10 @@ export class LoginComponent implements OnInit {
               this.sharedService.showSuccess(successMessage);
               this.router.navigate([navigateTo]);
             }
+            const externalUserId = resp.data.userData.id;
+            this.oneSignal.setExternalUserId(externalUserId).then(response => {
+              console.log('External user ID set:', response);
+            })
           } else {
             this.sharedService.showError('User name or password mismatch');
             this.loginError = 'User name or password mismatch';
