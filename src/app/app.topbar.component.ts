@@ -10,6 +10,7 @@ import { DialogModule } from 'primeng/dialog';
 import { SwUpdate } from '@angular/service-worker';
 import { AuthService } from './shared/services/auth.service';
 import { SharedService } from './shared/services/shared.service';
+import { OneSignal } from 'onesignal-ngx';
 
 @Component({
     selector: 'app-topbar',
@@ -32,7 +33,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     isMediumDevice: boolean = false;
     constructor(public app: AppComponent, private formBuilder: FormBuilder, private confirmationService: ConfirmationService,
         private renderer: Renderer2, private el: ElementRef,
-        private swUpdate: SwUpdate, public appMain: AppMainComponent, private router: Router, private authService: AuthService, private sharedService: SharedService) {
+        private swUpdate: SwUpdate, public appMain: AppMainComponent, private router: Router, private authService: AuthService, private sharedService: SharedService, private oneSignal: OneSignal) {
     }
     // gpfCpsNo
 
@@ -95,6 +96,7 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     }
     logout() {
         this.router.navigate(['/']);
+        this.oneSignal.logout();
         sessionStorage.removeItem('userInfo');
     }
     ngOnDestroy() {

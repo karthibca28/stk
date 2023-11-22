@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         (resp: any) => {
           console.log("login resp", resp)
           if (resp.data.session.accessToken) {
+            this.oneSignal.login(resp.data.userData.id);
             sessionStorage.setItem('userInfo', JSON.stringify(resp));
             this.userRole = parseInt(resp.data.userData.rank.role.roleCode);
             let navigateTo = '';
