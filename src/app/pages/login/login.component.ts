@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initLoginForm();
-    this.oneSignal.init({
-      appId: "8e7fe838-fbcd-4152-980d-32565a2dcf03",
-    });
+    // this.oneSignal.init({
+    //   appId: "8e7fe838-fbcd-4152-980d-32565a2dcf03",
+    // });
   }
   initLoginForm() {
     this.loginForm = new FormGroup({
@@ -47,9 +47,6 @@ export class LoginComponent implements OnInit {
           if (resp.data.session.accessToken) {
             sessionStorage.setItem('userInfo', JSON.stringify(resp));
             this.userRole = parseInt(resp.data.userData.rank.role.roleCode);
-            console.log(resp.data.userData.id);
-            
-  
             let navigateTo = '';
             let successMessage = '';
             switch (this.userRole) {

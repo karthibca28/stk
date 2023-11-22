@@ -131,7 +131,7 @@ getDashboard() {
    
   getChartDataChallanCheck() {
     this.secondaryService.getChartDataForAdmin(this.selected, this.firstDate, this.selectedtask).subscribe((resp: any) => {
-    const datasetColors = [ '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733', '#33FF57', '#5733FF', '#FF5733','#4E4FEB', '#C70039'];
+    const datasetColors = [ '#FA3D17', '#2ecc71', '#3498db', '#e74c3c', '#8e44ad', '#f39c12', '#1abc9c', '#d35400', '#2c3e50', '#2980b9', '#27ae60', '#f39c12', '#16a085','#7f8c8d', '#7f8c8d'];
   
       this.data = {
         labels: resp.data.map(item => item.dutyType || item.taskType),
