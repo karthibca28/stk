@@ -4,7 +4,6 @@ import { ConfirmationService, PrimeNGConfig } from 'primeng/api';
 import { interval } from 'rxjs';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { LoaderService } from './shared/services/loader.service';
-import { OneSignal } from 'onesignal-ngx';
 
 @Component({
   selector: 'app-root',
@@ -28,15 +27,12 @@ export class AppComponent implements OnInit, OnDestroy {
   display: boolean = false;
 
   constructor(private primengConfig: PrimeNGConfig, public loader: LoaderService, private confirmationService: ConfirmationService,
-    private readonly swUpdate: SwUpdate, private cdRef: ChangeDetectorRef, private appRef: ApplicationRef,private oneSignal: OneSignal) {
+    private readonly swUpdate: SwUpdate, private cdRef: ChangeDetectorRef, private appRef: ApplicationRef) {
     // if (this.swUpdate.isEnabled) {
     // console.log('update avaialble');
     this.swUpdate.available.subscribe(() => {
       // this.display = true
       this.confirmUpdate();
-          this.oneSignal.init({
-      appId: "8e7fe838-fbcd-4152-980d-32565a2dcf03",
-    });
     });
 
 
