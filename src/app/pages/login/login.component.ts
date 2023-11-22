@@ -73,8 +73,7 @@ export class LoginComponent implements OnInit {
               this.sharedService.showSuccess(successMessage);
               this.router.navigate([navigateTo]);
             }
-            const externalUserId = resp.data.userData.id;
-            this.oneSignal.setExternalUserId(externalUserId).then(response => {
+            this.oneSignal.setExternalUserId(resp.data.userData.id).then(response => {
               console.log('External user ID set:', response);
             })
           } else {
