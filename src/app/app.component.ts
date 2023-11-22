@@ -36,6 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.confirmUpdate();
       // this.oneSignal.init({
       //   appId: "0788f57e-e8b1-4862-a562-dc04e312d215",
+      //   serviceWorkerPath: '/environments/OneSignalSDKWorker.js'
       // });
     });
 
