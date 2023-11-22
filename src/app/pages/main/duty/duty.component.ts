@@ -32,7 +32,7 @@ export class DutyComponent implements OnInit {
   }
   
   getList() {
-    this.formService.getDutyforSeniorOfficer(this.selected).subscribe((formData: any) => {
+    this.formService.getDutyforSeniorOfficer().subscribe((formData: any) => {
       const values = formData.data;
       console.log(formData.data)
       const cols = [

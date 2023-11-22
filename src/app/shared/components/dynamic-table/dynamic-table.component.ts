@@ -11,6 +11,9 @@ export class DynamicTableComponent implements OnInit,OnChanges {
   cols: any[];
   tableData:any[]=[];
   loading: boolean;
+  userData:any;
+  DistAdmin:boolean = false;
+  roleId:any
   searchHeader: any[] = ['firstName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName'];
   @Input() dynamaicDataForTable = {
@@ -31,7 +34,12 @@ export class DynamicTableComponent implements OnInit,OnChanges {
   constructor() { }
 
   ngOnInit(): void {
-   
+    this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+   console.log("datass")
+   this.roleId = parseInt(this.userData.data.userData.rank.role.roleCode)
+    if (this.roleId === 5) {
+      this.DistAdmin = true
+    }
   }
 
   editRecord(data:any){ 

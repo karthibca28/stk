@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   issofficer: boolean = false;
   isSHO: boolean = false;
   Admin:boolean = false;
+  DistAdmin:boolean = false;
   roleId:any
 
   constructor(private router: Router, private formService: FormService) { }
@@ -32,6 +33,9 @@ export class ProfileComponent implements OnInit {
       this.issofficer = true;
     } else if(this.roleId === 4) {
       this.isSHO  = true;
+    }
+    else if(this.roleId === 5) {
+      this.DistAdmin  = true;
     }
     else if(this.roleId === 6) {
       this.Admin  = true;

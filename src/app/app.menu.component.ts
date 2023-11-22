@@ -20,15 +20,15 @@ export class AppMenuComponent implements OnInit {
     ngOnInit() {
         this.model = [
             { label: 'Dashboard', icon: 'fa fa-tachometer', access: '1,2,3', routerLink: ['/main/admin'] },
-            { label: 'Dashboard', icon: 'fa fa-tachometer', access: '6', routerLink: ['/main/so'] },
+            { label: 'Dashboard', icon: 'fa fa-tachometer', access: '5,6', routerLink: ['/main/so'] },
             { label: 'Dashboard', icon: 'fa fa-tachometer', access: '4', routerLink: ['/main/dashboard'] },
-            { label: 'BroadCast', icon: 'fa fa-bullhorn',access: '4,6', routerLink: ['/main/lot/broadCast'] },
+            { label: 'BroadCast', icon: 'fa fa-bullhorn',access: '4,5,6', routerLink: ['/main/lot/broadCast'] },
             { label: 'User', icon: 'far fa-user-circle',access: '4', routerLink: ['/main/lot/userList'] },
             { label: 'Duty', icon: 'fa fa-list-alt',access: '4', routerLink: ['/main/lot/dutyList'] },
             { label: 'Task', icon: 'fa fa-tasks',access: '4', routerLink: ['/main/lot/taskList'] },
             // Admin
             {
-                label: 'Users', icon: 'far fa-user-circle', access: '6', routerLink: ['/main/user-config'],
+                label: 'Users', icon: 'far fa-user-circle', access: '5,6', routerLink: ['/main/user-config'],
                 items: [
                     // { label: 'Department', icon: 'pi pi-image', routerLink: ['/main/user-config/department-list'] },
                     { label: 'User Registration', icon: 'pi pi-id-card', routerLink: ['/main/user-config/user-list'] },
@@ -56,7 +56,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Map Location', icon: 'pi pi-file', routerLink: ['/main/master/locationMap'] }
                 ]
             },
-            { label: 'Duty Points', icon: 'fa fa-bandcamp', access: '4,6', routerLink: ['/main/lot/dutyPoints'] },
+            { label: 'Duty Points', icon: 'fa fa-bandcamp', access: '4,5,6', routerLink: ['/main/lot/dutyPoints'] },
             // {
             //     label: 'Performance', icon: 'pi pi-file', access: '1', routerLink: ['/main/performance'],
             //     items: [
@@ -82,7 +82,7 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
-                label: 'Master', icon: 'fas fa-paste', access: '6', routerLink: ['/main/master'],
+                label: 'Master', icon: 'fas fa-paste', access: '5,6', routerLink: ['/main/master'],
                 items: [
                     // { label: 'State', icon: 'pi pi-file', routerLink: ['/main/master/state-list'] },
                     { label: 'Administration', icon: 'pi pi-file', routerLink: ['/main/master/administration'] },
@@ -109,10 +109,10 @@ export class AppMenuComponent implements OnInit {
                 label: 'Inventory', icon: 'fab fa-delicious', access: '4', routerLink: ['/main/lot/assetList']
             },
             {
-                label: 'Inventory', icon: 'fab fa-delicious', access: '6', routerLink: ['/main/lot/inventory']
+                label: 'Inventory', icon: 'fab fa-delicious', access: '5,6', routerLink: ['/main/lot/inventory']
             },
             {
-                label: 'Report', icon: 'fab fa-delicious', access: '4,6', routerLink: ['/main/performance/report']
+                label: 'Report', icon: 'fab fa-delicious', access: '4,5,6', routerLink: ['/main/performance/report']
             },
             ,
             {
