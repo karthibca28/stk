@@ -73,9 +73,9 @@ export class LoginComponent implements OnInit {
               this.sharedService.showSuccess(successMessage);
               this.router.navigate([navigateTo]);
             }
-            this.oneSignal.setExternalUserId(resp.data.userData.id).then(response => {
-              console.log('External user ID set:', response);
-            })
+            // this.oneSignal.setExternalUserId(resp.data.userData.id).then(response => {
+            //   console.log('External user ID set:', response);
+            // })
           } else {
             this.sharedService.showError('User name or password mismatch');
             this.loginError = 'User name or password mismatch';
