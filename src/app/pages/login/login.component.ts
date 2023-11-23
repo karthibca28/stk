@@ -28,8 +28,20 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.initLoginForm();
     // this.oneSignal.init({
-    //   appId: "8e7fe838-fbcd-4152-980d-32565a2dcf03",
+    //   appId: "0788f57e-e8b1-4862-a562-dc04e312d215",
+    //   allowLocalhostAsSecureOrigin: true,
+    // autoRegister: true,
+    // notifyButton: {
+    //   enable: true,
+    // },
+    //   promptOptions: {
+    //     /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+    //     /* actionMessage limited to 90 characters */
+    //     actionMessage: "We'd like to show you notifications for the latest news and updates.",
+    //     /* acceptButtonText limited to 15 characters */
+    //   },
     // });
+    this.oneSignal.Slidedown.promptPush();
   }
   initLoginForm() {
     this.loginForm = new FormGroup({
