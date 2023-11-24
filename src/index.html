@@ -27,25 +27,14 @@
     </div>
 </app-root>
   <noscript>Please enable JavaScript to continue using this application.</noscript>
+  <!-- <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script>
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(function(OneSignal) {
       OneSignal.init({
         appId: "0788f57e-e8b1-4862-a562-dc04e312d215",
-        serviceWorkerPath: '/environments/OneSignalSDKWorker.js',
-        allowLocalhostAsSecureOrigin: true,
-        autoRegister: true,
-        notifyButton: {
-          enable: true,
-        },
-        promptOptions: {
-          /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
-          /* actionMessage limited to 90 characters */
-          actionMessage: "We'd like to show you notifications for the latest news and updates.",
-          /* acceptButtonText limited to 15 characters */
-        },
       });
     });
-  </script>
+  </script> -->
 </body>
 </html>

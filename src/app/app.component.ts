@@ -34,14 +34,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.swUpdate.available.subscribe(() => {
       // this.display = true
       this.confirmUpdate();
-      // this.oneSignal.init({
-      //   appId: "0788f57e-e8b1-4862-a562-dc04e312d215",
-      //   serviceWorkerPath: '/environments/OneSignalSDKWorker.js'
-      // });
+      
     });
-
-
-
+    this.initOneSignal();
     // }
   }
 
@@ -90,4 +85,33 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  async initOneSignal() {
+    console.log("OneSignal Init");
+    await this.oneSignal.init({
+      appId: "0788f57e-e8b1-4862-a562-dc04e312d215",
+      allowLocalhostAsSecureOrigin: true,
+      promptOptions: {
+        /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
+        /* actionMessage limited to 90 characters */
+        actionMessage: "Kidnly allow to show you notifications for the latest updates.",
+        /* acceptButtonText limited to 15 characters */
+        acceptButtonText: "ALLOW",
+        /* cancelButtonText limited to 15 characters */
+        cancelButtonText: "NO THANKS",},
+      }).then(() => {
+        console.log("OneSignal Initialized");
+        this.oneSignal.setConsentRequired(true);
+        this.oneSignal.setConsentGiven(true);
+        console.log(" this.oneSignal.Notifications.permission",  this.oneSignal.Notifications.permission);
+        this.oneSignal.Notifications.requestPermission().then((status) => {
+          console.log("Notification permission status:", status);
+        }
+        );
+      }).catch((err) => {
+        console.log("OneSignal Initialization Error", err);
+      });
+      
+    }
+
 }

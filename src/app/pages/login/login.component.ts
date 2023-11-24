@@ -27,22 +27,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initLoginForm();
-    // this.oneSignal.init({
-    //   appId: "0788f57e-e8b1-4862-a562-dc04e312d215",
-    //   allowLocalhostAsSecureOrigin: true,
-    // autoRegister: true,
-    // notifyButton: {
-    //   enable: true,
-    // },
-    //   promptOptions: {
-    //     /* These prompt options values configure both the HTTP prompt and the HTTP popup. */
-    //     /* actionMessage limited to 90 characters */
-    //     actionMessage: "We'd like to show you notifications for the latest news and updates.",
-    //     /* acceptButtonText limited to 15 characters */
-    //   },
-    // });
-    this.oneSignal.Slidedown.promptPush();
+    //OneSignal
   }
+
   initLoginForm() {
     this.loginForm = new FormGroup({
       username: new FormControl('', Validators.required),
@@ -57,7 +44,7 @@ export class LoginComponent implements OnInit {
         (resp: any) => {
           console.log("login resp", resp)
           if (resp.data.session.accessToken) {
-            this.oneSignal.login(resp.data.userData.id);
+            this.loginOneSignal(resp.data.userData.id);
             sessionStorage.setItem('userInfo', JSON.stringify(resp));
             this.userRole = parseInt(resp.data.userData.rank.role.roleCode);
             let navigateTo = '';
@@ -120,4 +107,15 @@ export class LoginComponent implements OnInit {
   cancel() {
     this.display = false;
   }
+
+  async loginOneSignal(userId:string) {
+    console.log("OneSignal Login");
+    await this.oneSignal.login(userId).then(response => {
+      console.log('External user ID set:', response);
+    }).catch(err => {
+      console.log('External user ID set:', err);
+    });
+    
+  }
+
 }
