@@ -19,6 +19,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.component';
 
 
+
 @NgModule({
   declarations: [
     TaskComponent,

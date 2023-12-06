@@ -127,9 +127,13 @@
                           </div>
                           <div class="ml-4" *ngIf="selectedFiles[i]">{{selectedFiles[i].name}}</div>
                           <div style="justify-content: flex-end;display: flex;width: 100%;">
-                          <span (click)="addNewSet()">
+                          <span (click)="addNewSet(i)">
                             <i class='pi pi-plus-circle' style="color:#379683;font-size: 20px;"></i>
-                        </span> 
+                        </span > 
+                        <span *ngIf="i > 0" (click)="minusNewSet(i)" class="ml-2">
+                          <i class='pi pi-minus-circle' style="color:#FF4081;font-size: 20px;"></i>
+
+                      </span> 
                       </div>                                                                        
                     </div>
                 </div>

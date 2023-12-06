@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -354,8 +355,47 @@ export class FormService {
   getDutyPointsforSeniorOfficerbyId(dutyPointId:string){
     return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint?dutyPointId=${dutyPointId}`);
   }
-  getBroadCastById(broadcastId:string){
+  getBroadCastById(broadcastId:any){
     return this.http.get(`${this.apiUrl}common/broadcastMessage?broadcastId=${broadcastId}`);
+  }
+  // getFileForBroadCast(fileData: any): Observable<ArrayBuffer> {
+  //   return this.http.get(fileData, { responseType: 'arraybuffer' });
+  // }
+  async getFileForBroadCast(
+    data:any
+  ) {
+    
+    let params = new HttpParams();
+    const userData = JSON.parse(sessionStorage.getItem('userInfo') as string);
+    let auth: any; 
+    let token=null;
+    if (userData) {
+      token = userData.data.session.accessToken; 
+    } 
+    return await fetch(data, {headers: {'Authorization':token}}).then(res=>{
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.blob();
+    }).catch(e=>console.log('error in fetch > ', e));
+  }
+  async getImgForBroadCast(
+    data:any
+  ) {
+    
+    let params = new HttpParams();
+    const userData = JSON.parse(sessionStorage.getItem('userInfo') as string);
+    let auth: any; 
+    let token=null;
+    if (userData) {
+      token = userData.data.session.accessToken; 
+    } 
+    return await fetch(data, {headers: {'Authorization':token}}).then(res=>{
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+      return res.blob();
+    }).catch(e=>console.log('error in fetch > ', e));
   }
   getInventoryforSeniorOfficer(inventorytype:string){
     return this.http.get(`${this.apiUrl}seniorOfficer/inventory?type=${inventorytype}`);

@@ -101,6 +101,13 @@ export class BroadcastFormComponent implements OnInit {
     this.documentfiles.push({});
     this.selectedFiles.push(null);
   }
+  minusNewSet(index) {
+    if (index >= 0 && index < this.documentfiles.length) {
+      this.documentfiles.splice(index, 1);
+      this.selectedFiles.splice(index, 1);
+    }
+  }
+  
 
   // openCamera() {
   //   const video = this.videoElement.nativeElement;
