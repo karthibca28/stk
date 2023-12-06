@@ -50,8 +50,9 @@ export class HomeComponent implements OnInit {
   getDashboard() {
     this.secondaryService.getDashboard().subscribe((resp: any) => {  
       this.dcount = resp.data;
+      this.mapData = resp.data.liveUsers
       this.recentDuties =resp.data.recentDuties.list
-      console.log(this.recentDuties)
+      console.log(this.mapData)
 
     })
   }

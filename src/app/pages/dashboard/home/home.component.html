@@ -81,7 +81,7 @@
       </div> -->
     <!-- </div> -->
     <div class="grid match-height">
-      <div class="col-12 md:col-5">
+      <div class="col-12 md:col-6">
           <div class="card p-0" style="margin-top: 10px;flex: 0;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0  tbold color-02">DL Checks</p>
@@ -239,17 +239,8 @@
             </div>
           </div>
       </div>
-        <div class="col-12 md:col-4">
-          <div class="card p-0" style="margin-top: 10px;flex: 0;">
-              <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
-                  <p class="mb-0 tbold color-02">Map</p>
-              </div>
-              <div class="card-body p-2">
-                <app-dynamic-multipledata-map [mapArrayData]="mapData" ></app-dynamic-multipledata-map>
-              </div>
-          </div>
-      </div>
-      <div class="col-12 md:col-3">
+        
+      <div class="col-12 md:col-6">
           <div class="card p-0" style="margin-top: 10px;flex: 0;">
               <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
                   <p class="mb-0 tbold color-02">Recent Duties</p>
@@ -273,11 +264,21 @@
                 </div>
               </div>  
               <div style="display:flex;justify-content: end;padding-right: 10px;">
-                <a class="viewbutton">View All</a> 
+                <a class="viewbutton" routerLink="/main/lot/dutyList" >View All</a> 
             </div>            
           </div>
     </div>
   </div>
+  <div class="col-12 md:col-12">
+    <div class="card p-0" style="margin-top: 10px;flex: 0;">
+        <div class="card-header" style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+            <p class="mb-0 tbold color-02">Map</p>
+        </div>
+        <div class="card-body p-2">
+          <app-dynamic-multipledata-map [mapArrayData]="mapData" ></app-dynamic-multipledata-map>
+        </div>
+    </div>
+</div>
     <!-- <div class="grid">
       <div class="col-12">
         <div class="card">

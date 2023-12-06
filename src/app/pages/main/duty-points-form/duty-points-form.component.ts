@@ -27,7 +27,7 @@ export class DutyPointsFormComponent implements OnInit {
       this.editMasterId = this.route.snapshot.params['dutyPointId'];
       console.log(this.route.snapshot.params['dutyPointId'])
       this.form = this.formBuilder.group({
-      pointType: ['', Validators.required], // Add your form controls here
+      pointType: ['', Validators.required],
       status: ['', Validators.required],
       latitude:({ value: 'initialLatitudeValue', disabled: true }),
       longitude:({ value: 'initialLongitudeValue', disabled: true })

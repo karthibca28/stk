@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { FormService } from 'src/app/shared/services/form.service';
 })
 export class BroadcastComponent implements OnInit {
 
-  constructor(private formService: FormService) { }
+  constructor(private formService: FormService,private router: Router) { }
 
   dynamaicDataForTable:any
   roleId:any
@@ -35,5 +36,8 @@ export class BroadcastComponent implements OnInit {
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)
   });
+  }
+  viewRecord(broadcastId:any){
+    this.router.navigate([`main/lot/view-broadCast`,broadcastId])
   }
 }

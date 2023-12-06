@@ -21,9 +21,10 @@ import { MaterialModule } from './modules/material/material.module';
 import { DynamicMoreTableComponent } from './components/dynamic-more-table/dynamic-more-table.component';
 import { DynamicMultipledataMapComponent } from './components/dynamic-multipledata-map/dynamic-multipledata-map.component';
 import { LocationService } from './services/location.service';
+import { DynamicViewTableComponent } from './components/dynamic-view-table/dynamic-view-table.component';
 
 @NgModule({
-  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent],
+  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent, DynamicViewTableComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -36,7 +37,7 @@ import { LocationService } from './services/location.service';
     })
   ], 
   providers:[AudioRecordingService,VideoRecordingService,MapMarkerService,AuthguardServiceService,LocationService],
-  exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent]
+  exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent,DynamicViewTableComponent]
 })
 export class SharedModule { }
  

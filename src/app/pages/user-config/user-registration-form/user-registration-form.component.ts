@@ -51,7 +51,7 @@ export class UserRegistrationFormComponent implements OnInit {
       password:['',Validators.required],
       pinHash:[''],
       roleId:['',Validators.required],
-      rankName:['',Validators.required],
+      rankId:['',Validators.required],
       adminId:['',Validators.required],
       stateId:[''],
       zoneId:['',Validators.required],

@@ -35,21 +35,9 @@ export class DutyPointsComponent implements OnInit {
     });
   }
 
-  editRecord(dutyPointId:any){
+  viewRecord(dutyPointId:any){
     this.router.navigate([`main/lot/dutPoints-form`,dutyPointId])
-  //   this.formService.getDutyPointsforSeniorOfficerbyId(dutyPointId).subscribe((formData: any) => {
-  //     this.dutyPoints = formData.data
-  //     this.form.patchValue({
-  //       pointType: formData.data.pointType,
-  //       status: formData.data.status,
-  //       latitude: formData.data.latitude,
-  //       longitude: formData.data.longitude,
+  }
 
-  //     });
-  // });
-  //   this.display = true;
-  }
-  deleteRecord(stateId:number){
-  }
 
 }

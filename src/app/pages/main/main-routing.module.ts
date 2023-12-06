@@ -11,6 +11,7 @@ import { PoliceStationComponent } from './police-station/police-station.componen
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,14 @@ const routes: Routes = [
   {
     path: 'broadCast',
     component: BroadcastComponent
+  },
+  {
+    path: 'view-broadCast',
+    component: ViewBroadcastComponent
+  },
+  {
+    path: 'view-broadCast/:broadcastId',
+    component: ViewBroadcastComponent
   },
   {
     path: 'broadCast-form',

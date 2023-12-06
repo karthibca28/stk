@@ -16,6 +16,7 @@ import { PoliceStationComponent } from './police-station/police-station.componen
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { InventoryComponent } from './inventory/inventory.component';
     BroadcastComponent,
     BroadcastFormComponent,
     InventoryComponent,
+    ViewBroadcastComponent,
   ],
   imports: [
     CommonModule,
