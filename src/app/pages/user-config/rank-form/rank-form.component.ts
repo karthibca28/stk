@@ -35,13 +35,13 @@ export class RankFormComponent implements OnInit {
     this.getAccessControl();
     const id=this.editMasterId
     this.masterService.getRankbyId(id).subscribe((resp:any) => {
-      console.log(resp.data[0].role)
+      console.log(resp.data[0]?.role)
       this.form.patchValue({
-        rankCode: resp.data[0].rankCode,
-        name: resp.data[0].rankName,
-        accessId: resp.data[0].access.id,
-        roleId: resp.data[0].role.id,
-        description: resp.data[0].description,
+        rankCode: resp.data[0]?.rankCode,
+        name: resp.data[0]?.rankName,
+        accessId: resp.data[0]?.access.id,
+        roleId: resp.data[0]?.role.id,
+        description: resp.data[0]?.description,
       });
     });
   }

@@ -56,7 +56,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Map Location', icon: 'pi pi-file', routerLink: ['/main/master/locationMap'] }
                 ]
             },
-            { label: 'Duty Points', icon: 'fa fa-bandcamp', access: '4,5,6', routerLink: ['/main/lot/dutyPoints'] },
+            { label: 'Duty Points', icon: 'fa fa-bandcamp', access: '4', routerLink: ['/main/lot/dutyPoints'] },
             // {
             //     label: 'Performance', icon: 'pi pi-file', access: '1', routerLink: ['/main/performance'],
             //     items: [
@@ -108,9 +108,9 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inventory', icon: 'fab fa-delicious', access: '4', routerLink: ['/main/lot/assetList']
             },
-            {
-                label: 'Inventory', icon: 'fab fa-delicious', access: '5,6', routerLink: ['/main/lot/inventory']
-            },
+            // {
+            //     label: 'Inventory', icon: 'fab fa-delicious', access: '6', routerLink: ['/main/lot/inventory']
+            // },
             {
                 label: 'Report', icon: 'fab fa-delicious', access: '4,5,6', routerLink: ['/main/performance/report']
             },

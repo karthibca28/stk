@@ -57,41 +57,41 @@ export class AssetComponent implements OnInit {
     this.formService.getInventorySummaryforSeniorOfficer().subscribe((formData: any) => {
       this.inventoryItems = [
         {
-          type: this.replaceUnderscore(formData.data.CAR.type),
+          type: this.replaceUnderscore(formData.data.CAR?.type),
           imageSrc: '../../../../assets/inventory/Vechile.png',
-          count: formData.data.CAR.count
+          count: formData.data.CAR?.count
         },
         {
-          type: this.replaceUnderscore(formData.data.BARRICADES.type),
+          type: this.replaceUnderscore(formData.data.BARRICADES?.type),
           imageSrc: '../../../../assets/inventory/Barricade.png',
-          count: formData.data.BARRICADES.count
+          count: formData.data.BARRICADES?.count
         },
         {
-          type: this.replaceUnderscore(formData.data.COMPUTER.type),
+          type: this.replaceUnderscore(formData.data.COMPUTER?.type),
           imageSrc: '../../../../assets/inventory/Computer.png',
-          count: formData.data.COMPUTER.count
+          count: formData.data.COMPUTER?.count
         },
         {
-          type: this.replaceUnderscore(formData.data.WALKIETALKIE.type),
+          type: this.replaceUnderscore(formData.data.WALKIETALKIE?.type),
           imageSrc: '../../../../assets/inventory/Walkitakie.png',
-          count: formData.data.WALKIETALKIE.count
+          count: formData.data.WALKIETALKIE?.count
         },
         {
-          type: this.replaceUnderscore(formData.data.TABLE_CHAIR.type),
+          type: this.replaceUnderscore(formData.data.TABLE_CHAIR?.type),
           imageSrc: '../../../../assets/inventory/Table and chair.png',
-          count: formData.data.TABLE_CHAIR.count
+          count: formData.data.TABLE_CHAIR?.count
         },
         {
-          type: this.replaceUnderscore(formData.data.CHALLAN_DEVICE.type),
+          type: this.replaceUnderscore(formData.data.CHALLAN_DEVICE?.type),
           imageSrc: '../../../../assets/inventory/Challan Machile.png',
-          count: formData.data.CHALLAN_DEVICE.count
+          count: formData.data.CHALLAN_DEVICE?.count
         }
       ];
     });
   }
   
   replaceUnderscore(type: string): string {
-    return type.replace(/_/g, '-'); // Replace underscores with spaces in the type
+    return type?.replace(/_/g, '-'); // Replace underscores with spaces in the type
   }
   
 

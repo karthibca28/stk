@@ -36,18 +36,18 @@ export class AccesscontrolFormComponent implements OnInit {
     });
     const id=this.editMasterId
     this.masterService.getAccessControlbyId(id).subscribe((resp:any) => {
-      console.log(resp.data[0].name)
+      console.log("datas",resp.data[0]?.name)
       this.form.patchValue({
-        name: resp.data[0].name,
-        description: resp.data[0].description,
-        isCustom: resp.data[0].isCustom,
-        stateAccess: resp.data[0].stateAccess,
-        admAccess: resp.data[0].admAccess,
-        zoneAccess: resp.data[0].zoneAccess,
-        rangeAccess: resp.data[0].rangeAccess,
-        districtAccess: resp.data[0].districtAccess,
-        subDivAccess: resp.data[0].subDivAccess,
-        psAccess: resp.data[0].psAccess,
+        name: resp.data[0]?.name,
+        description: resp.data[0]?.description,
+        isCustom: resp.data[0]?.isCustom,
+        stateAccess: resp.data[0]?.stateAccess,
+        admAccess: resp.data[0]?.admAccess,
+        zoneAccess: resp.data[0]?.zoneAccess,
+        rangeAccess: resp.data[0]?.rangeAccess,
+        districtAccess: resp.data[0]?.districtAccess,
+        subDivAccess: resp.data[0]?.subDivAccess,
+        psAccess: resp.data[0]?.psAccess,
       });
       // this.stateList = [stateData]
     });

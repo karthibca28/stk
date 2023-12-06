@@ -21,7 +21,7 @@ export class RoleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['roleId'];
-    console.log(this.editMasterId)
+    console.log("datasss",this.editMasterId)
     this.form = this.formBuilder.group({
       roleCode:[''],
       name: ['', Validators.required],
@@ -31,9 +31,9 @@ export class RoleFormComponent implements OnInit {
     const id=this.editMasterId
     this.masterService.getRolebyId(id).subscribe((resp:any) => {
       this.form.patchValue({
-        roleCode: resp.data[0].roleCode,
-        name: resp.data[0].roleName,
-        description: resp.data[0].description,
+        roleCode: resp.data[0]?.roleCode,
+        name: resp.data[0]?.roleName,
+        description: resp.data[0]?.description,
       });
     });
   }
