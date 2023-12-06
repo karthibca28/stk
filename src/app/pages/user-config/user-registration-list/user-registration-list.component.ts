@@ -123,7 +123,7 @@ export class UserRegistrationListComponent implements OnInit {
             })
         },
         reject: () => {
-            this.sharedService.showWarn('Cencelled');
+            this.sharedService.showWarn('Cancelled');
         }
     });
   }
