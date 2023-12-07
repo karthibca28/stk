@@ -47,6 +47,7 @@ export class SoHomeComponent implements OnInit {
   data:any
   firstDate:any
   dates:any
+  userData:any
   
 
   constructor(private router: Router, private formService: FormService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
@@ -85,6 +86,16 @@ getDashboard() {
     this.userActivePercentage = parseFloat(((this.dashboardData.userSummary.userActive / userTotal) * 100).toFixed(0));
     this.userInActivePercentage = parseFloat(((this.dashboardData.userSummary.userInActive / userTotal) * 100).toFixed(0));
     this.userNotLoginPercentage = parseFloat(((this.dashboardData.userSummary.userNotLogin / userTotal) * 100).toFixed(0));
+    this.userData = {
+      labels: ['Active Users', 'Inactive Users', 'Not Logged In Users'],
+      datasets: [
+        {
+          data: [this.userActivePercentage, this.userInActivePercentage, this.userNotLoginPercentage],
+          backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+        },
+      ],
+    };
+    console.log(this.userData)
     this.junctionPoint = this.dashboardData.dutySummary.junctionPoint;
     this.vehicleCheck = this.dashboardData.dutySummary.vehicleCheck;
     this.vipRoutes = this.dashboardData.dutySummary.vipRoutes;

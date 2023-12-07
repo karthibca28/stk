@@ -19,6 +19,7 @@ export class ViewBroadcastComponent implements OnInit {
   fileType: string='application/pdf'
   isFileLoaded:boolean=false
   messageData:any
+  titleData:any
 
   constructor(
     private router: Router,
@@ -36,6 +37,7 @@ export class ViewBroadcastComponent implements OnInit {
     this.formService.getBroadCastById(this.editMasterId).subscribe((formData: any) => {
       this.broadCastData = formData.data;
       this.messageData = formData.data.message
+      this.titleData = formData.data.title
       console.log(this.broadCastData);
     });
   }

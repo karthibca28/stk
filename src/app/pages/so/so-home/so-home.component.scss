@@ -109,18 +109,12 @@
 
 .duty-item {
     width: 22%;
-    border: solid 0.5px black;
+    background-color: #e2dfdf;
     border-radius: 10px;
     display: flex;
     align-items: center;
     padding: 10px;
     margin: 5px;
-}
-
-.duty-item img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
 }
 
 .duty-content {
