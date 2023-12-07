@@ -172,5 +172,8 @@ export class BroadcastFormComponent implements OnInit {
     this.selectedFiles[cardIndex] = file;
     console.log(`File selected for card ${cardIndex}: ${file.name}`);
   }
+  cancel() {
+    this.router.navigate(['main/lot/broadCast'])
+  }
 
 }

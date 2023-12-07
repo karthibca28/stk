@@ -1,6 +1,18 @@
 <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="submit()">
-    <h3 class="color-04">Add AccessControl</h3>
     <div class="grid">
+        <div class="col-12 pb-0">
+            <div class="flex align-items-center justify-content-between mb-2">
+                <div class="title">
+                    <h3 class="color-04">Add AccessControl</h3>
+                </div>
+                <div class="btn-top">
+                    <button pButton label="Go to List" type="button" icon="pi pi-arrow-left"
+                        class="p-button-info border5" (click)="cancel()"></button>
+                </div>
+            </div>
+        </div>
+        <!-- <h3 class="color-04">Add AccessControl</h3>
+     <div class="grid"> -->
         <div class="col-12 md:col-6">
             <mat-card class="md:px-5">
                 <!-- <label class="form-label">First Name</label>
@@ -12,7 +24,9 @@
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name">
-                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.name?.touched && form?.controls?.name?.errors?.required)">Name is required</mat-error>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.name?.touched && form?.controls?.name?.errors?.required)">Name is
+                            required</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="field">
@@ -25,42 +39,42 @@
                     <div class="field-toggle-row">
                         <mat-label>Custom</mat-label>
                         <mat-label>Status Access</mat-label>
-                      </div>
-                      <div class="field-toggle-row">
-                    <mat-slide-toggle formControlName="isCustom">True</mat-slide-toggle>     
-                    <mat-slide-toggle formControlName="stateAccess">True</mat-slide-toggle>
+                    </div>
+                    <div class="field-toggle-row">
+                        <mat-slide-toggle formControlName="isCustom">True</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="stateAccess">True</mat-slide-toggle>
                     </div>
                 </div>
                 <div class="field toogle-field">
                     <div class="field-toggle-row">
                         <mat-label>Admin Access</mat-label>
                         <mat-label>Zone Access</mat-label>
-                      </div>
-                      <div class="field-toggle-row">
-                    <mat-slide-toggle formControlName="admAccess">True</mat-slide-toggle>
-                    <mat-slide-toggle formControlName="zoneAccess">True</mat-slide-toggle>
-                </div>
+                    </div>
+                    <div class="field-toggle-row">
+                        <mat-slide-toggle formControlName="admAccess">True</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="zoneAccess">True</mat-slide-toggle>
+                    </div>
                 </div>
                 <div class="field-toggle-container">
                     <div class="field-toggle-row">
-                      <mat-label>Range Access</mat-label>
-                      <mat-label>District Access</mat-label>
+                        <mat-label>Range Access</mat-label>
+                        <mat-label>District Access</mat-label>
                     </div>
                     <div class="field-toggle-row">
-                      <mat-slide-toggle formControlName="rangeAccess">True</mat-slide-toggle>
-                      <mat-slide-toggle formControlName="districtAccess">True</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="rangeAccess">True</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="districtAccess">True</mat-slide-toggle>
                     </div>
-                  </div>
-                  
-                  
+                </div>
+
+
                 <div class="field toogle-field">
                     <div class="field-toggle-row">
                         <mat-label>SubDivision Access</mat-label>
                         <mat-label>PoliceStation Access</mat-label>
-                      </div>
+                    </div>
                     <div class="field-toggle-row">
-                    <mat-slide-toggle formControlName="subDivAccess">True</mat-slide-toggle>
-                    <mat-slide-toggle formControlName="psAccess">True</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="subDivAccess">True</mat-slide-toggle>
+                        <mat-slide-toggle formControlName="psAccess">True</mat-slide-toggle>
                     </div>
                 </div>
                 <div class="text-right">

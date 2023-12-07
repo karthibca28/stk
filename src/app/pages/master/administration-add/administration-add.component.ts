@@ -102,6 +102,9 @@ export class AdministrationAddComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
+  cancel() {
+    this.router.navigate(['main/master/administration'])
+  }
   
 }
   

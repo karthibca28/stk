@@ -1,6 +1,18 @@
 <form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h3 class="color-04">Add Administration</h3>
     <div class="grid">
+        <div class="col-12 pb-0">
+            <div class="flex align-items-center justify-content-between mb-2">
+                <div class="title">
+                    <h3 class="color-04">Add Administration</h3>
+                </div>
+                <div class="btn-top">
+                    <button pButton label="Go to List" type="button" icon="pi pi-arrow-left"
+                        class="p-button-info border5" (click)="cancel()"></button>
+                </div>
+            </div>
+        </div>
+        <!-- <h3 class="color-04">Add Administration</h3>
+    <div class="grid"> -->
         <div class="col-12 md:col-6">
             <mat-card class="md:px-5">
                 <!-- <label class="form-label">First Name</label>
@@ -18,19 +30,21 @@
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name">
-                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.name?.touched && form?.controls?.name?.errors?.required)">Name is required</mat-error>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.name?.touched && form?.controls?.name?.errors?.required)">Name is
+                            required</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="field">
                     <mat-form-field class="w-full">
-                      <mat-label>State</mat-label>
-                      <mat-select formControlName="stateId">
-                        <mat-option *ngFor="let stateList of stateList" [value]="stateList.id">
-                          {{stateList.name}}
-                        </mat-option>
-                      </mat-select>
+                        <mat-label>State</mat-label>
+                        <mat-select formControlName="stateId">
+                            <mat-option *ngFor="let stateList of stateList" [value]="stateList.id">
+                                {{stateList.name}}
+                            </mat-option>
+                        </mat-select>
                     </mat-form-field>
-                    </div>
+                </div>
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Description</mat-label>
