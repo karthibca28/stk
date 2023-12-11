@@ -379,6 +379,9 @@ export class FormService {
       return res.blob();
     }).catch(e=>console.log('error in fetch > ', e));
   }
+
+  
+
   async getImgForBroadCast(
     data:any
   ) {

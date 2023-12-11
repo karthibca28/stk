@@ -24,7 +24,7 @@ export class DutyComponent implements OnInit {
 
   ngOnInit(): void {
     this.getList();
-    // this.getDutySummary()
+    this.getDutySummary()
   }
   onSelectionChange(event: any) {
     this.selected = event.value;
@@ -48,36 +48,36 @@ export class DutyComponent implements OnInit {
   });
   }
 
-  // getDutySummary() {
-  //   this.formService.getDutySummaryforSeniorOfficer().subscribe((formData: any) => {
-  //     this.DutyItems = [
-  //       {
-  //         type: this.replaceUnderscores(formData.data.TRAFFIC_DUTY.type),
-  //         imageSrc: '../../../../assets/Duty/icons8-check-book-48.png',
-  //         count: formData.data.TRAFFIC_DUTY.count
-  //       },
-  //       {
-  //         type: this.replaceUnderscores(formData.data.VEHICLE_POINT.type),
-  //         imageSrc: '../../../../assets/Duty/icons8-traffic-48.png',
-  //         count: formData.data.VEHICLE_POINT.count
-  //       },
-  //       {
-  //         type: this.replaceUnderscores(formData.data.GENERAL_CHECK.type),
-  //         imageSrc: '../../../../assets/Duty/icons8-traffic-jam-48.png',
-  //         count: formData.data.GENERAL_CHECK.count
-  //       },
-  //       {
-  //         type: this.replaceUnderscores(formData.data.VIP_ROUTES.type),
-  //         imageSrc: '../../../../assets/Duty/icons8-vip-48.png',
-  //         count: formData.data.VIP_ROUTES.count
-  //       }
-  //     ];
-  //   });
-  // }
+  getDutySummary() {
+    this.formService.getDutySummaryforSeniorOfficer().subscribe((formData: any) => {
+      this.DutyItems = [
+        {
+          type: this.replaceUnderscores(formData.data.JUNCTION_POINT.type),
+          imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
+          count: formData.data.JUNCTION_POINT.count
+        },
+        {
+          type: this.replaceUnderscores(formData.data.PATROL_DUTY.type),
+          imageSrc: '../../../../assets/Duty/icons8-traffic-48.png',
+          count: formData.data.PATROL_DUTY.count
+        },
+        {
+          type: this.replaceUnderscores(formData.data.SECTOR_DUTY.type),
+          imageSrc: '../../../../assets/Duty/icons8-traffic-jam-48.png',
+          count: formData.data.SECTOR_DUTY.count
+        },
+        {
+          type: this.replaceUnderscores(formData.data.VEHICLE_CHECK.type),
+          imageSrc: '../../../../assets/Duty/icons8-vip-48.png',
+          count: formData.data.VEHICLE_CHECK.count
+        }
+      ];
+    });
+  }
   
-  // replaceUnderscores(type: string): string {
-  //   return type.replace(/_/, '-'); // Replace underscores with spaces in the type
-  // }
+  replaceUnderscores(type: string): string {
+    return type.replace(/_/, '-'); // Replace underscores with spaces in the type
+  }
   
   clear(table: Table) {
       table.clear();

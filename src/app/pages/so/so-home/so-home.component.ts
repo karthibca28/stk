@@ -6,6 +6,7 @@ import { FormService } from 'src/app/shared/services/form.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { DatePipe } from '@angular/common';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
+import { MasterService } from 'src/app/shared/services/master.service';
 @Component({
   selector: 'app-so-home',
   templateUrl: './so-home.component.html',
@@ -48,14 +49,16 @@ export class SoHomeComponent implements OnInit {
   firstDate:any
   dates:any
   userData:any
-  
+  inventoryItems:any
+  imgData:any
 
-  constructor(private router: Router, private formService: FormService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
+  constructor(private router: Router, private formService: FormService,private masterService:MasterService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
 
   ngOnInit(): void {
     this.getDashboard();
     this.getChartDataDlRC();
-    this.getChartDataChallanCheck()
+    this.getChartDataChallanCheck();
+    this.getInventoryType()
     }
 
 
@@ -87,11 +90,11 @@ getDashboard() {
     this.userInActivePercentage = parseFloat(((this.dashboardData.userSummary.userInActive / userTotal) * 100).toFixed(0));
     this.userNotLoginPercentage = parseFloat(((this.dashboardData.userSummary.userNotLogin / userTotal) * 100).toFixed(0));
     this.userData = {
-      labels: ['Active Users', 'Inactive Users', 'Not Logged In Users'],
+      labels: ['Active Users Percentage', 'Inactive Users Percentage', 'Not Logged In Users Percentage'],
       datasets: [
         {
           data: [this.userActivePercentage, this.userInActivePercentage, this.userNotLoginPercentage],
-          backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
+          backgroundColor: ['#2ecc71', '#FA383E', '#438AEA'],
         },
       ],
     };
@@ -104,6 +107,51 @@ getDashboard() {
   });
 }
 
+getInventoryType() {
+  this.masterService.inventoryTypeList().subscribe((res: any) => {
+    console.log(res.data)
+    this.inventoryItems = res.data.map(item => {
+      // if (item.image) {
+      //   this.masterService.inventoryImg(item.image.downloadPath).subscribe((imgRes: any) => {
+      //     item.imageURL = imgRes;
+      //     console.log(item.imageURL);
+      //   });
+      // }
+      return item;
+    });
+  });
+}
+
+async getImage(url: string): Promise<string> {
+  try {
+    // const res = await this.masterService.inventoryImg(url);
+    console.log('getImage > ', url ,'-','res')
+    // if (!res) {
+    //   throw new Error('Invalid file response');
+    // }
+
+    // this.fileType = res.type
+    // console.log(res.type)
+    // const fileUrl = await this.getPdfUrl(res);
+    // this.fileUrl = fileUrl;
+    return ''
+  } catch (e) {
+    console.error('Error fetching or processing file:', e);
+    return ''
+  }
+}
+
+// _getImage(e:Blob): SafeResourceUrl {
+//   const pdfUrl = URL.createObjectURL(e);
+//   console.log("Select files", pdfUrl)
+//   this.isFileLoaded = true;
+//   return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
+//   if (this.fileUrl) {
+//   // const pdfBlob = new Blob(e, { type: 'application/pdf' });
+// } else {
+//   // If fileUrl is not available, return an empty SafeResourceUrl
+//   return '';
+// }
 
 
   listView(status: string, reType: any, calSearch: any) {
@@ -124,12 +172,12 @@ getDashboard() {
           datasets: [
             {
               label: 'Task Total',
-              backgroundColor: '#4E4FEB',
+              backgroundColor: '#FA383E',
               data: resp.data.summary.map(item => item.taskTotal),
             },
             {
               label: 'Duty Total',
-              backgroundColor: '#C70039',
+              backgroundColor: '#438AEA',
               data: resp.data.summary.map(item => item.dutyTotal),
             }
           ]

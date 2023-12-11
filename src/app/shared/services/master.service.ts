@@ -63,6 +63,9 @@ export class MasterService {
   inventoryTypeList(){
     return this.http.get(`${this.apiUrl}admin/inventoryType`);
   }
+  inventoryImg(img){
+    return this.http.get(`${img}`);
+  }
   rankList(){
     return this.http.get(`${this.apiUrl}admin/rank`);
   }

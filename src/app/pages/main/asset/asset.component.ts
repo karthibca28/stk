@@ -57,35 +57,35 @@ export class AssetComponent implements OnInit {
     this.formService.getInventorySummaryforSeniorOfficer().subscribe((formData: any) => {
       this.inventoryItems = [
         {
+          type: this.replaceUnderscore(formData.data.CHALLAN_DEVICE?.type),
+          imageSrc: '../../../../assets/task/Challan Machile.png',
+          count: formData.data.CHALLAN_DEVICE?.count
+        },
+        {
+          type: this.replaceUnderscore(formData.data.SIGNAL?.type),
+          imageSrc: '../../../../assets/Duty/icons8-traffic-48.png',
+          count: formData.data.SIGNAL?.count
+        },
+        {
           type: this.replaceUnderscore(formData.data.CAR?.type),
           imageSrc: '../../../../assets/inventory/Vechile.png',
           count: formData.data.CAR?.count
         },
-        {
-          type: this.replaceUnderscore(formData.data.BARRICADES?.type),
-          imageSrc: '../../../../assets/inventory/Barricade.png',
-          count: formData.data.BARRICADES?.count
-        },
-        {
-          type: this.replaceUnderscore(formData.data.COMPUTER?.type),
-          imageSrc: '../../../../assets/inventory/Computer.png',
-          count: formData.data.COMPUTER?.count
-        },
-        {
-          type: this.replaceUnderscore(formData.data.WALKIETALKIE?.type),
-          imageSrc: '../../../../assets/inventory/Walkitakie.png',
-          count: formData.data.WALKIETALKIE?.count
-        },
-        {
-          type: this.replaceUnderscore(formData.data.TABLE_CHAIR?.type),
-          imageSrc: '../../../../assets/inventory/Table and chair.png',
-          count: formData.data.TABLE_CHAIR?.count
-        },
-        {
-          type: this.replaceUnderscore(formData.data.CHALLAN_DEVICE?.type),
-          imageSrc: '../../../../assets/inventory/Challan Machile.png',
-          count: formData.data.CHALLAN_DEVICE?.count
-        }
+        // {
+        //   type: this.replaceUnderscore(formData.data.WALKIETALKIE?.type),
+        //   imageSrc: '../../../../assets/inventory/Walkitakie.png',
+        //   count: formData.data.WALKIETALKIE?.count
+        // },
+        // {
+        //   type: this.replaceUnderscore(formData.data.TABLE_CHAIR?.type),
+        //   imageSrc: '../../../../assets/inventory/Table and chair.png',
+        //   count: formData.data.TABLE_CHAIR?.count
+        // },
+        // {
+        //   type: this.replaceUnderscore(formData.data.CHALLAN_DEVICE?.type),
+        //   imageSrc: '../../../../assets/inventory/Challan Machile.png',
+        //   count: formData.data.CHALLAN_DEVICE?.count
+        // }
       ];
     });
   }

@@ -67,7 +67,16 @@
     <div class="col-12 md:col-5">
         <div class="card p-0" style="border-radius: 0;">
             <div class="card-header" style="padding: 10px 12px;">
-                <p class="mb-0 tbold" style="display: flex;justify-content: space-between;">Total Users:<span>{{dashboardData?.userSummary.userTotal}}</span></p>
+                <p class="mb-0 tbold" style="display: flex;justify-content: space-between;">Total Users:&nbsp;<span style="color: red;">{{dashboardData?.userSummary.userTotal}}</span></p>
+            </div>
+            <div class="card m-2 flex justify-content-between">
+                <p class="mb-0 tbold">Active User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userActive}}</span>
+            </div>
+            <div class="card m-2 flex justify-content-between">
+                <p class="mb-0 tbold">Inactive User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userInActive}}</span>
+            </div>
+            <div class="card m-2 flex justify-content-between">
+                <p class="mb-0 tbold">Not Login User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userNotLogin}}</span>
             </div>
             <div class="card-body flex justify-content-between align-items-center p-2">
                 <div class="w-12">
@@ -79,6 +88,33 @@
         </div>
     </div>
 </div>
+<div class="card">
+    <p class="mb-0 tbold">Inventory List</p>
+    <div class="grid mx-0 mt-0" style="display: flex; justify-content: space-around;">
+      <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
+        <div class="item-type">
+          <p class="font-semibold" style="white-space: nowrap;">{{ item.inventoryType }}</p>
+        </div>
+        <div class="item-image">
+          <img src="../../../../assets/icons/inventory.png" style="height: 50px;" alt="Inventory Item">
+        </div>
+        <div class="item-count">
+          <!-- <p class="font-semibold mt-3" style="white-space: nowrap;">{{ item.count }}</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- <div class="card">
+    <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
+      <div class="item-type">
+        <p class="font-semibold" style="white-space: nowrap;">{{ item.inventoryType }}</p>
+      </div>
+      <div class="item-image">
+        <img style="height: 50px;" alt="Inventory Item" src="../../../../assets/icons/inventory.png">
+      </div>
+    </div>
+  </div> -->
+  
 <div class="seniorOfficer">
     <!-- <div class="grid match-height">
         <div class="col-12 md:col-5">

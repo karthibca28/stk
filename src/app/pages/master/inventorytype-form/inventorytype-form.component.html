@@ -21,6 +21,29 @@
                         <textarea matInput formControlName="description"></textarea>
                     </mat-form-field>
                 </div>
+                <div class="card" (click)="triggerFileInput.click()"  style="display: flex;justify-content: space-around;margin-top: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                    <div class="card-selection" >
+                        <label style="display: flex;justify-content: center;margin-top: 15px;">Upload File</label>
+                        <div  style="margin-top:5px;display: flex;padding-left: 20px;padding-right: 20px;align-items: center;">
+                              <div style="cursor: pointer;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                                  <circle cx="19.5" cy="19.5" r="19.5" fill="#33DD6D" />
+                                  <mask id="mask0_743_551" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="23" height="23">
+                                    <rect x="8.28156" y="8.28162" width="22.4457" height="22.4457" fill="#D9D9D9" />
+                                  </mask>
+                                  <g mask="url(#mask0_743_551)">
+                                    <path
+                                      d="M18.5692 24.1806H20.4397V20.2527L21.936 21.749L23.2454 20.4397L19.5044 16.6988L15.7635 20.4397L17.0728 21.749L18.5692 20.2527V24.1806ZM12.0225 26.9864C11.5082 26.9864 11.0678 26.8032 10.7015 26.4369C10.3352 26.0706 10.1521 25.6303 10.1521 25.1159V13.8931C10.1521 13.3787 10.3352 12.9383 10.7015 12.572C11.0678 12.2057 11.5082 12.0226 12.0225 12.0226H17.634L19.5044 13.8931H26.9863C27.5007 13.8931 27.941 14.0762 28.3073 14.4425C28.6736 14.8088 28.8568 15.2491 28.8568 15.7635V25.1159C28.8568 25.6303 28.6736 26.0706 28.3073 26.4369C27.941 26.8032 27.5007 26.9864 26.9863 26.9864H12.0225ZM12.0225 13.8931V25.1159H26.9863V15.7635H18.7329L16.8624 13.8931H12.0225Z"
+                                      fill="#1C1B1F"
+                                    />
+                                  </g>
+                                </svg>
+                                <input type="file" (change)="onFileSelected($event, i)" accept="*" style="display: none;" #triggerFileInput multiple forControlName="icon">
+                              </div>
+                              <div class="ml-4">{{file?.name}}</div>                                                                      
+                        </div>
+                    </div>
+                </div>
                 <div class="text-right">
                     <button mat-raised-button mat-button color="primary">Add</button>
                 </div>
