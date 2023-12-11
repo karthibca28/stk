@@ -88,5 +88,8 @@ export class RoleFormComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
+  cancel() {
+    this.router.navigate(['main/user-config/role-list'])
+  }
   
 }

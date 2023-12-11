@@ -109,5 +109,7 @@ export class AccesscontrolFormComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-  
+  cancel() {
+    this.router.navigate(['main/user-config/accesscontrol-list'])
+  }
 }

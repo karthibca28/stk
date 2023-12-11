@@ -111,4 +111,7 @@ export class RankFormComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
+  cancel() {
+    this.router.navigate(['main/user-config/rank-list'])
+  }
 }
