@@ -14,7 +14,8 @@ export class DynamicViewTableComponent implements OnInit {
   userData:any;
   DistAdmin:boolean = false;
   roleId:any
-  searchHeader: any[] = ['firstName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
+  searchKeyword:any
+  searchHeader: any[] = ['firstName','title','message','fullName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName'];
   @Input() dynamaicDataForTable = {
     cols:[],
@@ -44,6 +45,7 @@ export class DynamicViewTableComponent implements OnInit {
   }
   clear(table: Table) {
       table.clear();
+      this.searchKeyword = '';
   }
 
 

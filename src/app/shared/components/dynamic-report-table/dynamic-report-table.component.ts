@@ -10,7 +10,8 @@ import { Table } from 'primeng/table';
 export class DynamicReportTableComponent implements OnInit {
   cols: any[];
   tableData:any[]=[];
-  searchHeader: any[] = ['firstName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
+  searchKeyword:any
+  searchHeader: any[] = ['firstName','lastName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName','locCategoryName','locSubcategoryName'];
   loading: boolean;
   pageNumber:number
@@ -51,6 +52,7 @@ export class DynamicReportTableComponent implements OnInit {
   
   clear(table: Table) {
       table.clear();
+      this.searchKeyword = '';
   }
 
 }

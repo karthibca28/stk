@@ -14,6 +14,7 @@ export class DynamicTableComponent implements OnInit,OnChanges {
   userData:any;
   DistAdmin:boolean = false;
   roleId:any
+  searchKeyword:any
   searchHeader: any[] = ['firstName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName'];
   @Input() dynamaicDataForTable = {
@@ -54,6 +55,7 @@ export class DynamicTableComponent implements OnInit,OnChanges {
   
   clear(table: Table) {
       table.clear();
+      this.searchKeyword = '';
   }
 
 }
