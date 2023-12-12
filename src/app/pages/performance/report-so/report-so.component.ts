@@ -48,13 +48,13 @@ export class ReportSoComponent implements OnInit {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
     this.roleId = this.userData.data.userData.rank.role.roleCode
     console.log(this.roleId)
-    this.getZoneList()
-    this.getRangeList()
-    this.getDistrictList()
-    this.getSubDivision()
-    this.getAdminList()
-    this.getStateList()
-    this.getPoliceStaion()
+    // this.getZoneList()
+    // this.getRangeList()
+    // this.getDistrictList()
+    // this.getSubDivision()
+    // this.getAdminList()
+    // this.getStateList()
+    // this.getPoliceStaion()
     this.getAccessControl()
   }
   onSelectionChangeLimit(event: any) {
@@ -71,39 +71,64 @@ export class ReportSoComponent implements OnInit {
     });
   }
 
-  getAdminList() {
-    this.masterService.commonAdminList().subscribe((resp: any) => {
+  getAdminList(id:any) {
+    this.masterService.commonAdminList(id).subscribe((resp: any) => {
        this.adminList = resp.data
     });
   }
-  getZoneList() {
-    this.masterService.commonZone().subscribe((resp: any) => {
+
+
+  getZoneList(id:any) {
+    this.masterService.commonZone(id).subscribe((resp: any) => {
        this.zoneList = resp.data
     });
   }
-  getRangeList() {
-    this.masterService.commonRange().subscribe((resp: any) => {
+
+  getRangeList(id:any) {
+    this.masterService.commonRange(id).subscribe((resp: any) => {
        this.rangeList = resp.data
     });
   }
-   getDistrictList() {
-    this.masterService.commonDistrict().subscribe((resp: any) => {
+   getDistrictList(id:any) {
+    this.masterService.commonDistrict(id).subscribe((resp: any) => {
        this.districtList = resp.data
     });
   }
-  getSubDivision() {
-    this.masterService.commonSubDivision().subscribe((resp: any) => {
+  getSubDivision(id:any) {
+    this.masterService.commonSubDivision(id).subscribe((resp: any) => {
        this.subDivisionList = resp.data
     });
   }
-  getPoliceStaion() {
-    this.masterService.commonPoliceStation().subscribe((resp: any) => {
+  getPoliceStaion(id:any) {
+    this.masterService.commonPoliceStation(id).subscribe((resp: any) => {
        this.policeStationList = resp.data
     });
   }
   getAccessControl() {
     this.masterService.findAccessControl().subscribe((resp: any) => {
-      this.data = resp.data; 
+      this.data = resp.data;
+      console.log(this.data)
+      if(this.data.zoneId === true){
+      this.getZoneList(resp.data.inputId)
+      }
+      if(this.data.rangeId === true){
+      this.getRangeList(resp.data.inputId)
+    }
+      if(this.data.districtId === true){
+      this.getDistrictList(resp.data.inputId)
+      }
+      if(this.data.subDivisionId === true){
+      this.getSubDivision(resp.data.inputId)
+      }
+      if(this.data.adminId === true){
+      this.getAdminList(resp.data.inputId)
+      }
+      // if(this.data.stateId === true){
+      // this.getStateList()
+      // }
+      if(this.data.policeStationId === true){
+      this.getPoliceStaion(resp.data.inputId)
+      }
     });
   }
   getSubTypeFilter() {

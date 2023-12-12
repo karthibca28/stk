@@ -42,6 +42,68 @@
             </mat-form-field>
           </div>
         </div>
+        <div class="flex" style="justify-content: flex-end;">
+        <div *ngIf="data?.adminId === true">
+            <mat-form-field >
+                <mat-label>Administration</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let adminList of adminList" [value]="adminList.id" (click)="getZoneList(adminList.id)">
+                        {{adminList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="data?.zoneId === true">
+            <mat-form-field >
+                <mat-label>Zone</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id" (click)="getRangeList(zoneList.id)">
+                        {{zoneList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="data?.rangeId === true">
+            <mat-form-field >
+                <mat-label>Range</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id" (click)="getDistrictList(rangeList.id)">
+                        {{rangeList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="data?.districtId === true">
+            <mat-form-field >
+                <mat-label>District</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let districtList of districtList" [value]="districtList.id" (click)="getSubDivision(districtList.id)">
+                        {{districtList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="data?.subDivisionId === true">
+            <mat-form-field >
+                <mat-label>SubDivision</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id" (click)="getPoliceStaion(subDivisionList.id)">
+                        {{subDivisionList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div *ngIf="data?.policeStationId === true">
+            <mat-form-field >
+                <mat-label>Police Station</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let policeStationList of policeStationList" [value]="policeStationList.id">
+                        {{policeStationList.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
         <div class="card" style="background-color: #18B76B;">
             <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable" ></app-dynamic-report-table>
         </div>

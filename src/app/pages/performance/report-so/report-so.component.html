@@ -115,7 +115,7 @@
             <mat-form-field class="w-full">
                 <mat-label>Administration</mat-label>
                 <mat-select formControlName="adminId">
-                    <mat-option *ngFor="let adminList of adminList" [value]="adminList.id">
+                    <mat-option *ngFor="let adminList of adminList" [value]="adminList.id" (click)="getZoneList(adminList.id)">
                         {{adminList.name}}
                     </mat-option>
                 </mat-select>
@@ -125,7 +125,7 @@
             <mat-form-field class="w-full">
                 <mat-label>Zone</mat-label>
                 <mat-select formControlName="zoneId">
-                    <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id">
+                    <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id" (click)="getRangeList(zoneList.id)">
                         {{zoneList.name}}
                     </mat-option>
                 </mat-select>
@@ -135,7 +135,7 @@
             <mat-form-field class="w-full">
                 <mat-label>Range</mat-label>
                 <mat-select formControlName="rangeId">
-                    <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id">
+                    <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id" (click)="getDistrictList(rangeList.id)">
                         {{rangeList.name}}
                     </mat-option>
                 </mat-select>
@@ -145,7 +145,7 @@
             <mat-form-field class="w-full">
                 <mat-label>District</mat-label>
                 <mat-select formControlName="districtId">
-                    <mat-option *ngFor="let districtList of districtList" [value]="districtList.id">
+                    <mat-option *ngFor="let districtList of districtList" [value]="districtList.id" (click)="getSubDivision(districtList.id)">
                         {{districtList.name}}
                     </mat-option>
                 </mat-select>
@@ -155,7 +155,7 @@
             <mat-form-field class="w-full">
                 <mat-label>SubDivision</mat-label>
                 <mat-select formControlName="subDivisionId">
-                    <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id">
+                    <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id" (click)="getPoliceStaion(subDivisionList.id)">
                         {{subDivisionList.name}}
                     </mat-option>
                 </mat-select>

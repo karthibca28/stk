@@ -218,25 +218,25 @@ export class MasterService {
   commonStateList() {
     return this.http.get(`${this.apiUrl}common/state`);
   }
-  commonAdminList() {
-    return this.http.get(`${this.apiUrl}common/administration`);
+  commonAdminList(adminId:any) {
+    return this.http.get(`${this.apiUrl}common/administration?stateId=${adminId}`);
   }
-  commonZone() {
-    return this.http.get(`${this.apiUrl}common/zone`);
+  commonZone(zoneId:any) {
+    return this.http.get(`${this.apiUrl}common/zone?adminId=${zoneId}`);
   }
 
-  commonRange(){
-    return this.http.get(`${this.apiUrl}common/range`);
+  commonRange(rangeId:any){
+    return this.http.get(`${this.apiUrl}common/range?zoneId=${rangeId}`);
   }
  
-  commonDistrict() {
-    return this.http.get(`${this.apiUrl}common/district`);
+  commonDistrict(districtId:any) {
+    return this.http.get(`${this.apiUrl}common/district?rangeId=${districtId}`);
   }
-  commonSubDivision() {
-    return this.http.get(`${this.apiUrl}common/subDivision`);
+  commonSubDivision(subDivisionId:any) {
+    return this.http.get(`${this.apiUrl}common/subDivision?districtId=${subDivisionId}`);
   }
-  commonPoliceStation() {
-    return this.http.get(`${this.apiUrl}common/policeStation`);
+  commonPoliceStation(districtId:any) {
+    return this.http.get(`${this.apiUrl}common/policeStation?subDivisionId=${districtId}`);
   }
 
   // Add Details

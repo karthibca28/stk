@@ -346,8 +346,8 @@ export class FormService {
   getTaskforSeniorOfficerPaginaton(pageNumber:any,tasktype:any){
     return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&pageNumber=${pageNumber}&PageSize=10&taskType=${tasktype}`);
   }
-  getDutyforSeniorOfficer(dutyType:any){
-    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear&dutyType=${dutyType}`);
+  getDutyforSeniorOfficer(dutyType:any,adminId:any,zoneId:any,rangeId:any,districtId:any,subDivisionId:any,policeStationId){
+    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear&dutyType=${dutyType}&adminId=${adminId}&zoneId=${zoneId}&rangeId=${rangeId}&districtId=${districtId}&subDivisionId=${subDivisionId}&policeStation=${policeStationId}`);
   }
   getDutyPointsforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint`);
