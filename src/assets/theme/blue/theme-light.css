@@ -738,7 +738,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
 .p-dropdown:not(.p-disabled).p-focus {
   outline: 0 none;
   outline-offset: 0;
-  box-shadow: 0 0 0 0.2rem #69B7FF;
+  box-shadow: 0 0 0 0.2rem #076F84;
   border-color: #5297FF;
 }
 .p-dropdown.p-dropdown-clearable .p-dropdown-label {

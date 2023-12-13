@@ -1,6 +1,6 @@
 <div class="layout-topbar">
     <div class="layout-topbar-wrapper">
-        <div class="layout-topbar-left" style="margin-top: -5px;background: #FA383E;
+        <div class="layout-topbar-left" style="margin-top: -5px;background: #142D46;
         box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.24);">
             <a tabindex="0" class="menu-button" (click)="appMain.onMenuButtonClick($event)">
                 <i class="pi pi-bars"></i>
@@ -74,30 +74,31 @@
                     [ngClass]="{'active-topmenuitem fadeInDown': appMain.activeTopbarItem === profile}">
                     <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
                         <!-- <i class="pi pi-user font-size16"></i> -->
-                        <mat-icon class="mb-0 pb-0 text-white">account_circle</mat-icon>
+                        <img src="../assets/icons/Policeman.png">
+                        <!-- <mat-icon class="mb-0 pb-0 text-white">account_circle</mat-icon> -->
                         <!-- <img src="assets/images/dashboard/policeUser.png" alt="User" *ngIf="isSHO" />
                         <img src="assets/images/dashboard/soUser.png" alt="User" *ngIf="isAdmin" /> -->
                     </a>
-                    <ul class="fadeInDown">
+                    <ul class="fadeInDown" style="background-color: #C8E2D6;">
                         <li>
                             <a >
-                                <span>{{userName}} - {{roleName}}</span>
+                                <span style="font-size:15px;">{{userName}} - {{roleName}}</span>
                             </a>
                         </li>
                         <li  routerLink="/main/dashboard/profile">
                             <a >
-                                <span>Profile</span>
+                                <span style="font-size:15px;">Profile</span>
                             </a>
                         </li> 
                         <li (click)="resetpassword()">
                             <a>
-                                <span>Reset Password</span>
+                                <span style="font-size:15px;">Reset Password</span>
                             </a>
                         </li>
 
                         <li (click)="logout()">
                             <a>
-                                <span>Logout</span>
+                                <span style="font-size:15px;">Logout</span>
                             </a>
                         </li>
                     </ul>

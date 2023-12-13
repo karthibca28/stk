@@ -735,13 +735,13 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
   box-shadow: 0 6px 10px 0 rgb(0 0 0 / 10%);
 }
 .p-dropdown:not(.p-disabled):hover {
-  border-color: #1acb7b;
+  border-color: #076F84;
 }
 .p-dropdown:not(.p-disabled).p-focus {
   outline: 0 none;
   outline-offset: 0;
   box-shadow: 0 0 0 0.2rem #777BF1;
-  border-color: #1acb7b;
+  border-color: #076F84;
 }
 .p-dropdown.p-dropdown-clearable .p-dropdown-label {
   padding-right: 1.5rem;
@@ -810,7 +810,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
   color: #FFFFFF;
-  background: #1acb7b;
+  background: #076F84;
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
   color: #69707A;

@@ -1,5 +1,57 @@
 <!-- <div class="grid match-height"> -->
     <div class="col-12 md:col-12">
+        <div class="md:flex">
+            <div class="col-12 md:col-3">
+                <div class="card bg-gradient-8">
+                    <div class="card-container indigo-container overflow-hidden">
+                        <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
+                            <img src="../../../../assets/icons/usericon.png">
+                        </div>
+                        <div class="m-3 flex justify-content-between">
+                            <p class="mb-0 tbold" style="font-size: 17px;">Total Users</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userTotal}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-12 md:col-3">
+            <div class="card bg-gradient-8">
+                <div class="card-container indigo-container overflow-hidden">
+                    <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
+                        <img src="../../../../assets/icons/Activeuser.png">
+                    </div>
+                    <div class="m-3 flex justify-content-between">
+                        <p class="mb-0 tbold" style="font-size: 17px;">Active User</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userActive}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-3">
+            <div class="card bg-gradient-8">
+                <div class="card-container indigo-container overflow-hidden">
+                    <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
+                        <img src="../../../../assets/icons/inactive.png">
+                    </div>
+                    <div class="m-3 flex justify-content-between">
+                        <p class="mb-0 tbold" style="font-size: 17px;">Inactive User</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userInActive}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 md:col-3">
+            <div class="card bg-gradient-8">
+                <div class="card-container indigo-container overflow-hidden">
+                    <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
+                        <img src="../../../../assets/icons/notlogin.png">
+                    </div>
+                    <div class="m-3 flex justify-content-between">
+                        <p class="mb-0 tbold" style="font-size: 17px;">Not Login User</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userNotLogin}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+        <div class="grid match-height">
+    <div class="col-12 md:col-6">
         <div class="card p-0" style="border-radius: 0;">
             <div class="card-header" style="padding: 10px 12px;">
                 <h3 class="mb-0 font-semibold">Overall Summary</h3>
@@ -25,15 +77,48 @@
                 </div>          
             <div class="card-body flex justify-content-between align-items-center p-2">
                 <div class="w-12">
-                    <div class="card">
+                    <div>
                         <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
                     </div>                                               
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-12 md:col-6">
+        <div class="card p-0" style="border-radius: 0;">
+            <div class="card-header" style="padding: 10px 12px;">
+                <p class="mb-0 tbold">Summary Details</p>
+            </div>
+            <div>
+                <mat-form-field class="ml-4">
+                <mat-label>Date</mat-label>
+                <mat-select (selectionChange)="onSelectionChangeDate($event)">
+                    <mat-option *ngFor="let dates of dates" [value]="dates" >
+                      {{dates}}
+                    </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <mat-form-field class="ml-4">
+                <mat-label>Type</mat-label>
+                <mat-select [(value)]="selectedtask" (selectionChange)="onSelectionChangeTask($event)">
+                  <mat-option value="task">Task</mat-option>
+                  <mat-option value="duty">Duty</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="card-body flex justify-content-between align-items-center p-2" style="justify-content: center !important;">
+                <div class="w-8">
+                    <div>
+                        <p-chart type="pie" [data]="data"></p-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
     <div class="grid match-height">
-    <div class="col-12 md:col-7">
+    <!-- <div class="col-12 md:col-7">
         <div class="card p-0" style="border-radius: 0;">
             <div class="card-header" style="padding: 10px 12px;">
                 <p class="mb-0 tbold">Summary Details</p>
@@ -63,10 +148,10 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 md:col-5">
-        <div class="card p-0" style="border-radius: 0;">
-            <div class="card-header" style="padding: 10px 12px;">
+    </div> -->
+    <!-- <div class="col-12 md:col-6">
+        <div class="card p-0" style="border-radius: 0;"> -->
+            <!-- <div class="card-header" style="padding: 10px 12px;">
                 <p class="mb-0 tbold" style="display: flex;justify-content: space-between;">Total Users:&nbsp;<span style="color: red;">{{dashboardData?.userSummary.userTotal}}</span></p>
             </div>
             <div class="card m-2 flex justify-content-between">
@@ -77,16 +162,16 @@
             </div>
             <div class="card m-2 flex justify-content-between">
                 <p class="mb-0 tbold">Not Login User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userNotLogin}}</span>
-            </div>
-            <div class="card-body flex justify-content-between align-items-center p-2">
+            </div> -->
+            <!-- <div class="card-body flex justify-content-between align-items-center p-2">
                 <div class="w-12">
                     <div class="card">
                         <p-chart type="pie" [data]="userData"  [style]="{'width': '50%'}"></p-chart>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div> -->
+        <!-- </div>
+    </div> -->
 </div>
 <div class="card">
     <p class="mb-0 tbold">Inventory List</p>

@@ -3140,8 +3140,8 @@ p-treeselect.ng-invalid.ng-dirty > .p-treeselect {
   border-radius: 6px;
 }
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  background: #777BF1;
-  border-color: #777BF1;
+  background: #076F84;
+  border-color: #076F84;
   color: #FFFFFF;
 }
 .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
