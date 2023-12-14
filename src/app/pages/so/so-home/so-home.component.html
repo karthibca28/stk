@@ -1,194 +1,149 @@
 <!-- <div class="grid match-height"> -->
-    <div class="col-12 md:col-12">
-        <div class="md:flex">
-            <div class="col-12 md:col-3">
-                <div class="card bg-gradient-8">
-                    <div class="card-container indigo-container overflow-hidden">
-                        <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
-                            <img src="../../../../assets/icons/usericon.png">
-                        </div>
-                        <div class="m-3 flex justify-content-between">
-                            <p class="mb-0 tbold" style="font-size: 17px;">Total Users</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userTotal}}</span>
-                        </div>
+<div class="col-12 md:col-12">
+    <div class="md:flex">
+        <div class="col-12 md:col-3">
+            <div class="card bg-gradient-8"  onmouseover="this.style.backgroundColor='#8bc7f0'" 
+            onmouseout="this.style.backgroundColor=''">
+                <div class="card-container indigo-container overflow-hidden">
+                    <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
+                        <img src="../../../../assets/icons/usericon.png">
+                    </div>
+                    <div class="m-3 flex justify-content-between">
+                        <p class="mb-0 tbold" style="font-size: 17px;">Total Users</p> <span class="tbold"
+                            style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userTotal}}</span>
                     </div>
                 </div>
             </div>
+        </div>
         <div class="col-12 md:col-3">
-            <div class="card bg-gradient-8">
+            <div class="card bg-gradient-8" onmouseover="this.style.backgroundColor='#9fedc0'" 
+            onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
                         <img src="../../../../assets/icons/Activeuser.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
-                        <p class="mb-0 tbold" style="font-size: 17px;">Active User</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userActive}}</span>
+                        <p class="mb-0 tbold" style="font-size: 17px;">Active User</p> <span class="tbold"
+                            style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userActive}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 md:col-3">
-            <div class="card bg-gradient-8">
+            <div class="card bg-gradient-8" onmouseover="this.style.backgroundColor='#AFC8AD'" 
+            onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
                         <img src="../../../../assets/icons/inactive.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
-                        <p class="mb-0 tbold" style="font-size: 17px;">Inactive User</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userInActive}}</span>
+                        <p class="mb-0 tbold" style="font-size: 17px;">Inactive User</p> <span class="tbold"
+                            style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userInActive}}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 md:col-3">
-            <div class="card bg-gradient-8">
+            <div class="card bg-gradient-8"onmouseover="this.style.backgroundColor='#DADDB1'" 
+            onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
                         <img src="../../../../assets/icons/notlogin.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
-                        <p class="mb-0 tbold" style="font-size: 17px;">Not Login User</p> <span class="tbold" style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userNotLogin}}</span>
+                        <p class="mb-0 tbold" style="font-size: 17px;">Not Login User</p> <span class="tbold"
+                            style="color: red;font-size: 21px;">{{dashboardData?.userSummary.userNotLogin}}</span>
                     </div>
                 </div>
             </div>
         </div>
-    </div>  
-        <div class="grid match-height">
-    <div class="col-12 md:col-6">
-        <div class="card p-0" style="border-radius: 0;">
-            <div class="card-header" style="padding: 10px 12px;">
-                <h3 class="mb-0 font-semibold">Overall Summary</h3>
-            </div>
+    </div>
+    <div class="grid match-height">
+        <div class="col-12 md:col-6">
+            <div class="card p-0" style="border-radius: 0;">
+                <div class="card-header" style="padding: 10px 12px;">
+                    <h3 class="mb-0 font-semibold">Overall Summary</h3>
+                </div>
                 <div>
                     <mat-form-field class="ml-4">
-                    <mat-label>Date</mat-label>
-                    <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event)">
-                      <mat-option value="day">Day</mat-option>
-                      <mat-option value="week">Weak</mat-option>
-                      <mat-option value="month">Month</mat-option>
-                      <mat-option value="year">Year</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <mat-form-field class="ml-4">
-                    <mat-label>Limit</mat-label>
-                    <mat-select [(value)]="selectedvalue" (selectionChange)="onSelectionChangeLimit($event)">
-                      <mat-option value="3">3</mat-option>
-                      <mat-option value="5">5</mat-option>
-                      <mat-option value="7">7</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>          
-            <div class="card-body flex justify-content-between align-items-center p-2">
-                <div class="w-12">
-                    <div>
-                        <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-                    </div>                                               
+                        <mat-label>Date</mat-label>
+                        <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event)">
+                            <mat-option value="day">Day</mat-option>
+                            <mat-option value="week">Weak</mat-option>
+                            <mat-option value="month">Month</mat-option>
+                            <mat-option value="year">Year</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="ml-4">
+                        <mat-label>Limit</mat-label>
+                        <mat-select [(value)]="selectedvalue" (selectionChange)="onSelectionChangeLimit($event)">
+                            <mat-option value="3">3</mat-option>
+                            <mat-option value="5">5</mat-option>
+                            <mat-option value="7">7</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="card-body flex justify-content-between align-items-center p-2">
+                    <div class="w-12">
+                        <div>
+                            <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-12 md:col-6">
-        <div class="card p-0" style="border-radius: 0;">
-            <div class="card-header" style="padding: 10px 12px;">
-                <p class="mb-0 tbold">Summary Details</p>
-            </div>
-            <div>
-                <mat-form-field class="ml-4">
-                <mat-label>Date</mat-label>
-                <mat-select (selectionChange)="onSelectionChangeDate($event)">
-                    <mat-option *ngFor="let dates of dates" [value]="dates" >
-                      {{dates}}
-                    </mat-option>
-                  </mat-select>
-              </mat-form-field>
-              <mat-form-field class="ml-4">
-                <mat-label>Type</mat-label>
-                <mat-select [(value)]="selectedtask" (selectionChange)="onSelectionChangeTask($event)">
-                  <mat-option value="task">Task</mat-option>
-                  <mat-option value="duty">Duty</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="card-body flex justify-content-between align-items-center p-2" style="justify-content: center !important;">
-                <div class="w-8">
-                    <div>
-                        <p-chart type="pie" [data]="data"></p-chart>
+        <div class="col-12 md:col-6">
+            <div class="card p-0" style="border-radius: 0;">
+                <div class="card-header" style="padding: 10px 12px;">
+                    <p class="mb-0 tbold">Summary Details</p>
+                </div>
+                <div>
+                    <mat-form-field class="ml-4">
+                        <mat-label>Date</mat-label>
+                        <mat-select (selectionChange)="onSelectionChangeDate($event)">
+                            <mat-option *ngFor="let dates of dates" [value]="dates">
+                                {{dates}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="ml-4">
+                        <mat-label>Type</mat-label>
+                        <mat-select [(value)]="selectedtask" (selectionChange)="onSelectionChangeTask($event)">
+                            <mat-option value="task">Task</mat-option>
+                            <mat-option value="duty">Duty</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="card-body flex justify-content-between align-items-center p-2"
+                    style="justify-content: center !important;">
+                    <div class="w-8">
+                        <div>
+                            <p-chart type="pie" [data]="data"></p-chart>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-    <div class="grid match-height">
-    <!-- <div class="col-12 md:col-7">
-        <div class="card p-0" style="border-radius: 0;">
-            <div class="card-header" style="padding: 10px 12px;">
-                <p class="mb-0 tbold">Summary Details</p>
-            </div>
-            <div>
-                <mat-form-field class="ml-2">
-                <mat-label>Date</mat-label>
-                <mat-select (selectionChange)="onSelectionChangeDate($event)">
-                    <mat-option *ngFor="let dates of dates" [value]="dates" >
-                      {{dates}}
-                    </mat-option>
-                  </mat-select>
-              </mat-form-field>
-              <mat-form-field class="ml-2">
-                <mat-label>Type</mat-label>
-                <mat-select [(value)]="selectedtask" (selectionChange)="onSelectionChangeTask($event)">
-                  <mat-option value="task">Task</mat-option>
-                  <mat-option value="duty">Duty</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="card-body flex justify-content-between align-items-center p-2">
-                <div class="w-12">
-                    <div class="card">
-                        <p-chart type="pie" [data]="data"  [style]="{'width': '50%'}"></p-chart>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- <div class="col-12 md:col-6">
-        <div class="card p-0" style="border-radius: 0;"> -->
-            <!-- <div class="card-header" style="padding: 10px 12px;">
-                <p class="mb-0 tbold" style="display: flex;justify-content: space-between;">Total Users:&nbsp;<span style="color: red;">{{dashboardData?.userSummary.userTotal}}</span></p>
-            </div>
-            <div class="card m-2 flex justify-content-between">
-                <p class="mb-0 tbold">Active User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userActive}}</span>
-            </div>
-            <div class="card m-2 flex justify-content-between">
-                <p class="mb-0 tbold">Inactive User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userInActive}}</span>
-            </div>
-            <div class="card m-2 flex justify-content-between">
-                <p class="mb-0 tbold">Not Login User</p> <span class="tbold" style="color: red;">{{dashboardData?.userSummary.userNotLogin}}</span>
-            </div> -->
-            <!-- <div class="card-body flex justify-content-between align-items-center p-2">
-                <div class="w-12">
-                    <div class="card">
-                        <p-chart type="pie" [data]="userData"  [style]="{'width': '50%'}"></p-chart>
-                    </div>
-                </div>
-            </div> -->
-        <!-- </div>
-    </div> -->
-</div>
+<!-- <div class="grid match-height">
+</div> -->
 <div class="card">
     <p class="mb-0 tbold">Inventory List</p>
     <div class="grid mx-0 mt-0" style="display: flex; justify-content: space-around;">
-      <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
-        <div class="item-type">
-          <p class="font-semibold" style="white-space: nowrap;">{{ item.inventoryType }}</p>
+        <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
+            <div class="item-type">
+                <p class="font-semibold" style="white-space: nowrap;">{{ item.inventoryType }}</p>
+            </div>
+            <div class="item-image">
+                <img src="../../../../assets/icons/inventory.png" style="height: 50px;" alt="Inventory Item">
+            </div>
+            <div class="item-count">
+                <!-- <p class="font-semibold mt-3" style="white-space: nowrap;">{{ item.count }}</p> -->
+            </div>
         </div>
-        <div class="item-image">
-          <img src="../../../../assets/icons/inventory.png" style="height: 50px;" alt="Inventory Item">
-        </div>
-        <div class="item-count">
-          <!-- <p class="font-semibold mt-3" style="white-space: nowrap;">{{ item.count }}</p> -->
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 <!-- <div class="card">
     <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
       <div class="item-type">
@@ -199,7 +154,7 @@
       </div>
     </div>
   </div> -->
-  
+
 <div class="seniorOfficer">
     <!-- <div class="grid match-height">
         <div class="col-12 md:col-5">
@@ -244,62 +199,62 @@
             </div>
         </div>
     </div> -->
-    
+
     <div class="grid match-height">
         <div class="col-12 md:col-12">
             <div class="card p-2" style="border-radius: 0;">
-            <p class="mb-0 tbold">Types of Duties</p>
-            <div class="duty-container">
-                <div class="duty-item">
-                    <div class="duty-content">
-                        <span class="font-semibold">Junction Points</span>
-                        <span class="font-semibold">
-                        <img src="../../../../assets/task/ENCROACHMENT_REPORT.png">
-                        </span>
-                        <span class="mt-2">{{junctionPoint}}</span>
+                <p class="mb-0 tbold">Types of Duties</p>
+                <div class="duty-container">
+                    <div class="duty-item">
+                        <div class="duty-content">
+                            <span class="font-semibold">Junction Points</span>
+                            <span class="font-semibold">
+                                <img src="../../../../assets/task/ENCROACHMENT_REPORT.png">
+                            </span>
+                            <span class="mt-2">{{junctionPoint}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="duty-item">
-                    <div class="duty-content">
-                        <span class="font-semibold">VIP Routes</span>
-                        <span class="font-semibold">
-                        <img src="../../../../assets/Duty/icons8-vip-48.png">
-                    </span>
-                        <span class="mt-2">{{vipRoutes}}</span>
+                    <div class="duty-item">
+                        <div class="duty-content">
+                            <span class="font-semibold">VIP Routes</span>
+                            <span class="font-semibold">
+                                <img src="../../../../assets/Duty/icons8-vip-48.png">
+                            </span>
+                            <span class="mt-2">{{vipRoutes}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="duty-item">
-                    <div class="duty-content">
-                        <span class="font-semibold">Sector Duty</span>
-                        <span class="font-semibold">
-                        <img src="../../../../assets/Duty/icons8-traffic-jam-48.png">
-                        </span>
-                        <span class="mt-2">{{sectorDuty}}</span>
+                    <div class="duty-item">
+                        <div class="duty-content">
+                            <span class="font-semibold">Sector Duty</span>
+                            <span class="font-semibold">
+                                <img src="../../../../assets/Duty/icons8-traffic-jam-48.png">
+                            </span>
+                            <span class="mt-2">{{sectorDuty}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="duty-item">
-                    <div class="duty-content">
-                        <span class="font-semibold">Patrol Duty</span>
-                        <span class="font-semibold">
-                        <img src="../../../../assets/Duty/icons8-traffic-48.png">
-                        </span>
-                        <span class="mt-2">{{patrolDuty}}</span>
+                    <div class="duty-item">
+                        <div class="duty-content">
+                            <span class="font-semibold">Patrol Duty</span>
+                            <span class="font-semibold">
+                                <img src="../../../../assets/Duty/icons8-traffic-48.png">
+                            </span>
+                            <span class="mt-2">{{patrolDuty}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="duty-item">
-                    <div class="duty-content">
-                        <span class="font-semibold">Vehicle Check</span>
-                        <span class="font-semibold">
-                        <img src="../../../../assets/Duty/icons8-vip-48.png">
-                        </span>
-                        <span class="mt-2">{{vehicleCheck}}</span>
+                    <div class="duty-item">
+                        <div class="duty-content">
+                            <span class="font-semibold">Vehicle Check</span>
+                            <span class="font-semibold">
+                                <img src="../../../../assets/Duty/icons8-vip-48.png">
+                            </span>
+                            <span class="mt-2">{{vehicleCheck}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    
+
     <!-- <div class="grid match-height">
         <div class="col-12 md:col-12">
             <div class="card p-0">
@@ -333,7 +288,7 @@
                 <div class="text-center">
                     <img src="assets/images/dashboard/newmsg.png" alt="Beat" width="34">
                     <p class="mb-0 text-md font-semibold">
-                      New Message
+                        New Message
                     </p>
                 </div>
             </div>
@@ -343,7 +298,7 @@
                 <div class="text-center">
                     <img src="assets/images/dashboard/listmsg.png" alt="Beat" width="34">
                     <p class="mb-0 text-md font-semibold">
-                      View Broadcast Message
+                        View Broadcast Message
                     </p>
                 </div>
             </div>

@@ -74,7 +74,9 @@
                     [ngClass]="{'active-topmenuitem fadeInDown': appMain.activeTopbarItem === profile}">
                     <a href="#" (click)="appMain.onTopbarItemClick($event,profile)">
                         <!-- <i class="pi pi-user font-size16"></i> -->
-                        <img src="../assets/icons/Policeman.png">
+                        <img  #imageElement src="../assets/icons/Policeman.png" style="cursor: pointer; transition: transform 0.3s ease, z-index 0.3s ease;" 
+                        (mouseover)="imageElement.style.transform='scale(1.1)'; imageElement.style.zIndex='1';" 
+                        (mouseout)="imageElement.style.transform='scale(1)'; imageElement.style.zIndex='0';">
                         <!-- <mat-icon class="mb-0 pb-0 text-white">account_circle</mat-icon> -->
                         <!-- <img src="assets/images/dashboard/policeUser.png" alt="User" *ngIf="isSHO" />
                         <img src="assets/images/dashboard/soUser.png" alt="User" *ngIf="isAdmin" /> -->

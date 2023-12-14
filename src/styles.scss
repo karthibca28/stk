@@ -465,3 +465,9 @@ color:white;
 .layout-menu::-webkit-scrollbar {
     width: 8px; /* Adjust the width to make the scrollbar thinner */
   }
+
+  .p-link:focus {
+    outline-offset: 0px;
+    box-shadow: rgb(7, 111, 132) 0px 0px 0px 0.2rem !important;
+    outline: none 0px;
+}
