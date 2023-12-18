@@ -367,7 +367,7 @@ export class FormService {
     }
   
     if (policeStationId != null && policeStationId !== "") {
-      url += `&policeStation=${policeStationId}`;
+      url += `&policeStationId=${policeStationId}`;
     }
   
     // Make the HTTP request
@@ -401,7 +401,7 @@ export class FormService {
     }
   
     if (policeStationId != null && policeStationId !== "") {
-      url += `&policeStation=${policeStationId}`;
+      url += `&policeStationId=${policeStationId}`;
     }
   
     // Make the HTTP request
@@ -486,7 +486,7 @@ export class FormService {
     }
   
     if (policeStationId != null && policeStationId !== "") {
-      url += `&policeStation=${policeStationId}`;
+      url += `&policeStationId=${policeStationId}`;
     }
   
     // Make the HTTP request

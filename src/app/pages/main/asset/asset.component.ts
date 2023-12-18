@@ -38,6 +38,12 @@ export class AssetComponent implements OnInit {
   stateList: any
   policeStationList: any
   data:any
+  selectedsubDivision:any
+selectedpoliceStation:any
+selectedadmin:any
+selectedzone:any
+selectedrange:any
+selecteddistrict:any
   constructor(private masterService: MasterService,private formBuilder: FormBuilder,private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -64,15 +70,40 @@ export class AssetComponent implements OnInit {
     this.selected = event.value;
     this.getList(); 
   }
+  onSelectionsubDivision(event: any){
+    this.selectedsubDivision = event.value;
+    this.getList();
+  }
+  onSelectionpoliceStation(event: any){
+    this.selectedpoliceStation = event.value;
+    this.getList();
+  }
+  onSelectionadmin(event: any) {
+    this.selectedadmin = event.value;
+    this.getList(); 
+  }
+  onSelectionzone(event: any){
+    this.selectedzone = event.value;
+    this.getList();
+  }
+  onSelectionrange(event: any){
+    this.selectedrange = event.value;
+    this.getList();
+  }
+  onSelectiondistrict(event: any){
+    this.selecteddistrict = event.value;
+    this.getList();
+  }
+  
   getList() {
     this.formService.getInventoryforSeniorOfficer(
       this.selected,
-      this.form.value.adminId,
-      this.form.value.zoneId,
-      this.form.value.rangeId,
-      this.form.value.districtId,
-      this.form.value.subDivisionId,
-      this.form.value.policeStationId
+      this.selectedadmin,
+      this.selectedzone,
+      this.selectedrange,
+      this.selecteddistrict,
+      this.selectedsubDivision,
+      this.selectedpoliceStation
       ).subscribe((formData: any) => {
       const values = formData.data;
       const cols = [
@@ -170,7 +201,7 @@ export class AssetComponent implements OnInit {
   }
   
   replaceUnderscore(type: string): string {
-    return type?.replace(/_/g, '-'); // Replace underscores with spaces in the type
+    return type?.replace(/_/g, ' '); // Replace underscores with spaces in the type
   }
   
 

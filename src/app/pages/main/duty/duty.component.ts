@@ -36,6 +36,12 @@ export class DutyComponent implements OnInit {
   district:any
   subDivision:any
   policeStation:any
+  selectedsubDivision:any
+selectedpoliceStation:any
+selectedadmin:any
+selectedzone:any
+selectedrange:any
+selecteddistrict:any
   selectedDate = 'today'
 
   constructor(private formBuilder: FormBuilder,private masterService: MasterService, private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
@@ -62,24 +68,48 @@ export class DutyComponent implements OnInit {
     this.selectedDate = event.value;
     this.getList();
   }
+  onSelectionsubDivision(event: any){
+    this.selectedsubDivision = event.value;
+    this.getList();
+  }
+  onSelectionpoliceStation(event: any){
+    this.selectedpoliceStation = event.value;
+    this.getList();
+  }
+  onSelectionadmin(event: any) {
+    this.selectedadmin = event.value;
+    this.getList(); 
+  }
+  onSelectionzone(event: any){
+    this.selectedzone = event.value;
+    this.getList();
+  }
+  onSelectionrange(event: any){
+    this.selectedrange = event.value;
+    this.getList();
+  }
+  onSelectiondistrict(event: any){
+    this.selecteddistrict = event.value;
+    this.getList();
+  }
 
   getList() {
     this.formService.getDutyforSeniorOfficer(
       this.selected,
       this.selectedDate,
-      this.form.value.adminId,
-      this.form.value.zoneId,
-      this.form.value.rangeId,
-      this.form.value.districtId,
-      this.form.value.subDivisionId,
-      this.form.value.policeStationId
+      this.selectedadmin,
+      this.selectedzone,
+      this.selectedrange,
+      this.selecteddistrict,
+      this.selectedsubDivision,
+      this.selectedpoliceStation
     ).subscribe((formData: any) => {
       const values = formData.data;
       console.log(formData.data)
       const cols = [
         { field: 'dutyType', header: 'Duty Type', type: 'text' },
         { field: 'status', header: 'Status', type: 'text' },
-        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        // { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
         { field: 'startLocationName', header: 'Start Location Name', type: 'text' },
         { field: 'endLocationName', header: 'End Location Name', type: 'text' },
@@ -176,7 +206,7 @@ export class DutyComponent implements OnInit {
   }
 
   replaceUnderscores(type: string): string {
-    return type.replace(/_/, '-'); // Replace underscores with spaces in the type
+    return type.replace(/_/, ' '); // Replace underscores with spaces in the type
   }
 
   clear(table: Table) {

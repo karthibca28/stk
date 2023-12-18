@@ -37,6 +37,12 @@ export class TaskComponent implements OnInit {
   district:any
   subDivision:any
   policeStation:any
+  selectedsubDivision:any
+  selectedpoliceStation:any
+selectedadmin:any
+selectedzone:any
+selectedrange:any
+selecteddistrict:any
   selectedDate = 'today'
 
   constructor(private formBuilder: FormBuilder,private masterService: MasterService,private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
@@ -63,6 +69,30 @@ export class TaskComponent implements OnInit {
     this.selectedDate = event.value;
     this.getList();
   }
+  onSelectionsubDivision(event: any){
+    this.selectedsubDivision = event.value;
+    this.getList();
+  }
+  onSelectionpoliceStation(event: any){
+    this.selectedpoliceStation = event.value;
+    this.getList();
+  }
+  onSelectionadmin(event: any) {
+    this.selectedadmin = event.value;
+    this.getList(); 
+  }
+  onSelectionzone(event: any){
+    this.selectedzone = event.value;
+    this.getList();
+  }
+  onSelectionrange(event: any){
+    this.selectedrange = event.value;
+    this.getList();
+  }
+  onSelectiondistrict(event: any){
+    this.selecteddistrict = event.value;
+    this.getList();
+  }
   onPageChange(event: any) {
     this.pageNumber = event.first / event.rows + 1;
   }
@@ -70,12 +100,12 @@ export class TaskComponent implements OnInit {
     this.formService.getTaskforSeniorOfficer(
       this.selected,
       this.selectedDate,
-      this.form.value.adminId,
-      this.form.value.zoneId,
-      this.form.value.rangeId,
-      this.form.value.districtId,
-      this.form.value.subDivisionId,
-      this.form.value.policeStationId
+      this.selectedadmin,
+      this.selectedzone,
+      this.selectedrange,
+      this.selecteddistrict,
+      this.selectedsubDivision,
+      this.selectedpoliceStation
       ).subscribe((formData: any) => {
       const values = formData.data;
       const cols = [
@@ -205,7 +235,7 @@ export class TaskComponent implements OnInit {
   }
   
   replaceUnderscores(type: string): string {
-    return type?.replace(/_/g, '-'); 
+    return type?.replace(/_/g, ' '); 
   }
   
   

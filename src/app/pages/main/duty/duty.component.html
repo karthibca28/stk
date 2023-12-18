@@ -31,7 +31,7 @@
             </div>
             <div style="justify-content: flex-end;">
                 <mat-form-field>
-                    <mat-label>Select an option</mat-label>
+                    <mat-label>Duty Types</mat-label>
                     <mat-select [(value)]="selected" (selectionChange)="onSelectionChange($event)">
                         <mat-option value="">All</mat-option>
                         <mat-option value="ASSIGNED">ASSIGNED</mat-option>
@@ -62,7 +62,7 @@
                 <div class="ml-2" *ngIf="data?.adminId === true">
                     <mat-form-field>
                         <mat-label>Administration</mat-label>
-                        <mat-select formControlName="adminId">
+                        <mat-select formControlName="adminId" (selectionChange)="onSelectionadmin($event)">
                             <mat-option *ngFor="let adminList of adminList" [value]="adminList.id"
                                 (click)="getZoneList(adminList.id)">
                                 {{adminList.name}}
@@ -73,7 +73,7 @@
                 <div class="ml-2" *ngIf="data?.zoneId === true">
                     <mat-form-field>
                         <mat-label>Zone</mat-label>
-                        <mat-select formControlName="zoneId">
+                        <mat-select formControlName="zoneId" (selectionChange)="onSelectionzone($event)">
                             <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id"
                                 (click)="getRangeList(zoneList.id)">
                                 {{zoneList.name}}
@@ -84,7 +84,7 @@
                 <div class="ml-2" *ngIf="data?.rangeId === true">
                     <mat-form-field>
                         <mat-label>Range</mat-label>
-                        <mat-select formControlName="rangeId">
+                        <mat-select formControlName="rangeId" (selectionChange)="onSelectionrange($event)">
                             <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id"
                                 (click)="getDistrictList(rangeList.id)">
                                 {{rangeList.name}}
@@ -95,7 +95,7 @@
                 <div class="ml-2" *ngIf="data?.districtId === true">
                     <mat-form-field>
                         <mat-label>District</mat-label>
-                        <mat-select formControlName="districtId">
+                        <mat-select formControlName="districtId" (selectionChange)="onSelectiondistrict($event)">
                             <mat-option *ngFor="let districtList of districtList" [value]="districtList.id"
                                 (click)="getSubDivision(districtList.id)">
                                 {{districtList.name}}
@@ -106,7 +106,7 @@
                 <div class="ml-2" *ngIf="data?.subDivisionId === true">
                     <mat-form-field>
                         <mat-label>SubDivision</mat-label>
-                        <mat-select formControlName="subDivisionId">
+                        <mat-select formControlName="subDivisionId" (selectionChange)="onSelectionsubDivision($event)">
                             <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id"
                                 (click)="getPoliceStaion(subDivisionList.id)">
                                 {{subDivisionList.name}}
@@ -117,7 +117,7 @@
                 <div class="ml-2" *ngIf="data?.policeStationId === true">
                     <mat-form-field>
                         <mat-label>Police Station</mat-label>
-                        <mat-select formControlName="policeStationId">
+                        <mat-select formControlName="policeStationId" (selectionChange)="onSelectionpoliceStation($event)">
                             <mat-option *ngFor="let policeStationList of policeStationList"
                                 [value]="policeStationList.id">
                                 {{policeStationList.name}}
@@ -125,10 +125,10 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="ml-2">
+                <!-- <div class="ml-2">
                     <button pButton pRipple type="submit" (click)="getList()" icon="pi pi-search"
                         class="p-button-rounded p-button-success p-button-outlined"></button>
-                </div>
+                </div> -->
             </div>
         </form>
         <div class="card">
