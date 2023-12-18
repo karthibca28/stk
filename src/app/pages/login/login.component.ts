@@ -54,9 +54,9 @@ export class LoginComponent implements OnInit {
                 navigateTo = '/main/dashboard';
                 successMessage = resp.message;
                 break;
-              case 3:
-                navigateTo = '/main/admin';
-                successMessage = resp.message;
+              // case 3:
+              //   navigateTo = '/main/admin';
+              //   successMessage = resp.message;
                 break;
                 case 5:
                   navigateTo = '/main/so';

@@ -340,15 +340,74 @@ export class FormService {
   getUserforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/user`);
   }
-  getTaskforSeniorOfficer(tasktype:any){
-    return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&taskType=${tasktype}`);
+  // getTaskforSeniorOfficer(tasktype:any){
+  //   return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&taskType=${tasktype}`);
+  // }
+  getTaskforSeniorOfficer(tasktype: any,dateFilter:any, adminId: any, zoneId: any, rangeId: any, districtId: any, subDivisionId: any, policeStationId: any) {
+    let url = `${this.apiUrl}seniorOfficer/task?taskType=${tasktype}&dateFilter=${dateFilter}`;
+  
+    if (adminId != null && adminId !== "") {
+      url += `&adminId=${adminId}`;
+    }
+  
+    if (zoneId != null && zoneId !== "") {
+      url += `&zoneId=${zoneId}`;
+    }
+  
+    if (rangeId != null && rangeId !== "") {
+      url += `&rangeId=${rangeId}`;
+    }
+  
+    if (districtId != null && districtId !== "") {
+      url += `&districtId=${districtId}`;
+    }
+  
+    if (subDivisionId != null && subDivisionId !== "") {
+      url += `&subDivisionId=${subDivisionId}`;
+    }
+  
+    if (policeStationId != null && policeStationId !== "") {
+      url += `&policeStation=${policeStationId}`;
+    }
+  
+    // Make the HTTP request
+    return this.http.get(url);
   }
+  
   getTaskforSeniorOfficerPaginaton(pageNumber:any,tasktype:any){
     return this.http.get(`${this.apiUrl}seniorOfficer/task?dateFilter=thisYear&pageNumber=${pageNumber}&PageSize=10&taskType=${tasktype}`);
   }
-  getDutyforSeniorOfficer(dutyType:any,adminId:any,zoneId:any,rangeId:any,districtId:any,subDivisionId:any,policeStationId){
-    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dateFilter=thisYear&dutyType=${dutyType}&adminId=${adminId}&zoneId=${zoneId}&rangeId=${rangeId}&districtId=${districtId}&subDivisionId=${subDivisionId}&policeStation=${policeStationId}`);
+  getDutyforSeniorOfficer(dutyType: any,dateFilter:any, adminId: any, zoneId: any, rangeId: any, districtId: any, subDivisionId: any, policeStationId: any) {
+    let url = `${this.apiUrl}seniorOfficer/duty?dutyType=${dutyType}&dateFilter=${dateFilter}`;
+  
+    if (adminId != null && adminId !== "") {
+      url += `&adminId=${adminId}`;
+    }
+  
+    if (zoneId != null && zoneId !== "") {
+      url += `&zoneId=${zoneId}`;
+    }
+  
+    if (rangeId != null && rangeId !== "") {
+      url += `&rangeId=${rangeId}`;
+    }
+  
+    if (districtId != null && districtId !== "") {
+      url += `&districtId=${districtId}`;
+    }
+  
+    if (subDivisionId != null && subDivisionId !== "") {
+      url += `&subDivisionId=${subDivisionId}`;
+    }
+  
+    if (policeStationId != null && policeStationId !== "") {
+      url += `&policeStation=${policeStationId}`;
+    }
+  
+    // Make the HTTP request
+    return this.http.get(url);
   }
+  
   getDutyPointsforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/dutyPoint`);
   }
@@ -400,8 +459,38 @@ export class FormService {
       return res.blob();
     }).catch(e=>console.log('error in fetch > ', e));
   }
-  getInventoryforSeniorOfficer(inventorytype:string){
-    return this.http.get(`${this.apiUrl}seniorOfficer/inventory?type=${inventorytype}`);
+  // getInventoryforSeniorOfficer(inventorytype:string){
+  //   return this.http.get(`${this.apiUrl}seniorOfficer/inventory?type=${inventorytype}`);
+  // }
+  getInventoryforSeniorOfficer(inventorytype: any, adminId: any, zoneId: any, rangeId: any, districtId: any, subDivisionId: any, policeStationId: any) {
+    let url = `${this.apiUrl}seniorOfficer/inventory?type=${inventorytype}`;
+  
+    if (adminId != null && adminId !== "") {
+      url += `&adminId=${adminId}`;
+    }
+  
+    if (zoneId != null && zoneId !== "") {
+      url += `&zoneId=${zoneId}`;
+    }
+  
+    if (rangeId != null && rangeId !== "") {
+      url += `&rangeId=${rangeId}`;
+    }
+  
+    if (districtId != null && districtId !== "") {
+      url += `&districtId=${districtId}`;
+    }
+  
+    if (subDivisionId != null && subDivisionId !== "") {
+      url += `&subDivisionId=${subDivisionId}`;
+    }
+  
+    if (policeStationId != null && policeStationId !== "") {
+      url += `&policeStation=${policeStationId}`;
+    }
+  
+    // Make the HTTP request
+    return this.http.get(url);
   }
   getInventorySummaryforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}seniorOfficer/inventory/summary`);

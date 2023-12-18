@@ -6,6 +6,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { APIResponse } from 'src/app/shared/models/api-response';
 import { ConfirmationService } from 'primeng/api';
 import { MasterService } from 'src/app/shared/services/master.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-duty',
@@ -13,6 +14,7 @@ import { MasterService } from 'src/app/shared/services/master.service';
   styleUrls: ['./duty.component.scss']
 })
 export class DutyComponent implements OnInit {
+  form!: FormGroup;
   @ViewChild('dt') table: Table;
   @ViewChild('filter') filter: ElementRef;
   cols: any[];
@@ -34,52 +36,43 @@ export class DutyComponent implements OnInit {
   district:any
   subDivision:any
   policeStation:any
+  selectedDate = 'today'
 
-  constructor(private masterService: MasterService, private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
+  constructor(private formBuilder: FormBuilder,private masterService: MasterService, private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      adminId: [''],
+      zoneId: [''],
+      rangeId:[''],
+      districtId: [''],
+      subDivisionId: [''],
+      policeStationId: [''],
+    });
     this.getList();
     this.getDutySummary()
     this.getAccessControl()
+    
   }
   onSelectionChange(event: any) {
     this.selected = event.value;
     this.getList();
   }
-  onAdminChange(event: any) {
-    this.admin = event.value;
-    this.getList();
-  }
-  onZoneChange(event: any) {
-    this.zone = event.value;
-    this.getList();
-  }
-  onRangeChange(event: any) {
-    this.range = event.value;
-    this.getList();
-  }
-  onDistrictChange(event: any) {
-    this.district = event.value;
-    this.getList();
-  }
-  onSubDivisionChange(event: any) {
-    this.subDivision = event.value;
-    this.getList();
-  }
-  onPoliceStationChange(event: any) {
-    this.policeStation = event.value;
+  onSelectionChangedate(event: any){
+    this.selectedDate = event.value;
     this.getList();
   }
 
   getList() {
     this.formService.getDutyforSeniorOfficer(
       this.selected,
-      this.admin,
-      this.zone,
-      this.range,
-      this.district,
-      this.subDivision,
-      this.policeStation
+      this.selectedDate,
+      this.form.value.adminId,
+      this.form.value.zoneId,
+      this.form.value.rangeId,
+      this.form.value.districtId,
+      this.form.value.subDivisionId,
+      this.form.value.policeStationId
     ).subscribe((formData: any) => {
       const values = formData.data;
       console.log(formData.data)

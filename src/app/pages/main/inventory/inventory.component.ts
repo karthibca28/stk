@@ -24,7 +24,7 @@ export class InventoryComponent implements OnInit {
   constructor(private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this.getList();
+    // this.getList();
     this.getInventorySummary();
     const userData = JSON.parse(sessionStorage.getItem('userInfo'));
     this.roleId = parseInt(userData.data.userData.rank.role.roleCode)
@@ -36,22 +36,22 @@ export class InventoryComponent implements OnInit {
   }
   onSelectionChange(event: any) {
     this.selected = event.value;
-    this.getList(); 
+    // this.getList(); 
   }
-  getList() {
-    this.formService.getInventoryforSeniorOfficer(this.selected).subscribe((formData: any) => {
-      const values = formData.data;
-      const cols = [
-        { field: 'itemName', header: 'Item Name', type: 'text' },
-        { field: 'model', header: 'Model', type: 'text' },
-        { field: 'description', header: 'Description', type: 'text' },
-        { field: 'year', header: 'Year', type: 'text' },
-        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
-        { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
-      ];
-      this.dynamaicDataForTable = {cols, values};
-  });
-  }
+  // getList() {
+  //   this.formService.getInventoryforSeniorOfficer(this.selected).subscribe((formData: any) => {
+  //     const values = formData.data;
+  //     const cols = [
+  //       { field: 'itemName', header: 'Item Name', type: 'text' },
+  //       { field: 'model', header: 'Model', type: 'text' },
+  //       { field: 'description', header: 'Description', type: 'text' },
+  //       { field: 'year', header: 'Year', type: 'text' },
+  //       { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+  //       { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+  //     ];
+  //     this.dynamaicDataForTable = {cols, values};
+  // });
+  // }
 
   getInventorySummary() {
     this.formService.getInventorySummaryforSeniorOfficer().subscribe((formData: any) => {
