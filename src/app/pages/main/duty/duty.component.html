@@ -50,11 +50,13 @@
                         <mat-option value="thisWeek">ThisWeek</mat-option>
                         <mat-option value="lastMonth">LastMonth</mat-option>
                         <mat-option value="thisMonth">ThisMonth</mat-option>
+                        <mat-option value="lastMonth">Last Year</mat-option>
+                        <mat-option value="thisMonth">This Year</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
         </div>
-        
+
         <form [formGroup]="form" (ngSubmit)="getList()">
             <div class="flex" style="justify-content: flex-end;align-items: center;">
                 <div class="ml-2" *ngIf="data?.adminId === true">
