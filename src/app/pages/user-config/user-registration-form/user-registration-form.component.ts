@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Console } from 'console';
 import { APIResponse } from 'src/app/shared/models/api-response';
@@ -9,6 +9,18 @@ import { FormService } from 'src/app/shared/services/form.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
+
+export function numericInputValidator(): ValidatorFn {
+  return (control: AbstractControl): { [key: string]: any } | null => {
+    const value = control.value;
+
+    if (!/^[0-9]+$/.test(value) || +value <= 0 || value.length !== 10) {
+      return { 'numericInput': true };
+    }
+
+    return null;
+  };
+}
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
@@ -45,8 +57,8 @@ export class UserRegistrationFormComponent implements OnInit {
       lastName:[''],
       gpfCpsNo:['',Validators.required],
       address:[''],
-      phone:[''],
-      email:[''],
+      phone: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       userName:['',Validators.required],
       password:['',Validators.required],
       pinHash:[''],
@@ -191,4 +203,9 @@ getRoleList(){
   cancel() {
     this.router.navigate(['main/user-config/user-list'])
   }
+  validateNumericInput(event: any): void {
+    const input = event.target.value;
+    event.target.value = input.replace(/[^0-9]/g, ''); 
+  }
+  
 }

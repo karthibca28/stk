@@ -24,7 +24,7 @@ export class AdministrationAddComponent implements OnInit {
     this.form = this.formBuilder.group({
       code: [''],
       name: ['', Validators.required],
-      stateId:[''],
+      stateId:['',Validators.required],
       description: ['']
     });
     const id=this.editMasterId
@@ -105,6 +105,9 @@ export class AdministrationAddComponent implements OnInit {
   cancel() {
     this.router.navigate(['main/master/administration'])
   }
-  
+  filterSpecialCharacters(event: any): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+  }
 }
   

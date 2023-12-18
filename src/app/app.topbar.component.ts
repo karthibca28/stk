@@ -109,21 +109,21 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
     }
     onResetSubmit() {
         if (this.resetPasswordForm.valid) {
-            const userId = this.userId;
-            const currentPassword = this.resetPasswordForm.value.currentPassword;
-            const newPassword = this.resetPasswordForm.value.newPassword;
-            const confirmPassword = this.resetPasswordForm.value.confirmPassword;
-            const dataForm = {userId, currentPassword, newPassword, confirmPassword};
-            //console.log("data", dataForm);
+            // const userId = this.userId;
+            const oldPassword = this.resetPasswordForm.value.currentPassword;
+            const password = this.resetPasswordForm.value.newPassword;
+            // const confirmPassword = this.resetPasswordForm.value.confirmPassword;
+             const dataForm = { oldPassword, password};
+            console.log("data", dataForm);
             this.authService.changePassword(dataForm).subscribe((resp: any) => {
-                if (resp.statusCode == 200) {
+                // if (resp.statusCode == 200) {
                     this.sharedService.showSuccess(resp.message);
                     setTimeout(() => {
                         this.ResetModal = false;
                     }, 1000);
-                } else {
-                    this.sharedService.showError(resp.message);
-                }
+                // } else {
+                //     this.sharedService.showError(resp.message);
+                // }
             }, (err: Error) => {
                 this.sharedService.showError('Problem occurred, Please try again');
             });
@@ -149,4 +149,12 @@ export class AppTopBarComponent implements OnInit, OnDestroy {
         this.renderer.removeStyle(element, 'padding');
       }
     }
+    closeResetPasswordModal() {
+        this.ResetModal = false;
+      }
+    
+      resetForm() {
+        this.closeResetPasswordModal(); // Close the modal if not closed already
+        this.resetPasswordForm.reset();
+      }
 }

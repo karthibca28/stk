@@ -17,7 +17,7 @@ export class AuthService {
   }
   //Reset
   changePassword(data: any) {
-    return this.http.post(`${this.apiUrl}User/changePassword`, data);
+    return this.http.post(`${this.apiUrl}user/changePassword`, data);
   }
   resetPassword(data: any) {
     return this.http.post(`${this.apiUrl}User/resetPassword`, data);

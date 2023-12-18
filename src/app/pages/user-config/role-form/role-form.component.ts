@@ -23,7 +23,7 @@ export class RoleFormComponent implements OnInit {
     this.editMasterId = this.route.snapshot.params['roleId'];
     console.log("datasss",this.editMasterId)
     this.form = this.formBuilder.group({
-      roleCode:[''],
+      roleCode:['',Validators.required],
       name: ['', Validators.required],
       description:[''],
 
@@ -91,5 +91,8 @@ export class RoleFormComponent implements OnInit {
   cancel() {
     this.router.navigate(['main/user-config/role-list'])
   }
-  
+  filterSpecialCharacters(event: any): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+  }
 }

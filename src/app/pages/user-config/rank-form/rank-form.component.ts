@@ -24,7 +24,7 @@ export class RankFormComponent implements OnInit {
     this.editMasterId = this.route.snapshot.params['rankId'];
     console.log(this.editMasterId)
     this.form = this.formBuilder.group({
-      rankCode:[''],
+      rankCode:['',Validators.required],
       name: ['', Validators.required],
       accessId:[''],
       roleId:[''],
@@ -113,5 +113,9 @@ export class RankFormComponent implements OnInit {
   }
   cancel() {
     this.router.navigate(['main/user-config/rank-list'])
+  }
+  filterSpecialCharacters(event: any): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
   }
 }

@@ -116,7 +116,7 @@
 
 
 <p-dialog header="Reset Password" [(visible)]="ResetModal" modal="modal" showEffect="fade" [style]="{width: '30vw'}"
-    [breakpoints]="{'960px': '75vw'}">
+    [breakpoints]="{'960px': '75vw'}" (onHide)="resetForm()">
     <div>
         <form [formGroup]="resetPasswordForm" (ngSubmit)="onResetSubmit()">
             <div class="field col-12 md:col-12"  >

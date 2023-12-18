@@ -22,7 +22,7 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>FirstName</mat-label>
-              <input matInput formControlName="firstName">
+              <input matInput formControlName="firstName" maxlength="20">
               <mat-error id="name-help" class="block text-danger"
                 *ngIf="(form?.controls?.firstName?.touched && form?.controls?.firstName?.errors?.required)">FirstName is
                 required</mat-error>
@@ -32,14 +32,14 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Middle Name</mat-label>
-              <input matInput formControlName="middleName">
+              <input matInput formControlName="middleName" maxlength="20">
             </mat-form-field>
           </div>
 
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Last Name</mat-label>
-              <input matInput formControlName="lastName">
+              <input matInput formControlName="lastName" maxlength="20">
             </mat-form-field>
           </div>
         </div>
@@ -47,7 +47,7 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Gpfcps No</mat-label>
-              <input matInput formControlName="gpfCpsNo">
+              <input matInput formControlName="gpfCpsNo" maxlength="15">
               <mat-error id="name-help" class="block text-danger"
                 *ngIf="(form?.controls?.gpfCpsNo?.touched && form?.controls?.gpfCpsNo?.errors?.required)">Gpfcs No is
                 required</mat-error>
@@ -56,27 +56,37 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Email</mat-label>
-              <input matInput formControlName="email">
+              <input type="email" matInput formControlName="email">
+              <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.email?.touched && form?.controls?.email?.errors?.required)">Email is
+              required</mat-error>
+              <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.email?.touched && form?.controls?.email?.hasError('email'))">Invalid email format</mat-error>
             </mat-form-field>
           </div>
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Phone Number</mat-label>
-              <input matInput formControlName="phone">
+              <input matInput formControlName="phone" type="tel" pattern="[0-9]{10}" (input)="validateNumericInput($event)" maxLength="10">
+              <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.phone?.touched && form?.controls?.phone?.errors?.required)">Phone Number is required</mat-error>
+              <!-- <mat-error id="name-help" class="block text-danger"
+                *ngIf="(form?.controls?.phone?.touched && form?.controls?.phone?.hasError('pattern'))">Invalid phone number format</mat-error> -->
             </mat-form-field>
           </div>
+          
         </div>
         <div class="field">
           <mat-form-field class="w-full">
             <mat-label>Address</mat-label>
-            <textarea matInput placeholder="Address"></textarea>
+            <textarea matInput placeholder="Address" maxlength="200"></textarea>
           </mat-form-field>
         </div>
         <div class="md:flex">
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>UserName</mat-label>
-              <input matInput formControlName="userName">
+              <input matInput formControlName="userName" maxlength="15">
               <mat-error id="name-help" class="block text-danger"
                 *ngIf="(form?.controls?.userName?.touched && form?.controls?.userName?.errors?.required)">UserName is
                 required</mat-error>
@@ -85,18 +95,18 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Password</mat-label>
-              <input matInput formControlName="password">
+              <input matInput formControlName="password" minlength="8" maxlength="15">
               <mat-error id="name-help" class="block text-danger"
                 *ngIf="(form?.controls?.password?.touched && form?.controls?.password?.errors?.required)">Password is
                 required</mat-error>
             </mat-form-field>
           </div>
-          <div class="md:w-4 md:mx-1">
+          <!-- <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>PinHash</mat-label>
               <input matInput formControlName="pinHash">
             </mat-form-field>
-          </div>
+          </div> -->
         </div>
         <div class="md:flex">
           <div class="md:w-4 md:mx-1">

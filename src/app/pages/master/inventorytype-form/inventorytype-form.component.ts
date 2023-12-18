@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JsonFormData } from 'src/app/shared/models/json-form-data';
 import { MasterService } from 'src/app/shared/services/master.service';
@@ -31,7 +31,7 @@ export class InventorytypeFormComponent implements OnInit {
     this.editMasterId = this.route.snapshot.params['inventoryTypeId'];
     console.log(this.editMasterId);
     this.form = this.formBuilder.group({
-      inventoryType: [''],
+      inventoryType: ['',Validators.required],
       inventoryTypeCode: [''],
       description: [''],
       icon: ['']
@@ -124,5 +124,9 @@ export class InventorytypeFormComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['main/master/inventorytype-list']);
+  }
+  filterSpecialCharacters(event: any): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
   }
 }

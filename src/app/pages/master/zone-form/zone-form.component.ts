@@ -113,5 +113,8 @@ export class ZoneFormComponent implements OnInit {
   cancel() {
     this.router.navigate(['main/master/zone-list'])
   }
-
+  filterSpecialCharacters(event: any): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+  }
 }

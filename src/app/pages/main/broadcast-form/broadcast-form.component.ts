@@ -31,15 +31,15 @@ export class BroadcastFormComponent implements OnInit {
 
   ngOnInit(): void {
       this.form = this.formBuilder.group({
-        title: [''],
-        message: ['',],
+        title: ['',Validators.required],
+        message: ['',Validators.required],
         // stateId:[''],
-        adminId:[''],
-        zoneId:[''],
-        rangeId:[''],
-        districtId:[''],
-        subDivisionId:[''],
-        policeStationId:[''],
+        adminId:['',Validators.required],
+        zoneId:['',Validators.required],
+        rangeId:['',Validators.required],
+        districtId:['',Validators.required],
+        subDivisionId:['',Validators.required],
+        policeStationId:['',Validators.required],
         files:['']
       });
     // this.getZoneList()
@@ -79,6 +79,7 @@ export class BroadcastFormComponent implements OnInit {
    getDistrictList(id:any) {
     this.masterService.commonDistrict(id).subscribe((resp: any) => {
        this.districtList = resp.data
+       this.districtList.unshift({id: 'all', name: 'All'})
     });
   }
   getSubDivision(id:any) {

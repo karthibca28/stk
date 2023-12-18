@@ -18,13 +18,19 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Title</mat-label>
-                        <input matInput formControlName="title">
+                        <input matInput formControlName="title" maxlength="50">
+                        <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.title?.touched && form?.controls?.title?.errors?.required)">Title is
+                        required</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Message</mat-label>
-                        <input matInput formControlName="message">
+                        <input matInput formControlName="message" maxlength="500">
+                        <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.message?.touched && form?.controls?.message?.errors?.required)">Message is
+                        required</mat-error>
                     </mat-form-field>
                 </div>
                 <!-- <div class="field" *ngIf="data.stateId === true">
@@ -45,6 +51,9 @@
                         {{adminList.name}}
                       </mat-option>
                     </mat-select>
+                    <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.adminId?.touched && form?.controls?.adminId?.errors?.required)">Administration is
+                        required</mat-error>
                   </mat-form-field>
                   </div>
   
@@ -56,6 +65,9 @@
                                 {{zoneList.name}}
                               </mat-option>
                             </mat-select>
+                            <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.zoneId?.touched && form?.controls?.zoneId?.errors?.required)">Zone is
+                        required</mat-error>
                           </mat-form-field>
                           </div>
   
@@ -67,6 +79,9 @@
                                     {{rangeList.name}}
                                   </mat-option>
                                 </mat-select>
+                                <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.rangeId?.touched && form?.controls?.rangeId?.errors?.required)">Range is
+                        required</mat-error>
                               </mat-form-field>
                               </div>
           
@@ -78,6 +93,9 @@
                                         {{districtList.name}}
                                       </mat-option>
                                     </mat-select>
+                                    <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.districtId?.touched && form?.controls?.districtId?.errors?.required)">District is
+                        required</mat-error>
                                   </mat-form-field>
                          </div>
                   
@@ -89,6 +107,9 @@
                                   {{subDivisionList.name}}
                                 </mat-option>
                               </mat-select>
+                              <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivision is
+                        required</mat-error>
                             </mat-form-field>
                  </div>
                  <div class="field"  *ngIf="data.policeStationId === true">
@@ -99,6 +120,9 @@
                         {{policeStationList.name}}
                       </mat-option>
                     </mat-select>
+                    <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.policeStationId?.touched && form?.controls?.policeStationId?.errors?.required)">Police Station is
+                        required</mat-error>
                   </mat-form-field>
          </div>
                 <!-- <div class="custom-card" style="display: flex;justify-content: space-around;">
@@ -135,7 +159,7 @@
                                 />
                               </g>
                             </svg>
-                            <input type="file" (change)="onFileSelected($event, i)" accept="*" style="display: none;" #triggerFileInput multiple forControlName="files">
+                            <input type="file" (change)="onFileSelected($event, i)" accept="*" style="display: none;" #triggerFileInput multiple formControlName="files">
                           </div>
                           <div class="ml-4" *ngIf="selectedFiles[i]">{{selectedFiles[i].name}}</div>
                           <div style="justify-content: flex-end;display: flex;width: 100%;">

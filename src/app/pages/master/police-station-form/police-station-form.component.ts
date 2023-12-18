@@ -204,5 +204,8 @@ export class PoliceStationFormComponent implements OnInit {
   cancel() {
     this.router.navigate(['main/master/police-station-list'])
   }
-
+  filterSpecialCharacters(event: any): void {
+    const input = event.target as HTMLInputElement;
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+  }
 }

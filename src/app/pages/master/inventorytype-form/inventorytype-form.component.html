@@ -19,18 +19,20 @@
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Inventory Type</mat-label>
                         <input matInput formControlName="inventoryType">
+                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.inventoryType?.touched && form?.controls?.inventoryType?.errors?.required)">Inventory Type is required</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Inventory Type Code</mat-label>
-                        <input matInput formControlName="inventoryTypeCode">
+                        <input matInput formControlName="inventoryTypeCode" (input)="filterSpecialCharacters($event)">
+                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.inventoryTypeCode?.touched && form?.controls?.inventoryTypeCode?.errors?.required)">Inventory Type Code is required</mat-error>
                     </mat-form-field>
                 </div>
                <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Description</mat-label>
-                        <textarea matInput formControlName="description"></textarea>
+                        <textarea matInput formControlName="description" maxlength="40"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="card" (click)="triggerFileInput.click()"  style="display: flex;justify-content: space-around;margin-top: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">

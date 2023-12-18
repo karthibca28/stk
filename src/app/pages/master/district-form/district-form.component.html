@@ -24,7 +24,7 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Code</mat-label>
-                        <input matInput formControlName="code">
+                        <input matInput formControlName="code" (input)="filterSpecialCharacters($event)">
                     </mat-form-field>
                 </div>
 
@@ -76,7 +76,7 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Description</mat-label>
-                        <textarea matInput formControlName="description"></textarea>
+                        <textarea matInput formControlName="description" maxlength="40"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="text-right">

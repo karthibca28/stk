@@ -10,13 +10,13 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Title</mat-label>
-                        <input matInput [(ngModel)]="titleData">
+                        <input matInput [(ngModel)]="titleData" [readonly]="true">
                     </mat-form-field>
                 </div>
                     <div class="field">
                         <mat-form-field class="w-full">
                           <mat-label>Message</mat-label>
-                          <textarea matInput  [(ngModel)]="messageData" ></textarea>
+                          <textarea matInput  [(ngModel)]="messageData" [readonly]="true"></textarea>
                         </mat-form-field>
                       </div>
                 <div class="col-12 md:col-12" *ngIf="broadCastData?.broadcastAttachment?.files && broadCastData.broadcastAttachment.files.length > 0" >

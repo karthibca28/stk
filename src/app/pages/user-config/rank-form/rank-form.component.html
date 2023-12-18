@@ -18,7 +18,8 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Rank Code</mat-label>
-                        <input matInput formControlName="rankCode">
+                        <input matInput formControlName="rankCode" (input)="filterSpecialCharacters($event)">
+                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.rankCode?.touched && form?.controls?.rankCode?.errors?.required)">Rank Code is required</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="field">
@@ -51,7 +52,7 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Description</mat-label>
-                        <textarea matInput formControlName="description"></textarea>
+                        <textarea matInput formControlName="description" maxlength="40"></textarea>
                     </mat-form-field>
                 </div>
                 <div class="text-right">
