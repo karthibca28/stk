@@ -17,6 +17,8 @@ import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.component';
+import { SosAlertComponent } from './sos-alert/sos-alert.component';
+import { AlertComponent } from './alert/alert.component';
 
 
 
@@ -34,6 +36,8 @@ import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.componen
     BroadcastFormComponent,
     InventoryComponent,
     ViewBroadcastComponent,
+    SosAlertComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,

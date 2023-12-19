@@ -514,4 +514,7 @@ export class FormService {
   getBroadCastforSeniorOfficer(){
     return this.http.get(`${this.apiUrl}common/broadcastMessage`);
   }
+  getSOSAlert(){
+    return this.http.get(`${this.apiUrl}admin/alerts`);
+  }
 }

@@ -51,6 +51,8 @@ export class SoHomeComponent implements OnInit {
   userData:any
   inventoryItems:any
   imgData:any
+  alert:any
+  sosalert:any
 
   constructor(private router: Router, private formService: FormService,private masterService:MasterService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
 
@@ -58,7 +60,8 @@ export class SoHomeComponent implements OnInit {
     this.getDashboard();
     this.getChartDataDlRC();
     this.getChartDataChallanCheck();
-    this.getInventoryType()
+    this.getInventoryType();
+    this.getAlert();
     }
 
 
@@ -207,6 +210,13 @@ async getImage(url: string): Promise<string> {
           }
         ]
       }
+    });
+  }
+  
+  getAlert() {
+    this.formService.getSOSAlert().subscribe((formData: any) => {
+      this.alert = formData.data.AmbulanceAlert.slice(0, 5);
+      this.sosalert = formData.data.SosAlert.slice(0, 5);
     });
   }
   

@@ -12,6 +12,8 @@ import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastFormComponent } from './broadcast-form/broadcast-form.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.component';
+import { SosAlertComponent } from './sos-alert/sos-alert.component';
+import { AlertComponent } from './alert/alert.component';
 
 const routes: Routes = [
   {
@@ -65,6 +67,14 @@ const routes: Routes = [
   {
     path: 'inventory',
     component: InventoryComponent
+  },
+  {
+    path: 'sos-alert',
+    component: SosAlertComponent
+  },
+  {
+    path: 'alert',
+    component: AlertComponent
   },
 ];
 

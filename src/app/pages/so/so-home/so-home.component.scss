@@ -134,3 +134,132 @@
     }
 }
 
+.btn-list {
+    width: 100px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.137);
+  }
+  .text {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    border-radius: 4px;
+  }
+  .arrow path {
+    fill: red
+  }
+  .btn-list:hover .arrow {
+    animation: slide-in-left 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+  @keyframes slide-in-left {
+    0% {
+      transform: translateX(-8px);
+      opacity: 0;
+    }
+  
+    100% {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  .btn-list:active {
+    transform: scale(0.97);
+  }
+  
+  table {
+      width: 100%;
+  }
+  table th {
+      text-align: left;
+      background-color: #374357;
+      padding: 7px 5px;
+      color: #fff;
+  }
+  table td {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 7px 5px;
+  }
+  
+  
+  :root {
+    --card-color-1: #27A9DC;
+    --card-color-2: #D65673;
+    --card-color-3: #EFC025;
+    --card-color-4: #439B49;
+  }
+  
+  .card-layout {
+    width: 180px;
+    height: 130px;
+    border-radius: 15px;
+    border-style: solid;
+    text-align: center;
+    border-color: var(--card-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card-layout-content {
+    font-size: 62px;
+    color: var(--card-color);
+  }
+  
+  .background-image{
+  width:30px;
+  height: 30px;
+  border-radius: 50px;
+  background-size: auto;
+  // background-color: #EFC025;
+  }
+  
+  .recentDuties-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .left-side {
+    flex: 0; 
+    margin-right: 10px;
+  }
+  
+  .right-side {
+    flex: 1;
+    text-align: right; 
+  }
+  
+  .background-image {
+    max-width: 50px;
+    max-height: 50px; 
+  }
+  
+  .viewbutton{
+  justify-content: flex-end;
+  cursor: pointer;
+  }
+  
+  .container-layout{
+    padding-bottom: 15px;padding-top: 15px;
+    cursor: pointer;
+  }
+  
+  .container-layout-content{
+    display: block;
+    text-align: center;
+    font-size: 200%;
+  }

@@ -128,7 +128,7 @@
 </div>
 <!-- <div class="grid match-height">
 </div> -->
-<div class="card">
+<!-- <div class="card">
     <p class="mb-0 tbold">Inventory List</p>
     <div class="grid mx-0 mt-0" style="display: flex; justify-content: space-around;">
         <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
@@ -139,10 +139,70 @@
                 <img src="../../../../assets/icons/inventory.png" style="height: 50px;" alt="Inventory Item">
             </div>
             <div class="item-count">
-                <!-- <p class="font-semibold mt-3" style="white-space: nowrap;">{{ item.count }}</p> -->
             </div>
         </div>
     </div>
+</div> -->
+<div class="grid match-height">
+
+<div class="col-12 md:col-6">
+    <div class="card p-0" style="margin-top: 10px;flex: 0;">
+      <div class="card-header"
+        style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+        <p class="mb-0 tbold color-02">SOS Alerts</p>
+        <img class="background-image" src="../../../../assets/images/sosalert.png">
+      </div>
+      <div class="card-body p-2" *ngFor="let value of sosalert">
+        <div>
+          <div class="recentDuties-card">
+            <div class="left-side">
+              <img class="background-image" src="../../../../assets/images/sosalert.png">
+            </div>
+            <div class="right-side">
+              <div class="recentDuties-card-value">
+                {{ value.createdBy.fullName }}
+              </div>
+              <div class="recentDuties-card-value">
+                {{ value.locationName }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content: end;padding-right: 10px;">
+        <a style="font-size: 15px;" routerLink="/main/lot/sos-alert">View All</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 md:col-6">
+    <div class="card p-0" style="margin-top: 10px;flex: 0;">
+      <div class="card-header"
+        style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+        <p class="mb-0 tbold color-02">Alerts</p>
+        <img  class="background-image" src="../../../../assets/images/alert.png">
+      </div>
+      <div class="card-body p-2" *ngFor="let value of alert">
+        <div>
+          <div class="recentDuties-card">
+            <div class="left-side">
+              <img class="background-image" src="../../../../assets/images/alert.png">
+            </div>
+            <div class="right-side">
+              <div class="recentDuties-card-value">
+                {{ value.locationName }}
+              </div>
+              <!-- <div class="recentDuties-card-value">
+                {{ item.policeStationName }}
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content: end;padding-right: 10px;">
+        <a style="font-size: 15px;" routerLink="/main/lot/alert">View All</a>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- <div class="card">
     <div class="col-12 md:col-2" style="text-align: center;" *ngFor="let item of inventoryItems">
@@ -200,7 +260,7 @@
         </div>
     </div> -->
 
-    <div class="grid match-height">
+    <!-- <div class="grid match-height">
         <div class="col-12 md:col-12">
             <div class="card p-2" style="border-radius: 0;">
                 <p class="mb-0 tbold">Types of Duties</p>
@@ -253,7 +313,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div class="grid match-height">
         <div class="col-12 md:col-12">
