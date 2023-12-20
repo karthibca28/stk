@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
@@ -7,20 +7,22 @@ import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-view-broadcast',
-  templateUrl: './view-broadcast.component.html',
-  styleUrls: ['./view-broadcast.component.scss']
+  selector: 'app-view-task',
+  templateUrl: './view-task.component.html',
+  styleUrls: ['./view-task.component.scss']
 })
-export class ViewBroadcastComponent implements OnInit {
+export class ViewTaskComponent implements OnInit {
+
   editMasterId: any;
-  broadCastData: any;
+  taskData: any;
   doc: SafeResourceUrl | undefined;
   fileUrl: SafeResourceUrl;
   fileType: string='application/pdf'
   isFileLoaded:boolean=false
   messageData:any
   titleData:any
-
+  form!: FormGroup;
+  attachmentData:any
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -32,14 +34,35 @@ export class ViewBroadcastComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.editMasterId = this.route.snapshot.params['broadcastId'];
-    console.log(this.route.snapshot.params['broadcastId']);
-    this.formService.getBroadCastById(this.editMasterId).subscribe((formData: any) => {
-      this.broadCastData = formData.data;
+    this.form = this.formBuilder.group({
+      taskType: ['', Validators.required],
+      administrationName:[''],
+      zoneName:[''],
+      rangeName:[''],
+      districtName:[''],
+      subDivisionName:[''],
+      policeStationName: [''],
+      message:[''],
+    });
+    this.editMasterId = this.route.snapshot.params['taskId'];
+    console.log(this.route.snapshot.params['taskId']);
+    this.formService.getTaskById(this.editMasterId).subscribe((formData: any) => {
+      this.taskData = formData.data;
       this.messageData = formData.data.message
       this.titleData = formData.data.title
-      console.log(this.broadCastData);
+      this.form.patchValue({
+        taskType: formData.data.taskType,
+        administrationName: formData.data.administrationName,
+        zoneName: formData.data.zoneName,
+        rangeName: formData.data.rangeName,
+        districtName: formData.data.districtName,
+        subDivisionName: formData.data.subDivisionName,
+        policeStationName: formData.data.policeStationName,
+        message: formData.message,
+
+      });
     });
+    
   }
   async viewImg(data: any, fileType: string): Promise<void> {
     try {
@@ -87,5 +110,4 @@ export class ViewBroadcastComponent implements OnInit {
 }
 
 
-  
 }

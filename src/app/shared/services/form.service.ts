@@ -417,6 +417,9 @@ export class FormService {
   getBroadCastById(broadcastId:any){
     return this.http.get(`${this.apiUrl}common/broadcastMessage?broadcastId=${broadcastId}`);
   }
+  getTaskById(taskId:any){
+    return this.http.get(`${this.apiUrl}seniorOfficer/task?taskId=${taskId}`);
+  }
   // getFileForBroadCast(fileData: any): Observable<ArrayBuffer> {
   //   return this.http.get(fileData, { responseType: 'arraybuffer' });
   // }
@@ -441,7 +444,7 @@ export class FormService {
 
   
 
-  async getImgForBroadCast(
+  async getImg(
     data:any
   ) {
     

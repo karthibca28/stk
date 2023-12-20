@@ -14,6 +14,7 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.component';
 import { SosAlertComponent } from './sos-alert/sos-alert.component';
 import { AlertComponent } from './alert/alert.component';
+import { ViewTaskComponent } from './view-task/view-task.component';
 
 const routes: Routes = [
   {
@@ -75,6 +76,14 @@ const routes: Routes = [
   {
     path: 'alert',
     component: AlertComponent
+  },
+  {
+    path: 'view-task',
+    component: ViewTaskComponent
+  },
+  {
+    path: 'view-task/:taskId',
+    component: ViewTaskComponent
   },
 ];
 

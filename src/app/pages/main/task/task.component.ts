@@ -238,7 +238,9 @@ selecteddistrict:any
     return type?.replace(/_/g, ' '); 
   }
   
-  
+  viewRecord(taskId:any){
+    this.router.navigate([`main/lot/view-task`,taskId])
+  }
   
   
   clear(table: Table) {
