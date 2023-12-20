@@ -15,6 +15,7 @@ import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.componen
 import { SosAlertComponent } from './sos-alert/sos-alert.component';
 import { AlertComponent } from './alert/alert.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
+import { ViewDutyComponent } from './view-duty/view-duty.component';
 
 const routes: Routes = [
   {
@@ -84,6 +85,14 @@ const routes: Routes = [
   {
     path: 'view-task/:taskId',
     component: ViewTaskComponent
+  },
+  {
+    path: 'view-duty',
+    component: ViewDutyComponent
+  },
+  {
+    path: 'view-duty/:dutyId',
+    component: ViewDutyComponent
   },
 ];
 

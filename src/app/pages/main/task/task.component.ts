@@ -113,12 +113,12 @@ selecteddistrict:any
         { field: 'challan', header: 'Challan', type: 'text' },
         { field: 'vehicleNumber', header: 'Vehicle Number', type: 'text' }, 
         { field: 'vehicleType', header: 'Vehicle Type', type: 'text' },
-        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'createdAt', header: 'Date and Time', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
       ];
 
       values.forEach((value) => {
-        value.vehicleNumber = value.abandonedVehicle?.vehicleNumber; 
+        value.vehicleNumber = value.generalIncident?.vehicleNumber; 
         value.vehicleType = value.abandonedVehicle?.vehicleType; 
       });
   

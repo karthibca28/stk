@@ -20,6 +20,7 @@ import { ViewBroadcastComponent } from './view-broadcast/view-broadcast.componen
 import { SosAlertComponent } from './sos-alert/sos-alert.component';
 import { AlertComponent } from './alert/alert.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
+import { ViewDutyComponent } from './view-duty/view-duty.component';
 
 
 
@@ -40,6 +41,7 @@ import { ViewTaskComponent } from './view-task/view-task.component';
     SosAlertComponent,
     AlertComponent,
     ViewTaskComponent,
+    ViewDutyComponent,
   ],
   imports: [
     CommonModule,

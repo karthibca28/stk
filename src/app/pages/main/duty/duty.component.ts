@@ -214,4 +214,7 @@ selecteddistrict:any
     this.filter.nativeElement.value = '';
   }
 
+  viewRecord(dutyId:any){
+    this.router.navigate([`main/lot/view-duty`,dutyId])
+  }
 }

@@ -420,6 +420,9 @@ export class FormService {
   getTaskById(taskId:any){
     return this.http.get(`${this.apiUrl}seniorOfficer/task?taskId=${taskId}`);
   }
+  getDutyById(dutyId:any){
+    return this.http.get(`${this.apiUrl}seniorOfficer/duty?dutyId=${dutyId}`);
+  }
   // getFileForBroadCast(fileData: any): Observable<ArrayBuffer> {
   //   return this.http.get(fileData, { responseType: 'arraybuffer' });
   // }
