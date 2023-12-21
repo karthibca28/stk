@@ -110,9 +110,9 @@
                 </div>
             </div>
             <div *ngIf="fileUrl" style="width: 100%;">
-                <object [data]="fileUrl" type="application/pdf" width="100%" height="600px" style="width: 100%;">
-                  <p>File not supported. {{fileType}} <a [href]="fileUrl">Click here to download</a></p>
-                </object>
-            </div>              
+                <iframe [src]="fileUrl" width="100%" height="600px" style="width: 100%;">
+                  <p>File not supported. {{fileType}} <a [href]="fileUrl" target="_blank">Click here to download</a></p>
+                </iframe>
+              </div>                 
         </div>
     </div>

@@ -63,49 +63,44 @@ export class ViewDutyComponent implements OnInit {
     });
     
   }
-  async viewImg(data: any, fileType: string): Promise<void> {
-    try {
-      const res = await this.formService.getImg(data);
-      if (!res) {
-        throw new Error('Invalid file response');
-      }
-
-      this.fileType = res.type
-      console.log(res.type)
-      const fileUrl = await this.getPdfUrl(res);
-      this.fileUrl = fileUrl;
-    } catch (e) {
-      console.error('Error fetching or processing file:', e);
-    }
-  }
-
   async viewFiles(data: any, fileType: string): Promise<void> {
     try {
       const res = await this.formService.getFileForBroadCast(data);
       if (!res) {
         throw new Error('Invalid file response');
       }
-
-      this.fileType = res.type
-      console.log(res.type)
-      const fileUrl = await this.getPdfUrl(res);
-      this.fileUrl = fileUrl;
+  
+      this.fileType = res.type;
+      console.log(res.type);
+      if (fileType == 'application/pdf') {
+        this.downloadFile(res);
+      } else {
+        console.warn("data")
+        const fileUrl = await this.getPdfUrl(res);
+        this.fileUrl = fileUrl;
+      }
     } catch (e) {
       console.error('Error fetching or processing file:', e);
     }
   }
-
-  getPdfUrl(e:Blob): SafeResourceUrl {
+  
+  downloadFile(file: Blob): void {
+    // Implement your download logic here
+    const downloadLink = document.createElement('a');
+    const url = URL.createObjectURL(file);
+    downloadLink.href = url;
+    downloadLink.download = 'your_file_name.extension';
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+  
+  getPdfUrl(e: Blob): SafeResourceUrl {
     const pdfUrl = URL.createObjectURL(e);
-    console.log("Select files", pdfUrl)
+    console.log("Select files", pdfUrl);
     this.isFileLoaded = true;
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
-    if (this.fileUrl) {
-    // const pdfBlob = new Blob(e, { type: 'application/pdf' });
-  } else {
-    // If fileUrl is not available, return an empty SafeResourceUrl
-    return '';
   }
-}
+  
 
 }

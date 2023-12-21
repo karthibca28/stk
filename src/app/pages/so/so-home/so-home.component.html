@@ -100,7 +100,7 @@
                 <div>
                     <mat-form-field class="ml-4">
                         <mat-label>Date</mat-label>
-                        <mat-select (selectionChange)="onSelectionChangeDate($event)">
+                        <mat-select [(value)]="firstDate" (selectionChange)="onSelectionChangeDate($event)">
                             <mat-option *ngFor="let dates of dates" [value]="dates">
                                 {{dates}}
                             </mat-option>

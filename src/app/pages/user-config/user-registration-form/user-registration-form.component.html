@@ -76,12 +76,6 @@
           </div>
           
         </div>
-        <div class="field">
-          <mat-form-field class="w-full">
-            <mat-label>Address</mat-label>
-            <textarea matInput placeholder="Address" maxlength="200"></textarea>
-          </mat-form-field>
-        </div>
         <div class="md:flex">
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
@@ -92,7 +86,15 @@
                 required</mat-error>
             </mat-form-field>
           </div>
-          <div class="md:w-4 md:mx-1">
+        </div>
+        <div class="field">
+          <mat-form-field class="w-full">
+            <mat-label>Address</mat-label>
+            <textarea matInput placeholder="Address" maxlength="200"></textarea>
+          </mat-form-field>
+        </div>
+    
+          <!-- <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Password</mat-label>
               <input matInput formControlName="password" minlength="8" maxlength="15">
@@ -100,14 +102,14 @@
                 *ngIf="(form?.controls?.password?.touched && form?.controls?.password?.errors?.required)">Password is
                 required</mat-error>
             </mat-form-field>
-          </div>
+          </div> -->
           <!-- <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>PinHash</mat-label>
               <input matInput formControlName="pinHash">
             </mat-form-field>
           </div> -->
-        </div>
+        <!-- </div> -->
         <div class="md:flex">
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
