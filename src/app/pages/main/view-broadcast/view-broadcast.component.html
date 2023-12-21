@@ -13,13 +13,14 @@
                         <input matInput [(ngModel)]="titleData" [readonly]="true">
                     </mat-form-field>
                 </div>
-                    <div class="field">
-                        <mat-form-field class="w-full">
-                          <mat-label>Message</mat-label>
-                          <textarea matInput  [(ngModel)]="messageData" [readonly]="true"></textarea>
-                        </mat-form-field>
-                      </div>
-                <div class="col-12 md:col-12" *ngIf="broadCastData?.broadcastAttachment?.files && broadCastData.broadcastAttachment.files.length > 0" >
+                <div class="field">
+                    <mat-form-field class="w-full">
+                        <mat-label>Message</mat-label>
+                        <textarea matInput [(ngModel)]="messageData" [readonly]="true"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 md:col-12"
+                    *ngIf="broadCastData?.broadcastAttachment?.files && broadCastData.broadcastAttachment.files?.length > 0">
                     <div class="col-12 md:col-3">
                         <label class="font-bold">Files</label>
                     </div>
@@ -44,7 +45,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 md:col-12" *ngIf="broadCastData?.broadcastAttachment?.image && broadCastData.broadcastAttachment.image.length > 0">
+                <div class="col-12 md:col-12"
+                    *ngIf="broadCastData?.broadcastAttachment?.image && broadCastData.broadcastAttachment.image?.length > 0">
                     <div class="col-12 md:col-3">
                         <label class="font-bold">Images</label>
                     </div>
@@ -69,11 +71,24 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 md:col-12"
+                    *ngIf="broadCastData?.broadcastAttachment?.audio && broadCastData?.broadcastAttachment?.audio?.length > 0">
+                    <div class="col-12 md:col-3">
+                        <label class="font-bold">Audio</label>
+                    </div>
+                    <div class="grid">
+                        <div class="col-12 md:col-6" *ngFor="let value of broadCastData?.broadcastAttachment?.audio" style="cursor: pointer;">
+                            <ngx-audio-player [autoPlay]="false" muted="muted" [playlist]="mssapPlaylist">
+                            </ngx-audio-player>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div *ngIf="fileUrl" style="width: 100%;">
                 <iframe [src]="fileUrl" width="100%" height="600px" style="width: 100%;">
-                  <p>File not supported. {{fileType}} <a [href]="fileUrl" target="_blank">Click here to download</a></p>
+                    <p>File not supported. {{fileType}} <a [href]="fileUrl" target="_blank">Click here to download</a>
+                    </p>
                 </iframe>
-              </div>                          
+            </div>
         </div>
     </div>

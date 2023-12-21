@@ -21,7 +21,7 @@ import { SosAlertComponent } from './sos-alert/sos-alert.component';
 import { AlertComponent } from './alert/alert.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { ViewDutyComponent } from './view-duty/view-duty.component';
-
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { ViewDutyComponent } from './view-duty/view-duty.component';
     PrimeModule,
     SharedModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxAudioPlayerModule
   ]
 })
 export class MainModule { }

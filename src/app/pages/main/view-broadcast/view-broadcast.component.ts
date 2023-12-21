@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Track } from 'ngx-audio-player';
 import { FormService } from 'src/app/shared/services/form.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -20,6 +21,8 @@ export class ViewBroadcastComponent implements OnInit {
   isFileLoaded:boolean=false
   messageData:any
   titleData:any
+  // mssapPlaylist: any;
+mssapPlaylist:Track[] = [];
 
   constructor(
     private router: Router,
@@ -39,19 +42,30 @@ export class ViewBroadcastComponent implements OnInit {
       this.messageData = formData.data.message
       this.titleData = formData.data.title
       console.log(this.broadCastData);
+      this.onAudio(this.broadCastData?.broadcastAttachment?.audio[0].downloadPath)
     });
   }
-  async viewImg(data: any, fileType: string): Promise<void> {
+  // mssapPlaylist: Track[] = [
+  //   {
+  //     title: 'Audio Title',
+  //     link: 'https://dev.vividtranstech.com/stk/api/v1/uploads/audio?fileNameId=clqes3jev002cqb2de6s255vt&authorization=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6bnVsbCwidWlkIjoiY2xvZmJzZmd1MDAwNTlhMDlxamltb3c2aCIsInRpZCI6IjhhMzIyOTk1LTU1ZGYtNDJhYi1iZTIyLWQzMzBlZmQxYzdmNSIsInBzSWQiOiJjbG9lYnRvaWgwMWtsOWFsZ3hjenZjYjE4IiwidG9rZW5Vc2UiOiJhY2Nlc3MiLCJpYXQiOjE3MDMxMzkzNzgsImV4cCI6MTcwMzE3NTM3OH0.9QOmPQVjLriaDkl6VHkTCV4p5WwxvXYM10EMRJKbRCg',
+  //     artist: 'Audio Artist',
+  //     duration: 5
+  //   }
+  // ];
+  async onAudio(data: any): Promise<void> {
     try {
-      const res = await this.formService.getImg(data);
+      const res = await this.formService.getAudio(data);
       if (!res) {
         throw new Error('Invalid file response');
       }
-
-      this.fileType = res.type
-      console.log(res.type)
-      const fileUrl = await this.getPdfUrl(res);
-      this.fileUrl = fileUrl;
+      console.log(res)
+      const audioFile : Track = {
+        title: 'Audio Track',
+        link: res,
+      };
+      console.log('res',res)
+      this.mssapPlaylist.push(audioFile)
     } catch (e) {
       console.error('Error fetching or processing file:', e);
     }
@@ -83,7 +97,7 @@ export class ViewBroadcastComponent implements OnInit {
     const downloadLink = document.createElement('a');
     const url = URL.createObjectURL(file);
     downloadLink.href = url;
-    downloadLink.download = 'your_file_name.extension';
+    downloadLink.download = 'downloaded file';
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -96,5 +110,8 @@ export class ViewBroadcastComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
   }
   
+  viewAudio(data:any){
+
+  }
   
 }

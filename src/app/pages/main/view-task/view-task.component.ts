@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Track } from 'ngx-audio-player';
 import { FormService } from 'src/app/shared/services/form.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -23,6 +24,7 @@ renderCount:number=0;
   titleData:any
   form!: FormGroup;
   attachmentData:any
+  mssapPlaylist:Track[] = [];
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -61,8 +63,25 @@ renderCount:number=0;
         message: formData.message,
 
       });
+      this.onAudio(this.taskData?.attachment?.audio[0].downloadPath)
     });
     
+  }
+  async onAudio(data: any): Promise<void> {
+    try {
+      const res = await this.formService.getAudio(data);
+      if (!res) {
+        throw new Error('Invalid file response');
+      }
+      const audioFile : Track = {
+        title: 'Audio Track',
+        link: res,
+      };
+      console.log('res',res)
+      this.mssapPlaylist.push(audioFile)
+    } catch (e) {
+      console.error('Error fetching or processing file:', e);
+    }
   }
   async viewFiles(data: any, fileType: string): Promise<void> {
     try {

@@ -108,6 +108,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-12 md:col-12"
+                    *ngIf="dutyData?.attachment?.audio && dutyData?.attachment?.audio?.length > 0">
+                    <div class="col-12 md:col-3">
+                        <label class="font-bold">Audio</label>
+                    </div>
+                    <div class="grid">
+                        <div class="col-12 md:col-6" *ngFor="let value of dutyData?.attachment?.audio" style="cursor: pointer;">
+                            <ngx-audio-player [autoPlay]="false" muted="muted" [playlist]="mssapPlaylist">
+                            </ngx-audio-player>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div *ngIf="fileUrl" style="width: 100%;">
                 <iframe [src]="fileUrl" width="100%" height="600px" style="width: 100%;">

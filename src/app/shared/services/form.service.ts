@@ -423,6 +423,14 @@ export class FormService {
   getDutyById(dutyId:any){
     return this.http.get(`${this.apiUrl}seniorOfficer/duty?dutyId=${dutyId}`);
   }
+  async getAudio(data:any){
+    const userData = JSON.parse(sessionStorage.getItem('userInfo') as string);
+    let token=null;
+    if (userData) {
+      token = userData.data.session.accessToken; 
+    } 
+    return `${data}&authorization=${token}`
+  }
   // getFileForBroadCast(fileData: any): Observable<ArrayBuffer> {
   //   return this.http.get(fileData, { responseType: 'arraybuffer' });
   // }
