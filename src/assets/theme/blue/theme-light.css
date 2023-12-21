@@ -811,7 +811,7 @@ p-chips.ng-dirty.ng-invalid > .p-chips > .p-inputtext {
   background: #5297FF;
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
-  color: #69707A;
+  color: #ffffff;
   background: rgba(82, 151, 255, 0.2);
 }
 .p-dropdown-panel .p-dropdown-items .p-dropdown-empty-message {

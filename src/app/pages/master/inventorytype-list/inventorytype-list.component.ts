@@ -15,6 +15,8 @@ export class InventorytypeListComponent implements OnInit {
   @ViewChild('dt') table: Table;
   @ViewChild('filter') filter: ElementRef;
   //stateId:any;
+  userData: any;
+  isDistrictAdmin: boolean;
 
   constructor(private router: Router,private masterService:MasterService,private confirmationService: ConfirmationService,
     private sharedService: SharedService,) { }
@@ -24,12 +26,15 @@ export class InventorytypeListComponent implements OnInit {
   }
 
   getList() {
+    this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log("LoginData", this.userData);
+    this.isDistrictAdmin = this.userData.data.userData.rank.role.roleCode === "5";
     this.masterService.inventoryTypeList().subscribe((formData: any) => {
         const values = formData.data;
         const cols = [
          // { field: 'fullName', header: 'FullName', type: 'text' },
           { field: 'inventoryType', header: 'Inventory Type', type: 'text' },
-         { field: 'inventoryTypeCode', header: 'InventoryType Code', type: 'text' },
+         { field: 'inventoryTypeCode', header: 'Inventory Type Code', type: 'text' },
          { field: 'description', header: 'Description', type: 'text' },
 
 

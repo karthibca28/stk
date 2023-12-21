@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
       const cols = [
         // { field: 'id', header: 'id', type: 'text' },
         { field: 'policeStation', header: 'PoliceStation', type: 'text' },
-        { field: 'vechicleName', header: 'vechicleName', type: 'text' },
+        { field: 'vechicleName', header: 'Person Name', type: 'text' },
         { field: 'RcNo', header: 'Rc No', type: 'text' },
       ];
   

@@ -15,7 +15,7 @@ export class DynamicTableComponent implements OnInit,OnChanges {
   DistAdmin:boolean = false;
   roleId:any
   searchKeyword:any
-  searchHeader: any[] = ['firstName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
+  searchHeader: any[] = ['firstName','lastName','inventoryType','rankName','fullName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName'];
   @Input() dynamaicDataForTable = {
     cols:[],

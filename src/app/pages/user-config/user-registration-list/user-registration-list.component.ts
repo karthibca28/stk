@@ -24,7 +24,7 @@ export class UserRegistrationListComponent implements OnInit {
   dynamaicDataForTable: any; 
   toDownload: boolean;
   userData: any;
-  isDAdmin: boolean;
+  isDistrictAdmin: boolean;
   upPwdModal: boolean;
   keyData: any;
 
@@ -37,10 +37,8 @@ export class UserRegistrationListComponent implements OnInit {
   
   ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
-    console.log("LoginData",this.userData)
-    if(this.userData.data.userData.roleId === 4) {
-      this.isDAdmin = true;
-    }
+    console.log("LoginData", this.userData);
+    this.isDistrictAdmin = this.userData.data.userData.rank.role.roleCode === "5";
     this.getList();
     this.form = this.formBuilder.group(
       {
@@ -57,17 +55,22 @@ export class UserRegistrationListComponent implements OnInit {
       const values = formData.data;
       const cols = [
         { field: 'fullName', header: 'Name', type: 'text' },
-        { field: 'rankNo', header: 'Rank No', type: 'text' },
+        { field: 'rank', header: 'Rank', type: 'text' },
         { field: 'gpfCpsNo', header: 'Gpf Cps No', type: 'text' },
         { field: 'email', header: 'Email', type: 'text' },
         { field: 'phone', header: 'Phone Number', type: 'text' },
         { field: 'address', header: 'Address', type: 'text' },
-        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'subDivisionName', header: 'District', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
       ];
+      values.forEach((value) => {
+        value.rank = value.rank?.rankName; 
+      });
+      console.log("test")
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)
   });
+  
     // const fKey = {
     //     formKey : "user"
     // }
@@ -115,7 +118,7 @@ export class UserRegistrationListComponent implements OnInit {
         message: 'Are you sure you want to delete the record?',
         accept: () => {
             this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                //console.log("datakey",dataKey);
+                console.log("datakey",dataKey);
                 if (resp.statusCode == '200') {
                     this.getList();
                     this.sharedService.showSuccess('Record delete successfully');

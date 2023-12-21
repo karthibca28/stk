@@ -26,14 +26,17 @@ export class UserComponent implements OnInit {
       const values = formData.data;
       const cols = [
         { field: 'fullName', header: 'Name', type: 'text' },
-        { field: 'rankNo', header: 'Rank No', type: 'text' },
+        { field: 'rank', header: 'Rank', type: 'text' },
         { field: 'gpfCpsNo', header: 'Gpf Cps No', type: 'text' },
         { field: 'email', header: 'Email', type: 'text' },
         { field: 'phone', header: 'Phone Number', type: 'text' },
         { field: 'address', header: 'Address', type: 'text' },
-        { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'subDivisionName', header: 'District', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
       ];
+      values.forEach((value) => {
+        value.rank = value.rank?.rankName; 
+      });
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)
   });

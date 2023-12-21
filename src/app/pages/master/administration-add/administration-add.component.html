@@ -23,13 +23,13 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Code</mat-label>
-                        <input matInput formControlName="code" (input)="filterSpecialCharacters($event)">
+                        <input matInput formControlName="code" (input)="filterSpecialCharacters($event)" maxlength="30">
                     </mat-form-field>
                 </div>
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Name</mat-label>
-                        <input matInput formControlName="name">
+                        <input matInput formControlName="name" maxlength="30">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.name?.touched && form?.controls?.name?.errors?.required)">Name is
                             required</mat-error>

@@ -11,12 +11,17 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class AccesscontrolListComponent implements OnInit {
 
-  dynamaicDataForTable:any
+  dynamaicDataForTable:any;
+  userData: any;
+  isDistrictAdmin: boolean;
 
   constructor(private router: Router,private masterService:MasterService,private confirmationService: ConfirmationService,
     private sharedService: SharedService,) { }
 
   ngOnInit(): void {
+    this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log("LoginData", this.userData);
+    this.isDistrictAdmin = this.userData.data.userData.rank.role.roleCode === "5";
     this.getList()
   }
 

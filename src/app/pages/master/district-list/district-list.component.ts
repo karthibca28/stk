@@ -32,10 +32,15 @@ export class DistrictListComponent implements OnInit {
   //   { name: 'Erode', createdDate: '22-10-2023', status: 'Active' }],
   // };
   toDownload:boolean;
+  userData: any;
+  isDistrictAdmin: boolean;
 
   constructor(private masterService: MasterService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
+    this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log("LoginData", this.userData);
+    this.isDistrictAdmin = this.userData.data.userData.rank.role.roleCode === "5";
     this.getList();
   }
   getList() {

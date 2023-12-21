@@ -68,12 +68,14 @@ export class BroadcastFormComponent implements OnInit {
   getZoneList(id:any) {
     this.masterService.commonZone(id).subscribe((resp: any) => {
        this.zoneList = resp.data
+       this.zoneList.unshift({id: 'all', name: 'All'})
     });
   }
 
   getRangeList(id:any) {
     this.masterService.commonRange(id).subscribe((resp: any) => {
        this.rangeList = resp.data
+       this.rangeList.unshift({id: 'all', name: 'All'})
     });
   }
    getDistrictList(id:any) {
@@ -85,11 +87,13 @@ export class BroadcastFormComponent implements OnInit {
   getSubDivision(id:any) {
     this.masterService.commonSubDivision(id).subscribe((resp: any) => {
        this.subDivisionList = resp.data
+       this.subDivisionList.unshift({id: 'all', name: 'All'})
     });
   }
   getPoliceStaion(id:any) {
     this.masterService.commonPoliceStation(id).subscribe((resp: any) => {
        this.policeStationList = resp.data
+       this.policeStationList.unshift({id: 'all', name: 'All'})
     });
   }
   getAccessControl() {

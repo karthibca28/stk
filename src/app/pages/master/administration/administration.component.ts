@@ -36,11 +36,16 @@ export class AdministrationComponent implements OnInit {
   deleteModal: boolean = false;
   stat: number;
   toDownload:boolean;
-  childPageNumber:any
+  childPageNumber:any;
+  userData: any;
+  isDistrictAdmin: boolean;
 
   constructor(private router: Router, private sharedService: SharedService, private masterService:MasterService,private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
+    this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log("LoginData", this.userData);
+    this.isDistrictAdmin = this.userData.data.userData.rank.role.roleCode === "5";
     this.getList();
   }
 

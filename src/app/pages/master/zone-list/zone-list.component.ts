@@ -21,12 +21,16 @@ export class ZoneListComponent implements OnInit {
     cols: any[];
     tableData:any[]=[];
     dynamaicDataForTable: any;
-   
+    userData: any;
+    isDistrictAdmin: boolean;
     toDownload:boolean;
 
     constructor(private masterService: MasterService, private formService: FormService, private router: Router, private sharedService: SharedService, private confirmationService: ConfirmationService) {}
 
     ngOnInit() {
+        this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log("LoginData", this.userData);
+    this.isDistrictAdmin = this.userData.data.userData.rank.role.roleCode === "5";
         this.getList();
     }
     getList() {
