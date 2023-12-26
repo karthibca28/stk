@@ -302,6 +302,9 @@ getPoliceStationbyId(policeStationId:any){
 getInventoryTypeId(inventoryTypeId:any){
   return this.http.get(`${this.apiUrl}admin/inventoryType?inventoryTypeId=${inventoryTypeId}`)
 }
+getUserId(userId:any){
+  return this.http.get(`${this.apiUrl}admin/user?userId=${userId}`)
+}
 getAccessControlbyId(accessControlId:any){
   return this.http.get(`${this.apiUrl}admin/accessControl?accessId=${accessControlId}`)
 }

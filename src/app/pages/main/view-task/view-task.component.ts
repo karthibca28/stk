@@ -60,7 +60,7 @@ renderCount:number=0;
         districtName: formData.data.districtName,
         subDivisionName: formData.data.subDivisionName,
         policeStationName: formData.data.policeStationName,
-        message: formData.message,
+        // message: formData.message,
 
       });
       this.onAudio(this.taskData?.attachment?.audio[0].downloadPath)
@@ -84,32 +84,34 @@ renderCount:number=0;
     }
   }
   async viewFiles(data: any, fileType: string): Promise<void> {
+    console.log(data.fileName)
     try {
-      const res = await this.formService.getFileForBroadCast(data);
+      const res = await this.formService.getFileForBroadCast(data.downloadPath);
       if (!res) {
         throw new Error('Invalid file response');
       }
   
       this.fileType = res.type;
       console.log(res.type);
-      if (fileType == 'application/pdf') {
-        this.downloadFile(res);
-      } else {
-        console.warn("data")
+      
+      if (this.fileType === 'application/pdf') {
+        console.warn("Displaying PDF");
         const fileUrl = await this.getPdfUrl(res);
         this.fileUrl = fileUrl;
+      } else {
+        console.warn("Downloading file directly");
+        this.downloadFile(res, data.fileName);
       }
     } catch (e) {
       console.error('Error fetching or processing file:', e);
     }
   }
   
-  downloadFile(file: Blob): void {
-    // Implement your download logic here
+  downloadFile(file: Blob, fileName: string): void {
     const downloadLink = document.createElement('a');
     const url = URL.createObjectURL(file);
     downloadLink.href = url;
-    downloadLink.download = 'your_file_name.extension';
+    downloadLink.download = fileName;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);

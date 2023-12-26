@@ -38,7 +38,6 @@ export class InventorytypeFormComponent implements OnInit {
     });
     const id = this.editMasterId;
     this.masterService.getInventoryTypeId(id).subscribe((resp: any) => {
-
       this.masterService.inventoryImg(resp.data.image.downloadPath).subscribe((imgRes: any) => {
         console.log('/>',imgRes)
       this.image = imgRes
@@ -92,7 +91,11 @@ export class InventorytypeFormComponent implements OnInit {
   updateRecord() {
     if (this.form.valid) {
       this.loading = true;
-      const formData = this.constructFormData();
+      const formData = new FormData();
+      formData.append('id', this.editMasterId);
+      formData.append('inventoryType', this.form.value.inventoryType);
+      formData.append('inventoryTypeCode', this.form.value.inventoryTypeCode);
+      formData.append('description', this.form.value.description);
 
       this.masterService.updateInventoryType(formData).subscribe(
         (data: any) => {
