@@ -113,16 +113,15 @@ export class UserRegistrationListComponent implements OnInit {
   }
   
   deleteRecord(userId:number){
-    const dataKey = { formKey: 'user', deleteId: userId };
     this.confirmationService.confirm({
         message: 'Are you sure you want to delete the record?',
         accept: () => {
-            this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                console.log("datakey",dataKey);
-                if (resp.statusCode == '200') {
+            this.formService.deleteUsers(userId).subscribe((resp: APIResponse) => {
+                console.log("datakey",userId);
+                // if (resp.statusCode == '200') {
                     this.getList();
                     this.sharedService.showSuccess('Record delete successfully');
-                }
+                // }
             })
         },
         reject: () => {
