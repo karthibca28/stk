@@ -41,6 +41,7 @@ export class UserRegistrationFormComponent implements OnInit {
   adminList: any
   policeStationList: any
   userData: any
+  editData:any
   constructor(private formService: FormService, private router: Router, private masterService: MasterService, private formBuilder: FormBuilder,
     private sharedService: SharedService, private actRouter: ActivatedRoute, private route: ActivatedRoute) { }
 
@@ -51,10 +52,10 @@ export class UserRegistrationFormComponent implements OnInit {
       gpfCpsNo: ['', Validators.required],
       address: [''],
       phone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.email]],
       userName: ['', Validators.required],
-      password: ['', Validators.required],
-      pinHash: [''],
+      // password: ['', Validators.required],
+      // pinHash: [''],
       roleId: ['', Validators.required],
       rankId: ['', Validators.required],
       adminId: ['', Validators.required],
@@ -66,9 +67,11 @@ export class UserRegistrationFormComponent implements OnInit {
       policeStationId: ['', Validators.required]
     });
     this.editMasterId = this.route.snapshot.params['userId'];
+    console.log(this.editMasterId)
     const id = this.editMasterId;
     this.masterService.getUserId(id).subscribe((resp: any) => {
-      console.log( resp.data.rank.rankCode)
+      console.log(resp.data)
+      this.editData = resp.data
       this.form.patchValue({
         firstName: resp.data.firstName,
         lastName: resp.data.lastName,
@@ -76,28 +79,30 @@ export class UserRegistrationFormComponent implements OnInit {
         address: resp.data.address,
         phone: resp.data.phone,
         email: resp.data.email,
-        userName: resp.data.address,
-        roleId: resp.data.rank.role.roleCode,
-        rankId: resp.data.rank.rankCode,
-        adminId: resp.data.address,
-        stateId: resp.data.address,
-        zoneId: resp.data.address,
-        rangeId: resp.data.address,
-        districtId: resp.data.address,
-        subDivisionId: resp.data.address,
-        policeStationId: resp.data.address,
+        userName: resp.data.userName,
+        roleId: resp.data.rank.role.id,
+        rankId: resp.data.rank.id,
+        adminId: resp.data.administration.id,
+        stateId: resp.data.state.id,
+        zoneId: resp.data.zone.id,
+        rangeId: resp.data.range.id,
+        districtId: resp.data.district.id,
+        subDivisionId: resp.data.subDivision.id,
+        policeStationId: resp.data.policeStation.id,
       });
-      console.log(resp.data);
+      this.getZoneList(this.editData?.administration.id)
+      this.getRangeList(this.editData?.zone.id)
+      this.getDistrictList(this.editData?.range.id)
+      this.getSubDivision(this.editData?.district.id)
+      this.getAdminList(this.editData?.state.id)
+      this.getPoliceStationList(this.editData?.subDivision.id)
     });
     this.getRoleList()
     this.getRankList()
     this.getStateList()
-    //this.getZoneList()
-    //this.getRangeList()
-    //this.getDistrictList()
-    //this.getSubDivision()
-    // this.getAdminList()
-    //this.getPoliceStationList()
+    // if(!this.editMasterId){
+
+  // }
   }
 
   getRoleList() {
@@ -170,7 +175,14 @@ export class UserRegistrationFormComponent implements OnInit {
     })
   }
   submit() {
-
+    if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
+   
+  }
+  addRecord(){
     if (this.form.valid) {
       this.loading = true;
       this.masterService.UserRegistration(this.form.value).subscribe((data: any) => {
@@ -185,7 +197,26 @@ export class UserRegistrationFormComponent implements OnInit {
       this.form.markAllAsTouched();
     }
   }
-
+  updateRecord(){
+    debugger
+    if (this.form.valid) {
+      const data ={
+        userId:this.editMasterId,
+        ...this.form.value
+      }
+      this.loading = true;
+      this.masterService.UserRegistrationUpdate(data).subscribe((data: any) => {
+        if (data) {
+          this.loading = false;
+          this.sharedService.showSuccess('Added successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/user-config/user-list`);
+        }
+      });
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
   // submit(formValue: any) {
   //   if (this.editMasterId > 0) {
   //     //console.log("ACtiive route id", this.editMasterId);

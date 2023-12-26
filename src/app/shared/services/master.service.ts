@@ -266,6 +266,9 @@ export class MasterService {
   UserRegistration(data:any){
     return this.http.post(`${this.apiUrl}admin/user`,data);
     }
+    UserRegistrationUpdate(data:any){
+      return this.http.put(`${this.apiUrl}admin/user`,data);
+      }
     accessControl(data: any) {
         return this.http.post(`${this.apiUrl}admin/accessControl`, data);
     }
