@@ -36,7 +36,7 @@
                                         <mat-error id="password1-help" class="block text-danger" *ngIf="(loginForm?.controls?.password?.touched && loginForm?.controls?.password?.errors?.required)">Password is required</mat-error>
                                     </mat-form-field>
                                     <p style="font-size: 12px;color: #e20000;">{{loginError}}</p>
-                                    <div class="my-2">
+                                    <div>
                                         <button pbutton="" (click)="login()" pripple="" label="Sign In"
                                             class="p-element w-full p-button p-component p-button-custom">
                                             <span class="p-button-icon p-button-icon-left"
