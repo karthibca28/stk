@@ -33,7 +33,7 @@ export class DynamicLivedataMapComponent implements OnInit {
   }
 
   private initializeMap(): void {
-    this.map = new Leaflet.Map('map').setView([11.127123, 78.656891], 13);
+    this.map = new Leaflet.Map('map').setView([11.127123, 78.656891], 11);
 
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'OpenStreetMap'
