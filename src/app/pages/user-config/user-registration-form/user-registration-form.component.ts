@@ -66,6 +66,9 @@ export class UserRegistrationFormComponent implements OnInit {
       subDivisionId: ['', Validators.required],
       policeStationId: ['', Validators.required]
     });
+    this.form.get('gpfCpsNo').valueChanges.subscribe(value => {
+      this.form.get('userName').setValue(value);
+    });
     this.editMasterId = this.route.snapshot.params['userId'];
     console.log(this.editMasterId)
     const id = this.editMasterId;
