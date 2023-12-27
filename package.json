@@ -3,6 +3,7 @@
   "version": "13.1.0",
   "license": "PrimeNG Commercial",
   "scripts": {
+    "updateProject": "node updateProject.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --base-href /ebeat/",
