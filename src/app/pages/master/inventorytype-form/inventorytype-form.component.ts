@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JsonFormData } from 'src/app/shared/models/json-form-data';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -24,7 +25,8 @@ export class InventorytypeFormComponent implements OnInit {
     private masterService: MasterService,
     private sharedService: SharedService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +69,7 @@ export class InventorytypeFormComponent implements OnInit {
   }
 
   addRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       const formData = new FormData();
@@ -80,15 +83,19 @@ export class InventorytypeFormComponent implements OnInit {
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/master/inventorytype-list`);
+    this.loadingService.hideLoader();
         }
       });
     } else {
       this.form.markAllAsTouched();
+    this.loadingService.hideLoader();
     }
+    this.loadingService.hideLoader();
   }
   
 
   updateRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       const formData = new FormData();
@@ -103,13 +110,16 @@ export class InventorytypeFormComponent implements OnInit {
           this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/master/inventorytype-list`);
+    this.loadingService.hideLoader();
         },
         (error) => {
           console.error('Error updating record:', error);
+    this.loadingService.hideLoader();
         }
       );
     } else {
       this.form.markAllAsTouched();
+    this.loadingService.hideLoader();
     }
   }
 

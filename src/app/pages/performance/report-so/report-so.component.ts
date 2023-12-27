@@ -5,6 +5,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { MasterService } from 'src/app/shared/services/master.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 
 @Component({
   selector: 'app-report-so',
@@ -29,7 +30,7 @@ export class ReportSoComponent implements OnInit {
   selectedtask:any
   roleId:any
   constructor(private fb: FormBuilder, private formService: FormService, public router: Router, private sharedService: SharedService, private secondaryService: SecondaryService,
-    private masterService: MasterService) { }
+    private masterService: MasterService,private loadingService: LoadingService,) { }
 
   ngOnInit(): void {
     this.reportForm = this.fb.group({
@@ -138,6 +139,7 @@ export class ReportSoComponent implements OnInit {
   }
 
   async onSubmit() {
+    this.loadingService.showLoader();
     if(this.roleId === "4"){
     await this.masterService.getReportsforSo(
       this.reportForm.value.dateFilter,
@@ -168,6 +170,7 @@ export class ReportSoComponent implements OnInit {
       this.reportForm.value.policeStationId
     ).then(res=>{console.log('>>> res', res); this.downloadFile(res)}).catch(e=>console.log('>> error ion onsubmit ', e))
   }
+  this.loadingService.hideLoader();
   }
   
   downloadFile(report){

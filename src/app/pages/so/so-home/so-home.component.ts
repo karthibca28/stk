@@ -7,6 +7,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { DatePipe } from '@angular/common';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { MasterService } from 'src/app/shared/services/master.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 @Component({
   selector: 'app-so-home',
   templateUrl: './so-home.component.html',
@@ -54,7 +55,7 @@ export class SoHomeComponent implements OnInit {
   alert:any
   sosalert:any
 
-  constructor(private router: Router, private formService: FormService,private masterService:MasterService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
+  constructor(private router: Router,private loadingService: LoadingService, private formService: FormService,private masterService:MasterService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
 
   ngOnInit(): void {
     this.getDashboard();
@@ -86,6 +87,7 @@ onSelectionChangeDate(event:any){
 }
         
 getDashboard() {
+  this.loadingService.showLoader();
   this.secondaryService.getDashboardAdmin().subscribe((resp: any) => {
     this.dashboardData = resp.data;
     const userTotal = this.dashboardData.userSummary.userTotal;
@@ -107,6 +109,7 @@ getDashboard() {
     this.vipRoutes = this.dashboardData.dutySummary.vipRoutes;
     this.sectorDuty = this.dashboardData.dutySummary.sectorDuty;
     this.patrolDuty = this.dashboardData.dutySummary.patrolDuty;
+  this.loadingService.hideLoader();
   });
 }
 

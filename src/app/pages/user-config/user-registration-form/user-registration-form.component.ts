@@ -6,6 +6,7 @@ import { Console } from 'console';
 import { APIResponse } from 'src/app/shared/models/api-response';
 import { JsonFormData } from 'src/app/shared/models/json-form-data';
 import { FormService } from 'src/app/shared/services/form.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -41,9 +42,10 @@ export class UserRegistrationFormComponent implements OnInit {
   adminList: any
   policeStationList: any
   userData: any
-  editData:any
+  editData: any
   constructor(private formService: FormService, private router: Router, private masterService: MasterService, private formBuilder: FormBuilder,
-    private sharedService: SharedService, private actRouter: ActivatedRoute, private route: ActivatedRoute) { }
+    private sharedService: SharedService, private actRouter: ActivatedRoute, private route: ActivatedRoute,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -105,7 +107,7 @@ export class UserRegistrationFormComponent implements OnInit {
     this.getStateList()
     // if(!this.editMasterId){
 
-  // }
+    // }
   }
 
   getRoleList() {
@@ -183,9 +185,10 @@ export class UserRegistrationFormComponent implements OnInit {
     } else {
       this.updateRecord();
     }
-   
+
   }
-  addRecord(){
+  addRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       this.masterService.UserRegistration(this.form.value).subscribe((data: any) => {
@@ -194,17 +197,19 @@ export class UserRegistrationFormComponent implements OnInit {
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/user-config/user-list`);
+          this.loadingService.hideLoader();
         }
       });
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
   }
-  updateRecord(){
-    debugger
+  updateRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
-      const data ={
-        userId:this.editMasterId,
+      const data = {
+        userId: this.editMasterId,
         ...this.form.value
       }
       this.loading = true;
@@ -214,10 +219,12 @@ export class UserRegistrationFormComponent implements OnInit {
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/user-config/user-list`);
+          this.loadingService.hideLoader();
         }
       });
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
   }
   // submit(formValue: any) {

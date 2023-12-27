@@ -54,14 +54,13 @@ export class UserRegistrationListComponent implements OnInit {
     this.formService.getUserListAdmin().subscribe((formData: any) => {
       const values = formData.data;
       const cols = [
+        { field: 'userName', header: 'UserName', type: 'text' },
         { field: 'fullName', header: 'Name', type: 'text' },
-        { field: 'rank', header: 'Rank', type: 'text' },
         { field: 'gpfCpsNo', header: 'Gpf Cps No', type: 'text' },
-        { field: 'email', header: 'Email', type: 'text' },
-        { field: 'phone', header: 'Phone Number', type: 'text' },
-        { field: 'address', header: 'Address', type: 'text' },
+        { field: 'rank', header: 'Rank', type: 'text' },
         { field: 'subDivisionName', header: 'District', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+        { field: 'phone', header: 'Phone Number', type: 'text' },
       ];
       values.forEach((value) => {
         value.rank = value.rank?.rankName; 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { APIResponse } from 'src/app/shared/models/api-response';
 import { JsonFormData } from 'src/app/shared/models/json-form-data';
 import { FormService } from 'src/app/shared/services/form.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -24,7 +25,8 @@ export class SubDivisionFormComponent implements OnInit {
   districtList:any
   adminList:any
   constructor(private formService: FormService, private router: Router,private masterService:MasterService,private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute) { }
+    private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['subDivisionId'];
@@ -106,7 +108,7 @@ export class SubDivisionFormComponent implements OnInit {
   }
 
   addRecord() {
-
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       this.masterService.addSubDivsion(this.form.value).subscribe((data: any) => {
@@ -115,13 +117,17 @@ export class SubDivisionFormComponent implements OnInit {
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/master/sub-division-list`);
+      this.loadingService.hideLoader();
         }
       });
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
+    this.loadingService.hideLoader();
   }
   updateRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       let value = {
@@ -140,13 +146,16 @@ export class SubDivisionFormComponent implements OnInit {
           this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/master/sub-division-list`);
+      this.loadingService.hideLoader();
         },
         (error) => {
           console.error('Error updating record:', error);
+      this.loadingService.hideLoader();
         }
       );
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
   }
 
