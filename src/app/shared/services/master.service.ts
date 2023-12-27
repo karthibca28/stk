@@ -282,7 +282,9 @@ export class MasterService {
     addBroadCast(data: FormData) {
       return this.http.post(`${this.apiUrl}common/broadcastMessage`, data);
   }
-
+  liveUsers() {
+    return this.http.get(`${this.apiUrl}common/liveData?type=abandonedVehicle`);
+  }
   //GetById
 getAdmistrationbyId(adminId:any){
   return this.http.get(`${this.apiUrl}admin/administration?adminId=${adminId}`)

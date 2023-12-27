@@ -24,6 +24,7 @@ export class AppMenuComponent implements OnInit {
             { label: 'Dashboard', icon: 'fa fa-tachometer', access: '4', routerLink: ['/main/dashboard'] },
             { label: 'BroadCast', icon: 'fa fa-bullhorn',access: '4,5,6', routerLink: ['/main/lot/broadCast'] },
             { label: 'User', icon: 'far fa-user-circle',access: '4', routerLink: ['/main/lot/userList'] },
+            {label: 'Live-Data', icon: 'fa fa-car', access: '4', routerLink: ['/main/lot/live-user']},
             { label: 'Duty', icon: 'fa fa-list-alt',access: '4', routerLink: ['/main/lot/dutyList'] },
             { label: 'Task', icon: 'fa fa-tasks',access: '4', routerLink: ['/main/lot/taskList'] },
             // Admin
@@ -118,6 +119,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'VIP-Routes', icon: 'fa fa-car', access: '4', routerLink: ['/main/lot/vip-Routes']
             },
+
             {
                 label: 'PoliceStation', icon: 'fa fa-home', access: '4', routerLink: ['/main/lot/policeStation']
             },

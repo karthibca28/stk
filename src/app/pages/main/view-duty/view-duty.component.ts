@@ -18,13 +18,13 @@ export class ViewDutyComponent implements OnInit {
   dutyData: any;
   doc: SafeResourceUrl | undefined;
   fileUrl: SafeResourceUrl;
-  fileType: string='application/pdf'
-  isFileLoaded:boolean=false
-  messageData:any
-  titleData:any
+  fileType: string = 'application/pdf'
+  isFileLoaded: boolean = false
+  messageData: any
+  titleData: any
   form!: FormGroup;
-  attachmentData:any
-  mssapPlaylist:Track[] = [];
+  attachmentData: any
+  mssapPlaylist: Track[] = [];
 
   constructor(
     private router: Router,
@@ -34,18 +34,21 @@ export class ViewDutyComponent implements OnInit {
     private sharedService: SharedService,
     private formService: FormService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       dutyType: ['', Validators.required],
-      administrationName:[''],
-      zoneName:[''],
-      rangeName:[''],
-      districtName:[''],
-      subDivisionName:[''],
+      administrationName: [''],
+      zoneName: [''],
+      rangeName: [''],
+      districtName: [''],
+      subDivisionName: [''],
       policeStationName: [''],
-      message:[''],
+      message: [''],
+      dutyStartDate: [''],
+      dutyEndDate: [''],
+      status: [''],
     });
     this.editMasterId = this.route.snapshot.params['dutyId'];
     console.log(this.route.snapshot.params['dutyId']);
@@ -61,10 +64,12 @@ export class ViewDutyComponent implements OnInit {
         districtName: formData.data.districtName,
         subDivisionName: formData.data.subDivisionName,
         policeStationName: formData.data.policeStationName,
-        // message: formData.message,
+        dutyStartDate: formData.data.dutyStartDate,
+        dutyEndDate: formData.data.dutyEndDate,
+        status: formData.data.status,
       });
     });
-    
+
   }
   async onAudio(data: any): Promise<void> {
     try {
@@ -72,11 +77,11 @@ export class ViewDutyComponent implements OnInit {
       if (!res) {
         throw new Error('Invalid file response');
       }
-      const audioFile : Track = {
+      const audioFile: Track = {
         title: 'Audio Track',
         link: res,
       };
-      console.log('res',res)
+      console.log('res', res)
       this.mssapPlaylist.push(audioFile)
     } catch (e) {
       console.error('Error fetching or processing file:', e);
@@ -90,10 +95,10 @@ export class ViewDutyComponent implements OnInit {
       if (!res) {
         throw new Error('Invalid file response');
       }
-  
+
       this.fileType = res.type;
       console.log(res.type);
-      
+
       if (this.fileType === 'application/pdf') {
         console.warn("Displaying PDF");
         const fileUrl = await this.getPdfUrl(res);
@@ -106,7 +111,7 @@ export class ViewDutyComponent implements OnInit {
       console.error('Error fetching or processing file:', e);
     }
   }
-  
+
   downloadFile(file: Blob, fileName: string): void {
     const downloadLink = document.createElement('a');
     const url = URL.createObjectURL(file);
@@ -116,7 +121,7 @@ export class ViewDutyComponent implements OnInit {
     downloadLink.click();
     document.body.removeChild(downloadLink);
   }
-  
+
   getPdfUrl(e: Blob): SafeResourceUrl {
     const pdfUrl = URL.createObjectURL(e);
     console.log("Select files", pdfUrl);

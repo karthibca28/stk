@@ -51,7 +51,7 @@ export class RangeListComponent implements OnInit {
         { field: 'administrationName', header: 'Administration', type: 'text' },
         { field: 'zoneName', header: 'Zone', type: 'text' },
         { field: 'description', header: 'Description', type: 'text' },
-        { field: 'isActive', header: 'Status', type: 'text' },
+        // { field: 'isActive', header: 'Status', type: 'text' },
       ];
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)

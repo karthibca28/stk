@@ -64,7 +64,7 @@ export class AdministrationComponent implements OnInit {
           { field: 'code', header: 'Code', type: 'text' },
           { field: 'name', header: 'Name', type: 'text' },
           { field: 'description', header: 'Description', type: 'text' },
-          { field: 'isActive', header: 'Status', type: 'text' },
+          // { field: 'isActive', header: 'Status', type: 'text' },
         ];
         this.dynamaicDataForTable = {cols, values};
         console.log("master",this.dynamaicDataForTable)

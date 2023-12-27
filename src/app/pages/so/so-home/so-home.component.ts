@@ -194,14 +194,13 @@ async getImage(url: string): Promise<string> {
   getChartDataChallanCheck() {
     this.secondaryService.getChartDataForAdmin(this.selected, this.firstDate, this.selectedtask).subscribe((resp: any) => {
     const datasetColors = [ '#FA3D17', '#2ecc71', '#3498db', '#e74c3c', '#8e44ad', '#f39c12', '#1abc9c', '#d35400', '#2c3e50', '#2980b9', '#27ae60', '#f39c12', '#16a085','#7f8c8d', '#7f8c8d'];
-  
       this.data = {
         labels: resp.data.map(item => item.dutyType || item.taskType),
         datasets: [
           {
             backgroundColor: datasetColors,
             data: resp.data.map(item => item.taskTotal),
-            label: 'Task Total'
+            label: 'Task Total',
           },
           {
             backgroundColor: datasetColors,
@@ -215,8 +214,8 @@ async getImage(url: string): Promise<string> {
   
   getAlert() {
     this.formService.getSOSAlert().subscribe((formData: any) => {
-      this.alert = formData.data.AmbulanceAlert.slice(0, 5);
-      this.sosalert = formData.data.SosAlert.slice(0, 5);
+      this.alert = formData.data.AmbulanceAlert?.slice(0, 5);
+      this.sosalert = formData.data.SosAlert?.slice(0, 5);
     });
   }
   

@@ -16,7 +16,7 @@ export class DynamicViewTableComponent implements OnInit {
   roleId:any
   searchKeyword:any
   searchHeader: any[] = ['firstName','locationName','title','message','fullName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
-  'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName'];
+  'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName','taskType'];
   @Input() dynamaicDataForTable = {
     cols:[],
     values:[]

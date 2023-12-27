@@ -109,7 +109,7 @@ selecteddistrict:any
       const cols = [
         { field: 'dutyType', header: 'Duty Type', type: 'text' },
         { field: 'status', header: 'Status', type: 'text' },
-        // { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'districtName', header: 'District Name', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
         { field: 'startLocationName', header: 'Start Location Name', type: 'text' },
         { field: 'endLocationName', header: 'End Location Name', type: 'text' },

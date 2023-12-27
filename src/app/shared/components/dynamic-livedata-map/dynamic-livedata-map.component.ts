@@ -1,12 +1,11 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as Leaflet from 'leaflet';
-
 @Component({
-  selector: 'app-dynamic-multipledata-map',
-  templateUrl: './dynamic-multipledata-map.component.html',
-  styleUrls: ['./dynamic-multipledata-map.component.scss']
+  selector: 'app-dynamic-livedata-map',
+  templateUrl: './dynamic-livedata-map.component.html',
+  styleUrls: ['./dynamic-livedata-map.component.scss']
 })
-export class DynamicMultipledataMapComponent implements OnInit, OnChanges, OnDestroy {
+export class DynamicLivedataMapComponent implements OnInit {
   @Input() public mapArrayData: any[];
   map: Leaflet.Map;
 
@@ -19,7 +18,6 @@ export class DynamicMultipledataMapComponent implements OnInit, OnChanges, OnDes
   }
 
   ngOnInit(): void {
-    console.log(this.mapArrayData)
     setTimeout(() => {
       if (!this.map) {
         this.initializeMap();
@@ -45,27 +43,28 @@ export class DynamicMultipledataMapComponent implements OnInit, OnChanges, OnDes
   }
 
   private updateMarkers(): void {
+    console.log(this.mapArrayData)
     if (this.map && this.mapArrayData) {
       this.map.eachLayer((layer) => {
         if (layer instanceof Leaflet.Marker) {
           this.map.removeLayer(layer);
         }
       });
-
+      console.log(this.mapArrayData)
       this.mapArrayData.forEach((data) => {
-        const { location, fullName, policeStation, subDivision } = data;
-        const { latitude, longitude } = location || {};
-
-        if (latitude && longitude) {
+        const {abandonedVehicle} = data;
+        console.log(abandonedVehicle.latitude , abandonedVehicle.longitude,abandonedVehicle.locationName,abandonedVehicle.vehicleNumber,
+          abandonedVehicle.vehicleType)
+        if (abandonedVehicle.latitude && abandonedVehicle.longitude) {
           const popupContent = `
-            <b>${fullName}</b><br>
+            <b>${abandonedVehicle.locationName}</b><br>
             <table>
-              <tr><td style='color:#0D4C92;font-weight:600;'>PS.Name</td><td>${policeStation.name}</td></tr>
-              <tr><td style='color:#0D4C92;font-weight:600;'>Sub Div.</td><td>${subDivision.name}</td></tr>
+              <tr><td style='color:#0D4C92;font-weight:600;'>Vehicle No</td><td>${abandonedVehicle.vehicleNumber}</td></tr>
+              <tr><td style='color:#0D4C92;font-weight:600;'>Vechile Type</td><td>${abandonedVehicle.vehicleType}</td></tr>
             </table>
           `;
 
-          Leaflet.marker([parseFloat(latitude), parseFloat(longitude)])
+          Leaflet.marker([parseFloat(abandonedVehicle.latitude), parseFloat(abandonedVehicle.longitude)])
             .addTo(this.map)
             .bindPopup(popupContent)
             .openPopup();
@@ -73,4 +72,5 @@ export class DynamicMultipledataMapComponent implements OnInit, OnChanges, OnDes
       });
     }
   }
+
 }

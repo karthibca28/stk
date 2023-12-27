@@ -41,7 +41,7 @@ export class ZoneListComponent implements OnInit {
               { field: 'name', header: 'Name', type: 'text' },
               { field: 'administrationName', header: 'Administration', type: 'text' },
               { field: 'description', header: 'Description', type: 'text' },
-              { field: 'isActive', header: 'Status', type: 'text' },
+            //   { field: 'isActive', header: 'Status', type: 'text' },
             ];
             this.dynamaicDataForTable = {cols, values};
             console.log("master",this.dynamaicDataForTable)

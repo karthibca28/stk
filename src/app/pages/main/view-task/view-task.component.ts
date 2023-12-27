@@ -24,6 +24,7 @@ renderCount:number=0;
   titleData:any
   form!: FormGroup;
   attachmentData:any
+  latitude:any
   mssapPlaylist:Track[] = [];
   constructor(
     private router: Router,
@@ -52,8 +53,10 @@ renderCount:number=0;
       this.taskData = formData.data;
       this.messageData = formData.data.message
       this.titleData = formData.data.title
+      // this.latitude = this.taskData.generalViolator.latitude
+      console.log(formData.data.taskType)
       this.form.patchValue({
-        taskType: formData.data.taskType,
+        taskType: formData.data.taskType, 
         administrationName: formData.data.administrationName,
         zoneName: formData.data.zoneName,
         rangeName: formData.data.rangeName,
