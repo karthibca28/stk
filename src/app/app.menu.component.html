@@ -12,7 +12,7 @@
             <span class="pin"></span>
         </a> -->
     </div>
-    <div class="layout-menu-container md:mt-3">
+    <div class="layout-menu-container" style="overflow: auto;scrollbar-width: thin;scrollbar-color: #23b427 red;">
         <!-- {{roleName}} -->
         <ul class="layout-menu">
             <li app-menuitem *ngFor="let item of model; let i = index;" [item]="item" [index]="i" [root]="true"></li>

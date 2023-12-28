@@ -471,3 +471,16 @@ color:white;
     box-shadow: rgb(7, 111, 132) 0px 0px 0px 0.2rem !important;
     outline: none 0px;
 }
+  .layout-menu-container::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .layout-menu-container::-webkit-scrollbar-thumb {
+    background-color:#f1f1f1 ;
+    border-radius: 1px;
+  }
+  
+  .layout-menu-container::-webkit-scrollbar-track {
+    background-color: grey;
+  }
+  
