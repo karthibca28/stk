@@ -16,6 +16,7 @@ import { SosAlertComponent } from './sos-alert/sos-alert.component';
 import { AlertComponent } from './alert/alert.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { ViewDutyComponent } from './view-duty/view-duty.component';
+import { LiveUsersComponent } from './live-users/live-users.component';
 
 const routes: Routes = [
   {
@@ -93,6 +94,10 @@ const routes: Routes = [
   {
     path: 'view-duty/:dutyId',
     component: ViewDutyComponent
+  },
+  {
+    path: 'live-user',
+    component: LiveUsersComponent
   },
 ];
 

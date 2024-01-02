@@ -4,6 +4,7 @@ import { Table } from 'primeng/table';
 import { APIResponse } from 'src/app/shared/models/api-response';
 import { BeatService } from 'src/app/shared/services/beat.service';
 import { FormService } from 'src/app/shared/services/form.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -33,7 +34,7 @@ export class HomeComponent implements OnInit {
   latitude: number;
   longitude: number;
   
-  constructor(private beatService: BeatService, private router: Router, private formService: FormService, private secondaryService: SecondaryService) {}
+  constructor(private beatService: BeatService, private router: Router, private loadingService: LoadingService, private formService: FormService, private secondaryService: SecondaryService) {}
 
   ngOnInit() {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
@@ -48,13 +49,14 @@ export class HomeComponent implements OnInit {
     this.getDlCheck()
   }
   getDashboard() {
+    // this.loadingService.showLoader();
     this.secondaryService.getDashboard().subscribe((resp: any) => {  
       this.dcount = resp.data;
       this.mapData = resp.data.liveUsers
       this.recentDuties =resp.data.recentDuties.list
       console.log(this.mapData)
-
     })
+    this.loadingService.hideLoader();
   }
   getDlCheck() {
     this.secondaryService.getDashboard().subscribe((resp: any) => {  

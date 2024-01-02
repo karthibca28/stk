@@ -87,7 +87,7 @@
         <div class="card-header"
           style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
           <p class="mb-0  tbold color-02">DL Checks</p>
-          <img src="../../../../assets/icons/bike_scooter.png">
+          <img src="assets/icons/bike_scooter.png">
         </div>
         <p-table #dt1 dataKey="id" [columns]="cols" [value]="tableData" responsiveLayout="scroll" [loading]="loading"
           styleClass="p-datatable-gridlines">
@@ -247,13 +247,13 @@
         <div class="card-header"
           style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
           <p class="mb-0 tbold color-02">Recent Duties</p>
-          <img src="../../../../assets/icons/work_history.png">
+          <img src="assets/icons/work_history.png">
         </div>
         <div class="card-body p-2" *ngFor="let value of dcount.recentDuties">
           <div *ngFor="let item of value.assignedTo">
             <div class="recentDuties-card">
               <div class="left-side">
-                <img class="background-image" src="../../../../assets/icons/Traffic.png">
+                <img class="background-image" src="assets/icons/Traffic.png">
               </div>
               <div class="right-side">
                 <div class="recentDuties-card-value">
@@ -450,3 +450,4 @@
       </div>
     </div> -->
 </div>
+<app-dynamic-loader></app-dynamic-loader>

@@ -115,13 +115,19 @@ selecteddistrict:any
         //{ field: 'vehicleType', header: 'Vehicle Type', type: 'text' },
         { field: 'districtName', header: 'District', type: 'text' },
         { field: 'fullName', header: 'Created By', type: 'text' },
+        // { field: 'vehicleNumber', header: 'Vehicle Number', type: 'text' }, 
         { field: 'createdAt', header: 'Date and Time', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+        { field: 'createdBy', header: 'Created By', type: 'text' },
       ];
 
       values.forEach((value) => {
         value.fullName = value.createdBy?.fullName; 
         //value.vehicleType = value.abandonedVehicle?.vehicleType; 
+
+       // value.createdBy = value.createdBy?.fullName; 
+        value.vehicleType = value.abandonedVehicle?.vehicleType; 
+
       });
   
       this.dynamaicDataForTable = { cols, values };
@@ -194,42 +200,42 @@ selecteddistrict:any
       this.TaskItems = [
         {
           type: this.replaceUnderscores(formData.data.RC_DL_CHECK?.type),
-          imageSrc: '../../../../assets/task/RC_DL_CHECK.png',
+          imageSrc: 'assets/task/RC_DL_CHECK.png',
           count: formData.data.RC_DL_CHECK?.count
         },
         {
           type: this.replaceUnderscores(formData.data.ACCIDENT_REPORT?.type),
-          imageSrc: '../../../../assets/task/ACCIDENT_REPORT.png',
+          imageSrc: 'assets/task/ACCIDENT_REPORT.png',
           count: formData.data.ACCIDENT_REPORT?.count
         },
         {
           type: this.replaceUnderscores(formData.data.GENERAL_VIOLATER_REPORT?.type),
-          imageSrc: '../../../../assets/task/GENERAL_VIOLATER_REPORT.png',
+          imageSrc: 'assets/task/GENERAL_VIOLATER_REPORT.png',
           count: formData.data.GENERAL_VIOLATER_REPORT?.count
         },
         {
           type: this.replaceUnderscores(formData.data.CHALLAN?.type),
-          imageSrc: '../../../../assets/task/Challan Machile.png',
+          imageSrc: 'assets/task/Challan Machile.png',
           count: formData.data.CHALLAN?.count
         },
         {
           type: this.replaceUnderscores(formData.data.GENERAL_INCIDENT_REPORT?.type),
-          imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
+          imageSrc: 'assets/task/ENCROACHMENT_REPORT.png',
           count: formData.data.GENERAL_INCIDENT_REPORT?.count
         },
         {
           type: this.replaceUnderscores(formData.data.ROAD_INCIDENT_REPORT?.type),
-          imageSrc: './../../../assets/task/ROAD_INCIDENT_REPORT.png',
+          imageSrc: 'assets/task/ROAD_INCIDENT_REPORT.png',
           count: formData.data.ROAD_INCIDENT_REPORT?.count
         },
         {
           type: this.replaceUnderscores(formData.data.ENCROACHMENT_REPORT?.type),
-          imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
+          imageSrc: 'assets/task/ENCROACHMENT_REPORT.png',
           count: formData.data.ENCROACHMENT_REPORT?.count
         },
         {
           type: this.replaceUnderscores(formData.data.ABANDONED_VEHICLE?.type),
-          imageSrc: '../../../../assets/task/ABANDONED_VEHICLE.png',
+          imageSrc: 'assets/task/ABANDONED_VEHICLE.png',
           count: formData.data.ABANDONED_VEHICLE?.count
         }
       ];

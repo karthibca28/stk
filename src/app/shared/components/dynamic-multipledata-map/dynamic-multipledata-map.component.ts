@@ -1,5 +1,3 @@
-// dynamic-multipledata-map.component.ts
-
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as Leaflet from 'leaflet';
 
@@ -21,7 +19,13 @@ export class DynamicMultipledataMapComponent implements OnInit, OnChanges, OnDes
   }
 
   ngOnInit(): void {
-    this.initializeMap();
+    console.log(this.mapArrayData)
+    setTimeout(() => {
+      if (!this.map) {
+        this.initializeMap();
+      }
+      this.updateMarkers();
+    }, 0);
   }
 
   ngOnDestroy(): void {
@@ -31,7 +35,7 @@ export class DynamicMultipledataMapComponent implements OnInit, OnChanges, OnDes
   }
 
   private initializeMap(): void {
-    this.map = new Leaflet.Map('map').setView([11.127123, 78.656891], 6.5);
+    this.map = new Leaflet.Map('map').setView([11.127123, 78.656891], 11);
 
     Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: 'OpenStreetMap'

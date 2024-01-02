@@ -8,88 +8,350 @@
         <div class="grid">
             <div class="card col-12 md:col-12">
                 <form [formGroup]="form">
-                <div class="field">
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Task Type</mat-label>
+                            <input matInput formControlName="taskType" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Administration Name</mat-label>
+                            <input matInput formControlName="administrationName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Zone Name</mat-label>
+                            <input matInput formControlName="zoneName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Range Name</mat-label>
+                            <input matInput formControlName="rangeName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>District Name</mat-label>
+                            <input matInput formControlName="districtName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>SubDivision Name</mat-label>
+                            <input matInput formControlName="subDivisionName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>PoliceStation Name</mat-label>
+                            <input matInput formControlName="policeStationName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                </form>
+                <div *ngIf="taskData?.taskType == 'ABANDONED_VEHICLE'">
+                    <div class="md:flex">
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Vehicle Number</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.abandonedVehicle.vehicleNumber">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Vehicle Type</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.abandonedVehicle.vehicleType">
+                            </mat-form-field>
+                        </div>
+                </div>
+                <div class="card-body p-2">
+                    <app-dynamic-map [latitude]="+taskData.abandonedVehicle?.latitude" [longitude]="+taskData.abandonedVehicle?.longitude" [nameField]="taskData.abandonedVehicle?.locationName"></app-dynamic-map>
+                </div>
+                </div>
+                <div *ngIf="taskData?.taskType == 'ACCIDENT_REPORT'">
+                   <div class="md:flex">
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Arrival Time</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.accidentReport.arrivalTime">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Victim Cleared Time</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.accidentReport.victimTime">
+                            </mat-form-field>
+                        </div>
+                </div>
+
+                        <div class="md:flex">
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Police Cleared</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.accidentReport.policeCleared">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Details</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.accidentReport.details">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                <div class="card-body p-2">
+                    <app-dynamic-map [latitude]="+taskData.accidentReport?.latitude" [longitude]="+taskData.accidentReport?.longitude" [nameField]="taskData.accidentReport.locationName"></app-dynamic-map>
+                </div>
+                </div>
+                <div *ngIf="taskData?.taskType == 'AMBULANCE_ALERT'">
+                    hello
+                </div>
+                <div *ngIf="taskData?.taskType == 'AMBULANCE_INIT_ALERT'">
+                    hello
+                </div>
+                <div *ngIf="taskData?.taskType == 'CHALLAN'">
+                    <div class="md:flex">
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Id Number</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.challan.name">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Name</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.challan.dlNo">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>FatherName</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.challan.mobileNo">
+                            </mat-form-field>
+                        </div>
+                        
+                </div>
+                <div class="md:flex">
+                    
+                    <div class="md:w-4 md:mx-1">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Id Type</mat-label>
+                            <input matInput [readonly]="true" [(ngModel)]="taskData.challan.fineValue">
+                        </mat-form-field>
+                    </div>
+                    <div class="md:w-4 md:mx-1">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Age</mat-label>
+                            <input matInput [readonly]="true" [(ngModel)]="taskData.challan.vehicleNo">
+                        </mat-form-field>
+                    </div>
+                    <div class="md:w-4 md:mx-1">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Gender</mat-label>
+                            <input matInput [readonly]="true" [(ngModel)]="taskData.challan.vehicleType">
+                        </mat-form-field>
+                    </div>
+                    
+            </div>
+            <div class="md:flex">
+                <div class="md:w-4 md:mx-1">
                     <mat-form-field appearance="" class="w-full">
-                        <mat-label>Task Type</mat-label>
-                        <input matInput formControlName="taskType"   [readonly]="true">
+                        <mat-label>Vechile Type</mat-label>
+                        <input matInput [readonly]="true" [(ngModel)]="taskData.challan.vehicleOwnerName">
                     </mat-form-field>
                 </div>
-                <div class="field">
+                <div class="md:w-4 md:mx-1">
                     <mat-form-field appearance="" class="w-full">
-                        <mat-label>Administration Name</mat-label>
-                        <input matInput formControlName="administrationName"  [readonly]="true">
+                        <mat-label>Vechile Number</mat-label>
+                        <input matInput [readonly]="true" [(ngModel)]="taskData.challan.address">
                     </mat-form-field>
                 </div>
-                <div class="field">
+                <div class="md:w-4 md:mx-1">
                     <mat-form-field appearance="" class="w-full">
-                        <mat-label>Zone Name</mat-label>
-                        <input matInput formControlName="zoneName"  [readonly]="true">
-                    </mat-form-field>
-                </div>
-                <div class="field">
-                    <mat-form-field appearance="" class="w-full">
-                        <mat-label>Range Name</mat-label>
-                        <input matInput formControlName="rangeName"  [readonly]="true">
-                    </mat-form-field>
-                </div>
-                <div class="field">
-                    <mat-form-field appearance="" class="w-full">
-                        <mat-label>District Name</mat-label>
-                        <input matInput formControlName="districtName"  [readonly]="true">
-                    </mat-form-field>
-                </div>
-                <div class="field">
-                    <mat-form-field appearance="" class="w-full">
-                        <mat-label>SubDivision Name</mat-label>
-                        <input matInput formControlName="subDivisionName"  [readonly]="true">
-                    </mat-form-field>
-                </div>
-                <div class="field">
-                    <mat-form-field appearance="" class="w-full">
-                        <mat-label>PoliceStation Name</mat-label>
-                        <input matInput formControlName="policeStationName"  [readonly]="true">
+                        <mat-label>Violation Details</mat-label>
+                        <input matInput [readonly]="true" [(ngModel)]="taskData.challan.offenceType">
                     </mat-form-field>
                 </div>
                 
+        </div>
+        <div class="card-body p-2">
+            <app-dynamic-map [latitude]="+taskData.challan?.latitude" [longitude]="+taskData.challan?.longitude" [nameField]="taskData.challan.locationName"></app-dynamic-map>
+        </div>
+                </div>
+                <div *ngIf="taskData?.taskType == 'ENCROACHMENT_REPORT'">
+                    <div class="md:flex">
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Problem</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.encroachmentReport.problem">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Detailed Issue</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.encroachmentReport.detailedIssue">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                <div class="card-body p-2">
+                    <app-dynamic-map [latitude]="+taskData.encroachmentReport?.latitude" [longitude]="+taskData.encroachmentReport?.longitude" [nameField]="taskData.encroachmentReport?.locationName"></app-dynamic-map>
+                </div>
+                </div>
+                <div *ngIf="taskData?.taskType == 'GENERAL_INCIDENT_REPORT'">
                     <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Incident Details</mat-label>
+                            <input matInput  [(ngModel)]="taskData.generalIncident.incidentDetail"  [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="card-body p-2">
+                        <app-dynamic-map [latitude]="+taskData.generalIncident?.latitude" [longitude]="+taskData.generalIncident?.longitude" [nameField]="taskData.generalIncident.locationName"></app-dynamic-map>
+                    </div>
+                </div>
+                <div *ngIf="taskData?.taskType == 'GENERAL_VIOLATER_REPORT'">
+                    <div class="md:flex">
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Vechile Type</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.generalViolator.vehicleType">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Vechile Number</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.generalViolator.vehicleNumber">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Violation Details</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.generalViolator.violationDetails">
+                            </mat-form-field>
+                        </div>
+                        
+                </div>
+                <div class="card-body p-2">
+                    <app-dynamic-map [latitude]="+taskData.generalViolator?.latitude" [longitude]="+taskData.generalViolator?.longitude" [nameField]="taskData.generalViolator.locationName"></app-dynamic-map>
+                </div>
+            </div>
+                <div *ngIf="taskData?.taskType == 'ROAD_INCIDENT_REPORT'">
+                    <div class="md:flex">
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Incident Type</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.roadIncident.incidentType">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Incident Detail</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.roadIncident.incidentDetail">
+                            </mat-form-field>
+                        </div>
+                </div>
+
+                        <div class="md:flex">
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Permission Start Date</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.roadIncident.permissionStartDate">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-6 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Permission End Date</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.roadIncident.permissionEndDate">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                <div class="card-body p-2">
+                    <app-dynamic-map [latitude]="+taskData.roadIncident?.latitude" [longitude]="+taskData.roadIncident?.longitude" [nameField]="taskData.roadIncident.locationName"></app-dynamic-map>
+                </div>
+                </div>
+                <div *ngIf="taskData?.taskType == 'RC_DL_CHECK'">
+                    <div class="md:flex">
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Id Type</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.idType">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Id Number</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.idNumber">
+                            </mat-form-field>
+                        </div>
+                        <div class="md:w-4 md:mx-1">
+                            <mat-form-field appearance="" class="w-full">
+                                <mat-label>Name</mat-label>
+                                <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.name">
+                            </mat-form-field>
+                        </div>
+                        
+                </div>
+                <div class="md:flex">
+                    <div class="md:w-4 md:mx-1">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>FatherName</mat-label>
+                            <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.fatherName">
+                        </mat-form-field>
+                    </div>
+                    <div class="md:w-4 md:mx-1">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Age</mat-label>
+                            <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.age">
+                        </mat-form-field>
+                    </div>
+                    <div class="md:w-4 md:mx-1">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Gender</mat-label>
+                            <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.gender">
+                        </mat-form-field>
+                    </div>
+                    
+            </div>
+            <div class="md:flex">
+                <div class="md:w-4 md:mx-1">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Vechile Type</mat-label>
+                        <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.rcNo">
+                    </mat-form-field>
+                </div>
+                <div class="md:w-4 md:mx-1">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Vechile Number</mat-label>
+                        <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.engineNo">
+                    </mat-form-field>
+                </div>
+                <div class="md:w-4 md:mx-1">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Violation Details</mat-label>
+                        <input matInput [readonly]="true" [(ngModel)]="taskData.vehicleCheck.chassisNo">
+                    </mat-form-field>
+                </div>
+                
+        </div>
+        <div class="card-body p-2">
+            <app-dynamic-map [latitude]="+taskData.vehicleCheck?.latitude" [longitude]="+taskData.vehicleCheck?.longitude" [nameField]="taskData.vehicleCheck.locationName"></app-dynamic-map>
+        </div>
+                </div>
+
+                <!-- <div class="field">
                         <mat-form-field class="w-full">
                           <mat-label>Message</mat-label>
                           <textarea matInput formControlName="message"  [(ngModel)]="messageData" [readonly]="true"></textarea>
                         </mat-form-field>
-                      </div>
-                    </form>
-                <div class="col-12 md:col-12" *ngIf="taskData?.attachment?.files && taskData?.attachment?.files.length > 0" >
+                      </div> -->
+                <div class="col-12 md:col-12"
+                    *ngIf="taskData?.attachment?.files && taskData?.attachment?.files.length > 0">
                     <div class="col-12 md:col-3">
                         <label class="font-bold">Files</label>
                     </div>
                     <div class="grid">
                         <div class="col-12 md:col-4" *ngFor="let value of taskData?.attachment?.files"
-                            (click)="viewFiles(value.downloadPath)" style="cursor: pointer;">
-                            <div class="px-2 py-3 flex align-items-center justify-content-between"
-                                style="flex-shrink: 0;border-radius: 10px;background:#E5F2FF;">
-                                <div class="flex align-items-center">
-                                    <div class="px-2">
-                                        <p class="mb-1 font-bold" styl="color: #444444">{{value.fileName}}</p>
-                                    </div>
-                                </div>
-                                <div class="arrowIcont">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none">
-                                        <path d="M10 17L15 12L10 7" stroke="#212121" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 md:col-12" *ngIf="taskData?.attachment?.image && taskData.attachment.image?.length > 0">
-                    <div class="col-12 md:col-3">
-                        <label class="font-bold">Images</label>
-                    </div>
-                    <div class="grid">
-                        <div class="col-12 md:col-4" *ngFor="let value of taskData?.attachment.image"
-                            (click)="viewFiles(value.downloadPath)" style="cursor: pointer;">
+                            (click)="viewFiles(value)" style="cursor: pointer;">
                             <div class="px-2 py-3 flex align-items-center justify-content-between"
                                 style="flex-shrink: 0;border-radius: 10px;background:#E5F2FF;">
                                 <div class="flex align-items-center">
@@ -109,22 +371,50 @@
                     </div>
                 </div>
                 <div class="col-12 md:col-12"
-                *ngIf="taskData?.attachment?.audio && taskData?.attachment?.audio?.length > 0">
-                <div class="col-12 md:col-3">
-                    <label class="font-bold">Audio</label>
+                    *ngIf="taskData?.attachment?.image && taskData.attachment.image?.length > 0">
+                    <div class="col-12 md:col-3">
+                        <label class="font-bold">Images</label>
+                    </div>
+                    <div class="grid">
+                        <div class="col-12 md:col-4" *ngFor="let value of taskData?.attachment.image"
+                            (click)="viewFiles(value)" style="cursor: pointer;">
+                            <div class="px-2 py-3 flex align-items-center justify-content-between"
+                                style="flex-shrink: 0;border-radius: 10px;background:#E5F2FF;">
+                                <div class="flex align-items-center">
+                                    <div class="px-2">
+                                        <p class="mb-1 font-bold" styl="color: #444444">{{value.fileName}}</p>
+                                    </div>
+                                </div>
+                                <div class="arrowIcont">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none">
+                                        <path d="M10 17L15 12L10 7" stroke="#212121" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid">
-                    <div class="col-12 md:col-6" *ngFor="let value of taskData?.attachment?.audio" style="cursor: pointer;">
-                        <ngx-audio-player [autoPlay]="false" muted="muted" [playlist]="mssapPlaylist">
-                        </ngx-audio-player>
+                <div class="col-12 md:col-12"
+                    *ngIf="taskData?.attachment?.audio && taskData?.attachment?.audio?.length > 0">
+                    <div class="col-12 md:col-3">
+                        <label class="font-bold">Audio</label>
+                    </div>
+                    <div class="grid">
+                        <div class="col-12 md:col-6" *ngFor="let value of taskData?.attachment?.audio"
+                            style="cursor: pointer;">
+                            <ngx-audio-player [autoPlay]="false" muted="muted" [playlist]="mssapPlaylist">
+                            </ngx-audio-player>
+                        </div>
                     </div>
                 </div>
             </div>
-            </div>
             <div *ngIf="fileUrl" style="width: 100%;">
                 <iframe [src]="fileUrl" width="100%" height="600px" style="width: 100%;">
-                  <p>File not supported. {{fileType}} <a [href]="fileUrl" target="_blank">Click here to download</a></p>
+                    <p>File not supported. {{fileType}} <a [href]="fileUrl" target="_blank">Click here to download</a>
+                    </p>
                 </iframe>
-              </div>                 
+            </div>
         </div>
     </div>

@@ -13,7 +13,6 @@ import { DistrictFormComponent } from './district-form/district-form.component';
 import { DistrictListComponent } from './district-list/district-list.component';
 import { SubDivisionFormComponent } from './sub-division-form/sub-division-form.component';
 import { SubDivisionListComponent } from './sub-division-list/sub-division-list.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { PrimeModule } from 'src/app/shared/modules/prime/prime.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdministrationComponent } from './administration/administration.component';
@@ -27,6 +26,7 @@ import { AdministrationAddComponent } from './administration-add/administration-
 //import { AccesscontrolFormComponent } from './accesscontrol-form/accesscontrol-form.component';
 import { InventorytypeListComponent } from './inventorytype-list/inventorytype-list.component';
 import { InventorytypeFormComponent } from './inventorytype-form/inventorytype-form.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [

@@ -6,7 +6,7 @@
             onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
-                        <img src="../../../../assets/icons/usericon.png">
+                        <img src="assets/icons/usericon.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
                         <p class="mb-0 tbold" style="font-size: 17px;">Total Users</p> <span class="tbold"
@@ -20,7 +20,7 @@
             onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
-                        <img src="../../../../assets/icons/Activeuser.png">
+                        <img src="assets/icons/Activeuser.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
                         <p class="mb-0 tbold" style="font-size: 17px;">Active User</p> <span class="tbold"
@@ -34,7 +34,7 @@
             onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
-                        <img src="../../../../assets/icons/inactive.png">
+                        <img src="assets/icons/inactive.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
                         <p class="mb-0 tbold" style="font-size: 17px;">Inactive User</p> <span class="tbold"
@@ -48,7 +48,7 @@
             onmouseout="this.style.backgroundColor=''">
                 <div class="card-container indigo-container overflow-hidden">
                     <div class="flex-1 md:flex-none flex align-items-center justify-content-center">
-                        <img src="../../../../assets/icons/notlogin.png">
+                        <img src="assets/icons/notlogin.png">
                     </div>
                     <div class="m-3 flex justify-content-between">
                         <p class="mb-0 tbold" style="font-size: 17px;">Not Login User</p> <span class="tbold"
@@ -118,7 +118,7 @@
                     style="justify-content: center !important;">
                     <div class="w-8">
                         <div>
-                            <p-chart type="pie" [data]="data"></p-chart>
+                            <p-chart type="pie"  [data]="data"></p-chart>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                 <p class="font-semibold" style="white-space: nowrap;">{{ item.inventoryType }}</p>
             </div>
             <div class="item-image">
-                <img src="../../../../assets/icons/inventory.png" style="height: 50px;" alt="Inventory Item">
+                <img src="assets/icons/inventory.png" style="height: 50px;" alt="Inventory Item">
             </div>
             <div class="item-count">
             </div>
@@ -150,13 +150,13 @@
       <div class="card-header"
         style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
         <p class="mb-0 tbold color-02">SOS Alerts</p>
-        <img class="background-image" src="../../../../assets/images/sosalert.png">
+        <img class="background-image" src="assets/images/sosalert.png">
       </div>
       <div class="card-body p-2" *ngFor="let value of sosalert">
         <div>
           <div class="recentDuties-card">
             <div class="left-side">
-              <img class="background-image" src="../../../../assets/images/sosalert.png">
+              <img class="background-image" src="assets/images/sosalert.png">
             </div>
             <div class="right-side">
               <div class="recentDuties-card-value font-semibold">
@@ -179,13 +179,13 @@
       <div class="card-header"
         style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
         <p class="mb-0 tbold color-02">Alerts</p>
-        <img  class="background-image" src="../../../../assets/images/alert.png">
+        <img  class="background-image" src="assets/images/alert.png">
       </div>
       <div class="card-body p-2" *ngFor="let value of alert">
         <div>
           <div class="recentDuties-card">
             <div class="left-side">
-              <img class="background-image" src="../../../../assets/images/alert.png">
+              <img class="background-image" src="assets/images/alert.png">
             </div>
             <div class="right-side">
                 <div class="recentDuties-card-value font-semibold">
@@ -211,7 +211,7 @@
         <p class="font-semibold" style="white-space: nowrap;">{{ item.inventoryType }}</p>
       </div>
       <div class="item-image">
-        <img style="height: 50px;" alt="Inventory Item" src="../../../../assets/icons/inventory.png">
+        <img style="height: 50px;" alt="Inventory Item" src="assets/icons/inventory.png">
       </div>
     </div>
   </div> -->
@@ -270,7 +270,7 @@
                         <div class="duty-content">
                             <span class="font-semibold">Junction Points</span>
                             <span class="font-semibold">
-                                <img src="../../../../assets/task/ENCROACHMENT_REPORT.png">
+                                <img src="assets/task/ENCROACHMENT_REPORT.png">
                             </span>
                             <span class="mt-2">{{junctionPoint}}</span>
                         </div>
@@ -279,7 +279,7 @@
                         <div class="duty-content">
                             <span class="font-semibold">VIP Routes</span>
                             <span class="font-semibold">
-                                <img src="../../../../assets/Duty/icons8-vip-48.png">
+                                <img src="assets/Duty/icons8-vip-48.png">
                             </span>
                             <span class="mt-2">{{vipRoutes}}</span>
                         </div>
@@ -288,7 +288,7 @@
                         <div class="duty-content">
                             <span class="font-semibold">Sector Duty</span>
                             <span class="font-semibold">
-                                <img src="../../../../assets/Duty/icons8-traffic-jam-48.png">
+                                <img src="assets/Duty/icons8-traffic-jam-48.png">
                             </span>
                             <span class="mt-2">{{sectorDuty}}</span>
                         </div>
@@ -297,7 +297,7 @@
                         <div class="duty-content">
                             <span class="font-semibold">Patrol Duty</span>
                             <span class="font-semibold">
-                                <img src="../../../../assets/Duty/icons8-traffic-48.png">
+                                <img src="assets/Duty/icons8-traffic-48.png">
                             </span>
                             <span class="mt-2">{{patrolDuty}}</span>
                         </div>
@@ -306,7 +306,7 @@
                         <div class="duty-content">
                             <span class="font-semibold">Vehicle Check</span>
                             <span class="font-semibold">
-                                <img src="../../../../assets/Duty/icons8-vip-48.png">
+                                <img src="assets/Duty/icons8-vip-48.png">
                             </span>
                             <span class="mt-2">{{vehicleCheck}}</span>
                         </div>
@@ -366,3 +366,4 @@
         </div>
     </div>
 </p-dialog>
+<app-dynamic-loader></app-dynamic-loader>

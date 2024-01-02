@@ -7,6 +7,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { DatePipe } from '@angular/common';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { MasterService } from 'src/app/shared/services/master.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 @Component({
   selector: 'app-so-home',
   templateUrl: './so-home.component.html',
@@ -54,7 +55,7 @@ export class SoHomeComponent implements OnInit {
   alert:any
   sosalert:any
 
-  constructor(private router: Router, private formService: FormService,private masterService:MasterService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
+  constructor(private router: Router,private loadingService: LoadingService, private formService: FormService,private masterService:MasterService, private secondaryService: SecondaryService, private sharedService: SharedService,) { }
 
   ngOnInit(): void {
     this.getDashboard();
@@ -86,6 +87,7 @@ onSelectionChangeDate(event:any){
 }
         
 getDashboard() {
+  this.loadingService.showLoader();
   this.secondaryService.getDashboardAdmin().subscribe((resp: any) => {
     this.dashboardData = resp.data;
     const userTotal = this.dashboardData.userSummary.userTotal;
@@ -107,6 +109,7 @@ getDashboard() {
     this.vipRoutes = this.dashboardData.dutySummary.vipRoutes;
     this.sectorDuty = this.dashboardData.dutySummary.sectorDuty;
     this.patrolDuty = this.dashboardData.dutySummary.patrolDuty;
+  this.loadingService.hideLoader();
   });
 }
 
@@ -194,14 +197,13 @@ async getImage(url: string): Promise<string> {
   getChartDataChallanCheck() {
     this.secondaryService.getChartDataForAdmin(this.selected, this.firstDate, this.selectedtask).subscribe((resp: any) => {
     const datasetColors = [ '#FA3D17', '#2ecc71', '#3498db', '#e74c3c', '#8e44ad', '#f39c12', '#1abc9c', '#d35400', '#2c3e50', '#2980b9', '#27ae60', '#f39c12', '#16a085','#7f8c8d', '#7f8c8d'];
-  
       this.data = {
         labels: resp.data.map(item => item.dutyType || item.taskType),
         datasets: [
           {
             backgroundColor: datasetColors,
             data: resp.data.map(item => item.taskTotal),
-            label: 'Task Total'
+            label: 'Task Total',
           },
           {
             backgroundColor: datasetColors,
@@ -215,8 +217,8 @@ async getImage(url: string): Promise<string> {
   
   getAlert() {
     this.formService.getSOSAlert().subscribe((formData: any) => {
-      this.alert = formData.data.AmbulanceAlert.slice(0, 5);
-      this.sosalert = formData.data.SosAlert.slice(0, 5);
+      this.alert = formData.data.AmbulanceAlert?.slice(0, 5);
+      this.sosalert = formData.data.SosAlert?.slice(0, 5);
     });
   }
   

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { antPath } from 'leaflet-ant-path';
 import { APIResponse } from '../../models/api-response';
@@ -25,16 +25,21 @@ Leaflet.Marker.prototype.options.icon = iconDefault;
 })
 export class DynamicMapComponent implements OnInit {
 
-  constructor(private markerService:MapMarkerService,private locationService: LocationService) { }
+  constructor(private markerService:MapMarkerService,private locationService: LocationService,private cdr: ChangeDetectorRef) { }
 
-  @Input() latitude: number;
-  @Input() longitude: number;
+  @Input() latitude: any;
+  @Input() longitude: any;
+  @Input() nameField:any
+  @Input() Endlatitude: any;
+  @Input() Endlongitude: any;
+  @Input() EndnameField:any
 
   private map: Leaflet.Map;
   private marker: Leaflet.Marker;
 
   ngOnInit(): void {
     this.initializeMap();
+    this.updateMarker()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -44,34 +49,52 @@ export class DynamicMapComponent implements OnInit {
   }
 
   private initializeMap(): void {
-    this.map = Leaflet.map('map').setView([11.127123, 78.656891], 6.5);
+    this.map = Leaflet.map('map').setView([11.127123, 78.656891], 11);
 
-    Leaflet.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-      attribution: 'CANADA'
+    Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'OpenStreetMap'
     }).addTo(this.map);
 
-    this.map.on('click', this.onMapClick.bind(this));
+    // this.map.on('click', this.onMapClick.bind(this));
   }
 
-  private onMapClick(event: Leaflet.MouseEvent): void {
-    const { lat, lng } = event.latlng;
-    this.latitude = lat;
-    this.longitude = lng;
-    this.updateMarker();
-    this.locationService.setLocationData(this.latitude,this.longitude);
-  }
+  // private onMapClick(event: Leaflet.MouseEvent): void {
+  //   debugger
+  //   const { lat, lng } = event.latlng;
+  //   this.latitude = lat;
+  //   this.longitude = lng;
+  //   this.updateMarker();
+  //   this.locationService.setLocationData(this.latitude, this.longitude);
+  
+  //   this.cdr.detectChanges();
+  // }
 
   private updateMarker(): void {
+    console.log(
+      "Updating marker:",
+      this.latitude,
+      this.longitude,
+      this.Endlatitude,
+      this.Endlongitude
+    );
     if (this.marker) {
       this.map.removeLayer(this.marker);
     }
-
     if (this.latitude !== undefined && this.longitude !== undefined) {
-      this.marker = Leaflet.marker([this.latitude, this.longitude])
+      Leaflet.marker([this.latitude, this.longitude])
         .addTo(this.map)
-        .bindPopup('Location')
+        .bindPopup(this.nameField)
         .openPopup();
     }
+    if (this.Endlatitude !== undefined && this.Endlongitude !== undefined) {
+      Leaflet.marker([this.Endlatitude, this.Endlongitude])
+        .addTo(this.map)
+        .bindPopup(this.EndnameField)
+        .openPopup();
+    }
+    this.map.invalidateSize();
   }
+  
+  
   
 }

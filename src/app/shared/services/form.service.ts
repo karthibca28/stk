@@ -108,6 +108,9 @@ export class FormService {
   deleteMasterList(data: any) {
     return this.http.post(`${this.apiUrl}Master/deleteSubmit`, data);
   }
+  deleteUsers(userId: any) {
+    return this.http.delete(`${this.apiUrl}admin/user?userId=${userId}`);
+  }
   getPStationCount() {
     return this.http.get(`${this.apiUrl}Mainadmin/getPStationCount`);
   }

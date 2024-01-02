@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -17,7 +18,7 @@ export class RankFormComponent implements OnInit {
   editMasterId:any
   roleList:any
   accessControlList:any
-  constructor(private router: Router, private formBuilder: FormBuilder, 
+  constructor(private router: Router, private formBuilder: FormBuilder, private loadingService: LoadingService,
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
@@ -68,6 +69,8 @@ export class RankFormComponent implements OnInit {
   }
   
   addRecord() {
+    this.loadingService.showLoader();
+      
     if (this.form.valid) {
       this.loading = true;
       this.masterService.addRank(this.form.value).subscribe((data: any) => {
@@ -76,14 +79,18 @@ export class RankFormComponent implements OnInit {
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/user-config/rank-list`);
+          this.loadingService.hideLoader();
         }
       });
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
+    this.loadingService.hideLoader();
   }
   
   updateRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       let value = {
@@ -102,13 +109,16 @@ export class RankFormComponent implements OnInit {
           this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/user-config/rank-list`);
+          this.loadingService.hideLoader();
         },
         (error) => {
           console.error('Error updating record:', error);
+          this.loadingService.hideLoader();
         }
       );
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
   }
   cancel() {

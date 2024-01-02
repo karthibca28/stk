@@ -54,14 +54,13 @@ export class UserRegistrationListComponent implements OnInit {
     this.formService.getUserListAdmin().subscribe((formData: any) => {
       const values = formData.data;
       const cols = [
+        { field: 'userName', header: 'UserName', type: 'text' },
         { field: 'fullName', header: 'Name', type: 'text' },
-        { field: 'rank', header: 'Rank', type: 'text' },
         { field: 'gpfCpsNo', header: 'Gpf Cps No', type: 'text' },
-        { field: 'email', header: 'Email', type: 'text' },
-        { field: 'phone', header: 'Phone Number', type: 'text' },
-        { field: 'address', header: 'Address', type: 'text' },
+        { field: 'rank', header: 'Rank', type: 'text' },
         { field: 'subDivisionName', header: 'District', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
+        { field: 'phone', header: 'Phone Number', type: 'text' },
       ];
       values.forEach((value) => {
         value.rank = value.rank?.rankName; 
@@ -113,16 +112,15 @@ export class UserRegistrationListComponent implements OnInit {
   }
   
   deleteRecord(userId:number){
-    const dataKey = { formKey: 'user', deleteId: userId };
     this.confirmationService.confirm({
         message: 'Are you sure you want to delete the record?',
         accept: () => {
-            this.formService.deleteMasterList(dataKey).subscribe((resp: APIResponse) => {
-                console.log("datakey",dataKey);
-                if (resp.statusCode == '200') {
+            this.formService.deleteUsers(userId).subscribe((resp: APIResponse) => {
+                console.log("datakey",userId);
+                // if (resp.statusCode == '200') {
                     this.getList();
                     this.sharedService.showSuccess('Record delete successfully');
-                }
+                // }
             })
         },
         reject: () => {

@@ -50,21 +50,42 @@
                         <input matInput formControlName="policeStationName"  [readonly]="true">
                     </mat-form-field>
                 </div>
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Duty Start Date</mat-label>
+                        <input matInput formControlName="dutyStartDate"  [readonly]="true">
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Duty End Date</mat-label>
+                        <input matInput formControlName="dutyEndDate"  [readonly]="true">
+                    </mat-form-field>
+                </div>
+                <div class="field">
+                    <mat-form-field appearance="" class="w-full">
+                        <mat-label>Status</mat-label>
+                        <input matInput formControlName="status"  [readonly]="true">
+                    </mat-form-field>
+                </div>
                 
-                    <div class="field">
+                    <!-- <div class="field">
                         <mat-form-field class="w-full">
                           <mat-label>Message</mat-label>
                           <textarea matInput formControlName="message"  [(ngModel)]="messageData" [readonly]="true"></textarea>
                         </mat-form-field>
-                      </div>
+                      </div> -->
                     </form>
+                    <div class="card-body p-2">
+                        <app-dynamic-map [latitude]="+dutyData?.startLatitude" [longitude]="+dutyData?.startLongitude" [nameField]="dutyData?.startLocationName" [Endlatitude]="+dutyData?.endLatitude" [Endlongitude]="+dutyData?.endLongitude" [EndnameField]="dutyData?.endLocationName"></app-dynamic-map>
+                    </div>
                 <div class="col-12 md:col-12" *ngIf="dutyData?.attachment?.files && dutyData?.attachment?.files.length > 0" >
                     <div class="col-12 md:col-3">
                         <label class="font-bold">Files</label>
                     </div>
                     <div class="grid">
                         <div class="col-12 md:col-4" *ngFor="let value of dutyData?.attachment?.files"
-                            (click)="viewFiles(value.downloadPath)" style="cursor: pointer;">
+                            (click)="viewFiles(value)" style="cursor: pointer;">
                             <div class="px-2 py-3 flex align-items-center justify-content-between"
                                 style="flex-shrink: 0;border-radius: 10px;background:#E5F2FF;">
                                 <div class="flex align-items-center">
@@ -89,7 +110,7 @@
                     </div>
                     <div class="grid">
                         <div class="col-12 md:col-4" *ngFor="let value of dutyData?.attachment.image"
-                            (click)="viewFiles(value.downloadPath)" style="cursor: pointer;">
+                            (click)="viewFiles(value)" style="cursor: pointer;">
                             <div class="px-2 py-3 flex align-items-center justify-content-between"
                                 style="flex-shrink: 0;border-radius: 10px;background:#E5F2FF;">
                                 <div class="flex align-items-center">

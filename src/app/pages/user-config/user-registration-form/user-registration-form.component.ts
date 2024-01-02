@@ -6,6 +6,7 @@ import { Console } from 'console';
 import { APIResponse } from 'src/app/shared/models/api-response';
 import { JsonFormData } from 'src/app/shared/models/json-form-data';
 import { FormService } from 'src/app/shared/services/form.service';
+import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -32,107 +33,133 @@ export class UserRegistrationFormComponent implements OnInit {
   isFormSubmitted = false;
   editMasterId: any;
   loading = false;
-  stateList:any
-  rankList:any
-  zoneList:any
-  rangeList:any
-  roleList:any
-  districtList:any
-  subDivisionList:any
-  adminList:any
-  policeStationList:any
-  userData:any
-  constructor(private formService: FormService, private router: Router,private masterService:MasterService, private formBuilder: FormBuilder,
-     private sharedService: SharedService, private actRouter: ActivatedRoute) { }
+  stateList: any
+  rankList: any
+  zoneList: any
+  rangeList: any
+  roleList: any
+  districtList: any
+  subDivisionList: any
+  adminList: any
+  policeStationList: any
+  userData: any
+  editData: any
+  constructor(private formService: FormService, private router: Router, private masterService: MasterService, private formBuilder: FormBuilder,
+    private sharedService: SharedService, private actRouter: ActivatedRoute, private route: ActivatedRoute,
+    private loadingService: LoadingService) { }
 
   ngOnInit(): void {
-    // this.editMasterId = this.actRouter.snapshot.params['userId'];
-    // if(this.editMasterId > 0){
-    //   this.editMasterForm();
-    // }else{
-    //   this.buildMasterForm();
-    // }
     this.form = this.formBuilder.group({
-      firstName: ['',Validators.required],
-      middleName: [''],
-      lastName:[''],
-      gpfCpsNo:['',Validators.required],
-      address:[''],
+      firstName: ['', Validators.required],
+      lastName: [''],
+      gpfCpsNo: ['', Validators.required],
+      address: [''],
       phone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      userName:['',Validators.required],
-      password:['',Validators.required],
-      pinHash:[''],
-      roleId:['',Validators.required],
-      rankId:['',Validators.required],
-      adminId:['',Validators.required],
-      stateId:[''],
-      zoneId:['',Validators.required],
-      rangeId:['',Validators.required],
-      districtId:['',Validators.required],
-      subDivisionId:['',Validators.required],
-      policeStationId: ['',Validators.required]
+      email: ['', [Validators.email]],
+      userName: ['', Validators.required],
+      // password: ['', Validators.required],
+      // pinHash: [''],
+      roleId: ['', Validators.required],
+      rankId: ['', Validators.required],
+      adminId: ['', Validators.required],
+      stateId: [''],
+      zoneId: ['', Validators.required],
+      rangeId: ['', Validators.required],
+      districtId: ['', Validators.required],
+      subDivisionId: ['', Validators.required],
+      policeStationId: ['', Validators.required]
+    });
+    this.form.get('gpfCpsNo').valueChanges.subscribe(value => {
+      this.form.get('userName').setValue(value);
+    });
+    this.editMasterId = this.route.snapshot.params['userId'];
+    console.log(this.editMasterId)
+    const id = this.editMasterId;
+    this.masterService.getUserId(id).subscribe((resp: any) => {
+      console.log(resp.data)
+      this.editData = resp.data
+      this.form.patchValue({
+        firstName: resp.data.firstName,
+        lastName: resp.data.lastName,
+        gpfCpsNo: resp.data.gpfCpsNo,
+        address: resp.data.address,
+        phone: resp.data.phone,
+        email: resp.data.email,
+        userName: resp.data.userName,
+        roleId: resp.data.rank.role.id,
+        rankId: resp.data.rank.id,
+        adminId: resp.data.administration.id,
+        stateId: resp.data.state.id,
+        zoneId: resp.data.zone.id,
+        rangeId: resp.data.range.id,
+        districtId: resp.data.district.id,
+        subDivisionId: resp.data.subDivision.id,
+        policeStationId: resp.data.policeStation.id,
+      });
+      this.getZoneList(this.editData?.administration.id)
+      this.getRangeList(this.editData?.zone.id)
+      this.getDistrictList(this.editData?.range.id)
+      this.getSubDivision(this.editData?.district.id)
+      this.getAdminList(this.editData?.state.id)
+      this.getPoliceStationList(this.editData?.subDivision.id)
     });
     this.getRoleList()
     this.getRankList()
     this.getStateList()
-    //this.getZoneList()
-    //this.getRangeList()
-    //this.getDistrictList()
-    //this.getSubDivision()
-    // this.getAdminList()
-    //this.getPoliceStationList()
+    // if(!this.editMasterId){
+
+    // }
   }
 
-getRoleList(){
-  this.masterService.roleList().subscribe((resp: any) =>{
-    this.roleList = resp.data
-  })
-}
+  getRoleList() {
+    this.masterService.roleList().subscribe((resp: any) => {
+      this.roleList = resp.data
+    })
+  }
 
-  getPoliceStationList(subDivisionId:any) {
+  getPoliceStationList(subDivisionId: any) {
     this.masterService.getPoliceStationUser(subDivisionId).subscribe((resp: any) => {
-    this.policeStationList = resp.data
+      this.policeStationList = resp.data
     });
   }
 
-  getAdminList(stateId:any) {
+  getAdminList(stateId: any) {
     this.masterService.adminListUser(stateId).subscribe((resp: any) => {
-       this.adminList = resp.data
+      this.adminList = resp.data
     });
   }
 
   getStateList() {
     this.masterService.stateList().subscribe((resp: any) => {
-       this.stateList = resp.data
+      this.stateList = resp.data
     });
   }
-  getRankList(){
-    this.masterService.rankList().subscribe((resp: any) =>{
+  getRankList() {
+    this.masterService.rankList().subscribe((resp: any) => {
       this.rankList = resp.data
-      console.log("da",resp.data)
+      console.log(this.rankList)
     })
   }
 
-  getZoneList(adminId:any) {
+  getZoneList(adminId: any) {
     this.masterService.getZoneUser(adminId).subscribe((resp: any) => {
-       this.zoneList = resp.data
+      this.zoneList = resp.data
     });
   }
 
-  getRangeList(zoneId:any) {
+  getRangeList(zoneId: any) {
     this.masterService.getRangeUser(zoneId).subscribe((resp: any) => {
-       this.rangeList = resp.data
+      this.rangeList = resp.data
     });
   }
-   getDistrictList(rangeId:any) {
+  getDistrictList(rangeId: any) {
     this.masterService.getDistrictUser(rangeId).subscribe((resp: any) => {
-       this.districtList = resp.data
+      this.districtList = resp.data
     });
   }
-  getSubDivision(districtId:any) {
+  getSubDivision(districtId: any) {
     this.masterService.getSubDivisionUser(districtId).subscribe((resp: any) => {
-       this.subDivisionList = resp.data
+      this.subDivisionList = resp.data
     });
   }
   buildMasterForm() {
@@ -140,7 +167,7 @@ getRoleList(){
     this.formService.getDynamicFormData(data).subscribe((resp: any) => {
       this.formData = resp.data;
       //console.log("form user",this.formData);
-      
+
     });
   }
   editMasterForm() {
@@ -153,8 +180,16 @@ getRoleList(){
       }
     })
   }
-  submit(formValue: any) {
+  submit() {
+    if (this.editMasterId === 0 || this.editMasterId === undefined || this.editMasterId === null) {
+      this.addRecord();
+    } else {
+      this.updateRecord();
+    }
 
+  }
+  addRecord() {
+    this.loadingService.showLoader();
     if (this.form.valid) {
       this.loading = true;
       this.masterService.UserRegistration(this.form.value).subscribe((data: any) => {
@@ -164,13 +199,36 @@ getRoleList(){
           this.form.reset();
           this.isFormSubmitted = true; 
           this.router.navigateByUrl(`main/user-config/user-list`);
+          this.loadingService.hideLoader();
         }
       });
     } else {
       this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
     }
   }
-  
+  updateRecord() {
+    this.loadingService.showLoader();
+    if (this.form.valid) {
+      const data = {
+        userId: this.editMasterId,
+        ...this.form.value
+      }
+      this.loading = true;
+      this.masterService.UserRegistrationUpdate(data).subscribe((data: any) => {
+        if (data) {
+          this.loading = false;
+          this.sharedService.showSuccess('Added successfully!');
+          this.form.reset();
+          this.router.navigateByUrl(`main/user-config/user-list`);
+          this.loadingService.hideLoader();
+        }
+      });
+    } else {
+      this.form.markAllAsTouched();
+      this.loadingService.hideLoader();
+    }
+  }
   // submit(formValue: any) {
   //   if (this.editMasterId > 0) {
   //     //console.log("ACtiive route id", this.editMasterId);
@@ -207,7 +265,7 @@ getRoleList(){
   }
   validateNumericInput(event: any): void {
     const input = event.target.value;
-    event.target.value = input.replace(/[^0-9]/g, ''); 
+    event.target.value = input.replace(/[^0-9]/g, '');
   }
-  
+
 }

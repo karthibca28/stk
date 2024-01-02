@@ -109,7 +109,7 @@ selecteddistrict:any
       const cols = [
         { field: 'dutyType', header: 'Duty Type', type: 'text' },
         { field: 'status', header: 'Status', type: 'text' },
-        // { field: 'subDivisionName', header: 'Sub Division Name', type: 'text' },
+        { field: 'districtName', header: 'District Name', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
         { field: 'startLocationName', header: 'Start Location Name', type: 'text' },
         { field: 'endLocationName', header: 'End Location Name', type: 'text' },
@@ -183,22 +183,22 @@ selecteddistrict:any
       this.DutyItems = [
         {
           type: this.replaceUnderscores(formData.data.JUNCTION_POINT.type),
-          imageSrc: '../../../../assets/task/ENCROACHMENT_REPORT.png',
+          imageSrc: 'assets/task/ENCROACHMENT_REPORT.png',
           count: formData.data.JUNCTION_POINT.count
         },
         {
           type: this.replaceUnderscores(formData.data.PATROL_DUTY.type),
-          imageSrc: '../../../../assets/Duty/icons8-traffic-48.png',
+          imageSrc: 'assets/Duty/icons8-traffic-48.png',
           count: formData.data.PATROL_DUTY.count
         },
         {
           type: this.replaceUnderscores(formData.data.SECTOR_DUTY.type),
-          imageSrc: '../../../../assets/Duty/icons8-traffic-jam-48.png',
+          imageSrc: 'assets/Duty/icons8-traffic-jam-48.png',
           count: formData.data.SECTOR_DUTY.count
         },
         {
           type: this.replaceUnderscores(formData.data.VEHICLE_CHECK.type),
-          imageSrc: '../../../../assets/Duty/icons8-vip-48.png',
+          imageSrc: 'assets/Duty/icons8-vip-48.png',
           count: formData.data.VEHICLE_CHECK.count
         }
       ];

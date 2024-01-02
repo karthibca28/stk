@@ -28,22 +28,12 @@
                 required</mat-error>
             </mat-form-field>
           </div>
-
-          <div class="md:w-4 md:mx-1">
-            <mat-form-field appearance="" class="w-full">
-              <mat-label>Middle Name</mat-label>
-              <input matInput formControlName="middleName" maxlength="20">
-            </mat-form-field>
-          </div>
-
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Last Name</mat-label>
               <input matInput formControlName="lastName" maxlength="20">
             </mat-form-field>
           </div>
-        </div>
-        <div class="md:flex">
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Gpfcps No</mat-label>
@@ -53,30 +43,32 @@
                 required</mat-error>
             </mat-form-field>
           </div>
+        </div>
+        <div class="md:flex">
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Email</mat-label>
               <input type="email" matInput formControlName="email">
               <mat-error id="name-help" class="block text-danger"
-              *ngIf="(form?.controls?.email?.touched && form?.controls?.email?.errors?.required)">Email is
-              required</mat-error>
+                *ngIf="(form?.controls?.email?.touched && form?.controls?.email?.errors?.required)">Email is
+                required</mat-error>
               <mat-error id="name-help" class="block text-danger"
-              *ngIf="(form?.controls?.email?.touched && form?.controls?.email?.hasError('email'))">Invalid email format</mat-error>
+                *ngIf="(form?.controls?.email?.touched && form?.controls?.email?.hasError('email'))">Invalid email
+                format</mat-error>
             </mat-form-field>
           </div>
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Phone Number</mat-label>
-              <input matInput formControlName="phone" type="tel" pattern="[0-9]{10}" (input)="validateNumericInput($event)" maxLength="10">
+              <input matInput formControlName="phone" type="tel" pattern="[0-9]{10}"
+                (input)="validateNumericInput($event)" maxLength="10">
               <mat-error id="name-help" class="block text-danger"
-                *ngIf="(form?.controls?.phone?.touched && form?.controls?.phone?.errors?.required)">Phone Number is required</mat-error>
+                *ngIf="(form?.controls?.phone?.touched && form?.controls?.phone?.errors?.required)">Phone Number is
+                required</mat-error>
               <!-- <mat-error id="name-help" class="block text-danger"
                 *ngIf="(form?.controls?.phone?.touched && form?.controls?.phone?.hasError('pattern'))">Invalid phone number format</mat-error> -->
             </mat-form-field>
           </div>
-          
-        </div>
-        <div class="md:flex">
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>UserName</mat-label>
@@ -90,11 +82,11 @@
         <div class="field">
           <mat-form-field class="w-full">
             <mat-label>Address</mat-label>
-            <textarea matInput placeholder="Address" maxlength="200"></textarea>
+            <textarea matInput placeholder="Address" formControlName="address" maxlength="200"></textarea>
           </mat-form-field>
         </div>
-    
-          <!-- <div class="md:w-4 md:mx-1">
+
+        <!-- <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>Password</mat-label>
               <input matInput formControlName="password" minlength="8" maxlength="15">
@@ -103,7 +95,7 @@
                 required</mat-error>
             </mat-form-field>
           </div> -->
-          <!-- <div class="md:w-4 md:mx-1">
+        <!-- <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>PinHash</mat-label>
               <input matInput formControlName="pinHash">
@@ -140,8 +132,9 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field class="w-full">
               <mat-label>State</mat-label>
-              <mat-select formControlName="stateId" >
-                <mat-option *ngFor="let stateList of stateList" [value]="stateList.id" (click)="getAdminList(stateList.id)">
+              <mat-select formControlName="stateId">
+                <mat-option *ngFor="let stateList of stateList" [value]="stateList.id"
+                  (click)="getAdminList(stateList.id)">
                   {{stateList.name}}
                 </mat-option>
               </mat-select>
@@ -153,7 +146,8 @@
             <mat-form-field class="w-full">
               <mat-label>Administration</mat-label>
               <mat-select formControlName="adminId">
-                <mat-option *ngFor="let adminList of adminList" [value]="adminList.id" (click)="getZoneList(adminList.id)">
+                <mat-option *ngFor="let adminList of adminList" [value]="adminList.id"
+                  (click)="getZoneList(adminList.id)">
                   {{adminList.name}}
                 </mat-option>
               </mat-select>
@@ -183,7 +177,8 @@
             <mat-form-field class="w-full">
               <mat-label>Range</mat-label>
               <mat-select formControlName="rangeId">
-                <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id" (click)="getDistrictList(rangeList.id)">
+                <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id"
+                  (click)="getDistrictList(rangeList.id)">
                   {{rangeList.name}}
                 </mat-option>
               </mat-select>
@@ -199,7 +194,8 @@
             <mat-form-field class="w-full">
               <mat-label>District</mat-label>
               <mat-select formControlName="districtId">
-                <mat-option *ngFor="let districtList of districtList" [value]="districtList.id" (click)="getSubDivision(districtList.id)">
+                <mat-option *ngFor="let districtList of districtList" [value]="districtList.id"
+                  (click)="getSubDivision(districtList.id)">
                   {{districtList.name}}
                 </mat-option>
               </mat-select>
@@ -213,7 +209,8 @@
             <mat-form-field class="w-full">
               <mat-label>SubDivision</mat-label>
               <mat-select formControlName="subDivisionId">
-                <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id" (click)="getPoliceStationList(subDivisionList.id)">
+                <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id"
+                  (click)="getPoliceStationList(subDivisionList.id)">
                   {{subDivisionList.name}}
                 </mat-option>
               </mat-select>
@@ -249,3 +246,4 @@
   </div>
 
 </form>
+<app-dynamic-loader></app-dynamic-loader>

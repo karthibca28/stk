@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debug } from 'console';
 import { Track } from 'ngx-audio-player';
 import { FormService } from 'src/app/shared/services/form.service';
 import { MasterService } from 'src/app/shared/services/master.service';
@@ -72,32 +73,34 @@ mssapPlaylist:Track[] = [];
   }
 
   async viewFiles(data: any, fileType: string): Promise<void> {
+    console.log(data.fileName)
     try {
-      const res = await this.formService.getFileForBroadCast(data);
+      const res = await this.formService.getFileForBroadCast(data?.downloadPath);
       if (!res) {
         throw new Error('Invalid file response');
       }
   
       this.fileType = res.type;
       console.log(res.type);
-      if (fileType == 'application/pdf') {
-        this.downloadFile(res);
-      } else {
-        console.warn("data")
+      
+      if (this.fileType == 'application/pdf') {
+        console.warn("Displaying PDF");
         const fileUrl = await this.getPdfUrl(res);
         this.fileUrl = fileUrl;
+      } else {
+        console.warn("Downloading file directly");
+        this.downloadFile(res, data.fileName);
       }
     } catch (e) {
       console.error('Error fetching or processing file:', e);
     }
   }
   
-  downloadFile(file: Blob): void {
-    // Implement your download logic here
+  downloadFile(file: Blob, fileName: string): void {
     const downloadLink = document.createElement('a');
     const url = URL.createObjectURL(file);
     downloadLink.href = url;
-    downloadLink.download = 'downloaded file';
+    downloadLink.download = fileName;
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -109,6 +112,7 @@ mssapPlaylist:Track[] = [];
     this.isFileLoaded = true;
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
   }
+  
   
   viewAudio(data:any){
 

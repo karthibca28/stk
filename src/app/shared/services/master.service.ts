@@ -266,6 +266,9 @@ export class MasterService {
   UserRegistration(data:any){
     return this.http.post(`${this.apiUrl}admin/user`,data);
     }
+    UserRegistrationUpdate(data:any){
+      return this.http.put(`${this.apiUrl}admin/user`,data);
+      }
     accessControl(data: any) {
         return this.http.post(`${this.apiUrl}admin/accessControl`, data);
     }
@@ -279,7 +282,9 @@ export class MasterService {
     addBroadCast(data: FormData) {
       return this.http.post(`${this.apiUrl}common/broadcastMessage`, data);
   }
-
+  liveUsers() {
+    return this.http.get(`${this.apiUrl}common/liveData?type=abandonedVehicle`);
+  }
   //GetById
 getAdmistrationbyId(adminId:any){
   return this.http.get(`${this.apiUrl}admin/administration?adminId=${adminId}`)
@@ -301,6 +306,9 @@ getPoliceStationbyId(policeStationId:any){
 }
 getInventoryTypeId(inventoryTypeId:any){
   return this.http.get(`${this.apiUrl}admin/inventoryType?inventoryTypeId=${inventoryTypeId}`)
+}
+getUserId(userId:any){
+  return this.http.get(`${this.apiUrl}admin/user?userId=${userId}`)
 }
 getAccessControlbyId(accessControlId:any){
   return this.http.get(`${this.apiUrl}admin/accessControl?accessId=${accessControlId}`)

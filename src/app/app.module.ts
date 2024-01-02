@@ -22,11 +22,13 @@ import { MenuService } from './app.menu.service';
 import { PrimeModule } from './shared/modules/prime/prime.module';
 import { AuthenticationInterceptor } from './shared/authentication.interceptor';
 import { LoginComponent } from './pages/login/login.component';
-import { MessageService, SharedModule } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { MaterialModule } from './shared/modules/material/material.module';
 import { LoadingBarComponent } from './pages/loading-bar/loading-bar.component';
+import { LoaderComponent } from './shared/components/loader/loader.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     imports: [
@@ -70,7 +72,8 @@ import { LoadingBarComponent } from './pages/loading-bar/loading-bar.component';
         },
         MessageService, MenuService, AppMainComponent
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    exports:[LoadingBarComponent]
 })
 export class AppModule {
 }

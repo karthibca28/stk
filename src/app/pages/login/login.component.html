@@ -36,7 +36,7 @@
                                         <mat-error id="password1-help" class="block text-danger" *ngIf="(loginForm?.controls?.password?.touched && loginForm?.controls?.password?.errors?.required)">Password is required</mat-error>
                                     </mat-form-field>
                                     <p style="font-size: 12px;color: #e20000;">{{loginError}}</p>
-                                    <div class="my-2">
+                                    <div>
                                         <button pbutton="" (click)="login()" pripple="" label="Sign In"
                                             class="p-element w-full p-button p-component p-button-custom">
                                             <span class="p-button-icon p-button-icon-left"
@@ -44,11 +44,11 @@
                                             <span class="p-button-label">Login</span><span class="p-ink"></span>
                                         </button>
                                     </div>
-                                    <div class="text-right">
+                                    <!-- <div class="text-right">
                                         <a class="font-medium no-underline color-08 text-right cursor-pointer"
                                             (click)="forgotPassword()">Forgot
                                             password?</a>
-                                    </div>
+                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -95,4 +95,4 @@ showEffect="fade" [style]="{width: '40vw'}"
 
 
 
-<app-loading-bar></app-loading-bar>
+<app-dynamic-loader></app-dynamic-loader>
