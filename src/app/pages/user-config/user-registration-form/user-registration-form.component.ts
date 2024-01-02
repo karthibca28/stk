@@ -29,6 +29,7 @@ export function numericInputValidator(): ValidatorFn {
 export class UserRegistrationFormComponent implements OnInit {
   public formData!: JsonFormData;
   form!: FormGroup;
+  isFormSubmitted = false;
   editMasterId: any;
   loading = false;
   stateList:any
@@ -161,6 +162,7 @@ getRoleList(){
           this.loading = false;
           this.sharedService.showSuccess('Added successfully!');
           this.form.reset();
+          this.isFormSubmitted = true; 
           this.router.navigateByUrl(`main/user-config/user-list`);
         }
       });

@@ -80,7 +80,7 @@
           <div class="md:w-4 md:mx-1">
             <mat-form-field appearance="" class="w-full">
               <mat-label>UserName</mat-label>
-              <input matInput formControlName="userName" maxlength="15" [readonly]="true">
+              <input matInput formControlName="userName" maxlength="15"  [readonly]="isFormSubmitted">
               <mat-error id="name-help" class="block text-danger"
                 *ngIf="(form?.controls?.userName?.touched && form?.controls?.userName?.errors?.required)">UserName is
                 required</mat-error>

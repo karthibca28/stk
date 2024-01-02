@@ -24,7 +24,8 @@
                 <div class="field">
                     <mat-form-field appearance="" class="w-full">
                         <mat-label>Code</mat-label>
-                        <input matInput formControlName="code" (input)="filterSpecialCharacters($event)">
+                        <input matInput formControlName="code" (input)="filterSpecialCharacters($event)" maxlength="40">
+                        <mat-error id="name-help" class="block text-danger" *ngIf="(form?.controls?.code?.touched && form?.controls?.code?.errors?.required)">Code is required</mat-error>
                     </mat-form-field>
                 </div>
 

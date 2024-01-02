@@ -53,7 +53,7 @@ export class DistrictListComponent implements OnInit {
         { field: 'zoneName', header: 'Zone', type: 'text' },
         { field: 'rangeName', header: 'Range', type: 'text' },
         { field: 'description', header: 'Description', type: 'text' },
-        { field: 'isActive', header: 'Status', type: 'text' },
+        //{ field: 'isActive', header: 'Status', type: 'text' },
       ];
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)

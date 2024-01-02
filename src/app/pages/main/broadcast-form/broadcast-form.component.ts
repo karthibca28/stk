@@ -42,6 +42,33 @@ export class BroadcastFormComponent implements OnInit {
         policeStationId:['',Validators.required],
         files:['']
       });
+
+      this.form.get('adminId')?.valueChanges.subscribe((newValue) => {
+        if (newValue === 'all') {
+          this.getZoneList(newValue);
+          this.getRangeList(newValue);
+          this.getDistrictList(newValue);
+          this.getSubDivision(newValue);
+          this.getPoliceStaion(newValue);
+          
+          
+          this.form.patchValue({
+            zoneId: 'all',
+            rangeId: 'all',
+            districtId: 'all',
+            subDivisionId: 'all',
+            policeStationId: 'all'
+          });
+        } else {
+          this.form.patchValue({
+            zoneId: '',
+            rangeId: '',
+            districtId: '',
+            subDivisionId: '',
+            policeStationId: ''
+          });
+        }
+      });
     // this.getZoneList()
     // this.getRangeList()
     // this.getDistrictList()
@@ -61,6 +88,7 @@ export class BroadcastFormComponent implements OnInit {
   getAdminList(id:any) {
     this.masterService.commonAdminList(id).subscribe((resp: any) => {
        this.adminList = resp.data
+       this.adminList.unshift({id: 'all', name: 'All'})
     });
   }
 

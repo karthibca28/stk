@@ -53,7 +53,7 @@ export class PoliceStationListComponent implements OnInit {
         { field: 'rangeName', header: 'Range', type: 'text' },
         { field: 'subDivisionName', header: 'Sub Division', type: 'text' },
         { field: 'description', header: 'Description', type: 'text' },
-        { field: 'isActive', header: 'Status', type: 'text' },
+        //{ field: 'isActive', header: 'Status', type: 'text' },
       ];
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)

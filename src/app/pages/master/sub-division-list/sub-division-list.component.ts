@@ -53,7 +53,7 @@ export class SubDivisionListComponent implements OnInit {
         { field: 'rangeName', header: 'Range', type: 'text' },
         { field: 'districtName', header: 'District', type: 'text' },
         { field: 'description', header: 'Description', type: 'text' },
-        { field: 'isActive', header: 'Status', type: 'text' },
+        //{ field: 'isActive', header: 'Status', type: 'text' },
       ];
       this.dynamaicDataForTable = {cols, values};
       console.log("master",this.dynamaicDataForTable)

@@ -31,7 +31,7 @@ export class SubDivisionFormComponent implements OnInit {
     console.log(this.editMasterId)
 
     this.form = this.formBuilder.group({
-      code: [''],
+      code: ['', Validators.required],
       name: ['', Validators.required],
       adminId:['',Validators.required],
       zoneId:['',Validators.required],

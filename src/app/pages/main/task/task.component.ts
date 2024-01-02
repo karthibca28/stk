@@ -110,16 +110,18 @@ selecteddistrict:any
       const values = formData.data;
       const cols = [
         { field: 'taskType', header: 'Task Type', type: 'text' },
-        { field: 'challan', header: 'Challan', type: 'text' },
-        { field: 'vehicleNumber', header: 'Vehicle Number', type: 'text' }, 
-        { field: 'vehicleType', header: 'Vehicle Type', type: 'text' },
+       // { field: 'challan', header: 'Challan', type: 'text' },
+        //{ field: 'vehicleNumber', header: 'Vehicle Number', type: 'text' }, 
+        //{ field: 'vehicleType', header: 'Vehicle Type', type: 'text' },
+        { field: 'districtName', header: 'District', type: 'text' },
+        { field: 'fullName', header: 'Created By', type: 'text' },
         { field: 'createdAt', header: 'Date and Time', type: 'text' },
         { field: 'policeStationName', header: 'Police Station Name', type: 'text' },
       ];
 
       values.forEach((value) => {
-        value.vehicleNumber = value.generalIncident?.vehicleNumber; 
-        value.vehicleType = value.abandonedVehicle?.vehicleType; 
+        value.fullName = value.createdBy?.fullName; 
+        //value.vehicleType = value.abandonedVehicle?.vehicleType; 
       });
   
       this.dynamaicDataForTable = { cols, values };
