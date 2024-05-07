@@ -49,23 +49,6 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             { label: 'Duty Points DB', icon: 'fa fa-bandcamp', access: '4,5', routerLink: ['/main/lot/dutyPoints'] },
-            // {
-            //     label: 'Performance', icon: 'pi pi-file', access: '1', routerLink: ['/main/performance'],
-            //     items: [
-            //         { label: 'Overall', icon: 'pi pi-file-pdf', routerLink: ['/main/performance/overall'] },
-            //         { label: 'Report', icon: 'pi pi-file-pdf', routerLink: ['/main/performance/performReport'] }
-            //     ]
-            // },
-            // {
-            //     label: 'Reports', icon: 'pi pi-compass', access: '1', routerLink: ['/main/reports'],
-            //     items: [
-            //         { label: 'State', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/state-summary'] },
-            //         { label: 'District', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/district-summary'] },
-            //         { label: 'Police Station', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/ps-summary'] },
-            //         { label: 'All - Summary', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-report'] },
-            //         { label: 'All - Detailed', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-detail-report'] }
-            //     ]
-            // },
             // Dist.Admin
             {
                 label: 'Users', icon: 'far fa-user-circle', access: '2', routerLink: ['/main/user-config'],
@@ -85,14 +68,6 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Police Station', icon: 'pi pi-file', routerLink: ['/main/master/police-station-list'] },
                 ]
             },
-            // {
-            //     label: 'Reports', icon: 'pi pi-compass', access: '2', routerLink: ['/main/reports'],
-            //     items: [
-            //         { label: 'Police Station', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/distReport'] },
-            //         { label: 'All - Summary', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-report'] },
-            //         { label: 'All - Detailed', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-detail-report'] }
-            //     ]
-            // },
             // Senior officer
             {
                 label: 'Inventory', icon: 'fab fa-delicious', access: '4,5', routerLink: ['/main/lot/assetList']
@@ -100,6 +75,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Report', icon: 'fab fa-delicious', access: '4,5', routerLink: ['/main/performance/report']
             },
+            // SHO
             {
                 label: 'Report', icon: 'fas fa-database', access: '3', routerLink: ['/main/reports'],
                 items: [
@@ -111,100 +87,7 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
-            // SHO
-            // {
-            //     label: 'Daily Activity', icon: 'pi pi-calendar', access: '4', routerLink: ['/main/daily-activity'],
-            //     items: [
-            //         { label: 'Beat', icon: 'pi pi-book', routerLink: ['/main/daily-activity/beat/beat-list'] },
-            //         {
-            //             label: 'Field Duty', icon: 'pi pi-book', routerLink: ['/main/daily-activity/special-duty'],
-            //             items: [
-            //                 {
-            //                     label: 'Summon/Warrant', icon: 'pi pi-clone', routerLink: ['/main/daily-activity/special-duty/summon-warrant-form']
-            //                 },
-            //                 {
-            //                     label: 'Police Verification', icon: 'pi pi-clone', routerLink: ['/main/daily-activity/special-duty/police-verification-form']
-            //                 },
-            //                 {
-            //                     label: 'Petition Enquiry', icon: 'pi pi-clone', routerLink: ['/main/daily-activity/special-duty/petition-enquiry-form']
-            //                 },
-            //                 {
-            //                     label: 'Tapal Service', icon: 'pi pi-clone', routerLink: ['/main/daily-activity/special-duty/tapal-duty-form']
-            //                 },
-            //                 {
-            //                     label: 'Court Duty', icon: 'pi pi-clone', routerLink: ['/main/daily-activity/special-duty/court-duty-form']
-            //                 },
-            //                 {
-            //                     label: 'Hospital Duty', icon: 'pi pi-clone', routerLink: ['/main/daily-activity/special-duty/hospital-duty-form']
-            //                 },
-
-            //             ]
-            //         }, 
-            //         {
-            //             label: 'Field Task', icon: 'pi pi-book', routerLink: ['/main/daily-activity/field-task'],
-            //             items: [
-            //                 // {
-            //                 //     label: 'List', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/field-task-list']
-            //                 // },
-            //                 // {
-            //                 //     label: 'Person Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/person-check-form']
-            //                 // },
-            //                 // {
-            //                 //     label: 'Vehicle Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/vehicle-check-form']
-            //                 // },
-            //                 {
-            //                     label: 'Premise Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/premise-check-form']
-            //                 },
-            //                 // {
-            //                 //     label: 'Incident Report', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/incident-report-form']
-            //                 // },
-            //                 {
-            //                     label: 'Bad Character Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/bad-char-check-form']
-            //                 },
-            //                 // {
-            //                 //     label: 'Transport Point', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/transport-point-form']
-            //                 // },
-            //                 // {
-            //                 //     label: 'IMEI Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/imei-search-form']
-            //                 // },
-            //                 // {
-            //                 //     label: 'Person Vehicle Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/person-vehicle-check-form']
-            //                 // },
-            //                 {
-            //                     label: 'Locked House Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/unreg-lochouse-check-form']
-            //                 },
-            //                 {
-            //                     label: 'Senior Citizen Check', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/senior-citizen-check-form']
-            //                 },
-            //                 // {
-            //                 //     label: 'Alerts', icon: 'pi pi-images', routerLink: ['/main/daily-activity/field-task/alert-list']
-            //                 // }
-            //             ]
-            //         }
-            //     ]
-            // },
-            // {
-            //     label: 'Master', icon: 'far fa-user-circle', access: '4', routerLink: ['/main/db-master'],
-            //     items: [
-            //         { label: 'Bad Character', icon: 'pi pi-file', routerLink: ['/main/db-master/master-badcharacter-list'] }, 
-            //         { label: 'Locked House', icon: 'pi pi-file', routerLink: ['/main/db-master/master-lockhouse-list'] },
-            //         { label: 'Senior Citizen', icon: 'pi pi-file', routerLink: ['/main/db-master/master-seniorcitizen-list'] }
-            //     ]
-            // },
-            // {
-            //     label: 'Zone Master', icon: 'pi pi-database', access: '4', routerLink: ['/main/master'],
-            //     items: [
-            //         { label: 'Add', icon: 'pi pi-file', routerLink: ['/main/master/beat-zone-form'] }, 
-            //         { label: 'List', icon: 'pi pi-file', routerLink: ['/main/master/beat-zone-list'] }
-            //     ]
-            // },
-            // {
-            //     label: 'Reports', icon: 'pi pi-copy', access: '4', routerLink: ['/main/reports'],
-            //     items: [
-            //         { label: 'Summary Report', icon: 'pi pi-file-excel', routerLink: ['/main/reports/beat-summary'] },
-            //         { label: 'Detailed Report', icon: 'pi pi-file-excel', routerLink: ['/main/reports/mis-reports'] }
-            //     ]
-            // }
+        
         ];
         this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
         this.userName = this.userData.data.firstName;
