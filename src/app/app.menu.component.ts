@@ -57,24 +57,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Map Location', icon: 'pi pi-file', routerLink: ['/main/master/locationMap'] }
                 ]
             },
-            { label: 'Duty Points', icon: 'fa fa-bandcamp', access: '4', routerLink: ['/main/lot/dutyPoints'] },
-            // {
-            //     label: 'Performance', icon: 'pi pi-file', access: '1', routerLink: ['/main/performance'],
-            //     items: [
-            //         { label: 'Overall', icon: 'pi pi-file-pdf', routerLink: ['/main/performance/overall'] },
-            //         { label: 'Report', icon: 'pi pi-file-pdf', routerLink: ['/main/performance/performReport'] }
-            //     ]
-            // },
-            // {
-            //     label: 'Reports', icon: 'pi pi-compass', access: '1', routerLink: ['/main/reports'],
-            //     items: [
-            //         { label: 'State', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/state-summary'] },
-            //         { label: 'District', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/district-summary'] },
-            //         { label: 'Police Station', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/ps-summary'] },
-            //         { label: 'All - Summary', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-report'] },
-            //         { label: 'All - Detailed', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-detail-report'] }
-            //     ]
-            // },
+            { label: 'Duty Points DB', icon: 'fa fa-bandcamp', access: '4,5', routerLink: ['/main/lot/dutyPoints'] },
             // Dist.Admin
             {
                 label: 'Users', icon: 'far fa-user-circle', access: '2', routerLink: ['/main/user-config'],
@@ -97,14 +80,6 @@ export class AppMenuComponent implements OnInit {
                     
                 ]
             },
-            // {
-            //     label: 'Reports', icon: 'pi pi-compass', access: '2', routerLink: ['/main/reports'],
-            //     items: [
-            //         { label: 'Police Station', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/distReport'] },
-            //         { label: 'All - Summary', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-report'] },
-            //         { label: 'All - Detailed', icon: 'pi pi-file-pdf', routerLink: ['/main/reports/admin-detail-report'] }
-            //     ]
-            // },
             // Senior officer
             {
                 label: 'Inventory', icon: 'fab fa-delicious', access: '4', routerLink: ['/main/lot/assetList']
@@ -123,6 +98,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'PoliceStation', icon: 'fa fa-home', access: '4', routerLink: ['/main/lot/policeStation']
             },
+            // SHO
             {
                 label: 'Report', icon: 'fas fa-database', access: '3', routerLink: ['/main/reports'],
                 items: [
@@ -133,7 +109,8 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Location Report', icon: 'pi pi-file', routerLink: ['/main/reports/locationReport'] }
                 ]
             },
-            // { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
+            { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
+        
         ];
         this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
         this.userName = this.userData.data.firstName;
