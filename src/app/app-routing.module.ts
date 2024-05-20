@@ -20,7 +20,10 @@ const routes: Routes = [
             { path: 'performance', loadChildren: () => import('./pages/performance/performance.module').then(m => m.PerformanceModule) },
             { path: 'user-config', loadChildren: () => import('./pages/user-config/user-config.module').then(m => m.UserConfigModule) },
             { path: 'reports', loadChildren: () => import('./pages/reports/reports.module').then(m => m.ReportsModule) },
-            { path: 'lot', loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule) }
+            { path: 'lot', loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule) },
+            { path: 'task', loadChildren: () => import('./pages/task/task.module').then(m => m.TaskModule) },
+            { path: 'duty', loadChildren: () => import('./pages/duty/duty.module').then(m => m.DutyModule) },
+
         ]
     },
     { path: 'error', component: AppErrorComponent },

@@ -24,9 +24,11 @@ import { LocationService } from './services/location.service';
 import { DynamicViewTableComponent } from './components/dynamic-view-table/dynamic-view-table.component';
 import { DynamicLivedataMapComponent } from './components/dynamic-livedata-map/dynamic-livedata-map.component';
 import { DynamicLoaderComponent } from './components/dynamic-loader/dynamic-loader.component';
+import { DynamicMapEditComponent } from './components/dynamic-map-edit/dynamic-map-edit.component';
+import { DynamicMapMultiLocationComponent } from './components/dynamic-map-multi-location/dynamic-map-multi-location.component';
 
 @NgModule({
-  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent, DynamicViewTableComponent, DynamicLivedataMapComponent, DynamicLoaderComponent],
+  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent, DynamicViewTableComponent, DynamicLivedataMapComponent, DynamicLoaderComponent, DynamicMapEditComponent, DynamicMapMultiLocationComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -39,7 +41,9 @@ import { DynamicLoaderComponent } from './components/dynamic-loader/dynamic-load
     })
   ], 
   providers:[AudioRecordingService,VideoRecordingService,MapMarkerService,AuthguardServiceService,LocationService],
-  exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent,DynamicViewTableComponent,DynamicLivedataMapComponent,DynamicLoaderComponent]
+  exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent,DynamicViewTableComponent,DynamicLivedataMapComponent,DynamicLoaderComponent,
+    DynamicMapEditComponent, DynamicMapMultiLocationComponent
+  ]
 })
 export class SharedModule { }
  

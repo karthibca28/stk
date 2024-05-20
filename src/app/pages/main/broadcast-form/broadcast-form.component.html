@@ -1,39 +1,39 @@
-<form  [formGroup]="form" (ngSubmit)="submit()">
+<form [formGroup]="form" (ngSubmit)="submit()">
   <div class="grid">
     <div class="col-12 pb-0">
-        <div class="flex align-items-center justify-content-between mb-2">
-            <div class="title">
-                <h3 class="color-04">Add BroadCast</h3>
-            </div>
-            <div class="btn-top">
-                <button pButton label="Go to List" type="button" icon="pi pi-arrow-left"
-                    class="p-button-info border5" (click)="cancel()"></button>
-            </div>
+      <div class="flex align-items-center justify-content-between mb-2">
+        <div class="title">
+          <h3 class="color-04">Add BroadCast</h3>
         </div>
+        <div class="btn-top">
+          <button pButton label="Go to List" type="button" icon="pi pi-arrow-left" class="p-button-info border5"
+            (click)="cancel()"></button>
+        </div>
+      </div>
     </div>
     <!-- <h3 class="color-04">Add BroadCast</h3>
     <div class="grid"> -->
-        <div class="col-12 md:col-8">
-            <mat-card class="md:px-5">
-                <div class="field">
-                    <mat-form-field appearance="" class="w-full">
-                        <mat-label>Title</mat-label>
-                        <input matInput formControlName="title" maxlength="50">
-                        <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.title?.touched && form?.controls?.title?.errors?.required)">Title is
-                        required</mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="field">
-                    <mat-form-field appearance="" class="w-full">
-                        <mat-label>Message</mat-label>
-                        <input matInput formControlName="message" maxlength="500">
-                        <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.message?.touched && form?.controls?.message?.errors?.required)">Message is
-                        required</mat-error>
-                    </mat-form-field>
-                </div>
-                <!-- <div class="field" *ngIf="data.stateId === true">
+    <div class="col-12 md:col-8">
+      <mat-card class="md:px-5">
+        <div class="field">
+          <mat-form-field appearance="" class="w-full">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" maxlength="50">
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.title?.touched && form?.controls?.title?.errors?.required)">Title is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field">
+          <mat-form-field appearance="" class="w-full">
+            <mat-label>Message</mat-label>
+            <input matInput formControlName="message" maxlength="500">
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.message?.touched && form?.controls?.message?.errors?.required)">Message is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- <div class="field" *ngIf="data.stateId === true">
                   <mat-form-field class="w-full">
                     <mat-label>State</mat-label>
                     <mat-select formControlName="stateId">
@@ -42,90 +42,96 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-                  </div> -->  
-                <div class="field" *ngIf="data.adminId === true">
-                  <mat-form-field class="w-full">
-                    <mat-label>Administration</mat-label>
-                    <mat-select formControlName="adminId">
-                      <mat-option *ngFor="let adminList of adminList" [value]="adminList.id" (click)="getZoneList(adminList.id)">
-                        {{adminList.name}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.adminId?.touched && form?.controls?.adminId?.errors?.required)">Administration is
-                        required</mat-error>
-                  </mat-form-field>
-                  </div>
-  
-                      <div class="field"  *ngIf="data.zoneId === true">
-                          <mat-form-field class="w-full">
-                            <mat-label>Zone</mat-label>
-                            <mat-select formControlName="zoneId" >
-                              <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id" (click)="getRangeList(zoneList.id)">
-                                {{zoneList.name}}
-                              </mat-option>
-                            </mat-select>
-                            <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.zoneId?.touched && form?.controls?.zoneId?.errors?.required)">Zone is
-                        required</mat-error>
-                          </mat-form-field>
-                          </div>
-  
-                          <div class="field"  *ngIf="data.rangeId === true">
-                              <mat-form-field class="w-full">
-                                <mat-label>Range</mat-label>
-                                <mat-select formControlName="rangeId">
-                                  <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id" (click)="getDistrictList(rangeList.id)">
-                                    {{rangeList.name}}
-                                  </mat-option>
-                                </mat-select>
-                                <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.rangeId?.touched && form?.controls?.rangeId?.errors?.required)">Range is
-                        required</mat-error>
-                              </mat-form-field>
-                              </div>
-          
-                              <div class="field"  *ngIf="data.districtId === true">
-                                  <mat-form-field class="w-full">
-                                         <mat-label>District</mat-label>
-                                    <mat-select formControlName="districtId">
-                                      <mat-option *ngFor="let districtList of districtList" [value]="districtList.id" (click)="getSubDivision(districtList.id)">
-                                        {{districtList.name}}
-                                      </mat-option>
-                                    </mat-select>
-                                    <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.districtId?.touched && form?.controls?.districtId?.errors?.required)">District is
-                        required</mat-error>
-                                  </mat-form-field>
-                         </div>
-                  
-                         <div class="field"  *ngIf="data.subDivisionId === true">
-                            <mat-form-field class="w-full">
-                                  <mat-label>SubDivision</mat-label>
-                              <mat-select formControlName="subDivisionId">
-                                <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id" (click)="getPoliceStaion(subDivisionList.id)">
-                                  {{subDivisionList.name}}
-                                </mat-option>
-                              </mat-select>
-                              <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivision is
-                        required</mat-error>
-                            </mat-form-field>
-                 </div>
-                 <div class="field"  *ngIf="data.policeStationId === true">
-                  <mat-form-field class="w-full">
-                         <mat-label>Police Station</mat-label>
-                    <mat-select formControlName="policeStationId">
-                      <mat-option *ngFor="let policeStationList of policeStationList" [value]="policeStationList.id">
-                        {{policeStationList.name}}
-                      </mat-option>
-                    </mat-select>
-                    <mat-error id="name-help" class="block text-danger"
-                        *ngIf="(form?.controls?.policeStationId?.touched && form?.controls?.policeStationId?.errors?.required)">Police Station is
-                        required</mat-error>
-                  </mat-form-field>
-         </div>
-                <!-- <div class="custom-card" style="display: flex;justify-content: space-around;">
+                  </div> -->
+        <div class="field" *ngIf="data.adminId === true">
+          <mat-form-field class="w-full">
+            <mat-label>Administration</mat-label>
+            <mat-select formControlName="adminId">
+              <mat-option *ngFor="let adminList of adminList" [value]="adminList.id"
+                (click)="getZoneList(adminList.id)">
+                {{adminList.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.adminId?.touched && form?.controls?.adminId?.errors?.required)">Administration is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="field" *ngIf="data.zoneId === true">
+          <mat-form-field class="w-full">
+            <mat-label>Zone</mat-label>
+            <mat-select formControlName="zoneId">
+              <mat-option *ngFor="let zoneList of zoneList" [value]="zoneList.id" (click)="getRangeList(zoneList.id)">
+                {{zoneList.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.zoneId?.touched && form?.controls?.zoneId?.errors?.required)">Zone is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="field" *ngIf="data.rangeId === true">
+          <mat-form-field class="w-full">
+            <mat-label>Range</mat-label>
+            <mat-select formControlName="rangeId">
+              <mat-option *ngFor="let rangeList of rangeList" [value]="rangeList.id"
+                (click)="getDistrictList(rangeList.id)">
+                {{rangeList.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.rangeId?.touched && form?.controls?.rangeId?.errors?.required)">Range is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="field" *ngIf="data.districtId === true">
+          <mat-form-field class="w-full">
+            <mat-label>District</mat-label>
+            <mat-select formControlName="districtId">
+              <mat-option *ngFor="let districtList of districtList" [value]="districtList.id"
+                (click)="getSubDivision(districtList.id)">
+                {{districtList.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.districtId?.touched && form?.controls?.districtId?.errors?.required)">District is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="field" *ngIf="data.subDivisionId === true">
+          <mat-form-field class="w-full">
+            <mat-label>SubDivision</mat-label>
+            <mat-select formControlName="subDivisionId">
+              <mat-option *ngFor="let subDivisionList of subDivisionList" [value]="subDivisionList.id"
+                (click)="getPoliceStaion(subDivisionList.id)">
+                {{subDivisionList.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.subDivisionId?.touched && form?.controls?.subDivisionId?.errors?.required)">SubDivision
+              is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field" *ngIf="data.policeStationId === true">
+          <mat-form-field class="w-full">
+            <mat-label>Police Station</mat-label>
+            <mat-select formControlName="policeStationId">
+              <mat-option *ngFor="let policeStationList of policeStationList" [value]="policeStationList.id">
+                {{policeStationList.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error id="name-help" class="block text-danger"
+              *ngIf="(form?.controls?.policeStationId?.touched && form?.controls?.policeStationId?.errors?.required)">Police
+              Station is
+              required</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- <div class="custom-card" style="display: flex;justify-content: space-around;">
                     <div class="card-selection">
                         <label style="display: flex;justify-content: center;margin-top: 15px;">Add Voice Note</label>
                         <div style="margin-top:5px;padding-left: 20px;">
@@ -142,44 +148,46 @@
                         </div>
                     </div>
                     </div> -->
-              <div class="card" *ngFor="let card of documentfiles; let i = index" style="display: flex;justify-content: space-around;margin-top: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                <div class="card-selection" >
-                    <label style="display: flex;justify-content: center;margin-top: 15px;">Upload File</label>
-                    <div  style="margin-top:5px;display: flex;padding-left: 20px;padding-right: 20px;align-items: center;">
-                          <div (click)="triggerFileInput.click()" style="cursor: pointer;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
-                              <circle cx="19.5" cy="19.5" r="19.5" fill="#33DD6D" />
-                              <mask id="mask0_743_551" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="23" height="23">
-                                <rect x="8.28156" y="8.28162" width="22.4457" height="22.4457" fill="#D9D9D9" />
-                              </mask>
-                              <g mask="url(#mask0_743_551)">
-                                <path
-                                  d="M18.5692 24.1806H20.4397V20.2527L21.936 21.749L23.2454 20.4397L19.5044 16.6988L15.7635 20.4397L17.0728 21.749L18.5692 20.2527V24.1806ZM12.0225 26.9864C11.5082 26.9864 11.0678 26.8032 10.7015 26.4369C10.3352 26.0706 10.1521 25.6303 10.1521 25.1159V13.8931C10.1521 13.3787 10.3352 12.9383 10.7015 12.572C11.0678 12.2057 11.5082 12.0226 12.0225 12.0226H17.634L19.5044 13.8931H26.9863C27.5007 13.8931 27.941 14.0762 28.3073 14.4425C28.6736 14.8088 28.8568 15.2491 28.8568 15.7635V25.1159C28.8568 25.6303 28.6736 26.0706 28.3073 26.4369C27.941 26.8032 27.5007 26.9864 26.9863 26.9864H12.0225ZM12.0225 13.8931V25.1159H26.9863V15.7635H18.7329L16.8624 13.8931H12.0225Z"
-                                  fill="#1C1B1F"
-                                />
-                              </g>
-                            </svg>
-                            <input type="file" (change)="onFileSelected($event, i)" accept="*" style="display: none;" #triggerFileInput multiple formControlName="files">
-                          </div>
-                          <div class="ml-4" *ngIf="selectedFiles[i]">{{selectedFiles[i].name}}</div>
-                          <div style="justify-content: flex-end;display: flex;width: 100%;">
-                          <span (click)="addNewSet(i)">
-                            <i class='pi pi-plus-circle' style="color:#379683;font-size: 20px;"></i>
-                        </span > 
-                        <span *ngIf="i > 0" (click)="minusNewSet(i)" class="ml-2">
-                          <i class='pi pi-minus-circle' style="color:#FF4081;font-size: 20px;"></i>
+        <div class="card" *ngFor="let card of documentfiles; let i = index"
+          style="display: flex;justify-content: space-around;margin-top: 30px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+          <div class="card-selection">
+            <label style="display: flex;justify-content: center;margin-top: 15px;">Upload File</label>
+            <div style="margin-top:5px;display: flex;padding-left: 20px;padding-right: 20px;align-items: center;">
+              <div (click)="triggerFileInput.click()" style="cursor: pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39" fill="none">
+                  <circle cx="19.5" cy="19.5" r="19.5" fill="#33DD6D" />
+                  <mask id="mask0_743_551" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="8" y="8" width="23"
+                    height="23">
+                    <rect x="8.28156" y="8.28162" width="22.4457" height="22.4457" fill="#D9D9D9" />
+                  </mask>
+                  <g mask="url(#mask0_743_551)">
+                    <path
+                      d="M18.5692 24.1806H20.4397V20.2527L21.936 21.749L23.2454 20.4397L19.5044 16.6988L15.7635 20.4397L17.0728 21.749L18.5692 20.2527V24.1806ZM12.0225 26.9864C11.5082 26.9864 11.0678 26.8032 10.7015 26.4369C10.3352 26.0706 10.1521 25.6303 10.1521 25.1159V13.8931C10.1521 13.3787 10.3352 12.9383 10.7015 12.572C11.0678 12.2057 11.5082 12.0226 12.0225 12.0226H17.634L19.5044 13.8931H26.9863C27.5007 13.8931 27.941 14.0762 28.3073 14.4425C28.6736 14.8088 28.8568 15.2491 28.8568 15.7635V25.1159C28.8568 25.6303 28.6736 26.0706 28.3073 26.4369C27.941 26.8032 27.5007 26.9864 26.9863 26.9864H12.0225ZM12.0225 13.8931V25.1159H26.9863V15.7635H18.7329L16.8624 13.8931H12.0225Z"
+                      fill="#1C1B1F" />
+                  </g>
+                </svg>
+                <input type="file" (change)="onFileSelected($event, i)" accept="*" style="display: none;"
+                  #triggerFileInput multiple formControlName="files">
+              </div>
+              <div class="ml-4" *ngIf="selectedFiles[i]">{{selectedFiles[i].name}}</div>
+              <div style="justify-content: flex-end;display: flex;width: 100%;">
+                <span (click)="addNewSet(i)">
+                  <i class='pi pi-plus-circle' style="color:#379683;font-size: 20px;"></i>
+                </span>
+                <span *ngIf="i > 0" (click)="minusNewSet(i)" class="ml-2">
+                  <i class='pi pi-minus-circle' style="color:#FF4081;font-size: 20px;"></i>
 
-                      </span> 
-                      </div>                                                                        
-                    </div>
-                </div>
+                </span>
+              </div>
             </div>
-            <div class="text-right mt-6">
-              <button mat-raised-button mat-button color="primary">Submit</button>
           </div>
-            </mat-card>
         </div>
+        <div class="text-right mt-6">
+          <button mat-raised-button mat-button color="primary">Submit</button>
+        </div>
+      </mat-card>
     </div>
+  </div>
 </form>
 <!-- <button (click)="openCamera()">Open Camera</button>
 <video #videoElement width="300" height="300"></video> -->

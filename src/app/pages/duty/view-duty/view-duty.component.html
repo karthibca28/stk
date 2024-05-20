@@ -1,0 +1,101 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <div>
+            <mat-card>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Duty Type</mat-label>
+                    <mat-select formControlName="dutyType" placeholder="Duty Type">
+                        <mat-option *ngFor="let duty of dutyType" [value]="duty.id">
+                            {{ duty.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.dutyType?.touched && form?.controls?.dutyType?.errors?.required)">Duty Type
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Assign To</mat-label>
+                    <mat-select formControlName="assignedTo" placeholder="Assign To">
+                        <mat-option *ngFor="let assignedTo of assignedTo" [value]="assignedTo.id">
+                            {{ assignedTo.fullName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.assignedTo?.touched && form?.controls?.assignedTo?.errors?.required)">Assign To
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="startDate" placeholder="Start Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.startDate?.touched && form?.controls?.startDate?.errors?.required)">Start Date
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="endDate" placeholder="End Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.endDate?.touched && form?.controls?.endDate?.errors?.required)">End Date
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Start Location</mat-label>
+                    <mat-select formControlName="startLocationId" placeholder="Start Location" (selectionChange)="onLocationChange($event, 'start')">
+                        <mat-option *ngFor="let location of location" [value]="location.id">
+                            {{ location.locationName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.startLocationId?.touched && form?.controls?.startLocationId?.errors?.required)">Start Location
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Start Latitude</mat-label>
+                    <input matInput placeholder="Latitude" formControlName="startLatitude" readonly>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.startLatitude?.touched && form?.controls?.startLatitude?.errors?.required)">Start Latitude
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Start Longitude</mat-label>
+                    <input matInput placeholder="Longitude" formControlName="startLongitude" readonly>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.startLongitude?.touched && form?.controls?.startLongitude?.errors?.required)">Start Longitude
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>End Location</mat-label>
+                    <mat-select formControlName="endLocationId" placeholder="End Location" (selectionChange)="onLocationChange($event, 'end')">
+                        <mat-option *ngFor="let location of location" [value]="location.id">
+                            {{ location.locationName }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.endLocationId?.touched && form?.controls?.endLocationId?.errors?.required)">End Location
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>End Latitude</mat-label>
+                    <input matInput placeholder="Latitude" formControlName="endLatitude" readonly>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.endLatitude?.touched && form?.controls?.endLatitude?.errors?.required)">End Latitude
+                    is required</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>End Longitude</mat-label>
+                    <input matInput placeholder="Longitude" formControlName="endLongitude" readonly>
+                    <mat-error id="name-help" class="block text-danger"
+                    *ngIf="(form?.controls?.endLongitude?.touched && form?.controls?.endLongitude?.errors?.required)">End Longitude
+                    is required</mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary">Submit</button>
+                
+
+            </mat-card>
+        </div>
+    </div>
+</form>

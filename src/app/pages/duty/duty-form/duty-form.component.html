@@ -1,33 +1,37 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
-        <!-- <div>
-            <p class="font-bold" style="text-align: center;">{{dutyPoints.locationName}}</p>
-        </div> -->
-        <div style="display: flex;justify-content: space-around;">
+        <div>
             <mat-card>
                 <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                     <mat-label>Location Name</mat-label>
-                    <input matInput placeholder="Location Name" formControlName="locationName">
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Point Type</mat-label>
-                    <mat-select formControlName="pointType" placeholder="Point Type">
-                        <mat-option *ngFor="let pointType of pointTypes" [value]="pointType.id">
-                            {{ pointType.name }}
-                        </mat-option>
-                    </mat-select>
+                    <input matInput placeholder="Location Name" formControlName="locationName" readonly>
+                    <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.locationName?.touched && form?.controls?.locationName?.errors?.required)">Location
+                        Name is required</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                     <mat-label>Latitude</mat-label>
                     <input matInput placeholder="Latitude" formControlName="latitude">
+                    <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.latitude?.touched && form?.controls?.latitude?.errors?.required)">Latitude
+                        is required</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                     <mat-label>Longitude</mat-label>
                     <input matInput placeholder="Longitude" formControlName="longitude">
+                    <mat-error id="name-help" class="block text-danger"
+                        *ngIf="(form?.controls?.longitude?.touched && form?.controls?.longitude?.errors?.required)">Longitude
+                        is required</mat-error>
                 </mat-form-field>
-                <button mat-raised-button type="button" style="margin-top: 10px;" (click)="fileInput.click()">Choose File</button>
+
+                <button mat-raised-button type="button" style="margin-top: 10px;" (click)="fileInput.click()">Choose
+                    File</button>
                 <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event, 'file')">
-                <button mat-raised-button color="primary">Submit</button>
+                <div *ngIf="selectedFile">{{ selectedFile.name }}</div>
+
+                <div>
+                    <button mat-raised-button color="primary">Submit</button>
+                </div>
                 <div class="card p-0" style="margin-top: 10px;flex: 0;">
                     <div class="card-header"
                         style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
@@ -37,7 +41,6 @@
                         <app-dynamic-map-edit (location)="location($event)"></app-dynamic-map-edit>
                     </div>
                 </div>
-
             </mat-card>
         </div>
     </div>

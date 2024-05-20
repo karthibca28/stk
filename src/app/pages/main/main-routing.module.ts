@@ -17,6 +17,7 @@ import { AlertComponent } from './alert/alert.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { ViewDutyComponent } from './view-duty/view-duty.component';
 import { LiveUsersComponent } from './live-users/live-users.component';
+import { SosAlertViewComponent } from './sos-alert-view/sos-alert-view.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,14 @@ const routes: Routes = [
   {
     path: 'sos-alert',
     component: SosAlertComponent
+  },
+  {
+    path: 'sos-alert-view',
+    component: SosAlertViewComponent
+  },
+  {
+    path: 'sos-alert-view/:sosAlertId',
+    component: SosAlertViewComponent
   },
   {
     path: 'alert',

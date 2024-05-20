@@ -110,6 +110,18 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
+             
+            //testsho
+            {
+                label: 'Duty', icon: 'fas fa-database', access: '3', routerLink: ['/main/duty'],
+                items: [
+                    { label: 'Duty Points Database', icon: 'pi pi-file', routerLink: ['/main/duty/duty-form'] },
+                    { label: 'Inventary Management', icon: 'pi pi-file', routerLink: ['/main/duty/inventory-form'] },
+                    { label: 'Assign Duty', icon: 'pi pi-file', routerLink: ['/main/duty/view-duty'] },
+                    { label: 'Fixed VIP Routes', icon: 'pi pi-file', routerLink: ['/main/duty/vip-routes'] },
+                    //{ label: 'Location Report', icon: 'pi pi-file', routerLink: ['/main/reports/locationReport'] }
+                ]
+            }
         
         ];
         this.userData = JSON.parse(sessionStorage.getItem('userInfo'));

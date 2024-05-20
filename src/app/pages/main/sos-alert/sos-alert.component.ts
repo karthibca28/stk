@@ -37,5 +37,9 @@ export class SosAlertComponent implements OnInit {
       console.log("master", this.dynamaicDataForTable);
     });
   }
+
+  viewRecord(sosAlertId:any){
+    this.router.navigate([`main/lot/sos-alert-view`,sosAlertId])
+  }
   
 }

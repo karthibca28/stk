@@ -1,0 +1,79 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="flex align-items-center justify-content-between mb-2">
+            <div class="title">
+                <h3 class="color-04">SOS Details</h3>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="card col-12 md:col-12">
+                <form [formGroup]="form">
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Duty Type</mat-label>
+                            <input matInput formControlName="dutyType" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Administration Name</mat-label>
+                            <input matInput formControlName="administrationName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Zone Name</mat-label>
+                            <input matInput formControlName="zoneName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Range Name</mat-label>
+                            <input matInput formControlName="rangeName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>District Name</mat-label>
+                            <input matInput formControlName="districtName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>SubDivision Name</mat-label>
+                            <input matInput formControlName="subDivisionName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>PoliceStation Name</mat-label>
+                            <input matInput formControlName="policeStationName" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Duty Start Date</mat-label>
+                            <input matInput formControlName="dutyStartDate" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Duty End Date</mat-label>
+                            <input matInput formControlName="dutyEndDate" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                    <div class="field">
+                        <mat-form-field appearance="" class="w-full">
+                            <mat-label>Status</mat-label>
+                            <input matInput formControlName="status" [readonly]="true">
+                        </mat-form-field>
+                    </div>
+                </form>
+                <div class="card-body p-2">
+                    <app-dynamic-map [latitude]="+sosAlert?.latitude" [longitude]="+sosAlert?.longitude"
+                        [nameField]="sosAlert?.locationName"></app-dynamic-map>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

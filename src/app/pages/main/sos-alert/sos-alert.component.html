@@ -6,7 +6,7 @@
             </div>
         </div>
         <div class="card">
-            <app-dynamic-report-table [dynamaicDataForTable]="dynamaicDataForTable" ></app-dynamic-report-table>
+            <app-dynamic-view-table [dynamaicDataForTable]="dynamaicDataForTable" (view)="viewRecord($event)"></app-dynamic-view-table>
         </div>
     </div>
 </div>

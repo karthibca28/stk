@@ -23,6 +23,7 @@ import { ViewTaskComponent } from './view-task/view-task.component';
 import { ViewDutyComponent } from './view-duty/view-duty.component';
 import { NgxAudioPlayerModule } from 'ngx-audio-player';
 import { LiveUsersComponent } from './live-users/live-users.component';
+import { SosAlertViewComponent } from './sos-alert-view/sos-alert-view.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { LiveUsersComponent } from './live-users/live-users.component';
     ViewTaskComponent,
     ViewDutyComponent,
     LiveUsersComponent,
+    SosAlertViewComponent,
   ],
   imports: [
     CommonModule,

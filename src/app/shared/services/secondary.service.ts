@@ -38,4 +38,31 @@ export class SecondaryService {
     return this.http.get(`${this.apiUrl}admin/summaryDetailDashboard?dateType=${dayType}&date=${date}&type=${dutyType}`);
   }
 
+  //sho
+
+  addDuty(data: any){
+    return this.http.post(`${this.apiUrl}sho/dutyPoint`, data)
+  }
+  addVehiclePoint(data: any){
+    return this.http.post(`${this.apiUrl}sho/vehiclePoint`, data)
+  }
+  addVipRoute(data: any){
+    return this.http.post(`${this.apiUrl}sho/vipRoute`, data)
+  }
+  addInventory(data: any){
+    return this.http.post(`${this.apiUrl}sho/inventoryMaster`, data)
+  }
+  getLocations(){
+    return this.http.get(`${this.apiUrl}sho/dutyPoint?pageNumber=1&pageSize=10`)
+  }
+  assignDuty(data: any){
+    return this.http.post(`${this.apiUrl}sho/assignDuty`, data)
+  }
+  getOfficer(){
+    return this.http.get(`${this.apiUrl}sho/fieldOfficer`)
+  }
+  getSosAlert(id: any){
+    return this.http.get(`${this.apiUrl}admin/alerts?id=${id}`)
+  }
+
 }
