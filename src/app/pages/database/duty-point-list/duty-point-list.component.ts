@@ -43,11 +43,11 @@ export class DutyPointListComponent implements OnInit {
   }
 
   viewRecord(dutyPointId:any){
-    this.router.navigate([`main/duty/duty-points-form`,dutyPointId])
+    this.router.navigate([`main/database/duty-point-form`,dutyPointId])
   }
 
   openForm() {
-    this.router.navigate(['main/duty/duty-points-form']);
+    this.router.navigate(['main/database/duty-point-form']);
 }
 
 }

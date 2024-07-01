@@ -23,6 +23,7 @@ const routes: Routes = [
             { path: 'lot', loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule) },
             { path: 'task', loadChildren: () => import('./pages/task/task.module').then(m => m.TaskModule) },
             { path: 'duty', loadChildren: () => import('./pages/duty/duty.module').then(m => m.DutyModule) },
+            { path: 'database', loadChildren: () => import('./pages/database/database.module').then(m => m.DatabaseModule)}
 
         ]
     },

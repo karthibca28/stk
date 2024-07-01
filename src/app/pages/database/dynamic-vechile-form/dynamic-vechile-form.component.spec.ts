@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VipRoutesComponent } from './vip-routes.component';
+import { DynamicVechileFormComponent } from './dynamic-vechile-form.component';
 
-describe('VipRoutesComponent', () => {
-  let component: VipRoutesComponent;
-  let fixture: ComponentFixture<VipRoutesComponent>;
+describe('DynamicVechileFormComponent', () => {
+  let component: DynamicVechileFormComponent;
+  let fixture: ComponentFixture<DynamicVechileFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VipRoutesComponent ]
+      declarations: [ DynamicVechileFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VipRoutesComponent);
+    fixture = TestBed.createComponent(DynamicVechileFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

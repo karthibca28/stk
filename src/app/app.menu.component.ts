@@ -100,23 +100,20 @@ export class AppMenuComponent implements OnInit {
                 label: 'PoliceStation', icon: 'fa fa-home', access: '4', routerLink: ['/main/lot/policeStation']
             },
             // SHO
-           
+
             { label: 'Settings', icon: 'fa fa-cog', access: '1,2,4', routerLink: ['/main/settings'] },
 
             //testsho
             {
-                label: 'Database', icon: 'fa fa-database', access: '3', routerLink: ['/main/duty'],
+                label: 'Database', icon: 'fa fa-database', access: '3', routerLink: ['/main/database'],
                 items: [
-                    { label: 'Duty Point', icon: 'pi pi-file', routerLink: ['/main/duty/duty-point-list'] },
-                    { label: 'Dynamic Vechile Point', icon: 'pi pi-file', routerLink: ['/main/duty/dynamic-vechile-point'] },
-                    { label: 'Fixed VIP Routes', icon: 'pi pi-file', routerLink: ['/main/duty/vip-route-list'] },
+                    { label: 'Duty Point', icon: 'pi pi-file', routerLink: ['/main/database/duty-point'] },
+                    { label: 'Dynamic Vechile Point', icon: 'pi pi-file', routerLink: ['/main/database/dynamic-vechile'] },
+                    { label: 'Fixed VIP Routes', icon: 'pi pi-file', routerLink: ['/main/database/vip-route'] },
                 ]
             },
             {
                 label: 'Duty', icon: 'fa fa-list-alt', access: '3', routerLink: ['/main/duty/duty-list'],
-                // items: [
-                //     { label: 'Assign Duty', icon: 'pi pi-file', routerLink: ['/main/duty/duty-list'] },
-                // ]
             },
             {
                 label: 'Defective Signals', icon: 'fas fa-signal', access: '3', routerLink: ['/main/duty/defective-signal-list'],
@@ -124,9 +121,6 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Inventory Management', icon: 'fab fa-delicious', access: '3', routerLink: ['/main/duty/inventory-list'],
             },
-            // {
-            //     label: 'Live Map', icon: 'fas fa-map-marker', access: '3', routerLink: ['/main/duty'],
-            // },
             {
                 label: 'SOS Alert', icon: 'fas fa-bell', access: '3', routerLink: ['/main/duty/sos-list'],
             },

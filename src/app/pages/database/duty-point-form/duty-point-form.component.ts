@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormService } from 'src/app/shared/services/form.service';
 import { LocationService } from 'src/app/shared/services/location.service';
@@ -8,11 +8,11 @@ import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-duty-points-form',
-  templateUrl: './duty-points-form.component.html',
-  styleUrls: ['./duty-points-form.component.scss']
+  selector: 'app-duty-point-form',
+  templateUrl: './duty-point-form.component.html',
+  styleUrls: ['./duty-point-form.component.scss']
 })
-export class DutyPointsFormComponent implements OnInit {
+export class DutyPointFormComponent implements OnInit {
   form: FormGroup;
   editMasterId: any;
   editData: any;
@@ -95,7 +95,7 @@ export class DutyPointsFormComponent implements OnInit {
     this.secondaryService.addDuty(formData).subscribe((res: any) => {
       if(res){
         this.sharedService.showSuccess('Duty Points Added Successfully');
-        this.router.navigate(['/main/duty/duty-point-list'])
+        this.router.navigate(['/main/database/duty-point'])
         }
     })
   }
@@ -166,4 +166,5 @@ export class DutyPointsFormComponent implements OnInit {
     this.isFileLoaded = true;
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
   }
+
 }

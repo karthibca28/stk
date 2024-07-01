@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-vip-routes',
-  templateUrl: './vip-routes.component.html',
-  styleUrls: ['./vip-routes.component.scss']
+  selector: 'app-vip-route-form',
+  templateUrl: './vip-route-form.component.html',
+  styleUrls: ['./vip-route-form.component.scss']
 })
-export class VipRoutesComponent implements OnInit {
+export class VipRouteFormComponent implements OnInit {
   form: FormGroup;
   locations: any;
   showAdditionalFields: boolean = false;
@@ -123,7 +123,7 @@ export class VipRoutesComponent implements OnInit {
       this.secondaryService.addVipRoute(data).subscribe((res: any) => {
         if(res){
           this.sharedService.showSuccess('VIP Routes Added Successfully');
-          this.router.navigate(['/main/duty/vip-routes'])
+          this.router.navigate(['/main/database/vip-route'])
           }
       });
     // } else {

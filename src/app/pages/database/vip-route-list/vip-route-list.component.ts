@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 
 @Component({
-  selector: 'app-vip-routes-list',
-  templateUrl: './vip-routes-list.component.html',
-  styleUrls: ['./vip-routes-list.component.scss']
+  selector: 'app-vip-route-list',
+  templateUrl: './vip-route-list.component.html',
+  styleUrls: ['./vip-route-list.component.scss']
 })
-export class VipRoutesListComponent implements OnInit {
+export class VipRouteListComponent implements OnInit {
 
   dynamaicDataForTable: any;
 
@@ -31,6 +31,7 @@ export class VipRoutesListComponent implements OnInit {
   }
 
   openForm() {
-    this.router.navigate(['/main/duty/vip-routes']);
+    this.router.navigate(['/main/database/vip-route-form']);
   }
+
 }

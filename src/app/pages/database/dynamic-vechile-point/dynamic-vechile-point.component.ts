@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 
 @Component({
-  selector: 'app-dynamic-vechile-list',
-  templateUrl: './dynamic-vechile-list.component.html',
-  styleUrls: ['./dynamic-vechile-list.component.scss']
+  selector: 'app-dynamic-vechile-point',
+  templateUrl: './dynamic-vechile-point.component.html',
+  styleUrls: ['./dynamic-vechile-point.component.scss']
 })
-export class DynamicVechileListComponent implements OnInit {
+export class DynamicVechilePointComponent implements OnInit {
 
   dynamaicDataForTable: any;
   pageSize: number = 10;
@@ -44,10 +44,11 @@ export class DynamicVechileListComponent implements OnInit {
   }
 
   viewRecord(vehiclePointId:any){
-    this.router.navigate([`main/duty/duty-form`,vehiclePointId])
+    this.router.navigate([`main/database/dynamic-vechile-form`,vehiclePointId])
   }
 
   openForm() {
-    this.router.navigate(['/main/duty/duty-form']);
+    this.router.navigate(['/main/database/dynamic-vechile-form']);
 }
+
 }

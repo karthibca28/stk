@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
-  selector: 'app-duty-form',
-  templateUrl: './duty-form.component.html',
-  styleUrls: ['./duty-form.component.scss']
+  selector: 'app-dynamic-vechile-form',
+  templateUrl: './dynamic-vechile-form.component.html',
+  styleUrls: ['./dynamic-vechile-form.component.scss']
 })
-export class DutyFormComponent implements OnInit {
+export class DynamicVechileFormComponent implements OnInit {
   form: FormGroup;
   selectedFile: any;
   editMasterId: any;
@@ -56,7 +56,7 @@ export class DutyFormComponent implements OnInit {
       this.secondaryService.addVehiclePoint(formData).subscribe((res: any) => {
         if(res){
           this.sharedService.showSuccess('Dynamic Vechile Point Added Successfully');
-          this.router.navigate(['/main/duty/dynamic-vechile-point'])
+          this.router.navigate(['/main/database/dynamic-vechile'])
           }
       })
     } else {

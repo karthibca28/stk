@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DutyPointsFormComponent } from './duty-points-form.component';
+import { DutyPointFormComponent } from './duty-point-form.component';
 
-describe('DutyPointsFormComponent', () => {
-  let component: DutyPointsFormComponent;
-  let fixture: ComponentFixture<DutyPointsFormComponent>;
+describe('DutyPointFormComponent', () => {
+  let component: DutyPointFormComponent;
+  let fixture: ComponentFixture<DutyPointFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DutyPointsFormComponent ]
+      declarations: [ DutyPointFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DutyPointsFormComponent);
+    fixture = TestBed.createComponent(DutyPointFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VipRoutesListComponent } from './vip-routes-list.component';
+import { VipRouteFormComponent } from './vip-route-form.component';
 
-describe('VipRoutesListComponent', () => {
-  let component: VipRoutesListComponent;
-  let fixture: ComponentFixture<VipRoutesListComponent>;
+describe('VipRouteFormComponent', () => {
+  let component: VipRouteFormComponent;
+  let fixture: ComponentFixture<VipRouteFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VipRoutesListComponent ]
+      declarations: [ VipRouteFormComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VipRoutesListComponent);
+    fixture = TestBed.createComponent(VipRouteFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
