@@ -17,52 +17,91 @@ export class SecondaryService {
   //     return this.http.post(`${this.apiUrl}Admin/addSpecialDutySubmit`, data);
   // }
   getDashboard() {
-      return this.http.get(`${this.apiUrl}seniorOfficer/dashboard`);
+    return this.http.get(`${this.apiUrl}seniorOfficer/dashboard`);
   }
   getDashboardAdmin() {
     return this.http.get(`${this.apiUrl}admin/dashboard`);
-}
+  }
+  getShoDashboard(){
+    return this.http.get(`${this.apiUrl}sho/dashboard`)
+  }
   getList(data: any) {
-      return this.http.post(`${this.apiUrl}webSo/getList`, data);
+    return this.http.post(`${this.apiUrl}webSo/getList`, data);
   }
   getPerformanceSummaryNew(data: any) {
-      return this.http.post(`${this.apiUrl}Officer/getPerformanceSummaryNew`, data);
+    return this.http.post(`${this.apiUrl}Officer/getPerformanceSummaryNew`, data);
   }
-  getDlCheck(){
+  getDlCheck() {
     return this.http.get(`${this.apiUrl}seniorOfficer/dlCheck?dateFilter=thisYear`);
   }
-  getChartDataForAdminDLRC(dayType:any,limit:any){
+  getChartDataForAdminDLRC(dayType: any, limit: any) {
     return this.http.get(`${this.apiUrl}admin/summaryDashboard?dateType=${dayType}&limit=${limit}`);
   }
-  getChartDataForAdmin(dayType:any,date:any,dutyType:any){
+  getChartDataForAdmin(dayType: any, date: any, dutyType: any) {
     return this.http.get(`${this.apiUrl}admin/summaryDetailDashboard?dateType=${dayType}&date=${date}&type=${dutyType}`);
+  }
+  getLocation() {
+    return this.http.get(`${this.apiUrl}sho/dutyPoint`)
   }
 
   //sho
 
-  addDuty(data: any){
+  addDuty(data: any) {
     return this.http.post(`${this.apiUrl}sho/dutyPoint`, data)
   }
-  addVehiclePoint(data: any){
+  addVehiclePoint(data: any) {
     return this.http.post(`${this.apiUrl}sho/vehiclePoint`, data)
   }
-  addVipRoute(data: any){
+  getVehiclePoint(pageNumber: any, pageSize: any) {
+    return this.http.get(`${this.apiUrl}sho/vehiclePoint?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+  }
+  addVipRoute(data: any) {
     return this.http.post(`${this.apiUrl}sho/vipRoute`, data)
   }
-  addInventory(data: any){
+  getVipRoute() {
+    return this.http.get(`${this.apiUrl}sho/vipRoute`)
+  }
+  addInventory(data: any) {
     return this.http.post(`${this.apiUrl}sho/inventoryMaster`, data)
   }
-  getLocations(){
-    return this.http.get(`${this.apiUrl}sho/dutyPoint?pageNumber=1&pageSize=10`)
+  getInventory(pageNumber: any, pageSize: any) {
+    return this.http.get(`${this.apiUrl}sho/inventoryMaster?pageNumber=${pageNumber}&pageSize=${pageSize}`)
   }
-  assignDuty(data: any){
+  getLocations(pageNumber: any, pageSize: any) {
+    return this.http.get(`${this.apiUrl}sho/dutyPoint?pageNumber=${pageNumber}&pageSize=${pageSize}`)
+  }
+  assignDuty(data: any) {
     return this.http.post(`${this.apiUrl}sho/assignDuty`, data)
   }
-  getOfficer(){
+  getDuty(pageNumber: any, pageSize: any) {
+    return this.http.get(`${this.apiUrl}sho/duty?pageNumber=${pageNumber}&pageSize=${pageSize}&status=ASSIGNED&dateFilter=thisYear`)
+  }
+  getOfficer() {
     return this.http.get(`${this.apiUrl}sho/fieldOfficer`)
   }
-  getSosAlert(id: any){
+  getSosAlert(id: any) {
     return this.http.get(`${this.apiUrl}admin/alerts?id=${id}`)
+  }
+  getDefectiveSignal() {
+    return this.http.get(`${this.apiUrl}common/defectSignal`)
+  }
+  addDefectiveSignal(data: any) {
+    return this.http.post(`${this.apiUrl}common/defectSignal`, data)
+  }
+  getSOSAlert(pageNumber: any, pageSize: any) {
+    return this.http.get(`${this.apiUrl}common/SOSAlert?dateFilter=today&pageNumber=${pageNumber}&pageSize=${pageSize}`)
+  }
+  addSOSAlert(data: any) {
+    return this.http.post(`${this.apiUrl}common/SOSAlert`, data)
+  }
+  viewDutyPoints(dutyPointId: any) {
+    return this.http.get(`${this.apiUrl}sho/dutyPoint?dutyPointId=${dutyPointId}`)
+  }
+  viewDynamicVechilePoint(vehiclePointId: any) {
+    return this.http.get(`${this.apiUrl}sho/vehiclePoint?vehiclePointId=${vehiclePointId}`)
+  }
+  viewDuty(dutyId: any) {
+    return this.http.get(`${this.apiUrl}sho/duty?dutyId=${dutyId}`)
   }
 
 }

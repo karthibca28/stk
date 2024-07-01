@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-vip-routes',
@@ -15,7 +17,7 @@ export class VipRoutesComponent implements OnInit {
     { id: "SINGLE_CAR", name: "SINGLE CAR"},
     { id: "CONVOY", name: "CONVOY"}
   ]
-  constructor( private fb: FormBuilder, private secondaryService: SecondaryService) { }
+  constructor( private fb: FormBuilder, private secondaryService: SecondaryService,  private sharedService: SharedService, private router: Router) { }
 
   ngOnInit(): void {
     this.initialForm();
@@ -62,7 +64,7 @@ export class VipRoutesComponent implements OnInit {
     }
 
     getLocations(){
-      this.secondaryService.getLocations().subscribe((res: any) => {
+      this.secondaryService.getLocation().subscribe((res: any) => {
         this.locations = res.data;
       })
     }
@@ -93,7 +95,7 @@ export class VipRoutesComponent implements OnInit {
       endDateTime.setHours(currentDateTime.getHours(), currentDateTime.getMinutes(), currentDateTime.getSeconds());
       const formattedStartDateTime = this.formatDateTime(startDateTime);
       const formattedEndDateTime = this.formatDateTime(endDateTime);
-      if(this.form.valid){
+      // if(this.form.valid){
       const data = {
           "name": this.form.value.name,
           "type": this.form.value.type,
@@ -119,11 +121,14 @@ export class VipRoutesComponent implements OnInit {
       }
   
       this.secondaryService.addVipRoute(data).subscribe((res: any) => {
-          console.log("res", res)
+        if(res){
+          this.sharedService.showSuccess('VIP Routes Added Successfully');
+          this.router.navigate(['/main/duty/vip-routes'])
+          }
       });
-    } else {
-      this.form.markAllAsTouched();
-    }
+    // } else {
+    //   this.form.markAllAsTouched();
+    // }
   }
   
 

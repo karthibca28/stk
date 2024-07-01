@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Paginator } from 'primeng/paginator';
 import { Table } from 'primeng/table';
 
 @Component({
@@ -10,17 +11,21 @@ import { Table } from 'primeng/table';
 export class DynamicTableComponent implements OnInit,OnChanges {
   cols: any[];
   tableData:any[]=[];
+  paginator!: Paginator;
   loading: boolean;
   userData:any;
   DistAdmin:boolean = false;
   roleId:any
   searchKeyword:any
+  pageSize: any
+  pageNumber: any
   searchHeader: any[] = ['firstName','lastName','roleCode','inventoryType','rankName','fullName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
   'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName'];
   @Input() dynamaicDataForTable = {
     cols:[],
     values:[]
   }
+  @Output() pagination = new EventEmitter();
   @Output() edit  = new EventEmitter();
   @Output() delete  = new EventEmitter();
   @Output() uptepwd = new EventEmitter();
@@ -56,6 +61,13 @@ export class DynamicTableComponent implements OnInit,OnChanges {
   clear(table: Table) {
       table.clear();
       this.searchKeyword = '';
+  }
+
+  onPageChange(event: any) {
+    this.pageSize = event.rows;
+    this.pageNumber = event.page + 1;
+    console.log(event, this.pageSize, this.pageNumber)
+    this.pagination.emit({ pageSize: this.pageSize, pageNumber: this.pageNumber });
   }
 
 }

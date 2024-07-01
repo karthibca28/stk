@@ -1,0 +1,221 @@
+<div class="layout-dashboard">
+    <div class="grid match-height card"
+        style="justify-content: space-around; border-radius: 10px; box-shadow: 0px 10px 40px rgba(41, 50, 65, 0.06); padding-top: 20px; padding-bottom: 20px;">
+        <div class="container-layout">
+            <label class="container-layout-content">Duties</label>
+            <div class="card-layout mt-4" style="--card-color: var(--card-color-1);">
+                <div class="card-layout-content" style="--card-color: var(--card-color-1);">20</div>
+            </div>
+        </div>
+
+        <div class="container-layout">
+            <label class="container-layout-content">Challan</label>
+            <div class="card-layout mt-4" style="--card-color: var(--card-color-2);">
+                <div class="card-layout-content" style="--card-color: var(--card-color-2);">52</div>
+            </div>
+        </div>
+        <div class="container-layout">
+            <label class="container-layout-content">VIP Routes</label>
+            <div class="card-layout mt-4" style="--card-color: var(--card-color-3);">
+                <div class="card-layout-content" style="--card-color: var(--card-color-3);">27</div>
+            </div>
+        </div>
+        <div class="container-layout">
+            <label class="container-layout-content">DLRC Check</label>
+            <div class="card-layout mt-4" style="--card-color: var(--card-color-4);">
+                <div class="card-layout-content" style="--card-color: var(--card-color-4);">10
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid match-height">
+        <div class="col-12 md:col-6">
+            <div class="card p-0" style="margin-top: 10px;flex: 0;">
+                <div class="card-header"
+                    style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+                    <p class="mb-0  tbold color-02">DL Checks</p>
+                    <img src="assets/icons/bike_scooter.png">
+                </div>
+                <p-table #dt1 dataKey="id" [columns]="cols" [value]="tableData" responsiveLayout="scroll"
+                    [loading]="loading" styleClass="p-datatable-gridlines">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+                                <div class="flex justify-content-between align-items-center" *ngIf="col.field!=='id'">
+                                    {{col.header}}
+                                    <p-sortIcon [field]="col.field"></p-sortIcon>
+                                </div>
+                            </th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                <div *ngIf="col.field!=='id'">
+                                    {{rowData[col.field]}}
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="8">No Data found.</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="loadingbody">
+                        <tr>
+                            <td colspan="8">Loading data. Please wait.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+                <!-- <div style="display:flex;justify-content: end;padding-right: 10px;">
+                    <a style="font-size: 15px;" routerLink="/main/dashboard/dl-checks">View All</a>
+                </div> -->
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6">
+            <div class="card p-0" style="margin-top: 10px;flex: 0;">
+                <div class="card-header"
+                    style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+                    <p class="mb-0 tbold color-02">SOS Alerts</p>
+                    <img class="background-image" src="assets/images/sosalert.png">
+                </div>
+                <div class="card-body p-2" *ngFor="let value of sosalert">
+                    <div>
+                        <div class="recentDuties-card">
+                            <div class="left-side">
+                                <img class="background-image" src="assets/images/sosalert.png">
+                            </div>
+                            <div class="right-side">
+                                <div class="recentDuties-card-value font-semibold">
+                                    {{ value.createdBy.fullName }}
+                                </div>
+                                <div class="recentDuties-card-value">
+                                    {{ value.locationName }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div style="display:flex;justify-content: end;padding-right: 10px;">
+                    <a style="font-size: 15px;" routerLink="/main/lot/sos-alert">View All</a>
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <div class="col-12 md:col-12">
+        <div class="card p-0" style="margin-top: 10px;flex: 0;">
+            <div class="card-header"
+                style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
+                <p class="mb-0 tbold color-02">Map</p>
+            </div>
+            <div class="card-body p-2">
+                <app-dynamic-multipledata-map [mapArrayData]="mapData"></app-dynamic-multipledata-map>
+            </div>
+        </div>
+    </div> -->
+<div class="col-12">
+    <div class="col-md-6 card p-0 mb-3">
+        <div class="card-header"
+            style="color: #0B1165;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 1px solid #f5f4f1;">
+            <p class="mb-0 tbold">Task Summary</p>
+        </div>
+        <div class="card-body px-3 pt-3">
+            <div class="grid">
+                <div class="col-6 md:col-4 cp" (click)="listViews('created','task','today')">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="inline-block">
+                            <img src="assets/images/case.svg" height="30">
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">20</span>
+                            <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                Today Completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 md:col-4 cp" (click)="listViews('pending','task','today')">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="inline-block">
+                            <img src="assets/images/criminalrecod.svg" height="30">
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">13</span>
+                            <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                Today Pending
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 md:col-4 cp" (click)="listViews('completed','task','yesterday')">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="inline-block">
+                            <img src="assets/images/fieldpolice.svg" height="30">
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">27</span>
+                            <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                Yesterday Completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 card p-0">
+        <div class="card-header"
+            style="color: #0B1165;padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 1px solid #f5f4f1;">
+            <p class="mb-0 tbold">Duty Summary</p>
+        </div>
+        <div class="card-body px-3 pt-3">
+            <div class="grid">
+                <div class="col-6 md:col-4 cp" (click)="listViews('created','duty','today')">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="inline-block">
+                            <img src="assets/images/case.svg" height="30">
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">28</span>
+                            <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                Today Completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 md:col-4 cp" (click)="listViews('pending','duty','today')">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="inline-block">
+                            <img src="assets/images/case.svg" height="30">
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">15</span>
+                            <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                Today Pending
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 md:col-4 cp" (click)="listViews('completed','duty','yesterday')">
+                    <div class="flex align-items-center justify-content-between">
+                        <div class="inline-block">
+                            <img src="assets/images/case.svg" height="30">
+                        </div>
+                        <div>
+                            <span class="font-bold text-xl">21</span>
+                            <p class="my-0 text-sm" style="color: #6C6C6C;">
+                                Yesterday Completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-dynamic-loader></app-dynamic-loader>

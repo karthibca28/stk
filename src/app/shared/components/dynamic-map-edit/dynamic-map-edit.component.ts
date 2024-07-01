@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import 'leaflet-draw';
 import axios from 'axios'; // Import Axios for making HTTP requests
@@ -8,16 +8,25 @@ import axios from 'axios'; // Import Axios for making HTTP requests
   templateUrl: './dynamic-map-edit.component.html',
   styleUrls: ['./dynamic-map-edit.component.scss']
 })
-export class DynamicMapEditComponent implements OnInit {
+export class DynamicMapEditComponent implements OnInit, OnChanges {
+  @Input() latitude: number;
+  @Input() longitude: number;
+  @Input() locationName: string;
+  @Output() location = new EventEmitter();
   map: Leaflet.Map;
   drawnItems: Leaflet.FeatureGroup;
   marker: Leaflet.Marker | null = null;
-  @Output() location = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
     this.initializeMap();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.latitude || changes.longitude) {
+      this.updateMapMarker();
+    }
   }
 
   private initializeMap(): void {
@@ -77,5 +86,20 @@ export class DynamicMapEditComponent implements OnInit {
           console.error('Error fetching location:', error);
         });
     });
+  }
+
+  private updateMapMarker(): void {
+    if (this.latitude && this.longitude) {
+      const latlng = new Leaflet.LatLng(this.latitude, this.longitude);
+      
+      if (this.marker) {
+        this.map.removeLayer(this.marker);
+      }
+      
+      this.marker = Leaflet.marker(latlng).addTo(this.map)
+        .bindPopup(this.locationName ? this.locationName : 'Selected Location')
+        .openPopup();
+      this.map.setView(latlng, 13);
+    }
   }
 }

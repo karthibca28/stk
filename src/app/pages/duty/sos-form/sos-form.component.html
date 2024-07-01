@@ -23,15 +23,8 @@
                         *ngIf="(form?.controls?.longitude?.touched && form?.controls?.longitude?.errors?.required)">Longitude
                         is required</mat-error>
                 </mat-form-field>
-                <div *ngIf="!editData">
-                <button mat-raised-button type="button" class="ml-3"
-                    (click)="fileInput.click()">Choose
-                    File</button>
-                <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event, 'file')">
-                <div *ngIf="selectedFile">{{ selectedFile.name }}</div>
-                </div>
             </div>
-            <div *ngIf="!editData" class="mt-2">
+            <div class="mt-2">
                 <button mat-raised-button color="primary">Submit</button>
             </div>
             <div class="card p-0" style="margin-top: 10px;flex: 0;">
@@ -40,7 +33,7 @@
                     <p class="mb-0 tbold color-02">Map</p>
                 </div>
                 <div class="card-body p-2">
-                    <app-dynamic-map-edit [latitude]="latitude" [longitude]="longitude"  [locationName]="locationName" (location)="location($event)"></app-dynamic-map-edit>
+                    <app-dynamic-map-edit (location)="location($event)"></app-dynamic-map-edit>
                 </div>
             </div>
         </div>

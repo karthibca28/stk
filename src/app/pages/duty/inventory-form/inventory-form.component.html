@@ -2,137 +2,153 @@
     <div>
         <div style="display: flex;justify-content: space-around;">
             <mat-card>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Location Name</mat-label>
-                    <input matInput placeholder="Location Name" formControlName="locationName">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.locationName?.touched && form?.controls?.locationName?.errors?.required)">Location Name
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Latitude</mat-label>
-                    <input matInput placeholder="Latitude" formControlName="latitude">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.latitude?.touched && form?.controls?.latitude?.errors?.required)">Latitude
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Longitude</mat-label>
-                    <input matInput placeholder="Longitude" formControlName="longitude">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.longitude?.touched && form?.controls?.longitude?.errors?.required)">Longitude
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Item Type</mat-label>
-                    <mat-select formControlName="type" placeholder="Item Type">
-                        <mat-option *ngFor="let type of type" [value]="type.id">
-                            {{ type.name }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.type?.touched && form?.controls?.type?.errors?.required)">Item Type
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Item Name</mat-label>
-                    <input matInput placeholder="Item Name" formControlName="itemName">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.itemName?.touched && form?.controls?.itemName?.errors?.required)">Item Name
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Model</mat-label>
-                    <input matInput placeholder="Model" formControlName="model">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.model?.touched && form?.controls?.model?.errors?.required)">Model
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Description</mat-label>
-                    <input matInput placeholder="Description" formControlName="description">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.description?.touched && form?.controls?.description?.errors?.required)">Description
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Year</mat-label>
-                    <mat-select formControlName="year" placeholder="Year">
-                        <mat-option *ngFor="let year of years" [value]="year.id">
-                            {{ year.name }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.year?.touched && form?.controls?.year?.errors?.required)">Year
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Count</mat-label>
-                    <mat-select formControlName="count" placeholder="Count">
-                        <mat-option *ngFor="let count of count" [value]="count.id">
-                            {{ count.name }}
-                        </mat-option>
-                    </mat-select>
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.count?.touched && form?.controls?.count?.errors?.required)">Count
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
-                    <mat-label>Select Added Date</mat-label>
-                    <input matInput [matDatepicker]="picker" formControlName="dateAdded" placeholder="Select Added Date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.dateAdded?.touched && form?.controls?.dateAdded?.errors?.required)">Select Added Date
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>AMC Provider Details</mat-label>
-                    <input matInput placeholder="AMC Provider Details" formControlName="amcProvider">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.amcProvider?.touched && form?.controls?.amcProvider?.errors?.required)">AMC Provider Details
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>AMC Contact Number</mat-label>
-                    <input matInput placeholder="AMC Contact Number" formControlName="amcContact">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.amcContact?.touched && form?.controls?.amcContact?.errors?.required)">AMC Contact Number
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>AMC Details</mat-label>
-                    <input matInput placeholder="AMC Details" formControlName="amcDetails">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.amcDetails?.touched && form?.controls?.amcDetails?.errors?.required)">AMC Details
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>AMC Cost</mat-label>
-                    <input matInput placeholder="AMC Cost" formControlName="amcCost">
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.amcCost?.touched && form?.controls?.amcCost?.errors?.required)">AMC Cost
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
-                    <mat-label>AMC Start Date</mat-label>
-                    <input matInput [matDatepicker]="picker1" formControlName="amcStartDate" placeholder="AMC Start Date">
-                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                    <mat-datepicker #picker1></mat-datepicker>
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.amcStartDate?.touched && form?.controls?.amcStartDate?.errors?.required)">AMC Start Date
-                    is required</mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
-                    <mat-label>AMC End Date</mat-label>
-                    <input matInput [matDatepicker]="picker2" formControlName="amcEndDate" placeholder="AMC End Date">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
-                    <mat-error id="name-help" class="block text-danger"
-                    *ngIf="(form?.controls?.amcEndDate?.touched && form?.controls?.amcEndDate?.errors?.required)">AMC End Date
-                    is required</mat-error>
-                </mat-form-field>
-                <button mat-raised-button color="primary">Submit</button>
+                <div class="row">
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Location Name</mat-label>
+                        <input matInput placeholder="Location Name" formControlName="locationName">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.locationName?.touched && form?.controls?.locationName?.errors?.required)">Location
+                            Name
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Latitude</mat-label>
+                        <input matInput placeholder="Latitude" formControlName="latitude">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.latitude?.touched && form?.controls?.latitude?.errors?.required)">Latitude
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Longitude</mat-label>
+                        <input matInput placeholder="Longitude" formControlName="longitude">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.longitude?.touched && form?.controls?.longitude?.errors?.required)">Longitude
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Item Type</mat-label>
+                        <mat-select formControlName="type" placeholder="Item Type">
+                            <mat-option *ngFor="let type of type" [value]="type.id">
+                                {{ type.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.type?.touched && form?.controls?.type?.errors?.required)">Item Type
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Item Name</mat-label>
+                        <input matInput placeholder="Item Name" formControlName="itemName">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.itemName?.touched && form?.controls?.itemName?.errors?.required)">Item
+                            Name
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Model</mat-label>
+                        <input matInput placeholder="Model" formControlName="model">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.model?.touched && form?.controls?.model?.errors?.required)">Model
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Description</mat-label>
+                        <input matInput placeholder="Description" formControlName="description">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.description?.touched && form?.controls?.description?.errors?.required)">Description
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Year</mat-label>
+                        <mat-select formControlName="year" placeholder="Year">
+                            <mat-option *ngFor="let year of years" [value]="year.id">
+                                {{ year.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.year?.touched && form?.controls?.year?.errors?.required)">Year
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>Count</mat-label>
+                        <mat-select formControlName="count" placeholder="Count">
+                            <mat-option *ngFor="let count of count" [value]="count.id">
+                                {{ count.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.count?.touched && form?.controls?.count?.errors?.required)">Count
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
+                        <mat-label>Select Added Date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dateAdded"
+                            placeholder="Select Added Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.dateAdded?.touched && form?.controls?.dateAdded?.errors?.required)">Select
+                            Added Date
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>AMC Provider Details</mat-label>
+                        <input matInput placeholder="AMC Provider Details" formControlName="amcProvider">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.amcProvider?.touched && form?.controls?.amcProvider?.errors?.required)">AMC
+                            Provider Details
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>AMC Contact Number</mat-label>
+                        <input matInput placeholder="AMC Contact Number" formControlName="amcContact">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.amcContact?.touched && form?.controls?.amcContact?.errors?.required)">AMC
+                            Contact Number
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>AMC Details</mat-label>
+                        <input matInput placeholder="AMC Details" formControlName="amcDetails">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.amcDetails?.touched && form?.controls?.amcDetails?.errors?.required)">AMC
+                            Details
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                        <mat-label>AMC Cost</mat-label>
+                        <input matInput placeholder="AMC Cost" formControlName="amcCost">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.amcCost?.touched && form?.controls?.amcCost?.errors?.required)">AMC
+                            Cost
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
+                        <mat-label>AMC Start Date</mat-label>
+                        <input matInput [matDatepicker]="picker1" formControlName="amcStartDate"
+                            placeholder="AMC Start Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.amcStartDate?.touched && form?.controls?.amcStartDate?.errors?.required)">AMC
+                            Start Date
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
+                        <mat-label>AMC End Date</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="amcEndDate"
+                            placeholder="AMC End Date">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.amcEndDate?.touched && form?.controls?.amcEndDate?.errors?.required)">AMC
+                            End Date
+                            is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <button mat-raised-button color="primary">Submit</button>
+                </div>
                 <div class="card p-0" style="margin-top: 10px;flex: 0;">
                     <div class="card-header"
                         style="padding: 8px 8px;border-top-left-radius: 8px; border-top-right-radius: 8px;border-bottom: 0.2px solid rgb(87, 82, 82);">
@@ -142,7 +158,6 @@
                         <app-dynamic-map-edit (location)="location($event)"></app-dynamic-map-edit>
                     </div>
                 </div>
-
             </mat-card>
         </div>
     </div>

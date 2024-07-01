@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
   selector: 'app-inventory-form',
@@ -39,7 +41,7 @@ export class InventoryFormComponent implements OnInit {
     { id: "7", name: "7"},
   ]
 
-  constructor(private fb: FormBuilder, private secondaryService: SecondaryService) { }
+  constructor(private fb: FormBuilder, private secondaryService: SecondaryService,  private sharedService: SharedService, private router: Router) { }
 
   ngOnInit(): void {
     this.initialInventory();
@@ -89,7 +91,10 @@ export class InventoryFormComponent implements OnInit {
     var amcEndDate = new Date(this.form.value.amcEndDate).toISOString().split('T')[0];
     formData.append('amcEndDate', amcEndDate);
     this.secondaryService.addInventory(formData).subscribe((res: any) => {
-      console.log("res", res)
+      if(res){
+        this.sharedService.showSuccess('Inventory Added Successfully');
+        this.router.navigate(['/main/duty/inventory-list'])
+        }
     })
   } else {
     this.form.markAllAsTouched();
