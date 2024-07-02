@@ -108,7 +108,7 @@ export class AppMenuComponent implements OnInit {
                 label: 'Database', icon: 'fa fa-database', access: '3', routerLink: ['/main/database'],
                 items: [
                     { label: 'Duty Point', icon: 'pi pi-file', routerLink: ['/main/database/duty-point'] },
-                    { label: 'Dynamic Vechile Point', icon: 'pi pi-file', routerLink: ['/main/database/dynamic-vechile'] },
+                    { label: 'Dynamic Vehicle Point', icon: 'pi pi-file', routerLink: ['/main/database/dynamic-vechile'] },
                     { label: 'Fixed VIP Routes', icon: 'pi pi-file', routerLink: ['/main/database/vip-route'] },
                 ]
             },
