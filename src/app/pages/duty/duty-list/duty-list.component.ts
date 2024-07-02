@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 
@@ -8,19 +9,65 @@ import { SecondaryService } from 'src/app/shared/services/secondary.service';
   styleUrls: ['./duty-list.component.scss']
 })
 export class DutyListComponent implements OnInit {
+  form: FormGroup
   dynamaicDataForTable: any;
-  pageSize: number = 10;;
-  pageNumber: number = 1
+  pageSize: number = 10;
+  pageNumber: number = 1;
+  date: any;
+  status: any;
 
-  constructor(private router: Router, private secondaryService: SecondaryService) { }
+  constructor(private router: Router, private secondaryService: SecondaryService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getList()
+    this.initialForm();
+    this.getList();
+    this.getDate();
+    this.status = [
+      {
+        id: 'ASSIGNED',
+        name: 'ASSIGNED'
+      },
+      {
+        id: 'STARTED',
+        name: 'STARTED'
+      },
+      {
+        id: 'SUBMITTED',
+        name: 'SUBMITTED'
+      },
+      {
+        id: 'APPROVED',
+        name: 'APPROVED'
+      },
+      {
+        id: 'REJECTED',
+        name: 'REJECTED'
+      },
+    ]
+  }
+
+  initialForm(){
+    this.form = this.fb.group({
+      dateFilter: [''],
+      status: ['']
+    })
+  }
+
+  getDate(){
+    this.secondaryService.getReportFilter().subscribe((res: any) => {
+      this.date = res.data.dateFilters
+    })
   }
 
   getList() {
-    this.secondaryService.getDuty(this.pageNumber, this.pageSize).subscribe((res: any) => {
-        const values = res.data;
+    const dateFilter = this.form.value.dateFilter;
+    const status = this.form.value.status
+    this.secondaryService.getDuty(this.pageNumber, this.pageSize, status, dateFilter).subscribe((res: any) => {
+        const data = res.data;
+        const values = data.map((item: any) => ({
+          ...item,
+          name: item.assignedTo[0].name
+        }));
         const cols = [
           { field: 'dutyType', header: 'Duty Type', type: 'text' },
           { field: 'name', header: 'Assigned To', type: 'text' },

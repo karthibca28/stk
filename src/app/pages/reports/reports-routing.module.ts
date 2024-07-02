@@ -17,6 +17,8 @@ import { SpdutyReportComponent } from './spduty-report/spduty-report.component';
 import { SpdutySummaryComponent } from './spduty-summary/spduty-summary.component';
 import { TaskReportComponent } from './task-report/task-report.component';
 import { TaskSummaryComponent } from './task-summary/task-summary.component';
+import { ShoSummaryReportComponent } from './sho-summary-report/sho-summary-report.component';
+import { ShoDetailReportComponent } from './sho-detail-report/sho-detail-report.component';
 
 const routes: Routes = [
   {
@@ -86,6 +88,14 @@ const routes: Routes = [
   {
     path: 'distReport',
     component: DaDistReportComponent
+  },
+  {
+    path: 'sho-summary-report',
+    component: ShoSummaryReportComponent
+  },
+  {
+    path: 'sho-detail-report',
+    component: ShoDetailReportComponent
   }
 ];
 

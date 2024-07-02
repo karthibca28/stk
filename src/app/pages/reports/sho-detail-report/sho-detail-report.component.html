@@ -2,9 +2,9 @@
     <div class="col-12">
         <div class="flex align-items-center justify-content-between mb-2">
             <div class="title">
-                <p class="mb-0 text-rblue tex-xl font-bold">Duty List</p>
+                <p class="mb-0 text-rblue tex-xl font-bold">Detail Report List</p>
             </div>
-            <div class="btn-top">
+            <!-- <div class="btn-top">
                 <button class="add-btn" (click)="openForm()">
                     <svg xmlns="" width="18" viewBox="0 0 20 20" height="18" fill="none" class="svg-icon">
                         <g stroke-width="1.5" stroke-linecap="round" stroke="#fff">
@@ -15,7 +15,7 @@
                     </svg>
                     <span class="add-label">Add</span>
                 </button>
-            </div>
+            </div> -->
         </div>
         <div>
             <form [formGroup]="form">
@@ -28,18 +28,25 @@
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                    <mat-label>Status</mat-label>
-                    <mat-select formControlName="status" placeholder="Status">
-                        <mat-option *ngFor="let status of status" [value]="status.id" (click)="getList()">
-                            {{ status.name }}
+                    <mat-label>Report Type</mat-label>
+                    <mat-select formControlName="reportType" placeholder="Report Type">
+                        <mat-option *ngFor="let reportType of reportType" [value]="reportType.id">
+                            {{ reportType.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
+                    <mat-label>Report SubType</mat-label>
+                    <mat-select formControlName="reportSubType" placeholder="Report SubType">
+                        <mat-option *ngFor="let reportSubType of reportSubType" [value]="reportSubType.id" (click)="getList()">
+                            {{ reportSubType.name }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
             </form>
         </div>
         <div class="card">
-            <app-dynamic-view-table [dynamaicDataForTable]="dynamaicDataForTable" (pagination)="pagination($event)"
-                (view)="viewRecord($event)"></app-dynamic-view-table>
+            <app-dynamic-table [dynamaicDataForTable]="dynamaicDataForTable" (pagination)="pagination($event)"></app-dynamic-table>
         </div>
     </div>
 </div>

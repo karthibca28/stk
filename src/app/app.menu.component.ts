@@ -127,8 +127,8 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Report', icon: 'fab fa-delicious', access: '3', routerLink: ['/main/reports'],
                 items: [
-                    { label: 'Summary Report', icon: 'pi pi-file', routerLink: ['/main/reports/soSummaryReport'] },
-                    { label: 'Detail Report', icon: 'pi pi-file', routerLink: ['/main/reports/soDetailReport'] },
+                    { label: 'Summary Report', icon: 'pi pi-file', routerLink: ['/main/reports/sho-summary-report'] },
+                    { label: 'Detail Report', icon: 'pi pi-file', routerLink: ['/main/reports/sho-detail-report'] },
                 ]
             }
 

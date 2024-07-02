@@ -33,20 +33,40 @@
                     </mat-error>
                 </mat-form-field>
             </div>
-            <div class="row col-6">
-                <div class="card p-2">
-                    <div class="card-header" style="padding: 8px; border-radius: 8px;">
-                        <p class="mb-0 font-weight-bold text-primary">Upload File</p>
-                    </div>
-                    <div class="card-body p-2" style="display: flex; align-items: center;">
-                        <label class="custom-file-upload" for="fileInput" style="cursor: pointer; margin-left: 10px;">
-                            <input type="file" id="fileInput" style="display: none;"
-                                (change)="onFileSelected($event)" />
-                            Choose File<span class="form-mandatory-field">*</span>
-                        </label>
-                        <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
+            <div class="grid match-height">
+                <div class="row col-6">
+                    <div class="card p-2">
+                        <div class="card-header" style="padding: 8px; border-radius: 8px;">
+                            <p class="mb-0 font-weight-bold text-primary">Upload File</p>
+                        </div>
+                        <div class="card-body p-2" style="display: flex; align-items: center;">
+                            <label class="custom-file-upload" for="fileInput"
+                                style="cursor: pointer; margin-left: 10px;">
+                                <input type="file" id="fileInput" style="display: none;"
+                                    (change)="onFileSelected($event)" />
+                                Choose File<span class="form-mandatory-field">*</span>
+                            </label>
+                            <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
+                        </div>
                     </div>
                 </div>
+                <!-- <div class="row col-6">
+                    <div class="card p-2">
+                        <div class="card-header" style="padding: 8px; border-radius: 8px;">
+                            <p class="mb-0 font-weight-bold text-primary">Record Audio</p>
+                        </div>
+                        <div class="card-body p-2 main">
+                            <label class="label">
+                                <mat-icon class="circle-icon" (click)="toggleRecording()">{{ isRecording ? 'stop' :
+                                    'mic' }}</mat-icon>
+                                <span class="arrow">
+                                    <mat-icon style="font-size: 35px;" (click)="playRecording()" *ngIf="audioBlob && !isRecording">play_arrow</mat-icon>
+                                </span>
+                                <mat-icon style="font-size: 35px; color: red;" (click)="deleteRecording()" *ngIf="audioBlob">delete</mat-icon>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
             </div>
             <div class="mt-2">
                 <button mat-raised-button color="primary" type="submit">Submit</button>

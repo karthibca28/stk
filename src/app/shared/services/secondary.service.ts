@@ -73,8 +73,8 @@ export class SecondaryService {
   assignDuty(data: any) {
     return this.http.post(`${this.apiUrl}sho/assignDuty`, data)
   }
-  getDuty(pageNumber: any, pageSize: any) {
-    return this.http.get(`${this.apiUrl}sho/duty?pageNumber=${pageNumber}&pageSize=${pageSize}&status=ASSIGNED&dateFilter=thisYear`)
+  getDuty(pageNumber: any, pageSize: any, status: any, dateFilter: any) {
+    return this.http.get(`${this.apiUrl}sho/duty?pageNumber=${pageNumber}&pageSize=${pageSize}&status=${status}&dateFilter=${dateFilter}`)
   }
   getOfficer() {
     return this.http.get(`${this.apiUrl}sho/fieldOfficer`)
@@ -102,6 +102,12 @@ export class SecondaryService {
   }
   viewDuty(dutyId: any) {
     return this.http.get(`${this.apiUrl}sho/duty?dutyId=${dutyId}`)
+  }
+  getReportFilter(){
+    return this.http.get(`${this.apiUrl}common/rptFilter`)
+  }
+  getReports(dateFilter: any, type: any, reportType: any, reportSubType: any){
+    return this.http.get(`${this.apiUrl}sho/report?dateFilter=${dateFilter}&type=${type}&reportType=${reportType}&reportSubType=${reportSubType}`)
   }
 
 }

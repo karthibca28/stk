@@ -12,6 +12,11 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 export class DefectiveSignalComponent implements OnInit {
   form: FormGroup;
   selectedFile: any;
+  isRecording = false;
+  mediaRecorder: any;
+  audioChunks: any[] = [];
+  audioBlob: Blob;
+  audioUrl: string;
 
   constructor(private fb: FormBuilder, private secondaryService: SecondaryService, private sharedService: SharedService, private router: Router) { }
 
@@ -43,7 +48,10 @@ export class DefectiveSignalComponent implements OnInit {
       formData.append('latitude', this.form.value.latitude);
       formData.append('longitude', this.form.value.longitude);
       formData.append('description', this.form.value.description);
-      formData.append('files', this.selectedFile)
+      formData.append('files', this.selectedFile);
+      // if (this.audioBlob) {
+      //   formData.append('audio', this.audioBlob, 'audio_recording.wav');
+      // }
       this.secondaryService.addDefectiveSignal(formData).subscribe((res: any) => {
         if(res){
         this.sharedService.showSuccess('Defective Signal Added Successfully');
@@ -58,5 +66,50 @@ export class DefectiveSignalComponent implements OnInit {
   onFileSelected(event: any) {
     const fileInput = event.target;
     this.selectedFile = fileInput.files?.[0];
+  }
+
+  toggleRecording() {
+    if (this.isRecording) {
+      this.stopRecording();
+    } else {
+      this.startRecording();
+    }
+  }
+
+  startRecording() {
+    this.isRecording = true;
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      this.mediaRecorder = new MediaRecorder(stream);
+      this.mediaRecorder.start();
+
+      this.mediaRecorder.addEventListener('dataavailable', (event: any) => {
+        this.audioChunks.push(event.data);
+      });
+
+      this.mediaRecorder.addEventListener('stop', () => {
+        this.audioBlob = new Blob(this.audioChunks, { type: 'audio/wav' });
+        this.audioUrl = URL.createObjectURL(this.audioBlob);
+        this.audioChunks = [];
+      });
+    });
+  }
+
+  stopRecording() {
+    this.isRecording = false;
+    if (this.mediaRecorder) {
+      this.mediaRecorder.stop();
+    }
+  }
+
+  playRecording() {
+    if (this.audioUrl) {
+      const audio = new Audio(this.audioUrl);
+      audio.play();
+    }
+  }
+
+  deleteRecording() {
+    this.audioBlob = null;
+    this.audioUrl = null;
   }
 }

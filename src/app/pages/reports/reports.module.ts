@@ -4,6 +4,7 @@ import { ReportsRoutingModule } from './reports-routing.module';
 import { MisReportsComponent } from './mis-reports/mis-reports.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PrimeModule } from 'src/app/shared/modules/prime/prime.module';
+import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpdutyReportComponent } from './spduty-report/spduty-report.component';
 import { TaskReportComponent } from './task-report/task-report.component';
@@ -21,6 +22,8 @@ import { SoDatewiseReportComponent } from './so-datewise-report/so-datewise-repo
 import { SoActivitysummaryReportComponent } from './so-activitysummary-report/so-activitysummary-report.component';
 import { SoLocationReportComponent } from './so-location-report/so-location-report.component';
 import { DaDistReportComponent } from './da-dist-report/da-dist-report.component';
+import { ShoSummaryReportComponent } from './sho-summary-report/sho-summary-report.component';
+import { ShoDetailReportComponent } from './sho-detail-report/sho-detail-report.component';
 
 
 @NgModule({
@@ -41,13 +44,16 @@ import { DaDistReportComponent } from './da-dist-report/da-dist-report.component
     SoDatewiseReportComponent,
     SoActivitysummaryReportComponent,
     SoLocationReportComponent,
-    DaDistReportComponent
+    DaDistReportComponent,
+    ShoSummaryReportComponent,
+    ShoDetailReportComponent
   ],
   imports: [
     CommonModule,
     ReportsRoutingModule,
     SharedModule,
     PrimeModule,
+    MaterialModule,
     ReactiveFormsModule
   ]
 })

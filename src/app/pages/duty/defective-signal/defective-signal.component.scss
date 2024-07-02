@@ -1,0 +1,29 @@
+.arrow{
+    flex-grow: 1; 
+    display: flex; 
+    justify-content: center;
+}
+.label{
+    cursor: pointer; 
+    margin-left: 10px; 
+    display: flex; 
+    align-items: center; 
+    width: 100%;
+}
+.main{
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+}
+.circle-icon {
+    font-size: 35px;
+    color: white;
+    background-color: rgb(55, 196, 55);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}

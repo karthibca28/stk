@@ -11,26 +11,26 @@ import { Table } from 'primeng/table';
 export class DynamicViewTableComponent implements OnInit {
   paginator!: Paginator;
   cols: any[];
-  tableData:any[]=[];
+  tableData: any[] = [];
   loading: boolean;
-  userData:any;
+  userData: any;
   pageSize: any
   pageNumber: any
-  DistAdmin:boolean = false;
-  roleId:any
-  searchKeyword:any
-  searchHeader: any[] = ['firstName','locationName','title','message','fullName','gpfCpsNo','username','districtName','psName','district','policeStation','category','subcategory',
-  'name','code','stateName','ZoneName','rangeName','subdivisionName','categoryName','taskType'];
+  DistAdmin: boolean = false;
+  roleId: any
+  searchKeyword: any
+  searchHeader: any[] = ['firstName', 'locationName', 'title', 'message', 'fullName', 'gpfCpsNo', 'username', 'districtName', 'psName', 'district', 'policeStation', 'category', 'subcategory',
+    'name', 'code', 'stateName', 'ZoneName', 'rangeName', 'subdivisionName', 'categoryName', 'taskType'];
   @Input() dynamaicDataForTable = {
-    cols:[],
-    values:[]
+    cols: [],
+    values: []
   }
-  @Output() view  = new EventEmitter();
+  @Output() view = new EventEmitter();
   @Output() pagination = new EventEmitter();
   ngOnChanges(changes: SimpleChanges): void {
     this.loading = true;
-    if(changes.dynamaicDataForTable.currentValue){
-      this.cols = this.dynamaicDataForTable.cols.filter(f=>f.field!=='id' && f.field!=='sno-key');
+    if (changes.dynamaicDataForTable.currentValue) {
+      this.cols = this.dynamaicDataForTable.cols.filter(f => f.field !== 'id' && f.field !== 'sno-key');
       this.tableData = this.dynamaicDataForTable.values;
       this.loading = false;
     }
@@ -39,24 +39,22 @@ export class DynamicViewTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData = JSON.parse(sessionStorage.getItem('userInfo'));
-   console.log("datass")
-   this.roleId = parseInt(this.userData.data.userData.rank.role.roleCode)
+    this.roleId = parseInt(this.userData.data.userData.rank.role.roleCode)
     if (this.roleId === 5) {
       this.DistAdmin = true
     }
   }
-  viewRecord(data:any){ 
+  viewRecord(data: any) {
     this.view.emit(data.id)
   }
   clear(table: Table) {
-      table.clear();
-      this.searchKeyword = '';
+    table.clear();
+    this.searchKeyword = '';
   }
 
   onPageChange(event: any) {
     this.pageSize = event.rows;
     this.pageNumber = event.page + 1;
-    console.log(event, this.pageSize, this.pageNumber)
     this.pagination.emit({ pageSize: this.pageSize, pageNumber: this.pageNumber });
   }
 
