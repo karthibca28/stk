@@ -26,9 +26,10 @@ import { DynamicLivedataMapComponent } from './components/dynamic-livedata-map/d
 import { DynamicLoaderComponent } from './components/dynamic-loader/dynamic-loader.component';
 import { DynamicMapEditComponent } from './components/dynamic-map-edit/dynamic-map-edit.component';
 import { DynamicMapMultiLocationComponent } from './components/dynamic-map-multi-location/dynamic-map-multi-location.component';
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
-  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent, DynamicViewTableComponent, DynamicLivedataMapComponent, DynamicLoaderComponent, DynamicMapEditComponent, DynamicMapMultiLocationComponent],
+  declarations: [ DynamicFormComponent, DynamicTableComponent, DynamicMapComponent, FooterComponent, DynamicReportTableComponent, DynamicPdfComponent, DynamicCsvComponent, LoaderComponent, DynamicMoreTableComponent, DynamicMultipledataMapComponent, DynamicViewTableComponent, DynamicLivedataMapComponent, DynamicLoaderComponent, DynamicMapEditComponent, DynamicMapMultiLocationComponent, ConfirmationDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -42,7 +43,7 @@ import { DynamicMapMultiLocationComponent } from './components/dynamic-map-multi
   ], 
   providers:[AudioRecordingService,VideoRecordingService,MapMarkerService,AuthguardServiceService,LocationService],
   exports: [DynamicFormComponent,DynamicTableComponent,DynamicMoreTableComponent,DynamicMapComponent,FooterComponent,DynamicReportTableComponent,DynamicPdfComponent,DynamicCsvComponent,LoaderComponent,DynamicMultipledataMapComponent,DynamicViewTableComponent,DynamicLivedataMapComponent,DynamicLoaderComponent,
-    DynamicMapEditComponent, DynamicMapMultiLocationComponent
+    DynamicMapEditComponent, DynamicMapMultiLocationComponent, ConfirmationDialogComponent
   ]
 })
 export class SharedModule { }

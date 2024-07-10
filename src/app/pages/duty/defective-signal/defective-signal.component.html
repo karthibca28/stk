@@ -50,23 +50,26 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row col-6">
+                <div class="row col-6">
                     <div class="card p-2">
                         <div class="card-header" style="padding: 8px; border-radius: 8px;">
                             <p class="mb-0 font-weight-bold text-primary">Record Audio</p>
                         </div>
                         <div class="card-body p-2 main">
                             <label class="label">
-                                <mat-icon class="circle-icon" (click)="toggleRecording()">{{ isRecording ? 'stop' :
+                                <mat-icon class="circle-icon" (click)="toggleRecording()">{{ isRecording ?
+                                    'stop' :
                                     'mic' }}</mat-icon>
                                 <span class="arrow">
-                                    <mat-icon style="font-size: 35px;" (click)="playRecording()" *ngIf="audioBlob && !isRecording">play_arrow</mat-icon>
+                                    <mat-icon style="font-size: 35px;" (click)="togglePlay()">
+                                        {{ audio && !audio.paused ? 'pause' : 'play_arrow' }}
+                                    </mat-icon>
                                 </span>
-                                <mat-icon style="font-size: 35px; color: red;" (click)="deleteRecording()" *ngIf="audioBlob">delete</mat-icon>
+                                <mat-icon style="font-size: 35px; color: red;" (click)="deleteAudio()">delete</mat-icon>
                             </label>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="mt-2">
                 <button mat-raised-button color="primary" type="submit">Submit</button>
