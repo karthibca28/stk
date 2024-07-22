@@ -27,7 +27,7 @@
                         <input matInput placeholder="Longitude" formControlName="longitude">
                     </mat-form-field>
                 </div>
-                <div class="row">
+                <div *ngIf="!editMasterId" class="row">
                     <button mat-raised-button type="button" (click)="fileInput.click()">Choose
                         File</button>
                     <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event, 'file')">
@@ -42,7 +42,8 @@
                         <p class="mb-0 tbold color-02">Map</p>
                     </div>
                     <div class="card-body p-2">
-                        <app-dynamic-map-edit (location)="location($event)"></app-dynamic-map-edit>
+                        <app-dynamic-map-edit (location)="location($event)" [latitude]="latitude" [longitude]="longitude"
+                        [locationName]="locationName"></app-dynamic-map-edit>
                     </div>
                 </div>
 

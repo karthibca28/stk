@@ -20,6 +20,7 @@ export class DutyPointsFormComponent implements OnInit {
   longitude: number;
   latitudedata: number;
   longitudedata: number;
+  locationName: string;
   selectedFile: any;
   pointTypes = [
     { id: "LOCATION_POINT", name: "LOCATION POINT" },
@@ -41,14 +42,16 @@ export class DutyPointsFormComponent implements OnInit {
     this.formService.getDutyPointsforSeniorOfficerbyId(this.editMasterId).subscribe((formData: any) => {
       this.dutyPoints = formData.data
       this.form.patchValue({
+        locationName: formData.data.locationName,
         pointType: formData.data.pointType,
         //status: formData.data.status,
         latitude: formData.data.latitude,
         longitude: formData.data.longitude,
 
       });
-      this.latitude = parseFloat(formData.data.latitude);
-      this.longitude = parseFloat(formData.data.longitude);
+      this.latitude = formData.data.latitude;
+      this.longitude = formData.data.longitude;
+      this.locationName = formData.data.locationName;
 
     })
     this.locationService.getLocationData().subscribe(data => {

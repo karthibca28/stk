@@ -11,14 +11,14 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                     <mat-label>Latitude</mat-label>
-                    <input matInput placeholder="Latitude" formControlName="latitude">
+                    <input matInput placeholder="Latitude" formControlName="latitude" readonly>
                     <mat-error *ngIf="form.get('latitude').invalid && form.get('latitude').touched">
                         Latitude is required
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                     <mat-label>Longitude</mat-label>
-                    <input matInput placeholder="Longitude" formControlName="longitude">
+                    <input matInput placeholder="Longitude" formControlName="longitude" readonly>
                     <mat-error *ngIf="form.get('longitude').invalid && form.get('longitude').touched">
                         Longitude is required
                     </mat-error>
