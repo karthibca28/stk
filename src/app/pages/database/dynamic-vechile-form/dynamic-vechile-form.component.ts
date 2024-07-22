@@ -17,6 +17,7 @@ export class DynamicVechileFormComponent implements OnInit {
   latitude: number;
   longitude: number;
   locationName: string;
+  fileError: string;
 
 
   constructor(private fb: FormBuilder, private secondaryService: SecondaryService, private route: ActivatedRoute,
@@ -47,7 +48,7 @@ export class DynamicVechileFormComponent implements OnInit {
     })
   }
   onSubmit() {
-    if (this.form.valid) {
+    if (this.form.valid && this.selectedFile) {
       var formData = new FormData();
       formData.append('locationName', this.form.value.locationName);
       formData.append('latitude', this.form.value.latitude);
@@ -61,6 +62,9 @@ export class DynamicVechileFormComponent implements OnInit {
       })
     } else {
       this.form.markAllAsTouched();
+      if (!this.selectedFile) {
+        this.fileError = 'File is required';
+      }
     }
   }
 
@@ -80,14 +84,13 @@ export class DynamicVechileFormComponent implements OnInit {
 
   
 
-  onFileSelected(event: any, fileType: string) {
+  onFileSelected(event: any) {
     const fileInput = event.target;
-    switch (fileType) {
-      case 'file':
-        this.selectedFile = fileInput.files?.[0];
-        break;
-      default:
-        break;
+    this.selectedFile = fileInput.files?.[0];
+    if (this.selectedFile) {
+      this.fileError = ''; 
+    } else {
+      this.fileError = 'File is required';
     }
   }
 

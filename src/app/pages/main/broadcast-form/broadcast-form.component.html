@@ -18,7 +18,7 @@
         <div class="field">
           <mat-form-field appearance="" class="w-full">
             <mat-label>Title</mat-label>
-            <input matInput formControlName="title" maxlength="50">
+            <input matInput formControlName="title" maxlength="50" (keypress)="validateInput($event, 'letterOnly')">
             <mat-error id="name-help" class="block text-danger"
               *ngIf="(form?.controls?.title?.touched && form?.controls?.title?.errors?.required)">Title is
               required</mat-error>
@@ -180,6 +180,7 @@
                 </span>
               </div>
             </div>
+            <mat-error class="block text-danger" *ngIf="form?.controls?.files?.touched && form?.controls?.files?.errors?.required">File upload is required</mat-error>
           </div>
         </div>
         <div class="text-right mt-6">

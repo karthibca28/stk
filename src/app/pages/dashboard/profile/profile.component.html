@@ -33,7 +33,7 @@
                                 Email Id
                             </td>
                             <td class="text-right">
-                                <span class="text-blue-600"> {{profiledata?.User.email}}</span>
+                                <span class="text-blue-600"> {{profiledata?.User?.email}}</span>
                             </td>
                         </tr>
                         <tr>
@@ -41,7 +41,7 @@
                                 GPF/CPS No.
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.gpfCpsNo}}
+                                {{profiledata?.User?.gpfCpsNo}}
                             </td>
                         </tr>
                         <tr>
@@ -49,15 +49,15 @@
                                 Mobile Number
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.phone}}
+                                {{profiledata?.User?.phone}}
                             </td>
                         </tr>
                         <tr>
                             <td class="fbold text-left">
-                                RoleId
+                                Role
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.roleId}}
+                                {{profiledata?.User?.rank?.role?.roleName}}
                             </td>
                         </tr>
                         <tr>
@@ -65,7 +65,7 @@
                                Rank
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.rankNo}}
+                                {{profiledata?.User?.rank?.rankName}}
                             </td>
                         </tr>
                         <tr>
@@ -73,7 +73,7 @@
                                 Police Station
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.policeStation.name}}
+                                {{profiledata?.User?.policeStation?.name}}
                             </td>
                         </tr>
                         <tr>
@@ -81,7 +81,7 @@
                                 District
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.district.name}}
+                                {{profiledata?.User?.district?.name}}
                             </td>
                         </tr>
                         <tr>
@@ -89,7 +89,7 @@
                                 Range
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.range.name}}
+                                {{profiledata?.User?.range?.name}}
                             </td>
                         </tr>
                         <tr>
@@ -97,7 +97,7 @@
                                 Zone
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.zone.name}}
+                                {{profiledata?.User?.zone?.name}}
                             </td>
                         </tr>
                         <tr>
@@ -105,7 +105,7 @@
                                 Administration
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.administration.name}}
+                                {{profiledata?.User?.administration?.name}}
                             </td>
                         </tr>
                         <tr>
@@ -113,7 +113,7 @@
                                 State
                             </td>
                             <td class="text-right">
-                                {{profiledata?.User.state.name}}
+                                {{profiledata?.User?.state?.name}}
                             </td>
                         </tr>
                     </tbody>

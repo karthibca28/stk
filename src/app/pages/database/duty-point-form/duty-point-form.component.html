@@ -8,7 +8,11 @@
                 <div class="row">
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Location Name</mat-label>
-                        <input matInput placeholder="Location Name" formControlName="locationName">
+                        <input matInput placeholder="Location Name" formControlName="locationName"
+                            (keypress)="validateInput($event, 'letterOnly')">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.locationName?.touched && form?.controls?.locationName?.errors?.required)">Location
+                            Name is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Point Type</mat-label>
@@ -17,14 +21,25 @@
                                 {{ pointType.name }}
                             </mat-option>
                         </mat-select>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.pointType?.touched && form?.controls?.pointType?.errors?.required)">
+                            Point Type is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Latitude</mat-label>
-                        <input matInput placeholder="Latitude" formControlName="latitude">
+                        <input matInput placeholder="Latitude" formControlName="latitude"
+                            (keypress)="validateInput($event, 'allowNumbersAndDot')">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.latitude?.touched && form?.controls?.latitude?.errors?.required)">
+                            Latitude is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Longitude</mat-label>
-                        <input matInput placeholder="Longitude" formControlName="longitude">
+                        <input matInput placeholder="Longitude" formControlName="longitude"
+                            (keypress)="validateInput($event, 'allowNumbersAndDot')">
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.longitude?.touched && form?.controls?.longitude?.errors?.required)">
+                            Longitude is required</mat-error>
                     </mat-form-field>
                 </div>
                 <div *ngIf="!editData" class="row">
@@ -38,9 +53,10 @@
                                 <p class="mb-0 font-weight-bold text-primary">Upload File</p>
                             </div>
                             <div class="card-body p-2" style="display: flex; align-items: center;">
-                                <label class="custom-file-upload" for="fileInput" style="cursor: pointer; margin-left: 10px;">
+                                <label class="custom-file-upload" for="fileInput"
+                                    style="cursor: pointer; margin-left: 10px;">
                                     <input type="file" id="fileInput" style="display: none;"
-                                    (change)="onFileSelected($event, 'file')" />
+                                        (change)="onFileSelected($event, 'file')" />
                                     Choose File<span class="form-mandatory-field">*</span>
                                 </label>
                                 <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
@@ -57,7 +73,8 @@
                         <p class="mb-0 tbold color-02">Map</p>
                     </div>
                     <div class="card-body p-2">
-                        <app-dynamic-map-edit [latitude]="latitude" [longitude]="longitude"  [locationName]="locationName" (location)="location($event)"></app-dynamic-map-edit>
+                        <app-dynamic-map-edit [latitude]="latitude" [longitude]="longitude"
+                            [locationName]="locationName" (location)="location($event)"></app-dynamic-map-edit>
                     </div>
                 </div>
                 <div class="col-12 md:col-12" *ngIf="selectedFile && selectedFile?.length > 0">
@@ -77,8 +94,8 @@
                                 <div class="arrowIcon">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
-                                        <path d="M10 17L15 12L10 7" stroke="#212121" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
+                                        <path d="M10 17L15 12L10 7" stroke="#212121" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </div>
                             </div>

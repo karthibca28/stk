@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoadingService } from 'src/app/shared/services/loading.service';
 import { MasterService } from 'src/app/shared/services/master.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-broadcast-form',
@@ -28,48 +29,48 @@ export class BroadcastFormComponent implements OnInit {
   selectedFiles: File[] = [];
 
   constructor(private router: Router, private formBuilder: FormBuilder, private loadingService: LoadingService,
-    private route: ActivatedRoute, private masterService: MasterService, private sharedService: SharedService) { }
+    private route: ActivatedRoute, private masterService: MasterService, private sharedService: SharedService, private validationService: ValidationService) { }
 
   ngOnInit(): void {
-      this.form = this.formBuilder.group({
-        title: ['',Validators.required],
-        message: ['',Validators.required],
-        // stateId:[''],
-        adminId:['',Validators.required],
-        zoneId:['',Validators.required],
-        rangeId:['',Validators.required],
-        districtId:['',Validators.required],
-        subDivisionId:['',Validators.required],
-        policeStationId:['',Validators.required],
-        files:['']
-      });
+    this.form = this.formBuilder.group({
+      title: ['', Validators.required],
+      message: ['', Validators.required],
+      // stateId:[''],
+      adminId: ['', Validators.required],
+      zoneId: ['', Validators.required],
+      rangeId: ['', Validators.required],
+      districtId: ['', Validators.required],
+      subDivisionId: ['', Validators.required],
+      policeStationId: ['', Validators.required],
+      files: ['', Validators.required]
+    });
 
-      this.form.get('adminId')?.valueChanges.subscribe((newValue) => {
-        if (newValue === 'all') {
-          this.getZoneList(newValue);
-          this.getRangeList(newValue);
-          this.getDistrictList(newValue);
-          this.getSubDivision(newValue);
-          this.getPoliceStaion(newValue);
-          
-          
-          this.form.patchValue({
-            zoneId: 'all',
-            rangeId: 'all',
-            districtId: 'all',
-            subDivisionId: 'all',
-            policeStationId: 'all'
-          });
-        } else {
-          this.form.patchValue({
-            zoneId: '',
-            rangeId: '',
-            districtId: '',
-            subDivisionId: '',
-            policeStationId: ''
-          });
-        }
-      });
+    this.form.get('adminId')?.valueChanges.subscribe((newValue) => {
+      if (newValue === 'all') {
+        this.getZoneList(newValue);
+        this.getRangeList(newValue);
+        this.getDistrictList(newValue);
+        this.getSubDivision(newValue);
+        this.getPoliceStaion(newValue);
+
+
+        this.form.patchValue({
+          zoneId: 'all',
+          rangeId: 'all',
+          districtId: 'all',
+          subDivisionId: 'all',
+          policeStationId: 'all'
+        });
+      } else {
+        this.form.patchValue({
+          zoneId: '',
+          rangeId: '',
+          districtId: '',
+          subDivisionId: '',
+          policeStationId: ''
+        });
+      }
+    });
     // this.getZoneList()
     // this.getRangeList()
     // this.getDistrictList()
@@ -88,8 +89,8 @@ export class BroadcastFormComponent implements OnInit {
 
   getAdminList(id: any) {
     this.masterService.commonAdminList(id).subscribe((resp: any) => {
-       this.adminList = resp.data
-       this.adminList.unshift({id: 'all', name: 'All'})
+      this.adminList = resp.data
+      this.adminList.unshift({ id: 'all', name: 'All' })
     });
   }
 
@@ -181,48 +182,47 @@ export class BroadcastFormComponent implements OnInit {
   //   }
   // }
   submit() {
-    this.loadingService.showLoader();
-    const formData = new FormData();
-    formData.append('title', this.form.get('title')?.value);
-    formData.append('message', this.form.get('message')?.value);
+    // if (this.form.valid) {
+      const formData = new FormData();
+      formData.append('title', this.form.get('title')?.value);
+      formData.append('message', this.form.get('message')?.value);
 
-    if (this.data.adminId) {
-      formData.append('adminId', this.form.get('adminId')?.value);
-    }
-    if (this.data.zoneId) {
-      formData.append('zoneId', this.form.get('zoneId')?.value);
-    }
-    if (this.data.rangeId) {
-      formData.append('rangeId', this.form.get('rangeId')?.value);
-    }
-    if (this.data.districtId) {
-      formData.append('districtId', this.form.get('districtId')?.value);
-    }
-    if (this.data.subDivisionId) {
-      formData.append('subDivisionId', this.form.get('subDivisionId')?.value);
-    }
-    if (this.data.policeStationId) {
-      formData.append('policeStationId', this.form.get('policeStationId')?.value);
-    }
-    for (let i = 0; i < this.selectedFiles.length; i++) {
-      if (this.selectedFiles[i]) {
-        formData.append('files', this.selectedFiles[i]);
+      if (this.data.adminId) {
+        formData.append('adminId', this.form.get('adminId')?.value);
       }
-    }
-
-    this.masterService.addBroadCast(formData).subscribe(
-      (data: any) => {
-        if (data) {
-          this.sharedService.showSuccess('Added successfully!');
-          this.form.reset();
-          this.router.navigateByUrl(`main/lot/broadCast`);
-          this.loadingService.hideLoader();
+      if (this.data.zoneId) {
+        formData.append('zoneId', this.form.get('zoneId')?.value);
+      }
+      if (this.data.rangeId) {
+        formData.append('rangeId', this.form.get('rangeId')?.value);
+      }
+      if (this.data.districtId) {
+        formData.append('districtId', this.form.get('districtId')?.value);
+      }
+      if (this.data.subDivisionId) {
+        formData.append('subDivisionId', this.form.get('subDivisionId')?.value);
+      }
+      if (this.data.policeStationId) {
+        formData.append('policeStationId', this.form.get('policeStationId')?.value);
+      }
+      for (let i = 0; i < this.selectedFiles.length; i++) {
+        if (this.selectedFiles[i]) {
+          formData.append('files', this.selectedFiles[i]);
         }
-      },
-      (error: any) => {
-        this.loadingService.hideLoader();
       }
-    );
+
+      this.masterService.addBroadCast(formData).subscribe(
+        (data: any) => {
+          if (data) {
+            this.sharedService.showSuccess('Added successfully!');
+            this.form.reset();
+            this.router.navigateByUrl(`main/lot/broadCast`);
+          }
+        }
+      );
+    // } else {
+    //   this.form.markAllAsTouched();
+    // }
 
   }
 
@@ -234,6 +234,23 @@ export class BroadcastFormComponent implements OnInit {
   }
   cancel() {
     this.router.navigate(['main/lot/broadCast'])
+  }
+
+  validateInput(event: KeyboardEvent | any, validationType: string): boolean | void {
+    switch (validationType) {
+      case 'letterOnly':
+        if (event instanceof KeyboardEvent) {
+          return this.validationService.validateInput(event, 'letterOnly');
+        }
+        break;
+      case 'allowNumbersAndDot':
+        if (event instanceof KeyboardEvent) {
+          this.validationService.validateInput(event, 'allowNumbersAndDot');
+        }
+        break;
+      default:
+        break;
+    }
   }
 
 }

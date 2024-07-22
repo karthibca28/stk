@@ -24,26 +24,28 @@
                         is required</mat-error>
                 </mat-form-field>
                 <div *ngIf="!editData">
-                <!-- <button mat-raised-button type="button" class="ml-3"
+                    <!-- <button mat-raised-button type="button" class="ml-3"
                     (click)="fileInput.click()">Choose
                     File</button>
                 <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event, 'file')">
                 <div *ngIf="selectedFile">{{ selectedFile.name }}</div> -->
-                <div class="row col-6">
-                    <div class="card p-2">
-                        <div class="card-header" style="padding: 8px; border-radius: 8px;">
-                            <p class="mb-0 font-weight-bold text-primary">Upload File</p>
-                        </div>
-                        <div class="card-body p-2" style="display: flex; align-items: center;">
-                            <label class="custom-file-upload" for="fileInput" style="cursor: pointer; margin-left: 10px;">
-                                <input type="file" id="fileInput" style="display: none;"
-                                (change)="onFileSelected($event, 'file')" />
-                                Choose File<span class="form-mandatory-field">*</span>
-                            </label>
-                            <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
+                    <div class="row col-6">
+                        <div class="card p-2">
+                            <div class="card-header" style="padding: 8px; border-radius: 8px;">
+                                <p class="mb-0 font-weight-bold text-primary">Upload File</p>
+                            </div>
+                            <div class="card-body p-2" style="display: flex; align-items: center;">
+                                <label class="custom-file-upload" for="fileInput"
+                                    style="cursor: pointer; margin-left: 10px;">
+                                    <input type="file" id="fileInput" style="display: none;"
+                                        (change)="onFileSelected($event, 'file')" />
+                                    Choose File<span class="form-mandatory-field">*</span>
+                                </label>
+                                <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
+                                <span *ngIf="fileError" class="text-danger ml-2" style="color: red;">{{ fileError }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
             <div *ngIf="!editData" class="mt-2">
@@ -55,7 +57,8 @@
                     <p class="mb-0 tbold color-02">Map</p>
                 </div>
                 <div class="card-body p-2">
-                    <app-dynamic-map-edit [latitude]="latitude" [longitude]="longitude"  [locationName]="locationName" (location)="location($event)"></app-dynamic-map-edit>
+                    <app-dynamic-map-edit [latitude]="latitude" [longitude]="longitude" [locationName]="locationName"
+                        (location)="location($event)"></app-dynamic-map-edit>
                 </div>
             </div>
         </div>

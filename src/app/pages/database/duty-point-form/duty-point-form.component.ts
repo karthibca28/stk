@@ -6,6 +6,7 @@ import { FormService } from 'src/app/shared/services/form.service';
 import { LocationService } from 'src/app/shared/services/location.service';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-duty-point-form',
@@ -32,7 +33,8 @@ export class DutyPointFormComponent implements OnInit {
     { id: "OTHER_POINT", name: "OTHER POINT" }
   ]
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private formService: FormService,
-    private locationService: LocationService, private secondaryService: SecondaryService, private sanitizer: DomSanitizer, private sharedService: SharedService, private router: Router) {
+    private locationService: LocationService, private secondaryService: SecondaryService, private sanitizer: DomSanitizer,
+    private sharedService: SharedService, private router: Router, private validationService: ValidationService) {
   }
 
   ngOnInit(): void {
@@ -86,18 +88,22 @@ export class DutyPointFormComponent implements OnInit {
     this.locationName = data.name;
   }
   onSubmit() {
-    var formData = new FormData();
-    formData.append('locationName', this.form.value.locationName);
-    formData.append('pointType', this.form.value.pointType);
-    formData.append('latitude', this.form.value.latitude);
-    formData.append('longitude', this.form.value.longitude);
-    formData.append('files', this.selectedFile);
-    this.secondaryService.addDuty(formData).subscribe((res: any) => {
-      if(res){
-        this.sharedService.showSuccess('Duty Points Added Successfully');
-        this.router.navigate(['/main/database/duty-point'])
+    if (this.form.valid) {
+      var formData = new FormData();
+      formData.append('locationName', this.form.value.locationName);
+      formData.append('pointType', this.form.value.pointType);
+      formData.append('latitude', this.form.value.latitude);
+      formData.append('longitude', this.form.value.longitude);
+      formData.append('files', this.selectedFile);
+      this.secondaryService.addDuty(formData).subscribe((res: any) => {
+        if (res) {
+          this.sharedService.showSuccess('Duty Points Added Successfully');
+          this.router.navigate(['/main/database/duty-point'])
         }
-    })
+      })
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
   editList() {
@@ -165,6 +171,23 @@ export class DutyPointFormComponent implements OnInit {
     console.log("Select files", pdfUrl);
     this.isFileLoaded = true;
     return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
+  }
+
+  validateInput(event: KeyboardEvent | any, validationType: string): boolean | void {
+    switch (validationType) {
+      case 'letterOnly':
+        if (event instanceof KeyboardEvent) {
+          return this.validationService.validateInput(event, 'letterOnly');
+        }
+        break;
+      case 'allowNumbersAndDot':
+        if (event instanceof KeyboardEvent) {
+          this.validationService.validateInput(event, 'allowNumbersAndDot');
+        }
+        break;
+      default:
+        break;
+    }
   }
 
 }

@@ -5,7 +5,7 @@
                 <div class="row">
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Location Name</mat-label>
-                        <input matInput placeholder="Location Name" formControlName="locationName">
+                        <input matInput placeholder="Location Name" formControlName="locationName" readonly>
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.locationName?.touched && form?.controls?.locationName?.errors?.required)">Location
                             Name
@@ -13,14 +13,14 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Latitude</mat-label>
-                        <input matInput placeholder="Latitude" formControlName="latitude">
+                        <input matInput placeholder="Latitude" formControlName="latitude" readonly>
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.latitude?.touched && form?.controls?.latitude?.errors?.required)">Latitude
                             is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Longitude</mat-label>
-                        <input matInput placeholder="Longitude" formControlName="longitude">
+                        <input matInput placeholder="Longitude" formControlName="longitude" readonly>
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.longitude?.touched && form?.controls?.longitude?.errors?.required)">Longitude
                             is required</mat-error>
@@ -38,7 +38,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Item Name</mat-label>
-                        <input matInput placeholder="Item Name" formControlName="itemName">
+                        <input matInput placeholder="Item Name" formControlName="itemName" maxlength="20"
+                            (keypress)="validateInput($event, 'letterOnly')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.itemName?.touched && form?.controls?.itemName?.errors?.required)">Item
                             Name
@@ -46,14 +47,16 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Model</mat-label>
-                        <input matInput placeholder="Model" formControlName="model">
+                        <input matInput placeholder="Model" formControlName="model" maxlength="30"
+                            (keypress)="validateInput($event, 'letterOnly')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.model?.touched && form?.controls?.model?.errors?.required)">Model
                             is required</mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Description</mat-label>
-                        <input matInput placeholder="Description" formControlName="description">
+                        <input matInput placeholder="Description" formControlName="description"
+                            (keypress)="validateInput($event, 'letterOnly')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.description?.touched && form?.controls?.description?.errors?.required)">Description
                             is required</mat-error>
@@ -93,7 +96,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>AMC Provider Details</mat-label>
-                        <input matInput placeholder="AMC Provider Details" formControlName="amcProvider">
+                        <input matInput placeholder="AMC Provider Details" formControlName="amcProvider"
+                            (keypress)="validateInput($event, 'letterOnly')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.amcProvider?.touched && form?.controls?.amcProvider?.errors?.required)">AMC
                             Provider Details
@@ -101,7 +105,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>AMC Contact Number</mat-label>
-                        <input matInput placeholder="AMC Contact Number" formControlName="amcContact">
+                        <input matInput placeholder="AMC Contact Number" formControlName="amcContact" maxlength="10"
+                            (keypress)="validateInput($event, 'restrictInput')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.amcContact?.touched && form?.controls?.amcContact?.errors?.required)">AMC
                             Contact Number
@@ -109,7 +114,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>AMC Details</mat-label>
-                        <input matInput placeholder="AMC Details" formControlName="amcDetails">
+                        <input matInput placeholder="AMC Details" formControlName="amcDetails"
+                            (keypress)="validateInput($event, 'letterOnly')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.amcDetails?.touched && form?.controls?.amcDetails?.errors?.required)">AMC
                             Details
@@ -117,7 +123,8 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>AMC Cost</mat-label>
-                        <input matInput placeholder="AMC Cost" formControlName="amcCost">
+                        <input matInput placeholder="AMC Cost" formControlName="amcCost" maxlength="10"
+                            (keypress)="validateInput($event, 'restrictInput')">
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.amcCost?.touched && form?.controls?.amcCost?.errors?.required)">AMC
                             Cost
@@ -126,7 +133,7 @@
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
                         <mat-label>AMC Start Date</mat-label>
                         <input matInput [matDatepicker]="picker1" formControlName="amcStartDate"
-                            placeholder="AMC Start Date">
+                            (dateChange)="onStartDateChange($event)" placeholder="AMC Start Date">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                         <mat-error id="name-help" class="block text-danger"
@@ -136,7 +143,7 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
                         <mat-label>AMC End Date</mat-label>
-                        <input matInput [matDatepicker]="picker2" formControlName="amcEndDate"
+                        <input matInput [matDatepicker]="picker2" formControlName="amcEndDate" [min]="minEndDate"
                             placeholder="AMC End Date">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>

@@ -21,7 +21,8 @@ export class RangeFormComponent implements OnInit {
   loading = false;
   stateList:any
   zoneList:any
-  adminList:any
+  adminList:any;
+  isEditMode = false;
 
   constructor(private formService: FormService, private router: Router,private formBuilder: FormBuilder, private route: ActivatedRoute,
      private sharedService: SharedService, private actRouter: ActivatedRoute,private masterService:MasterService,
@@ -29,6 +30,7 @@ export class RangeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['rangeId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
     // this.editMasterId = this.actRouter.snapshot.params['rangeId'];
     // console.log("actroiut:",this.editMasterId)

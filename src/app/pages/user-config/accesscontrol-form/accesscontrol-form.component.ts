@@ -16,12 +16,14 @@ export class AccesscontrolFormComponent implements OnInit {
   submitting = false;
   submitted = false;
   editMasterId:any
-  stateList:any
+  stateList:any;
+  isEditMode = false;
   constructor(private router: Router, private formBuilder: FormBuilder, private loadingService: LoadingService,
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['accessControlId'];
+    this.isEditMode = !!this.editMasterId;
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       description:[''],

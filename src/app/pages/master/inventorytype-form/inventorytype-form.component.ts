@@ -18,7 +18,8 @@ export class InventorytypeFormComponent implements OnInit {
   editMasterId: any;
   selectedFiles: File[] = [];
   image:any
-  file:any
+  file:any;
+  isEditMode = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,11 +32,12 @@ export class InventorytypeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['inventoryTypeId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId);
     this.form = this.formBuilder.group({
       inventoryType: ['',Validators.required],
-      inventoryTypeCode: [''],
-      description: [''],
+      inventoryTypeCode: ['', Validators.required],
+      description: ['',Validators.required],
       icon: ['']
     });
     const id = this.editMasterId;

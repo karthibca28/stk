@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { ValidationService } from 'src/app/shared/services/validation.service';
 
 @Component({
   selector: 'app-inventory-form',
@@ -11,6 +12,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 })
 export class InventoryFormComponent implements OnInit {
   form: FormGroup;
+  minEndDate: Date;
   type = [
     { id: "CAR", name: "CAR"},
     { id: "BARRICADES", name: "BARRICADES"},
@@ -41,7 +43,8 @@ export class InventoryFormComponent implements OnInit {
     { id: "7", name: "7"},
   ]
 
-  constructor(private fb: FormBuilder, private secondaryService: SecondaryService,  private sharedService: SharedService, private router: Router) { }
+  constructor(private fb: FormBuilder, private secondaryService: SecondaryService,  private sharedService: SharedService,
+     private router: Router, private validationService: ValidationService) { }
 
   ngOnInit(): void {
     this.initialInventory();
@@ -105,8 +108,39 @@ export class InventoryFormComponent implements OnInit {
     console.log(data)
     this.form.patchValue({
       latitude: data.latitude,  
-      longitude:data.longitude
+      longitude:data.longitude,
+      locationName:data.name.split(", ")[0]
     })
   }
+
+  onStartDateChange(event: any) {
+    const startDate = new Date(event.value);
+    this.minEndDate = startDate; 
+
+    if (this.form.get('amcEndDate').value) {
+      const endDate = new Date(this.form.get('amcEndDate').value);
+      if (endDate < this.minEndDate) {
+        this.form.get('amcEndDate').setValue(null);
+      }
+    }
+  }
+
+  validateInput(event: KeyboardEvent | any, validationType: string): boolean | void {
+    switch (validationType) {
+      case 'letterOnly':
+        if (event instanceof KeyboardEvent) {
+          return this.validationService.validateInput(event, 'letterOnly');
+        }
+        break;
+        case 'restrictInput':
+          if (event instanceof KeyboardEvent) {
+            return this.validationService.validateInput(event, 'restrictInput');
+          }
+          break;
+      default:
+        break;
+    }
+  }
+
 
 }

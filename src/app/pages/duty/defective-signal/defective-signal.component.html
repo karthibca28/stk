@@ -47,6 +47,7 @@
                                 Choose File<span class="form-mandatory-field">*</span>
                             </label>
                             <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
+                            <span *ngIf="fileError" class="text-danger ml-2" style="color: red;">{{ fileError }}</span>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,7 @@ export class DefectiveSignalComponent implements OnInit {
   audioBlob: Blob;
   audioUrl: string;
   audio: HTMLAudioElement | null = null;
+  fileError: string;
 
   constructor(private fb: FormBuilder, private secondaryService: SecondaryService, private sharedService: SharedService,
     private router: Router, private confirmationService: ConfirmationService) { }
@@ -46,7 +47,7 @@ export class DefectiveSignalComponent implements OnInit {
     })
   }
   onSubmit() {
-    if (this.form.valid) {
+    if (this.form.valid && this.selectedFile) {
       var formData = new FormData();
       formData.append('location', this.form.value.locationName);
       formData.append('latitude', this.form.value.latitude);
@@ -64,12 +65,20 @@ export class DefectiveSignalComponent implements OnInit {
       })
     } else {
       this.form.markAllAsTouched();
+      if (!this.selectedFile) {
+        this.fileError = 'File is required';
+      }
     }
   }
 
   onFileSelected(event: any) {
     const fileInput = event.target;
     this.selectedFile = fileInput.files?.[0];
+    if (this.selectedFile) {
+      this.fileError = ''; 
+    } else {
+      this.fileError = 'File is required';
+    }
   }
 
   toggleRecording() {

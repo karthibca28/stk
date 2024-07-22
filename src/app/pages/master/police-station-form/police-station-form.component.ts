@@ -19,16 +19,18 @@ export class PoliceStationFormComponent implements OnInit {
   editMasterId: any;
   form!: FormGroup;
   loading = false;
-  zoneList:any
-  rangeList:any
-  districtList:any
-  subDivisionList:any
-  adminList:any
-  constructor(private formService: FormService, private router: Router,private masterService:MasterService,private route: ActivatedRoute,
-    private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute,private loadingService: LoadingService) { }
+  zoneList: any
+  rangeList: any
+  districtList: any
+  subDivisionList: any
+  adminList: any;
+  isEditMode = false;
+  constructor(private formService: FormService, private router: Router, private masterService: MasterService, private route: ActivatedRoute,
+    private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute, private loadingService: LoadingService) { }
 
   ngOnInit(): void {
-        this.editMasterId = this.route.snapshot.params['policeStationId'];
+    this.editMasterId = this.route.snapshot.params['policeStationId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
     // this.editMasterId = this.actRouter.snapshot.params['pstatId'];
     // if(this.editMasterId > 0){
@@ -39,26 +41,26 @@ export class PoliceStationFormComponent implements OnInit {
     this.form = this.formBuilder.group({
       code: [''],
       name: ['', Validators.required],
-      adminId:['',Validators.required],
-      stateId:[''],
-      zoneId:['',Validators.required],
-      rangeId:['',Validators.required],
-      districtId:['',Validators.required],
-      subDivisionId:['',Validators.required],
+      adminId: ['', Validators.required],
+      stateId: [''],
+      zoneId: ['', Validators.required],
+      rangeId: ['', Validators.required],
+      districtId: ['', Validators.required],
+      subDivisionId: ['', Validators.required],
       description: ['']
     });
-    const id=this.editMasterId
-    this.masterService.getPoliceStationbyId(id).subscribe((resp:any) => {
+    const id = this.editMasterId
+    this.masterService.getPoliceStationbyId(id).subscribe((resp: any) => {
       this.form.patchValue({
         code: resp.data.code,
         name: resp.data.name,
-        adminId:resp.data.administration.id,
+        adminId: resp.data.administration.id,
         stateId: resp.data.stateId,
-        rangeId:resp.data.range.id,
+        rangeId: resp.data.range.id,
         description: resp.data.description,
-        zoneId:resp.data.zone.id,
-        subDivisionId:resp.data.subDivision.id,
-        districtId:resp.data.district.id
+        zoneId: resp.data.zone.id,
+        subDivisionId: resp.data.subDivision.id,
+        districtId: resp.data.district.id
       });
       console.log(resp.data)
     });
@@ -87,30 +89,30 @@ export class PoliceStationFormComponent implements OnInit {
 
   getAdminList() {
     this.masterService.adminList().subscribe((resp: any) => {
-       this.adminList = resp.data
+      this.adminList = resp.data
     });
   }
 
 
   getZoneList() {
     this.masterService.zone().subscribe((resp: any) => {
-       this.zoneList = resp.data
+      this.zoneList = resp.data
     });
   }
 
   getRangeList() {
     this.masterService.range().subscribe((resp: any) => {
-       this.rangeList = resp.data
+      this.rangeList = resp.data
     });
   }
-   getDistrictList() {
+  getDistrictList() {
     this.masterService.district().subscribe((resp: any) => {
-       this.districtList = resp.data
+      this.districtList = resp.data
     });
   }
   getSubDivision() {
     this.masterService.subDivision().subscribe((resp: any) => {
-       this.subDivisionList = resp.data
+      this.subDivisionList = resp.data
     });
   }
 
@@ -148,15 +150,15 @@ export class PoliceStationFormComponent implements OnInit {
     if (this.form.valid) {
       this.loading = true;
       let value = {
-        id :this.editMasterId,
-        code:this.form.value.code,
-        name:this.form.value.name,
-        description:this.form.value.description, 
-        adminId:this.form.value.adminId,
-        zoneId:this.form.value.zoneId,
-        rangeId:this.form.value.rangeId,
-        districtId:this.form.value.districtId,
-        subDivisionId:this.form.value.subdivisionId
+        id: this.editMasterId,
+        code: this.form.value.code,
+        name: this.form.value.name,
+        description: this.form.value.description,
+        adminId: this.form.value.adminId,
+        zoneId: this.form.value.zoneId,
+        rangeId: this.form.value.rangeId,
+        districtId: this.form.value.districtId,
+        subDivisionId: this.form.value.subdivisionId
       }
       this.masterService.updatePoliceStation(value).subscribe(
         (data: any) => {
@@ -177,7 +179,7 @@ export class PoliceStationFormComponent implements OnInit {
     }
   }
 
-  
+
   // submit(formValue: any) {
   //   if (this.editMasterId > 0) {
   //     formValue.editId = this.editMasterId;

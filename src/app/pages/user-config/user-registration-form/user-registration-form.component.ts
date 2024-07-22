@@ -43,7 +43,8 @@ export class UserRegistrationFormComponent implements OnInit {
   adminList: any
   policeStationList: any
   userData: any
-  editData: any
+  editData: any;
+  isEditMode = false;
   constructor(private formService: FormService, private router: Router, private masterService: MasterService, private formBuilder: FormBuilder,
     private sharedService: SharedService, private actRouter: ActivatedRoute, private route: ActivatedRoute,
     private loadingService: LoadingService) { }
@@ -73,6 +74,7 @@ export class UserRegistrationFormComponent implements OnInit {
       this.form.get('userName').setValue(value);
     });
     this.editMasterId = this.route.snapshot.params['userId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
     const id = this.editMasterId;
     this.masterService.getUserId(id).subscribe((resp: any) => {
@@ -218,7 +220,7 @@ export class UserRegistrationFormComponent implements OnInit {
       this.masterService.UserRegistrationUpdate(data).subscribe((data: any) => {
         if (data) {
           this.loading = false;
-          this.sharedService.showSuccess('Added successfully!');
+          this.sharedService.showSuccess('Updated successfully!');
           this.form.reset();
           this.router.navigateByUrl(`main/user-config/user-list`);
           this.loadingService.hideLoader();

@@ -19,7 +19,8 @@ export class ZoneFormComponent implements OnInit {
   editMasterId: number = 0;
   loading = false;
   stateList: any
-  adminList: any
+  adminList: any;
+  isEditMode = false;
 
   constructor(private formService: FormService, private router: Router, private formBuilder: FormBuilder, private route: ActivatedRoute,
     private masterService: MasterService, private sharedService: SharedService, private activatedRoute: ActivatedRoute,
@@ -27,6 +28,7 @@ export class ZoneFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['zoneId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
 
     this.form = this.formBuilder.group({

@@ -17,12 +17,14 @@ export class RankFormComponent implements OnInit {
   submitted = false;
   editMasterId:any
   roleList:any
-  accessControlList:any
+  accessControlList:any;
+  isEditMode = false;
   constructor(private router: Router, private formBuilder: FormBuilder, private loadingService: LoadingService,
     private route: ActivatedRoute,private masterService: MasterService, private sharedService:SharedService) { }
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['rankId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
     this.form = this.formBuilder.group({
       rankCode:['',Validators.required],

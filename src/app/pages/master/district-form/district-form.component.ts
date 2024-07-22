@@ -20,12 +20,14 @@ export class DistrictFormComponent implements OnInit {
   loading = false;
   zoneList:any
   rangeList:any
-  adminList:any
+  adminList:any;
+  isEditMode = false;
   constructor(private formService: FormService, private router: Router,private masterService:MasterService, private route: ActivatedRoute,
     private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute,private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['districtId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
       // this.sharedService.getDynamicFormData().subscribe((formData: any) => {
       //   this.formData = formData.district;

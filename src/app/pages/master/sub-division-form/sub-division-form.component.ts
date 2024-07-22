@@ -23,13 +23,15 @@ export class SubDivisionFormComponent implements OnInit {
   zoneList:any
   rangeList:any
   districtList:any
-  adminList:any
+  adminList:any;
+  isEditMode = false;
   constructor(private formService: FormService, private router: Router,private masterService:MasterService,private route: ActivatedRoute,
     private formBuilder: FormBuilder, private sharedService: SharedService, private actRouter: ActivatedRoute,
     private loadingService: LoadingService) { }
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['subDivisionId'];
+    this.isEditMode = !!this.editMasterId;
     console.log(this.editMasterId)
 
     this.form = this.formBuilder.group({
