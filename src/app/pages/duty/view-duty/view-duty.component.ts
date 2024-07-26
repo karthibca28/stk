@@ -16,6 +16,7 @@ export class ViewDutyComponent implements OnInit {
   editData: any;
   latitude: number;
   longitude: number;
+  minEndDate: Date;
   locationName: string;
   dutyType = [
     { id: "JUNCTION_POINT", name: "JUNCTION POINT" },
@@ -120,7 +121,6 @@ export class ViewDutyComponent implements OnInit {
     this.secondaryService.viewDuty(this.editMasterId).subscribe((res: any) => {
       this.editData = res.data;
       const assignedToName = res.data.assignedTo.length > 0 ? res.data.assignedTo[0].name : '';
-      console.log('ass', assignedToName);
       this.form.patchValue({
         dutyType: res.data.dutyType,
         assignedTo: assignedToName,
@@ -134,6 +134,17 @@ export class ViewDutyComponent implements OnInit {
         endLongitude: res.data.endLongitude,
       });
     })
+  }
+
+  onStartDateChange(event: any) {
+    const startDate = new Date(event.value);
+    this.minEndDate = startDate; 
+    if (this.form.get('endDateTime').value) {
+      const endDate = new Date(this.form.get('endDateTime').value);
+      if (endDate < this.minEndDate) {
+        this.form.get('endDateTime').setValue(null);
+      }
+    }
   }
 
   formatDateTime(dateTime: Date): string {

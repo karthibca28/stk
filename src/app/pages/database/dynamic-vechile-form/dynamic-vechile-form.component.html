@@ -24,11 +24,6 @@
                         is required</mat-error>
                 </mat-form-field>
                 <div *ngIf="!editData">
-                    <!-- <button mat-raised-button type="button" class="ml-3"
-                    (click)="fileInput.click()">Choose
-                    File</button>
-                <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event, 'file')">
-                <div *ngIf="selectedFile">{{ selectedFile.name }}</div> -->
                     <div class="row col-6">
                         <div class="card p-2">
                             <div class="card-header" style="padding: 8px; border-radius: 8px;">
@@ -42,7 +37,8 @@
                                     Choose File<span class="form-mandatory-field">*</span>
                                 </label>
                                 <span *ngIf="selectedFile" class="ml-2">{{ selectedFile.name }}</span>
-                                <span *ngIf="fileError" class="text-danger ml-2" style="color: red;">{{ fileError }}</span>
+                                <span *ngIf="fileError" class="text-danger ml-2" style="color: red;">{{ fileError
+                                    }}</span>
                             </div>
                         </div>
                     </div>
@@ -59,6 +55,35 @@
                 <div class="card-body p-2">
                     <app-dynamic-map-edit [latitude]="latitude" [longitude]="longitude" [locationName]="locationName"
                         (location)="location($event)"></app-dynamic-map-edit>
+                </div>
+            </div>
+            <div *ngIf="editData">
+                <div class="col-12 md:col-3">
+                    <label class="font-bold">Files</label>
+                </div>
+                <div class="col-12 md:col-4">
+                    <div *ngIf="editData" class="card" style="background-color: #E5F2FF;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 md:col-12">
+                                    <div class="attachment" *ngFor="let attachment of editData.attachment"
+                                        (click)="downloadAttachment(attachment)"
+                                        style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div class="attachment-details">
+                                            <p>{{ attachment.orgFileName }}</p>
+                                        </div>
+                                        <div class="download-icon" style="cursor: pointer;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path d="M10 17L15 12L10 7" stroke="#212121" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

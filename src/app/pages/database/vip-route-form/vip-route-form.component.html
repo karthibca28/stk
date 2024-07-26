@@ -25,7 +25,8 @@
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
                         <mat-label>Start Date</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="startDateTime"
-                            (dateChange)="onStartDateChange($event)" placeholder="Start Date">
+                            (dateChange)="onStartDateChange($event)" placeholder="Start Date" readonly
+                            (click)="picker.open()">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error id="name-help" class="block text-danger"
@@ -36,7 +37,7 @@
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
                         <mat-label>End Date</mat-label>
                         <input matInput [matDatepicker]="picker1" formControlName="endDateTime" placeholder="End Date"
-                            [min]="minEndDate">
+                            [min]="minEndDate" readonly (click)="picker1.open()">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                         <mat-error id="name-help" class="block text-danger"

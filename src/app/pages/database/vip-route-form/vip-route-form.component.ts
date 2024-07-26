@@ -98,47 +98,45 @@ export class VipRouteFormComponent implements OnInit {
     endDateTime.setHours(currentDateTime.getHours(), currentDateTime.getMinutes(), currentDateTime.getSeconds());
     const formattedStartDateTime = this.formatDateTime(startDateTime);
     const formattedEndDateTime = this.formatDateTime(endDateTime);
-    // if(this.form.valid){
-    const data = {
-      "name": this.form.value.name,
-      "type": this.form.value.type,
-      "startDateTime": formattedStartDateTime,
-      "endDateTime": formattedEndDateTime,
-      "isGoogleLocation": this.form.value.isGoogleLocation
-    };
+    if (this.form.valid) {
+      const data = {
+        "name": this.form.value.name,
+        "type": this.form.value.type,
+        "startDateTime": formattedStartDateTime,
+        "endDateTime": formattedEndDateTime,
+        "isGoogleLocation": this.form.value.isGoogleLocation
+      };
 
-    if (this.form.value.isGoogleLocation) {
-      data["startLocationName"] = this.form.value.startLocationName;
-      data["startLocationLat"] = this.form.value.startLocationLat;
-      data["startLocationLng"] = this.form.value.startLocationLng;
-      data["endLocationName"] = this.form.value.endLocationName;
-      data["endLocationLat"] = this.form.value.endLocationLat;
-      data["endLocationLng"] = this.form.value.endLocationLng;
-    } else {
-      data["startLocationId"] = this.form.value.startLocationId;
-      data["startLocationLat"] = this.form.value.startLocationLat;
-      data["startLocationLng"] = this.form.value.startLocationLng;
-      data["endLocationId"] = this.form.value.endLocationId;
-      data["endLocationLat"] = this.form.value.endLocationLat;
-      data["endLocationLng"] = this.form.value.endLocationLng;
-    }
-
-    this.secondaryService.addVipRoute(data).subscribe((res: any) => {
-      if (res) {
-        this.sharedService.showSuccess('VIP Routes Added Successfully');
-        this.router.navigate(['/main/database/vip-route'])
+      if (this.form.value.isGoogleLocation) {
+        data["startLocationName"] = this.form.value.startLocationName;
+        data["startLocationLat"] = this.form.value.startLocationLat;
+        data["startLocationLng"] = this.form.value.startLocationLng;
+        data["endLocationName"] = this.form.value.endLocationName;
+        data["endLocationLat"] = this.form.value.endLocationLat;
+        data["endLocationLng"] = this.form.value.endLocationLng;
+      } else {
+        data["startLocationId"] = this.form.value.startLocationId;
+        data["startLocationLat"] = this.form.value.startLocationLat;
+        data["startLocationLng"] = this.form.value.startLocationLng;
+        data["endLocationId"] = this.form.value.endLocationId;
+        data["endLocationLat"] = this.form.value.endLocationLat;
+        data["endLocationLng"] = this.form.value.endLocationLng;
       }
-    });
-    // } else {
-    //   this.form.markAllAsTouched();
-    // }
+
+      this.secondaryService.addVipRoute(data).subscribe((res: any) => {
+        if (res) {
+          this.sharedService.showSuccess('VIP Routes Added Successfully');
+          this.router.navigate(['/main/database/vip-route'])
+        }
+      });
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
   onStartDateChange(event: any) {
     const startDate = new Date(event.value);
-    this.minEndDate = startDate; // Set minimum end date to the start date
-
-    // Reset end date if it's before the new start date
+    this.minEndDate = startDate;
     if (this.form.get('endDateTime').value) {
       const endDate = new Date(this.form.get('endDateTime').value);
       if (endDate < this.minEndDate) {
@@ -146,8 +144,6 @@ export class VipRouteFormComponent implements OnInit {
       }
     }
   }
-
-
 
   formatDateTime(dateTime: Date): string {
     const year = dateTime.getFullYear();

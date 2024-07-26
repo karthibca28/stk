@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormService } from 'src/app/shared/services/form.service';
 import { SecondaryService } from 'src/app/shared/services/secondary.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 
@@ -21,7 +22,7 @@ export class DynamicVechileFormComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder, private secondaryService: SecondaryService, private route: ActivatedRoute,
-    private sharedService: SharedService, private router: Router) { }
+    private sharedService: SharedService, private router: Router, private formService: FormService) { }
 
   ngOnInit(): void {
     this.editMasterId = this.route.snapshot.params['vehiclePointId'];
@@ -82,16 +83,40 @@ export class DynamicVechileFormComponent implements OnInit {
     })
   }
 
-  
-
-  onFileSelected(event: any) {
-    const fileInput = event.target;
-    this.selectedFile = fileInput.files?.[0];
-    if (this.selectedFile) {
-      this.fileError = ''; 
-    } else {
-      this.fileError = 'File is required';
+  async downloadAttachment(attachment: any): Promise<void> {
+    try {
+      const response = await this.formService.getFileForBroadCast(attachment.downloadPath);
+      if (!response) {
+        throw new Error('Invalid file response');
+      }
+      this.downloadFile(response, attachment.orgFileName);
+    } catch (error) {
+      console.error('Error fetching or processing file:', error);
     }
   }
+
+  downloadFile(file: Blob, fileName: string): void {
+    const downloadLink = document.createElement('a');
+    const url = URL.createObjectURL(file);
+    downloadLink.href = url;
+    downloadLink.download = fileName;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
+  
+  onFileSelected(event: any, fileType: string) {
+    const fileInput = event.target;
+    if (fileType === 'file') {
+      this.selectedFile = fileInput.files?.[0];
+      if (this.selectedFile) {
+        this.fileError = ''; 
+      } else {
+        this.fileError = 'File is required';
+      }
+    }
+  }
+  
 
 }

@@ -27,6 +27,7 @@ export class DutyPointFormComponent implements OnInit {
   selectedFile: any;
   isFileLoaded: boolean = false
   fileUrl: SafeResourceUrl;
+  fileError: string;
   fileType: string = 'application/pdf'
   pointTypes = [
     { id: "LOCATION_POINT", name: "LOCATION POINT" },
@@ -80,6 +81,7 @@ export class DutyPointFormComponent implements OnInit {
   location(data: any) {
     console.log(data)
     this.form.patchValue({
+      locationName: data.name.split(", ")[0],
       latitude: data.latitude,
       longitude: data.longitude
     });
@@ -103,6 +105,9 @@ export class DutyPointFormComponent implements OnInit {
       })
     } else {
       this.form.markAllAsTouched();
+      if (!this.selectedFile) {
+        this.fileError = 'File is required';
+      }
     }
   }
 
@@ -123,36 +128,25 @@ export class DutyPointFormComponent implements OnInit {
 
   onFileSelected(event: any, fileType: string) {
     const fileInput = event.target;
-    switch (fileType) {
-      case 'file':
-        this.selectedFile = fileInput.files?.[0];
-        break;
-      default:
-        break;
+    if (fileType === 'file') {
+      this.selectedFile = fileInput.files?.[0];
+      if (this.selectedFile) {
+        this.fileError = ''; 
+      } else {
+        this.fileError = 'File is required';
+      }
     }
   }
 
-  async viewFiles(data: any, fileType: string): Promise<void> {
-    console.log(data.fileName)
+  async downloadAttachment(attachment: any): Promise<void> {
     try {
-      const res = await this.formService.getFileForBroadCast(data?.downloadPath);
-      if (!res) {
+      const response = await this.formService.getFileForBroadCast(attachment.downloadPath);
+      if (!response) {
         throw new Error('Invalid file response');
       }
-
-      this.fileType = res.type;
-      console.log(res.type);
-
-      if (this.fileType == 'application/pdf') {
-        console.warn("Displaying PDF");
-        const fileUrl = await this.getPdfUrl(res);
-        this.fileUrl = fileUrl;
-      } else {
-        console.warn("Downloading file directly");
-        this.downloadFile(res, data.fileName);
-      }
-    } catch (e) {
-      console.error('Error fetching or processing file:', e);
+      this.downloadFile(response, attachment.orgFileName);
+    } catch (error) {
+      console.error('Error fetching or processing file:', error);
     }
   }
 

@@ -53,14 +53,7 @@
                             *ngIf="(form?.controls?.model?.touched && form?.controls?.model?.errors?.required)">Model
                             is required</mat-error>
                     </mat-form-field>
-                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
-                        <mat-label>Description</mat-label>
-                        <input matInput placeholder="Description" formControlName="description"
-                            (keypress)="validateInput($event, 'letterOnly')">
-                        <mat-error id="name-help" class="block text-danger"
-                            *ngIf="(form?.controls?.description?.touched && form?.controls?.description?.errors?.required)">Description
-                            is required</mat-error>
-                    </mat-form-field>
+
                     <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2">
                         <mat-label>Year</mat-label>
                         <mat-select formControlName="year" placeholder="Year">
@@ -86,7 +79,7 @@
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px;" class="mb-2">
                         <mat-label>Select Added Date</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="dateAdded"
-                            placeholder="Select Added Date">
+                            placeholder="Select Added Date" readonly (click)="picker.open()">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                         <mat-error id="name-help" class="block text-danger"
@@ -133,7 +126,8 @@
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
                         <mat-label>AMC Start Date</mat-label>
                         <input matInput [matDatepicker]="picker1" formControlName="amcStartDate"
-                            (dateChange)="onStartDateChange($event)" placeholder="AMC Start Date">
+                            (dateChange)="onStartDateChange($event)" placeholder="AMC Start Date"
+                            (click)="picker1.open()">
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                         <mat-error id="name-help" class="block text-danger"
@@ -144,12 +138,20 @@
                     <mat-form-field appearance="outline" style="padding: 5px; width: 210px" class="mb-2">
                         <mat-label>AMC End Date</mat-label>
                         <input matInput [matDatepicker]="picker2" formControlName="amcEndDate" [min]="minEndDate"
-                            placeholder="AMC End Date">
+                            placeholder="AMC End Date" (click)="picker2.open()">
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                         <mat-datepicker #picker2></mat-datepicker>
                         <mat-error id="name-help" class="block text-danger"
                             *ngIf="(form?.controls?.amcEndDate?.touched && form?.controls?.amcEndDate?.errors?.required)">AMC
                             End Date
+                            is required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" style="padding: 5px;" class="mb-2 col-8">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Description" formControlName="description"
+                            (keypress)="validateInput($event, 'letterOnly')"></textarea>
+                        <mat-error id="name-help" class="block text-danger"
+                            *ngIf="(form?.controls?.description?.touched && form?.controls?.description?.errors?.required)">Description
                             is required</mat-error>
                     </mat-form-field>
                 </div>

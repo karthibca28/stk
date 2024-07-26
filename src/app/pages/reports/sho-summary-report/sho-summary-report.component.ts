@@ -19,7 +19,7 @@ export class ShoSummaryReportComponent implements OnInit {
   ];
   reportSubType = [
     { id: 'all', name: 'All' },
-    { id: 'taskType', name: 'TASK TYPE' },
+    { id: 'TaskType', name: 'TASK TYPE' },
     { id: 'dutyType', name: 'DUTY TYPE' }
   ]
 
