@@ -9,6 +9,8 @@ import { ImeiSearchComponent } from './imei-search/imei-search.component';
 import { ProfileComponent } from './profile/profile.component';
 import { VehicleBlacklistComponent } from './vehicle-blacklist/vehicle-blacklist.component';
 import { DlChecksComponent } from './dl-checks/dl-checks.component';
+import { AttendanceHistoryComponent } from './attendance-history/attendance-history.component';
+import { AttendanceAddComponent } from './attendance-add/attendance-add.component';
 
 const routes: Routes = [
   {
@@ -50,6 +52,14 @@ const routes: Routes = [
   {
     path: 'dl-checks',
     component: DlChecksComponent
+  },
+  {
+    path: 'attentanceHistory',
+    component: AttendanceHistoryComponent
+  },
+  {
+    path: 'attentanceAdd',
+    component: AttendanceAddComponent
   }
 ];
 

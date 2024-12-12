@@ -15,6 +15,8 @@ import { BroadcastMessageViewComponent } from './broadcast-message-view/broadcas
 import { ImeiSearchComponent } from './imei-search/imei-search.component';
 import { MaterialModule } from 'src/app/shared/modules/material/material.module';
 import { DlChecksComponent } from './dl-checks/dl-checks.component';
+import { AttendanceHistoryComponent } from './attendance-history/attendance-history.component';
+import { AttendanceAddComponent } from './attendance-add/attendance-add.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { DlChecksComponent } from './dl-checks/dl-checks.component';
     ProfileComponent,
     BroadcastMessageViewComponent,
     ImeiSearchComponent,
-    DlChecksComponent
+    DlChecksComponent,
+    AttendanceHistoryComponent,
+    AttendanceAddComponent
   ],
   imports: [
     CommonModule,

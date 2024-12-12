@@ -26,6 +26,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const userData = JSON.parse(sessionStorage.getItem('userInfo') as string);
+    // console.log("User data", userData);
     let auth: any; 
     if (userData) {
       this.token = userData.data.session.accessToken; 

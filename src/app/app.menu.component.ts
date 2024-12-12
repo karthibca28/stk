@@ -58,6 +58,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Map Location', icon: 'pi pi-file', routerLink: ['/main/master/locationMap'] }
                 ]
             },
+            { label: 'Attendance History', icon: 'fa fa-bandcamp', access: '4,5,6', routerLink: ['/main/dashboard/attentanceHistory'] },
             { label: 'Duty Points DB', icon: 'fa fa-bandcamp', access: '4,5', routerLink: ['/main/lot/dutyPoints'] },
             // Dist.Admin
             {

@@ -1,0 +1,25 @@
+.container {
+    margin: 20px;
+  }
+  
+  .card {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 16px;
+  }
+  
+  .toggle-container p {
+    margin: 0 8px;
+  }
+  
+  .p-field {
+    margin-bottom: 16px;
+  }  

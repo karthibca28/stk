@@ -385,6 +385,16 @@ updateAccessControl(data: any){
 updateInventoryType(data:any){
   return this.http.put(`${this.apiUrl}admin/inventoryType`, data);
 }
+attendanceHistory(){
+  return this.http.get(`${this.apiUrl}attendance/history`);
+}
+// attendance/history/:userId
+getAttendanceById(userId:any){ 
+  return this.http.get(`${this.apiUrl}attendance/history/${userId}`);
+}
+attendanceInout(data: any){
+  return this.http.post(`${this.apiUrl}attendance/inOut`, data);
+}
 
 }
 

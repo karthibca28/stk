@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="grid">
+      <div class="md:col-6">
+        <div class="card">
+          <form [formGroup]="attendanceForm" (ngSubmit)="onSubmit()">
+            <!-- Slide Toggle -->
+            <p>
+              OUT
+              <mat-slide-toggle formControlName="toggle" labelPosition="before"></mat-slide-toggle>
+              IN
+            </p>
+
+            <mat-form-field class="w-full">
+                  <mat-label>Remark</mat-label>
+                  <textarea
+                    matInput
+                    rows="3"
+                    formControlName="remark"
+                    placeholder="Enter your remark"
+                  ></textarea>
+            </mat-form-field>
+
+                <mat-form-field class="w-full">
+                  <mat-label>Latitude</mat-label>
+                  <input
+                    matInput
+                    id="latitude"
+                    formControlName="latitude"
+                    placeholder="Fetching..."
+                    readonly
+                  />
+                </mat-form-field>
+
+
+                <mat-form-field class="w-full">
+                  <mat-label>Longitude</mat-label>
+                  <input
+                    matInput
+                    id="longitude"
+                    formControlName="longitude"
+                    placeholder="Fetching..."
+                    readonly
+                  />
+                </mat-form-field>
+  
+              <!-- Submit Button -->
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="attendanceForm.invalid"
+              >
+                Submit
+              </button>
+          </form>
+        </div>
+      </div>
+    </div>
+</div>  
